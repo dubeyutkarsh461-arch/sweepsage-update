@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
+  <meta name="color-scheme" content="light">
+<meta name="description" content="Book Photography with SweepSage. Select a requirement and package to send an enquiry.">
+<title>Photography Booking | SweepSage</title>
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="BOOKING-FLOW.CSS?v=3.2">
+<script src="api.js?v=3.2" defer></script>
+<script src="SCRIPT.JS?v=3.2" defer></script>
+<script src="BOOKING-FLOW.JS?v=3.2" defer></script>
+  <script>
+    (function(){
+      try { localStorage.removeItem('sweepsage_theme'); } catch(e){}
+      document.documentElement.setAttribute('data-theme', 'light');
+      if (document.documentElement.classList) {
+        document.documentElement.classList.remove('dark-theme');
+      }
+    })();
+  </script>
+</head>
+<body data-service="photographer">
+<!-- ======================================================
+     HEADER & NAVBAR
+====================================================== -->
+
+<header class="navbar" id="navbar">
+    <a href="index.html#home" class="brand"><img src="logo.png" alt="SweepSage"><span>sweepsage<span>.com</span></span></a>
+
+    <nav class="nav-links" id="mainNav" aria-label="Main navigation">
+        <a href="PHOTOGRAPHER-BOOKING.HTML">Photography</a>
+        <a href="SALON-BOOKING.HTML">Salon</a>
+        <a href="TRAVEL-BOOKING.HTML">Travel</a>
+        <a href="partners.html">Partners</a>
+        <a href="partner-login.html">Partner Login</a>
+    </nav>
+
+    <div style="display: flex; align-items: center; gap: 8px;">
+        <a href="PHOTOGRAPHER-BOOKING.HTML?event=instant" onclick="if(typeof selectPackage==='function'){selectPackage('10-Min Photographer','₹1,499/-'); document.getElementById('tenMinuteOffer')?.scrollIntoView({behavior:'smooth'}); return false;}" class="nav-instant-btn" role="button" aria-label="Book in Minutes">⚡ BOOK IN MINUTES</a>
+        <button class="nav-icon-btn nav-search-btn" type="button" aria-label="Search experiences" title="Search experiences (Ctrl+K)" onclick="openSearchModal()">
+            <span class="action-icon">
+                <svg class="nav-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </span>
+        </button>
+        <a href="partner-register.html" class="nav-cta nav-icon-btn" title="Become a Partner" aria-label="Become a Partner">
+            <span class="action-icon">
+                <svg class="nav-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </span>
+            <span class="btn-text">Become a Partner <span>↗</span></span>
+        </a>
+    </div>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Open navigation menu" aria-controls="mainNav" aria-expanded="false"><span></span><span></span><span></span></button>
+</header>
+<button class="menu-backdrop" id="menuBackdrop" type="button" aria-label="Close navigation menu" tabindex="-1"></button>
+
+
+<!-- ======================================================
+     MAIN USP
+====================================================== -->
+
+<section class="usp">
+
+    <div class="container usp-inner">
+
+        <div class="usp-left">
+
+            <div class="usp-icon" id="serviceIcon">
+                ⚡
+            </div>
+
+            <div class="usp-text">
+
+                <small>SWEEPSAGE SIGNATURE EXPERIENCE</small>
+
+                <h2 id="uspHeading">
+                    <span>10-Min Photographer</span>
+                    — Just ₹1,499/-
+                </h2>
+
+                <p id="uspCopy">Quick professional photography for portraits, couples, birthdays, products and special moments.</p>
+
+            </div>
+
+        </div>
+
+        <div class="usp-price" id="uspPrice">
+
+            <strong>₹1,499/-</strong>
+
+            <span>
+                10 minutes
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     PAGE
+====================================================== -->
+
+<main class="page">
+
+<div class="container">
+
+    <div class="intro">
+
+        <span class="eyebrow">
+            SWEEPSAGE BOOKING
+        </span>
+
+        <h1 id="pageHeading">
+            Plan it.
+            <em>Book it.</em>
+            Enjoy it.
+        </h1>
+
+        <p id="pageIntro">Choose a requirement and package, then share your details. Our team will confirm availability and the final quotation.</p>
+
+    </div>
+
+
+    <!-- ==================================================
+         PROGRESS
+    ================================================== -->
+
+    <div class="progress-box">
+
+        <div class="progress-top">
+
+            <span id="stepText">
+                Step 1 of 5
+            </span>
+
+            <span class="progress-title" id="progressTitle">
+                Select Service
+            </span>
+
+        </div>
+
+        <div class="progress-track">
+
+            <div class="progress-fill" id="progressFill"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         STEP 1 — SERVICE
+    ================================================== -->
+
+    <!-- ==================================================
+         STEP 2 — EVENT
+    ================================================== -->
+
+    <section class="booking-section active" id="step2">
+
+        <div class="section-head">
+
+            <span class="eyebrow">
+                STEP 02
+            </span>
+
+            <h2 id="eventHeading">
+                What are you planning?
+            </h2>
+
+            <p id="eventDescription">
+                Select the type of requirement.
+            </p>
+
+        </div>
+
+        <div class="event-grid" id="eventGrid"></div>
+
+        <div class="actions">
+
+            <button class="btn btn-back" type="button" onclick="smartGoBack()">← Back</button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         STEP 3 — PACKAGES
+    ================================================== -->
+
+    <section class="booking-section" id="step3">
+
+        <div class="section-head">
+
+            <span class="eyebrow">
+                STEP 03
+            </span>
+
+            <h2 id="packageHeading">
+                Choose your package.
+            </h2>
+
+            <p id="packageDescription">
+                Select what fits your requirement and budget.
+            </p>
+
+        </div>
+
+
+        <!-- 10 MIN USP -->
+
+        <div class="ten-minute" id="tenMinuteOffer" onclick="selectPackage('10-Min Photographer','₹1,499/-')" role="button" tabindex="0">
+
+            <div class="ten-content">
+
+                <span class="ten-label">
+                    ⭐ SWEEPSAGE MAIN USP
+                </span>
+
+                <div class="ten-flex">
+
+                    <div>
+
+                        <h3>
+                            10-Min Photographer
+                        </h3>
+
+                        <p>
+                            Don't need a full photography session?
+                            Get a professional photographer for
+                            quick portraits, couples, birthdays,
+                            profile pictures, small celebrations,
+                            product shots and special moments.
+                        </p>
+
+                    </div>
+
+                    <div class="ten-price">
+
+                        <strong>
+                            ₹1,499/-
+                        </strong>
+
+                        <span>
+                            10-minute session
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <button
+                    class="ten-button"
+                    type="button"
+                    tabindex="-1">
+
+                    Choose 10-Min Photographer →
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="custom-quote"
+            id="travelQuote"
+            style="display:none;">
+
+            <h3>
+                ✈️ Travel is customised — no fake fixed pricing.
+            </h3>
+
+            <p>
+                Travel cost depends on destination, number of
+                travellers, travel dates, hotel category,
+                transport, activities and season.
+                <strong>
+                    Tell us your requirement and we'll prepare
+                    a personalised quotation.
+                </strong>
+            </p>
+
+        </div>
+
+
+        <div
+            class="package-grid"
+            id="packageGrid">
+        </div>
+
+
+        <div class="actions">
+
+            <button
+                class="btn btn-back"
+                onclick="goStep(2)"
+                type="button">
+                ← Back
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         STEP 4 — DETAILS
+    ================================================== -->
+
+    <section class="booking-section" id="step4">
+
+        <div class="section-head">
+
+            <span class="eyebrow">
+                STEP 04
+            </span>
+
+            <h2>
+                Tell us the <em>details.</em>
+            </h2>
+
+            <p>
+                The more information you provide,
+                the more accurate your quotation will be.
+            </p>
+
+        </div>
+
+
+        <form
+            class="form-card"
+            id="detailsForm"
+            onsubmit="reviewRequest(event)">
+
+            <div
+                class="form-grid"
+                id="formFields">
+            </div>
+
+
+            <div class="actions">
+
+                <button
+                    class="btn btn-back"
+                    onclick="goStep(3)"
+                    type="button">
+
+                    ← Back
+
+                </button>
+
+                <button
+                    class="btn btn-primary"
+                    type="submit">
+
+                    Review Request →
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+
+    <!-- ==================================================
+         STEP 5 — REVIEW
+    ================================================== -->
+
+    <section class="booking-section" id="step5">
+
+        <div class="section-head">
+
+            <span class="eyebrow">
+                STEP 05
+            </span>
+
+            <h2>
+                Review your <em>request.</em>
+            </h2>
+
+            <p>
+                Check your details before sending the enquiry.
+            </p>
+
+        </div>
+
+
+        <div class="review" id="reviewArea">
+        </div>
+
+
+        <div class="actions">
+
+            <button
+                class="btn btn-back"
+                onclick="goStep(4)"
+                type="button">
+
+                ← Edit Details
+
+            </button>
+
+            <button
+                class="btn btn-whatsapp"
+                onclick="sendWhatsApp()"
+                type="button">
+
+                WhatsApp Enquiry ↗
+
+            </button>
+
+        </div>
+
+
+        <div class="notice">
+
+            🔒 Your information is used only to respond to
+            your SweepSage booking enquiry.
+            Final pricing may vary depending on date,
+            location, availability, travel distance,
+            requirements and selected customisations.
+
+        </div>
+
+    </section>
+
+</div>
+
+</main>
+
+
+<!-- ======================================================
+     FOOTER
+====================================================== -->
+
+<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-brand">
+            <img src="logo.png" alt="SweepSage">
+            <h3>sweepsage<span>.com</span></h3>
+            <p>Photography • Salon at Home • Travel<br>Made for moments that matter.</p>
+        </div>
+        <div class="footer-column">
+            <span>Company</span>
+            <a href="index.html#about">About Us</a>
+            <a href="partners.html">Partners</a>
+            <a href="partner-login.html">Partner Login</a>
+            <a href="index.html#contact">Contact Us</a>
+        </div>
+        <div class="footer-column">
+            <span>Services</span>
+            <a href="photography.html">Photography</a>
+            <a href="salon.html">Salon at Home</a>
+            <a href="travel.html">Travel</a>
+        </div>
+        <div class="footer-column">
+            <span>Connect</span>
+            <a href="https://www.instagram.com/sweepsage_/" target="_blank" rel="noopener">Instagram ↗</a>
+            <a href="tel:+919555826615">Call Us ↗</a>
+            <a href="mailto:sweepsage25@gmail.com">Email Us ↗</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>© 2026 SweepSage. All rights reserved.</span>
+        <span>Made for moments that matter.</span>
+    </div>
+</footer>
+
+<!-- PERSISTENT FOOTER SERVICE DOCK (Available Every Time) -->
+<nav class="persistent-service-dock" aria-label="Persistent Services Dock">
+  <div class="service-dock-inner">
+    <a href="photography.html" class="service-dock-btn active" data-dock="photography" title="Photography on demand">
+      <div class="dock-icon-wrap">
+        <img src="loader-camera-logo.png" alt="Photography" width="22" height="22">
+      </div>
+      <span>Photography</span>
+    </a>
+    <div class="dock-divider"></div>
+    <a href="salon.html" class="service-dock-btn" data-dock="salon" title="Salon & Beauty at Home">
+      <div class="dock-icon-wrap">
+        <img src="loader-salon-logo.png" alt="Salon" width="22" height="22">
+      </div>
+      <span>Salon</span>
+    </a>
+    <div class="dock-divider"></div>
+    <a href="travel.html" class="service-dock-btn" data-dock="travel" title="Curated Travel">
+      <div class="dock-icon-wrap">
+        <img src="loader-airplane-logo.png" alt="Travel" width="22" height="22">
+      </div>
+      <span>Travel</span>
+    </a>
+  </div>
+</nav>
+
+<div class="toast" id="toast">
+    Package selected
+</div>
+</body>
+</html>

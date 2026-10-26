@@ -1,0 +1,20 @@
+# Python & Database
+*.db
+*.sqlite3
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+.venv/
+env/
+venv/
+.pytest_cache/
+
+# User Uploads
+uploads/*
+!uploads/.gitkeep
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini

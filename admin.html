@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="SweepSage Admin Management Console - Live Bookings and Partner Approvals.">
+  <title>Admin Management Console | SweepSage</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="STYLE.CSS?v=3.2">
+  <link rel="stylesheet" href="PARTNERS.CSS?v=3.2">
+  <style>
+    :root {
+      --admin-bg: #090a0c;
+      --admin-surface: #121417;
+      --admin-card: #181a1f;
+      --admin-gold: #fc5e68;
+      --admin-gold-glow: rgba(252, 94, 104, 0.25);
+      --admin-logo: #fc5e68;
+      --admin-logo-light: #ff858e;
+      --admin-muted: #8c939f;
+      --status-pending: #f59e0b;
+      --status-confirmed: #10b981;
+      --status-completed: #3b82f6;
+      --status-cancelled: #ef4444;
+    }
+
+    body {
+      background-color: var(--admin-bg);
+      color: var(--admin-text);
+      font-family: 'DM Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    .admin-wrapper {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px 32px 64px;
+    }
+
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--admin-border);
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .admin-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .admin-brand img {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      object-fit: cover;
+      background: #000;
+    }
+
+    .admin-brand h1 {
+      font-family: 'Manrope', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin: 0;
+      color: #fff;
+    }
+
+    .admin-brand span {
+      display: block;
+      font-size: 13px;
+      color: var(--admin-gold);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .admin-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-outline {
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--admin-border);
+      background: rgba(255, 255, 255, 0.03);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-outline:hover {
+      background: rgba(252, 94, 104, 0.15);
+      border-color: rgba(252, 94, 104, 0.5);
+      color: #ff858e;
+      transform: translateY(-2px);
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #fc5e68 0%, #ff858e 48%, #e03a48 100%);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      font-weight: 800;
+      box-shadow: 0 4px 18px rgba(252, 94, 104, 0.35);
+      transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(252, 94, 104, 0.5);
+      filter: brightness(1.05);
+      color: #ffffff;
+    }
+
+    .btn-gold:active,
+    .btn-outline:active {
+      transform: translateY(0px) scale(0.98);
+    }
+
+    /* Stats Grid */
+    .admin-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-bottom: 36px;
+    }
+
+    .admin-stat-card {
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: 14px;
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .admin-stat-card:hover {
+      border-color: rgba(252, 94, 104, 0.35);
+      transform: translateY(-2px);
+    }
+
+    .admin-stat-card .label {
+      font-size: 13px;
+      color: var(--admin-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .admin-stat-card .value {
+      font-family: 'Manrope', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: #fff;
+      margin: 0;
+      line-height: 1;
+    }
+
+    .admin-stat-card .sub {
+      font-size: 12px;
+      color: var(--admin-gold);
+      margin-top: 8px;
+      display: block;
+    }
+
+    /* Tabs */
+    .admin-tabs {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--admin-border);
+      padding-bottom: 12px;
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      color: var(--admin-muted);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn.active {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--admin-border);
+    }
+
+    /* Controls Bar */
+    .table-controls {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .filter-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .admin-input, .admin-select {
+      background: var(--admin-surface);
+      border: 1px solid var(--admin-border);
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+      font-family: inherit;
+      min-width: 160px;
+    }
+
+    .admin-input:focus, .admin-select:focus {
+      border-color: var(--admin-gold);
+    }
+
+    /* Table */
+    .table-wrapper {
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: 14px;
+      overflow-x: auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    .admin-table th {
+      background: rgba(255, 255, 255, 0.02);
+      padding: 16px 20px;
+      color: var(--admin-muted);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      border-bottom: 1px solid var(--admin-border);
+    }
+
+    .admin-table td {
+      padding: 18px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: var(--admin-text);
+      vertical-align: middle;
+    }
+
+    .admin-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-pending { background: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .badge-confirmed { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge-completed { background: rgba(59, 130, 246, 0.15); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.3); }
+    .badge-cancelled { background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); }
+
+    .service-badge {
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.07);
+      color: #fff;
+    }
+
+    .ref-code {
+      font-family: monospace;
+      font-weight: 700;
+      color: var(--admin-gold);
+    }
+
+    .actions-cell {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .action-btn {
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 6px;
+      border: 1px solid var(--admin-border);
+      background: rgba(255, 255, 255, 0.04);
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .action-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .action-btn.btn-approve {
+      background: rgba(16, 185, 129, 0.12);
+      border-color: rgba(16, 185, 129, 0.3);
+      color: #10b981;
+    }
+
+    .action-btn.btn-reject {
+      background: rgba(239, 68, 68, 0.12);
+      border-color: rgba(239, 68, 68, 0.3);
+      color: #ef4444;
+    }
+
+    .empty-state {
+      padding: 48px 24px;
+      text-align: center;
+      color: var(--admin-muted);
+    }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .modal-backdrop.show {
+      display: flex;
+    }
+
+    .admin-modal {
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: 16px;
+      max-width: 600px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 30px;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: var(--admin-muted);
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 14px;
+    }
+
+    .detail-row strong {
+      color: var(--admin-muted);
+    }
+  </style>
+  <script src="api.js?v=3.2"></script>
+  <script>
+    (function(){
+      try { localStorage.removeItem('sweepsage_theme'); } catch(e){}
+      document.documentElement.setAttribute('data-theme', 'light');
+      if (document.documentElement.classList) {
+        document.documentElement.classList.remove('dark-theme');
+      }
+    })();
+  </script>
+</head>
+<body>
+  <div class="admin-wrapper">
+    <!-- Header -->
+    <header class="admin-header">
+      <div class="admin-brand">
+        <img src="logo.png" alt="SweepSage">
+        <div>
+          <h1>SweepSage Operations</h1>
+          <span>Backend Management Console</span>
+        </div>
+      </div>
+      <div class="admin-actions">
+        <a href="index.html" class="btn-outline">View Live Website ↗</a>
+        <a href="http://127.0.0.1:8000/docs" class="btn-outline" target="_blank">API Docs (/docs) ↗</a>
+        <button id="refreshBtn" class="btn-outline btn-gold" type="button">↻ Refresh Data</button>
+      </div>
+    </header>
+
+    <!-- Metrics Stats -->
+    <section class="admin-stats-grid" id="statsGrid">
+      <div class="admin-stat-card">
+        <span class="label">Total Bookings</span>
+        <h2 class="value" id="statTotalBookings">-</h2>
+        <span class="sub" id="statPendingBookings">0 pending review</span>
+      </div>
+      <div class="admin-stat-card">
+        <span class="label">Confirmed Bookings</span>
+        <h2 class="value" id="statConfirmedBookings">-</h2>
+        <span class="sub">Active pipeline</span>
+      </div>
+      <div class="admin-stat-card">
+        <span class="label">Verified Partners</span>
+        <h2 class="value" id="statTotalPartners">-</h2>
+        <span class="sub" id="statPendingPartners">0 pending approval</span>
+      </div>
+      <div class="admin-stat-card">
+        <span class="label">Server Status</span>
+        <h2 class="value" style="color: #10b981; font-size: 26px;">ONLINE</h2>
+        <span class="sub" id="statDbInfo">SQLite Database Connected</span>
+      </div>
+    </section>
+
+    <!-- Tabs Navigation -->
+    <div class="admin-tabs">
+      <button class="tab-btn active" data-tab="bookings">Customer Bookings &amp; Inquiries</button>
+      <button class="tab-btn" data-tab="partners">Partner Applications &amp; Network</button>
+    </div>
+
+    <!-- BOOKINGS TAB -->
+    <div id="bookingsTabContent">
+      <div class="table-controls">
+        <div class="filter-group">
+          <input type="text" id="bookingSearch" class="admin-input" placeholder="Search customer, phone, ref...">
+          <select id="serviceFilter" class="admin-select">
+            <option value="">All Services</option>
+            <option value="photographer">Photography</option>
+            <option value="salon">Salon at Home</option>
+            <option value="travel">Travel</option>
+            <option value="general">General Inquiries</option>
+          </select>
+          <select id="statusFilter" class="admin-select">
+            <option value="">All Statuses</option>
+            <option value="PENDING">Pending</option>
+            <option value="CONFIRMED">Confirmed</option>
+            <option value="COMPLETED">Completed</option>
+            <option value="CANCELLED">Cancelled</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Ref / Time</th>
+              <th>Service</th>
+              <th>Customer</th>
+              <th>Requirement / Package</th>
+              <th>Price</th>
+              <th>Date / Location</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="bookingsTableBody">
+            <tr>
+              <td colspan="8" class="empty-state">Loading booking requests from backend...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- PARTNERS TAB -->
+    <div id="partnersTabContent" style="display: none;">
+      <div class="table-controls">
+        <div class="filter-group">
+          <select id="partnerStatusFilter" class="admin-select">
+            <option value="">All Partners</option>
+            <option value="PENDING">Pending Review</option>
+            <option value="APPROVED" selected>Approved</option>
+            <option value="REJECTED">Rejected</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Partner</th>
+              <th>Profession</th>
+              <th>Location</th>
+              <th>Contact</th>
+              <th>Rating</th>
+              <th>Portfolio</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="partnersTableBody">
+            <tr>
+              <td colspan="8" class="empty-state">Loading partners from backend...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Booking Details Modal -->
+  <div class="modal-backdrop" id="detailModal">
+    <div class="admin-modal">
+      <button class="modal-close" id="modalCloseBtn">&times;</button>
+      <h3 style="margin-top: 0; margin-bottom: 6px; font-family: 'Manrope';">Booking Details</h3>
+      <div id="modalDetailsContent"></div>
+    </div>
+  </div>
+
+  <script>
+    let allBookings = [];
+    let allPartners = [];
+
+    async function loadOverview() {
+      try {
+        const overview = await SweepSageAPI.getAdminOverview();
+        if (overview) {
+          document.getElementById('statTotalBookings').textContent = overview.bookings.total;
+          document.getElementById('statPendingBookings').textContent = `${overview.bookings.pending} pending review`;
+          document.getElementById('statConfirmedBookings').textContent = overview.bookings.confirmed;
+          document.getElementById('statTotalPartners').textContent = overview.partners.approved;
+          document.getElementById('statPendingPartners').textContent = `${overview.partners.pending} pending approval`;
+        }
+      } catch (err) {
+        console.error('Failed to load overview:', err);
+      }
+    }
+
+    async function loadBookings() {
+      const tbody = document.getElementById('bookingsTableBody');
+      const service = document.getElementById('serviceFilter').value;
+      const status = document.getElementById('statusFilter').value;
+      const search = document.getElementById('bookingSearch').value.trim();
+
+      try {
+        const res = await SweepSageAPI.getBookings({ service, status, search });
+        allBookings = res.bookings || [];
+
+        if (!allBookings.length) {
+          tbody.innerHTML = '<tr><td colspan="8" class="empty-state">No bookings found matching current filters.</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = allBookings.map(b => {
+          const dateStr = b.booking_date || b.created_at?.slice(0, 10) || '-';
+          const badgeClass = {
+            PENDING: 'badge-pending',
+            CONFIRMED: 'badge-confirmed',
+            COMPLETED: 'badge-completed',
+            CANCELLED: 'badge-cancelled'
+          }[b.status] || 'badge-pending';
+
+          return `
+            <tr>
+              <td>
+                <span class="ref-code">${b.reference}</span>
+                <div style="font-size: 11px; color: var(--admin-muted);">${b.created_at?.slice(0, 16).replace('T', ' ')}</div>
+              </td>
+              <td><span class="service-badge">${b.service.toUpperCase()}</span></td>
+              <td>
+                <strong>${b.customer_name}</strong>
+                <div style="font-size: 12px; color: var(--admin-muted);">${b.customer_phone}</div>
+              </td>
+              <td>
+                <div>${b.event_name || b.event_id || '-'}</div>
+                <div style="font-size: 12px; color: var(--admin-gold);">${b.package_name || '-'}</div>
+              </td>
+              <td><strong>${b.price || '-'}</strong></td>
+              <td>
+                <div>${dateStr}</div>
+                <div style="font-size: 12px; color: var(--admin-muted);">${b.location || '-'}</div>
+              </td>
+              <td><span class="badge ${badgeClass}">${b.status}</span></td>
+              <td>
+                <div class="actions-cell">
+                  <button class="action-btn" onclick="viewBookingDetails(${b.id})">Details</button>
+                  ${b.status === 'PENDING' ? `
+                    <button class="action-btn btn-approve" onclick="setStatus(${b.id}, 'CONFIRMED')">Confirm</button>
+                  ` : ''}
+                  ${b.status === 'CONFIRMED' ? `
+                    <button class="action-btn" style="color: #3b82f6;" onclick="setStatus(${b.id}, 'COMPLETED')">Complete</button>
+                  ` : ''}
+                </div>
+              </td>
+            </tr>
+          `;
+        }).join('');
+      } catch (err) {
+        tbody.innerHTML = `<tr><td colspan="8" class="empty-state" style="color: #ef4444;">Error loading bookings: ${err.message}</td></tr>`;
+      }
+    }
+
+    async function setStatus(id, newStatus) {
+      try {
+        await SweepSageAPI.updateBookingStatus(id, newStatus);
+        await loadBookings();
+        await loadOverview();
+      } catch (err) {
+        alert('Failed to update status: ' + err.message);
+      }
+    }
+
+    function viewBookingDetails(id) {
+      const b = allBookings.find(item => item.id === id);
+      if (!b) return;
+
+      const detailsHtml = `
+        <div class="detail-row"><strong>Booking Reference:</strong> <span class="ref-code">${b.reference}</span></div>
+        <div class="detail-row"><strong>Status:</strong> <span class="badge badge-${b.status.toLowerCase()}">${b.status}</span></div>
+        <div class="detail-row"><strong>Customer Name:</strong> <span>${b.customer_name}</span></div>
+        <div class="detail-row"><strong>Phone:</strong> <a href="tel:${b.customer_phone}" style="color: var(--admin-gold);">${b.customer_phone}</a></div>
+        ${b.customer_email ? `<div class="detail-row"><strong>Email:</strong> <span>${b.customer_email}</span></div>` : ''}
+        <div class="detail-row"><strong>Service:</strong> <span class="service-badge">${b.service.toUpperCase()}</span></div>
+        <div class="detail-row"><strong>Event / Requirement:</strong> <span>${b.event_name || b.event_id || '-'}</span></div>
+        <div class="detail-row"><strong>Package:</strong> <span>${b.package_name || '-'}</span></div>
+        <div class="detail-row"><strong>Indicative Price:</strong> <span>${b.price || '-'}</span></div>
+        <div class="detail-row"><strong>Location:</strong> <span>${b.location || '-'}</span></div>
+        <div class="detail-row"><strong>Date / Time:</strong> <span>${b.booking_date || '-'} ${b.booking_time ? 'at ' + b.booking_time : ''}</span></div>
+        ${b.notes ? `<div class="detail-row"><strong>Notes:</strong> <span>${b.notes}</span></div>` : ''}
+        ${b.details && Object.keys(b.details).length ? `
+          <div style="margin-top: 14px;">
+            <strong style="display:block; margin-bottom: 6px; color: var(--admin-muted);">Form Fields:</strong>
+            <pre style="background: rgba(0,0,0,0.4); padding: 10px; border-radius: 8px; font-size: 12px; overflow-x: auto;">${JSON.stringify(b.details, null, 2)}</pre>
+          </div>
+        ` : ''}
+        <div style="margin-top: 20px; display: flex; gap: 10px;">
+          <a href="https://wa.me/${(b.customer_phone||'').replace(/[^0-9]/g, '')}?text=Hi%20${encodeURIComponent(b.customer_name)},%20regarding%20your%20SweepSage%20booking%20(${b.reference})..." target="_blank" class="btn-outline btn-gold" style="flex: 1; text-align: center; justify-content: center;">Chat on WhatsApp ↗</a>
+        </div>
+      `;
+
+      document.getElementById('modalDetailsContent').innerHTML = detailsHtml;
+      document.getElementById('detailModal').classList.add('show');
+    }
+
+    async function loadPartners() {
+      const tbody = document.getElementById('partnersTableBody');
+      const status = document.getElementById('partnerStatusFilter').value;
+
+      try {
+        const partners = await SweepSageAPI.getPublicPartners({ status: status || undefined });
+        allPartners = partners;
+
+        if (!partners.length) {
+          tbody.innerHTML = '<tr><td colspan="8" class="empty-state">No partners found.</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = partners.map(p => `
+          <tr>
+            <td>
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <img src="${p.profile_image || p.profileImage || 'logo.png'}" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover;">
+                <div>
+                  <strong>${p.name}</strong>
+                  <div style="font-size: 11px; color: var(--admin-muted);">${p.slug}</div>
+                </div>
+              </div>
+            </td>
+            <td><span class="service-badge">${p.profession}</span></td>
+            <td>${p.location}</td>
+            <td>
+              <div>${p.email}</div>
+              <div style="font-size: 11px; color: var(--admin-muted);">${p.phone || '-'}</div>
+            </td>
+            <td>⭐ ${p.rating || 4.9}</td>
+            <td>${p.portfolioCount || (p.portfolio ? p.portfolio.length : 0)} items</td>
+            <td><span class="badge ${p.status === 'APPROVED' ? 'badge-confirmed' : (p.status === 'REJECTED' ? 'badge-cancelled' : 'badge-pending')}">${p.status}</span></td>
+            <td>
+              <div class="actions-cell">
+                ${p.status !== 'APPROVED' ? `
+                  <button class="action-btn btn-approve" onclick="setPartnerStatus(${p.id}, 'APPROVED')">Approve</button>
+                ` : ''}
+                ${p.status !== 'REJECTED' ? `
+                  <button class="action-btn btn-reject" onclick="setPartnerStatus(${p.id}, 'REJECTED')">Reject</button>
+                ` : ''}
+                <a href="partner-profile.html?slug=${p.slug}" target="_blank" class="action-btn">View Profile ↗</a>
+              </div>
+            </td>
+          </tr>
+        `).join('');
+      } catch (err) {
+        tbody.innerHTML = `<tr><td colspan="8" class="empty-state" style="color: #ef4444;">Error: ${err.message}</td></tr>`;
+      }
+    }
+
+    async function setPartnerStatus(id, status) {
+      try {
+        await SweepSageAPI.updatePartnerApproval(id, status);
+        await loadPartners();
+        await loadOverview();
+      } catch (err) {
+        alert('Failed: ' + err.message);
+      }
+    }
+
+    // Event listeners
+    document.getElementById('bookingSearch').addEventListener('input', () => loadBookings());
+    document.getElementById('serviceFilter').addEventListener('change', () => loadBookings());
+    document.getElementById('statusFilter').addEventListener('change', () => loadBookings());
+    document.getElementById('partnerStatusFilter').addEventListener('change', () => loadPartners());
+    document.getElementById('refreshBtn').addEventListener('click', () => {
+      loadOverview();
+      loadBookings();
+      loadPartners();
+    });
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const tab = btn.dataset.tab;
+        document.getElementById('bookingsTabContent').style.display = tab === 'bookings' ? 'block' : 'none';
+        document.getElementById('partnersTabContent').style.display = tab === 'partners' ? 'block' : 'none';
+        if (tab === 'partners') loadPartners();
+      });
+    });
+
+    document.getElementById('modalCloseBtn').addEventListener('click', () => {
+      document.getElementById('detailModal').classList.remove('show');
+    });
+
+    document.getElementById('detailModal').addEventListener('click', (e) => {
+      if (e.target.id === 'detailModal') {
+        document.getElementById('detailModal').classList.remove('show');
+      }
+    });
+
+    // Initial load
+    loadOverview();
+    loadBookings();
+  </script>
+</body>
+</html>

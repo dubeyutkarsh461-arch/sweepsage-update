@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /backend/
+
+# Primary XML Sitemaps
+Sitemap: https://sweepsage.com/sitemap.xml
