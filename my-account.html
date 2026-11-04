@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="SweepSage — My Account, Order Tracking and Profile Management. Track ongoing photography, salon, and travel bookings in real time.">
+  <title>My Account &amp; Orders | SweepSage</title>
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Core Styles -->
+  <link rel="stylesheet" href="STYLE.CSS?v=3.2">
+  <link rel="stylesheet" href="MY-ACCOUNT.CSS?v=1.1">
+  <script>
+    (function(){
+      try { localStorage.removeItem('sweepsage_theme'); } catch(e){}
+      document.documentElement.setAttribute('data-theme', 'light');
+      document.documentElement.classList.remove('dark-theme');
+    })();
+  </script>
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <header class="navbar" id="navbar">
+    <div class="nav-left">
+      <a class="brand" href="index.html">
+        <img src="logo.png" alt="SweepSage">
+        <span>sweepsage<span>.com</span></span>
+      </a>
+      <span class="my-account-heading-tag">MY ACCOUNT</span>
+
+      <!-- Current Delivery Location indicator -->
+      <div class="nav-location">
+        <button class="nav-location-btn" type="button" aria-label="Current delivery location" onclick="window.location.href='index.html'">
+          <span class="location-pin-icon">
+            <svg class="nav-svg-icon pin-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          </span>
+          <div class="location-text-wrap">
+            <span class="location-title">Deliver to</span>
+            <span class="location-current" id="navDeliveryLocation">Greater Noida / Delhi NCR</span>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <div class="nav-right">
+      <a class="nav-instant-btn magnetic" href="PHOTOGRAPHER-BOOKING.HTML?event=instant" data-open-booking="instant">⚡ Book in Minutes</a>
+      <a class="nav-action-btn nav-icon-btn" href="index.html" title="Back to Home" aria-label="Back to Home">
+        <span class="action-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        </span>
+      </a>
+      <a class="nav-action-btn nav-icon-btn" href="about.html" title="About Sweepsage" aria-label="About Sweepsage">
+        <span class="action-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+        </span>
+      </a>
+      <a class="nav-login-btn nav-icon-btn" href="my-account.html" title="Utkarsh Dubey" aria-label="Utkarsh Dubey">
+        <span class="user-avatar-circle">
+          <svg class="nav-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        </span>
+        <span class="btn-text" style="font-weight: 700;">Utkarsh...</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- ACCOUNT PAGE SHELL -->
+  <main class="account-page-wrap">
+    <!-- Top Back Row -->
+    <div class="account-top-bar">
+      <a href="index.html" class="account-back-btn">
+        <span>←</span>
+        <span>Back to Home</span>
+      </a>
+      <span class="eyebrow dark" style="margin: 0; font-size: 11px;">SWEEPSAGE CONCIERGE / MY ACCOUNT</span>
+    </div>
+
+    <!-- USER HERO BANNER (Matches Swiggy Reference Format) -->
+    <section class="account-banner">
+      <div class="banner-user-info">
+        <h1 class="banner-user-name" id="displayUserName">Utkarsh Dubey</h1>
+        <div class="banner-user-meta">
+          <span id="displayUserPhone">9555826615</span>
+          <span class="dot-separator">•</span>
+          <span id="displayUserEmail">dubeyutkarsh461@gmail.com</span>
+        </div>
+      </div>
+      <button type="button" class="banner-edit-btn" onclick="openProfileEditModal()">
+        EDIT PROFILE
+      </button>
+    </section>
+
+    <!-- MAIN TWO-COLUMN CONTAINER -->
+    <div class="account-container">
+      <!-- Left Sidebar Tabs (Matches Reference Screenshot) -->
+      <aside class="account-sidebar" aria-label="Account Tabs">
+        <button type="button" class="sidebar-tab-btn active" data-tab-target="orders">
+          <span class="tab-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+          </span>
+          <span>Orders</span>
+          <span class="tab-badge" id="sidebarOrderCount">3</span>
+        </button>
+
+        <button type="button" class="sidebar-tab-btn" data-tab-target="club">
+          <span class="tab-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          </span>
+          <span>SweepSage One</span>
+        </button>
+
+        <button type="button" class="sidebar-tab-btn" data-tab-target="favourites">
+          <span class="tab-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </span>
+          <span>Favourites</span>
+        </button>
+
+        <button type="button" class="sidebar-tab-btn" data-tab-target="payments">
+          <span class="tab-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+          </span>
+          <span>Payments</span>
+        </button>
+
+        <button type="button" class="sidebar-tab-btn" data-tab-target="addresses">
+          <span class="tab-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          </span>
+          <span>Addresses</span>
+        </button>
+
+        <button type="button" class="sidebar-tab-btn" data-tab-target="settings">
+          <span class="tab-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          </span>
+          <span>Settings</span>
+        </button>
+      </aside>
+
+      <!-- Right Content Pane -->
+      <section class="account-content-pane">
+        <!-- ==========================================
+             TAB 1: ORDERS & LIVE TRACKING (Default)
+        =========================================== -->
+        <div class="tab-view active" id="tab-orders">
+          <div class="content-heading-row">
+            <h2 class="content-heading-title">Past Orders</h2>
+            <div class="order-filter-chips">
+              <button type="button" class="order-filter-btn active" onclick="filterOrders('all', this)">All (3)</button>
+              <button type="button" class="order-filter-btn" onclick="filterOrders('active', this)">Active (1)</button>
+              <button type="button" class="order-filter-btn" onclick="filterOrders('completed', this)">Completed (2)</button>
+            </div>
+          </div>
+
+          <div class="orders-list">
+            <!-- 1. LIVE ACTIVE ORDER (Instant Photographer) -->
+            <article class="order-card order-item-active" data-status="active" id="order-card-SS-98214">
+              <!-- Live Tracking Banner with Multi-step Progress -->
+              <div class="live-tracking-box">
+                <div class="live-tracking-header">
+                  <div class="live-indicator">
+                    <span class="live-pulse-ring"></span>
+                    <span>Pro Dispatched &amp; On The Way</span>
+                  </div>
+                  <span class="live-eta-badge">⚡ ETA ~8 Mins</span>
+                </div>
+
+                <div class="tracker-stepper">
+                  <div class="tracker-stepper-progress"></div>
+                  
+                  <div class="tracker-step-item done">
+                    <span class="step-node-dot">✓</span>
+                    <span class="step-node-text">Confirmed</span>
+                  </div>
+                  <div class="tracker-step-item done">
+                    <span class="step-node-dot">✓</span>
+                    <span class="step-node-text">Pro Assigned</span>
+                  </div>
+                  <div class="tracker-step-item active">
+                    <span class="step-node-dot">⚡</span>
+                    <span class="step-node-text">On The Way</span>
+                  </div>
+                  <div class="tracker-step-item">
+                    <span class="step-node-dot">📸</span>
+                    <span class="step-node-text">At Doorstep</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Order Main Row (Image + Details + Status) -->
+              <div class="order-main-row">
+                <img class="order-service-thumb" src="loader-camera-logo.png" alt="Photography">
+                <div class="order-service-meta">
+                  <h3 class="order-service-title">Instant Doorstep Photographer</h3>
+                  <div class="order-service-location">N-52, Delta-3, Greater Noida, Uttar Pradesh, 201308</div>
+                  <div class="order-service-id-date">ORDER #SS-98214 | Today, Oct 29, 2026, 3:30 PM</div>
+                  <a href="javascript:void(0)" class="order-service-view-details" onclick="openOrderReceipt('SS-98214')">VIEW DETAILS</a>
+                </div>
+                <div class="order-status-badge-wrap">
+                  <span class="order-status-text" style="color: var(--account-coral);">
+                    <span class="live-pulse-ring" style="width: 7px; height: 7px;"></span>
+                    <span>In Transit • Pro Aman Sharma</span>
+                  </span>
+                </div>
+              </div>
+
+              <!-- Summary Bottom Row -->
+              <div class="order-summary-row">
+                <div class="order-items-summary">
+                  10-Min Doorstep Portrait Session • Pro Gear Kit • 4K Color Graded Gallery Delivery
+                </div>
+                <div class="order-total-price">
+                  Total Paid: ₹1,499
+                </div>
+              </div>
+
+              <!-- Action Buttons (Matches Reference Screenshot) -->
+              <div class="order-actions-row">
+                <a href="PHOTOGRAPHER-BOOKING.HTML?event=instant" class="btn-order-rebook">
+                  REORDER
+                </a>
+                <button type="button" class="btn-order-outline" onclick="openHelpSupportModal('SS-98214', 'Instant Doorstep Photographer')">
+                  HELP
+                </button>
+                <a href="tel:+919555826615" class="btn-order-download" style="display: inline-flex; align-items: center; gap: 6px;">
+                  <span>📞 Call Creator</span>
+                </a>
+              </div>
+            </article>
+
+            <!-- 2. PAST COMPLETED ORDER (Pre-Wedding Shoot) -->
+            <article class="order-card order-item-completed" data-status="completed" id="order-card-SS-84192">
+              <div class="order-main-row">
+                <img class="order-service-thumb" src="loader-camera-logo.png" alt="Photography">
+                <div class="order-service-meta">
+                  <h3 class="order-service-title">Pre-Wedding &amp; Cinematic Storytelling</h3>
+                  <div class="order-service-location">Lodhi Garden &amp; Sunder Nursery, Delhi NCR</div>
+                  <div class="order-service-id-date">ORDER #SS-84192 | Sun, Oct 18, 2026, 11:30 AM</div>
+                  <a href="javascript:void(0)" class="order-service-view-details" onclick="openOrderReceipt('SS-84192')">VIEW DETAILS</a>
+                </div>
+                <div class="order-status-badge-wrap">
+                  <span class="order-status-text delivered">
+                    <span>Delivered on Sun, Oct 18, 2026</span>
+                    <span class="status-check-circle">✓</span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="order-summary-row">
+                <div class="order-items-summary">
+                  Full-day Cinematic Video + 4K Teaser Film + 120 Edited Color-Graded RAW High-Res Frames
+                </div>
+                <div class="order-total-price">
+                  Total Paid: ₹12,999
+                </div>
+              </div>
+
+              <div class="order-actions-row">
+                <a href="PHOTOGRAPHER-BOOKING.HTML?event=prewedding" class="btn-order-rebook">
+                  REORDER
+                </a>
+                <button type="button" class="btn-order-outline" onclick="openHelpSupportModal('SS-84192', 'Pre-Wedding & Cinematic Storytelling')">
+                  HELP
+                </button>
+                <button type="button" class="btn-order-download" onclick="openCloudAlbumModal('SS-84192')">
+                  <span>☁️ View 4K Album</span>
+                </button>
+                <button type="button" class="btn-order-download" onclick="openInvoiceModal('SS-84192')">
+                  <span>📄 Invoice</span>
+                </button>
+              </div>
+            </article>
+
+            <!-- 3. PAST COMPLETED ORDER (Salon at Home) -->
+            <article class="order-card order-item-completed" data-status="completed" id="order-card-SS-76210">
+              <div class="order-main-row">
+                <img class="order-service-thumb" src="loader-salon-logo.png" alt="Salon at Home">
+                <div class="order-service-meta">
+                  <h3 class="order-service-title">Salon at Home — Glow Facial &amp; Hair Spa</h3>
+                  <div class="order-service-location">N-52, Delta-3, Greater Noida, Uttar Pradesh, 201308</div>
+                  <div class="order-service-id-date">ORDER #SS-76210 | Sat, Sep 12, 2026, 2:15 PM</div>
+                  <a href="javascript:void(0)" class="order-service-view-details" onclick="openOrderReceipt('SS-76210')">VIEW DETAILS</a>
+                </div>
+                <div class="order-status-badge-wrap">
+                  <span class="order-status-text delivered">
+                    <span>Delivered on Sat, Sep 12, 2026</span>
+                    <span class="status-check-circle">✓</span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="order-summary-row">
+                <div class="order-items-summary">
+                  Single-Use Sealed Organic Hygiene Kit • Certified Beautician Doorstep Execution • Clean-up Included
+                </div>
+                <div class="order-total-price">
+                  Total Paid: ₹2,199
+                </div>
+              </div>
+
+              <div class="order-actions-row">
+                <a href="salon.html" class="btn-order-rebook">
+                  REORDER
+                </a>
+                <button type="button" class="btn-order-outline" onclick="openHelpSupportModal('SS-76210', 'Salon at Home')">
+                  HELP
+                </button>
+                <button type="button" class="btn-order-download" onclick="openInvoiceModal('SS-76210')">
+                  <span>📄 Invoice</span>
+                </button>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             TAB 2: SWEEPSAGE ONE (CLUB / PERKS)
+        =========================================== -->
+        <div class="tab-view" id="tab-club">
+          <div class="content-heading-row">
+            <h2 class="content-heading-title">SweepSage One Privileges</h2>
+          </div>
+
+          <div class="perks-hero-box">
+            <div class="perks-hero-left">
+              <span class="eyebrow" style="color: #ff858e; margin-bottom: 6px;">EXCLUSIVE MEMBERSHIP</span>
+              <h3>You are an Active VIP Patron</h3>
+              <p>Enjoy prioritized 10-minute doorstep dispatch, complimentary color-grading, and zero platform convenience fees on all bookings.</p>
+            </div>
+            <div class="perks-vip-badge">
+              ★ Active Tier One
+            </div>
+          </div>
+
+          <div class="perks-grid">
+            <div class="perk-item-card">
+              <div class="perk-item-icon">⚡</div>
+              <strong>Instant Priority Match</strong>
+              <p>Your requests jump to the top of the queue with our highest-rated Tier-1 certified creators.</p>
+            </div>
+            <div class="perk-item-card">
+              <div class="perk-item-icon">💎</div>
+              <strong>Zero Hidden Fees</strong>
+              <p>Transparent pricing guaranteed on all photography, beauty, and curated travel experiences.</p>
+            </div>
+            <div class="perk-item-card">
+              <div class="perk-item-icon">📞</div>
+              <strong>24/7 VIP Concierge</strong>
+              <p>Direct line to senior management and personal coordinators for custom events.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             TAB 3: FAVOURITES
+        =========================================== -->
+        <div class="tab-view" id="tab-favourites">
+          <div class="content-heading-row">
+            <h2 class="content-heading-title">Saved Creators &amp; Experiences</h2>
+          </div>
+
+          <div class="orders-list">
+            <div class="order-card">
+              <div class="order-main-row" style="border: none; padding-bottom: 0;">
+                <img class="order-service-thumb" src="loader-camera-logo.png" alt="Photography">
+                <div class="order-service-meta">
+                  <h3 class="order-service-title">Aman Sharma — Master Portrait Creator</h3>
+                  <div class="order-service-location">Greater Noida &amp; South Delhi • 4.9 ★ (140+ shoots)</div>
+                  <div class="order-service-id-date">Specializes in: Executive Headshots, Street Portraits, Candid Moments</div>
+                </div>
+                <div class="order-status-badge-wrap">
+                  <a href="PHOTOGRAPHER-BOOKING.HTML?event=portrait" class="btn-order-rebook" style="padding: 8px 18px;">Book Pro ↗</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="order-card">
+              <div class="order-main-row" style="border: none; padding-bottom: 0;">
+                <img class="order-service-thumb" src="loader-airplane-logo.png" alt="Travel">
+                <div class="order-service-meta">
+                  <h3 class="order-service-title">Curated Weekend Getaways — Rishikesh &amp; Mussoorie</h3>
+                  <div class="order-service-location">Boutique Stays • Private Transfers • Local Experiences</div>
+                  <div class="order-service-id-date">Saved Itinerary • Handcrafted On Demand</div>
+                </div>
+                <div class="order-status-badge-wrap">
+                  <a href="travel.html" class="btn-order-rebook" style="padding: 8px 18px;">Explore ↗</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             TAB 4: PAYMENTS
+        =========================================== -->
+        <div class="tab-view" id="tab-payments">
+          <div class="content-heading-row">
+            <h2 class="content-heading-title">Payment Methods &amp; Invoices</h2>
+          </div>
+
+          <div class="address-grid" style="margin-bottom: 24px;">
+            <div class="address-card">
+              <div class="address-card-head">
+                <span class="address-type-badge">Primary UPI</span>
+                <span class="address-default-pill">Active Default</span>
+              </div>
+              <div class="address-text">
+                <strong>9555826615@okaxis</strong><br>
+                <span>Linked to State Bank of India • Verified for Instant Bookings</span>
+              </div>
+              <div class="address-actions">
+                <button type="button" class="address-action-btn" onclick="showToast('Primary UPI is active and verified.')">Active</button>
+              </div>
+            </div>
+
+            <div class="address-card">
+              <div class="address-card-head">
+                <span class="address-type-badge">Corporate Card</span>
+              </div>
+              <div class="address-text">
+                <strong>HDFC Bank Visa Platinum •••• 4092</strong><br>
+                <span>Expires 08/29 • Utkarsh Dubey</span>
+              </div>
+              <div class="address-actions">
+                <button type="button" class="address-action-btn" onclick="showToast('Card details updated.')">Manage</button>
+              </div>
+            </div>
+          </div>
+
+          <div style="background: #f8fafc; border: 1px solid var(--account-border); border-radius: 12px; padding: 18px;">
+            <strong style="display: block; font-size: 14px; margin-bottom: 4px;">Official Business GST Invoices</strong>
+            <p style="font-size: 12.5px; color: #64748b; margin: 0 0 10px 0;">All bookings automatically generate official tax invoices with full 18% GST credit breakdown.</p>
+            <button type="button" class="btn-order-outline" style="padding: 6px 14px; font-size: 12px;" onclick="openInvoiceModal('SS-98214')">View Latest Tax Invoice</button>
+          </div>
+        </div>
+
+        <!-- ==========================================
+             TAB 5: ADDRESSES
+        =========================================== -->
+        <div class="tab-view" id="tab-addresses">
+          <div class="content-heading-row">
+            <h2 class="content-heading-title">Saved Delivery Addresses</h2>
+            <button type="button" class="btn-order-rebook" style="padding: 7px 16px; font-size: 12px;" onclick="openAddAddressModal()">
+              + Add New Address
+            </button>
+          </div>
+
+          <div class="address-grid" id="savedAddressesGrid">
+            <!-- Dynamically populated from JS & LocalStorage -->
+          </div>
+        </div>
+
+        <!-- ==========================================
+             TAB 6: SETTINGS
+        =========================================== -->
+        <div class="tab-view" id="tab-settings">
+          <div class="content-heading-row">
+            <h2 class="content-heading-title">Account Preferences</h2>
+          </div>
+
+          <div style="background: #ffffff; border: 1px solid var(--account-border); border-radius: 14px; padding: 24px; margin-bottom: 20px;">
+            <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 14px; color: #0f172a;">Communication &amp; Updates</h4>
+            <div style="display: flex; flex-direction: column; gap: 14px; font-size: 13.5px; color: #475569;">
+              <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                <input type="checkbox" id="prefWhatsapp" checked onchange="savePreferences()" style="accent-color: var(--account-coral); width: 16px; height: 16px;">
+                <span>WhatsApp status alerts for creator arrival and live tracking link</span>
+              </label>
+              <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                <input type="checkbox" id="prefEmail" checked onchange="savePreferences()" style="accent-color: var(--account-coral); width: 16px; height: 16px;">
+                <span>Email high-resolution 4K album delivery links</span>
+              </label>
+              <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                <input type="checkbox" id="prefPromos" onchange="savePreferences()" style="accent-color: var(--account-coral); width: 16px; height: 16px;">
+                <span>Promotional invitations for exclusive pre-wedding and salon popups</span>
+              </label>
+            </div>
+          </div>
+
+          <div style="background: #ffffff; border: 1px solid var(--account-border); border-radius: 14px; padding: 24px; display: flex; align-items: center; justify-content: space-between;">
+            <div>
+              <strong style="color: #0f172a; font-size: 14px; display: block;">Log Out of SweepSage</strong>
+              <small style="color: #64748b; font-size: 12px;">You can log back in at any time with your verified mobile number.</small>
+            </div>
+            <button type="button" class="btn-order-outline" style="color: #ef4444; border-color: rgba(239, 68, 68, 0.3);" onclick="openLogoutModal()">
+              Log Out
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- =========================================================
+       MODAL 1: ITEMIZED ORDER RECEIPT & LIVE TIMELINE
+  ========================================================== -->
+  <div class="account-modal-backdrop" id="receiptModal" aria-hidden="true" role="dialog">
+    <div class="account-modal-box">
+      <button type="button" class="modal-close-btn" onclick="closeModal('receiptModal')">&times;</button>
+      <div class="receipt-id-strip">
+        <div>
+          <span style="font-size: 11px; color: #64748b; display: block; text-transform: uppercase; font-weight: 700;">Order Receipt</span>
+          <strong id="receiptOrderId">#SS-98214</strong>
+        </div>
+        <span class="receipt-status-pill active" id="receiptStatusBadge">In Transit</span>
+      </div>
+
+      <div class="receipt-section-block">
+        <span class="receipt-section-title">Service Details</span>
+        <h4 id="receiptServiceTitle" style="font-size: 16px; font-weight: 800; color: #0f172a; margin-bottom: 4px;">Instant Doorstep Photographer</h4>
+        <p id="receiptServiceAddress" style="font-size: 13px; color: #64748b; margin: 0 0 10px 0;">N-52, Delta-3, Greater Noida, Uttar Pradesh, 201308</p>
+      </div>
+
+      <div class="receipt-section-block">
+        <span class="receipt-section-title">Live Execution Timeline</span>
+        <div class="receipt-timeline-box" id="receiptTimelineContainer">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <div class="receipt-section-block">
+        <span class="receipt-section-title">Bill &amp; Payment Breakdown</span>
+        <table class="receipt-bill-table" id="receiptBillTable">
+          <!-- Dynamically populated -->
+        </table>
+      </div>
+
+      <div style="display: flex; gap: 10px; margin-top: 24px;">
+        <button type="button" class="btn-order-rebook" style="flex: 1; text-align: center;" onclick="window.print()">
+          🖨️ Print Receipt
+        </button>
+        <button type="button" class="btn-order-outline" onclick="closeModal('receiptModal')">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MODAL 2: CONCIERGE HELP & SUPPORT
+  ========================================================== -->
+  <div class="account-modal-backdrop" id="helpSupportModal" aria-hidden="true" role="dialog">
+    <div class="account-modal-box">
+      <button type="button" class="modal-close-btn" onclick="closeModal('helpSupportModal')">&times;</button>
+      <h3 class="modal-title-lg">SweepSage Concierge Support</h3>
+      <p class="modal-subtitle" id="helpModalSubtitle">Need assistance with your booking? We are here to help 24/7.</p>
+
+      <div class="support-channels-grid">
+        <a id="helpWhatsappBtn" href="https://wa.me/919555826615" target="_blank" rel="noopener" class="support-channel-card">
+          <div class="support-channel-icon" style="color: #25D366;">💬</div>
+          <div class="support-channel-texts">
+            <strong>WhatsApp Concierge</strong>
+            <small>Instant reply in 2 mins</small>
+          </div>
+        </a>
+
+        <a href="tel:+919555826615" class="support-channel-card">
+          <div class="support-channel-icon" style="color: var(--account-coral);">📞</div>
+          <div class="support-channel-texts">
+            <strong>Direct Phone Call</strong>
+            <small>+91 95558 26615</small>
+          </div>
+        </a>
+      </div>
+
+      <div style="border-top: 1px solid #e2e8f0; padding-top: 20px;">
+        <h4 style="font-size: 14px; font-weight: 800; color: #0f172a; margin-bottom: 12px;">Or Submit a Quick Ticket</h4>
+        <form onsubmit="handleSupportTicketSubmit(event)">
+          <div class="profile-form-group">
+            <label>Select Issue Type</label>
+            <select id="supportIssueType" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 13.5px;" required>
+              <option value="Creator arrival ETA inquiry">Creator arrival ETA inquiry</option>
+              <option value="Reschedule shoot date / slot">Reschedule shoot date / slot</option>
+              <option value="Photo editing & 4K delivery request">Photo editing & 4K delivery request</option>
+              <option value="Billing or invoice query">Billing or invoice query</option>
+              <option value="Other feedback">Other feedback</option>
+            </select>
+          </div>
+          <div class="profile-form-group">
+            <label>Details / Message</label>
+            <textarea id="supportMessage" rows="3" placeholder="Tell us how we can help you..." style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 13.5px;" required></textarea>
+          </div>
+          <button type="submit" class="btn-order-rebook" style="width: 100%; text-align: center;">Submit Ticket ↗</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MODAL 3: 4K CLOUD ALBUM PREVIEW
+  ========================================================== -->
+  <div class="account-modal-backdrop" id="cloudAlbumModal" aria-hidden="true" role="dialog">
+    <div class="account-modal-box" style="width: min(720px, 94vw);">
+      <button type="button" class="modal-close-btn" onclick="closeModal('cloudAlbumModal')">&times;</button>
+      <div class="album-header-bar">
+        <div>
+          <h3 class="modal-title-lg" style="margin-bottom: 2px;">Private 4K Cloud Album</h3>
+          <small style="color: #64748b;">Order #SS-84192 • Pre-Wedding &amp; Cinematic Shoot</small>
+        </div>
+        <span class="album-stats-badge">120 Ultra-HD Photos</span>
+      </div>
+
+      <div class="album-share-box">
+        <span>🔗</span>
+        <input type="text" class="album-share-input" id="albumShareUrl" value="https://sweepsage.com/gallery/SS-84192" readonly>
+        <button type="button" class="album-copy-btn" onclick="copyAlbumLink()">Copy Link</button>
+      </div>
+
+      <div class="album-grid-preview">
+        <div class="album-photo-item">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="Shoot Frame 1">
+        </div>
+        <div class="album-photo-item">
+          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80" alt="Shoot Frame 2">
+        </div>
+        <div class="album-photo-item">
+          <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80" alt="Shoot Frame 3">
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 10px;">
+        <button type="button" class="btn-order-rebook" style="flex: 1; text-align: center;" onclick="downloadAlbumZip()">
+          ☁️ Download Full High-Res ZIP (3.4 GB)
+        </button>
+        <button type="button" class="btn-order-outline" onclick="closeModal('cloudAlbumModal')">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MODAL 4: OFFICIAL GST TAX INVOICE
+  ========================================================== -->
+  <div class="account-modal-backdrop" id="invoiceModal" aria-hidden="true" role="dialog">
+    <div class="account-modal-box" style="width: min(680px, 94vw);">
+      <button type="button" class="modal-close-btn" onclick="closeModal('invoiceModal')">&times;</button>
+      
+      <div class="invoice-sheet-box" id="printableInvoiceArea">
+        <div class="invoice-meta-head">
+          <div>
+            <div class="invoice-brand-title">sweepsage<span>.com</span></div>
+            <small style="color: #64748b;">SweepSage Creative Experiences Private Limited</small><br>
+            <small style="color: #64748b;">GSTIN: 09AABCU9603R1ZM • Greater Noida, UP</small>
+          </div>
+          <div style="text-align: right;">
+            <strong style="font-size: 16px; color: #0f172a; display: block;">TAX INVOICE</strong>
+            <span style="font-size: 12px; color: #64748b;" id="invoiceNumber">INV-2026-98214</span><br>
+            <span style="font-size: 12px; color: #64748b;" id="invoiceDate">Date: 29 Oct 2026</span>
+          </div>
+        </div>
+
+        <div class="invoice-details-grid">
+          <div>
+            <span style="font-size: 11px; text-transform: uppercase; font-weight: 800; color: #94a3b8; display: block;">Billed To:</span>
+            <strong id="invoiceCustomerName">Utkarsh Dubey</strong><br>
+            <span>+91 95558 26615</span><br>
+            <span>N-52, Delta-3, Greater Noida, 201308</span>
+          </div>
+          <div>
+            <span style="font-size: 11px; text-transform: uppercase; font-weight: 800; color: #94a3b8; display: block;">Payment Status:</span>
+            <strong style="color: #10b981;">PAID IN FULL (UPI)</strong><br>
+            <span>Transaction Ref: UPI/AXIS/9821049281</span><br>
+            <span>Place of Supply: Uttar Pradesh (09)</span>
+          </div>
+        </div>
+
+        <table class="receipt-bill-table" style="margin-top: 10px;">
+          <thead>
+            <tr style="border-bottom: 2px solid #e2e8f0; font-weight: 800; font-size: 11px; text-transform: uppercase; color: #94a3b8;">
+              <th style="text-align: left; padding-bottom: 8px;">Description</th>
+              <th style="text-align: center; padding-bottom: 8px;">SAC Code</th>
+              <th style="text-align: right; padding-bottom: 8px;">Amount</th>
+            </tr>
+          </thead>
+          <tbody id="invoiceTableBody">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+
+      <div style="display: flex; gap: 10px;" class="modal-action-footer">
+        <button type="button" class="btn-order-rebook" style="flex: 1; text-align: center;" onclick="window.print()">
+          🖨️ Print / Save PDF Invoice
+        </button>
+        <button type="button" class="btn-order-outline" onclick="closeModal('invoiceModal')">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MODAL 5: ADD NEW ADDRESS
+  ========================================================== -->
+  <div class="account-modal-backdrop" id="addAddressModal" aria-hidden="true" role="dialog">
+    <div class="account-modal-box">
+      <button type="button" class="modal-close-btn" onclick="closeModal('addAddressModal')">&times;</button>
+      <h3 class="modal-title-lg">Add New Delivery Address</h3>
+      <p class="modal-subtitle">Save a new location for instant doorstep photographer, salon, and courier visits.</p>
+
+      <form onsubmit="handleSaveNewAddress(event)">
+        <div class="profile-form-group">
+          <label>Address Label / Type</label>
+          <select id="addrType" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid #cbd5e1;" required>
+            <option value="Home">Home</option>
+            <option value="Studio / Office">Studio / Office</option>
+            <option value="Event Venue">Event Venue / Resort</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="profile-form-group">
+          <label>Recipient Name</label>
+          <input type="text" id="addrName" required value="Utkarsh Dubey">
+        </div>
+
+        <div class="profile-form-group">
+          <label>Contact Phone Number</label>
+          <input type="tel" id="addrPhone" required value="+91 95558 26615">
+        </div>
+
+        <div class="profile-form-group">
+          <label>House / Flat / Studio No &amp; Street</label>
+          <input type="text" id="addrStreet" required placeholder="e.g. Villa 14, Lotus Boulevard">
+        </div>
+
+        <div class="profile-form-group">
+          <label>City &amp; Area / Landmark</label>
+          <input type="text" id="addrCity" required placeholder="e.g. Sector 100, Noida / Greater Noida">
+        </div>
+
+        <div class="profile-form-group">
+          <label>Pincode</label>
+          <input type="text" id="addrPincode" required placeholder="e.g. 201304" pattern="[0-9]{6}">
+        </div>
+
+        <div style="display: flex; gap: 10px; margin-top: 24px;">
+          <button type="submit" class="btn-order-rebook" style="flex: 1; text-align: center;">Save Address</button>
+          <button type="button" class="btn-order-outline" onclick="closeModal('addAddressModal')">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MODAL 6: EDIT PROFILE
+  ========================================================== -->
+  <div class="account-modal-backdrop" id="editProfileModal" aria-hidden="true" role="dialog">
+    <div class="account-modal-box">
+      <button type="button" class="modal-close-btn" onclick="closeModal('editProfileModal')">&times;</button>
+      <h3 class="modal-title-lg">Edit Profile</h3>
+      <p class="modal-subtitle">Update your personal contact details across all doorstep bookings.</p>
+
+      <form id="editProfileForm" onsubmit="saveProfileChanges(event)">
+        <div class="profile-form-group">
+          <label for="inputUserName">Full Name</label>
+          <input type="text" id="inputUserName" required value="Utkarsh Dubey">
+        </div>
+        <div class="profile-form-group">
+          <label for="inputUserPhone">Phone Number</label>
+          <input type="tel" id="inputUserPhone" required value="+91 95558 26615">
+        </div>
+        <div class="profile-form-group">
+          <label for="inputUserEmail">Email Address</label>
+          <input type="email" id="inputUserEmail" required value="dubeyutkarsh461@gmail.com">
+        </div>
+
+        <div style="display: flex; gap: 10px; margin-top: 24px;">
+          <button type="submit" class="btn-order-rebook" style="flex: 1; text-align: center;">Save Changes</button>
+          <button type="button" class="btn-order-outline" onclick="closeModal('editProfileModal')">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MODAL 7: LOG OUT CONFIRMATION
+  ========================================================== -->
+  <div class="account-modal-backdrop" id="logoutConfirmModal" aria-hidden="true" role="dialog">
+    <div class="account-modal-box" style="width: min(440px, 94vw); text-align: center;">
+      <button type="button" class="modal-close-btn" onclick="closeModal('logoutConfirmModal')">&times;</button>
+      <div style="font-size: 38px; margin-bottom: 12px;">👋</div>
+      <h3 class="modal-title-lg">Log Out of SweepSage?</h3>
+      <p class="modal-subtitle">You can log back in at any time with your verified mobile number.</p>
+
+      <div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
+        <button type="button" class="btn-order-rebook" style="background: #ef4444; border-color: #ef4444;" onclick="executeLogout()">Yes, Log Out</button>
+        <button type="button" class="btn-order-outline" onclick="closeModal('logoutConfirmModal')">Stay Logged In</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLEEK IN-APP TOAST NOTIFICATION -->
+  <div class="account-toast" id="accountToast">
+    <span class="toast-dot"></span>
+    <span id="toastMessage">Action completed successfully</span>
+  </div>
+
+  <!-- =========================================================
+       COMPLETE PRODUCTION JAVASCRIPT
+  ========================================================== -->
+  <script>
+    // Mock Data Store for Orders
+    const ORDERS_DATA = {
+      "SS-98214": {
+        id: "SS-98214",
+        service: "Instant Doorstep Photographer",
+        date: "Today, Oct 29, 2026, 3:30 PM",
+        status: "In Transit • Pro Aman Sharma",
+        badge: "In Transit",
+        isActive: true,
+        address: "N-52, Delta-3, Greater Noida, Uttar Pradesh, 201308",
+        proName: "Aman Sharma (Tier 1 Verified Creator)",
+        proPhone: "+91 95558 26615",
+        proGear: "Canon EOS R5 + RF 50mm f/1.2L + Godox AD200 Pro Flash",
+        timeline: [
+          { title: "Booking Placed & Upfront Paid", time: "03:30 PM", done: true },
+          { title: "Pro Creator Aman Sharma Assigned", time: "03:32 PM", done: true },
+          { title: "Gear Checked & Dispatch in Transit", time: "03:38 PM", active: true },
+          { title: "Doorstep Shoot Execution", time: "Pending (~8 Mins)", done: false },
+          { title: "4K Color Graded Cloud Delivery", time: "Within 2 Hours", done: false }
+        ],
+        items: [
+          { name: "10-Min Doorstep Photography Session", sac: "998381", price: 1499.00 },
+          { name: "High-Speed Priority Dispatch", sac: "998381", price: 0.00 }
+        ],
+        taxes: 0.00,
+        total: 1499.00
+      },
+      "SS-84192": {
+        id: "SS-84192",
+        service: "Pre-Wedding & Cinematic Storytelling",
+        date: "Sun, Oct 18, 2026, 11:30 AM",
+        status: "Delivered on Sun, Oct 18, 2026",
+        badge: "Completed",
+        isActive: false,
+        address: "Lodhi Garden & Sunder Nursery, Delhi NCR",
+        proName: "Kunal Verma (Lead Cinema Director)",
+        proPhone: "+91 95558 26615",
+        proGear: "Sony FX3 + DJI Mini 4 Pro Drone + GM Prime Lenses",
+        timeline: [
+          { title: "Booking Confirmed", time: "Oct 10, 2026", done: true },
+          { title: "Location Moodboard & Permits Approved", time: "Oct 15, 2026", done: true },
+          { title: "Full-day On-location Execution", time: "Oct 18, 2026, 06:00 PM", done: true },
+          { title: "120 RAW 4K Frames & Teaser Film Delivered", time: "Oct 18, 2026, 09:30 PM", done: true }
+        ],
+        items: [
+          { name: "Full-Day Pre-Wedding Production & Drone", sac: "998381", price: 11016.10 },
+          { name: "CGST (9%)", sac: "998381", price: 991.45 },
+          { name: "SGST (9%)", sac: "998381", price: 991.45 }
+        ],
+        taxes: 1982.90,
+        total: 12999.00
+      },
+      "SS-76210": {
+        id: "SS-76210",
+        service: "Salon at Home — Glow Facial & Hair Spa",
+        date: "Sat, Sep 12, 2026, 2:15 PM",
+        status: "Delivered on Sat, Sep 12, 2026",
+        badge: "Completed",
+        isActive: false,
+        address: "N-52, Delta-3, Greater Noida, Uttar Pradesh, 201308",
+        proName: "Pooja Sharma (Certified Senior Stylist)",
+        proPhone: "+91 95558 26615",
+        proGear: "Sealed Organic Kit + UV Sterilized Grooming Tooling",
+        timeline: [
+          { title: "Slot Reserved & Confirmed", time: "Sep 12, 2026, 01:00 PM", done: true },
+          { title: "Stylist Arrived with Sealed Kit", time: "Sep 12, 2026, 02:10 PM", done: true },
+          { title: "Doorstep Service Executed & Clean-up Done", time: "Sep 12, 2026, 03:45 PM", done: true }
+        ],
+        items: [
+          { name: "Deep Glow Facial & Keratin Hair Spa Kit", sac: "999721", price: 1863.56 },
+          { name: "CGST (9%)", sac: "999721", price: 167.72 },
+          { name: "SGST (9%)", sac: "999721", price: 167.72 }
+        ],
+        taxes: 335.44,
+        total: 2199.00
+      }
+    };
+
+    // Default Saved Addresses
+    const DEFAULT_ADDRESSES = [
+      {
+        id: "addr-1",
+        type: "Home / Primary",
+        isDefault: true,
+        name: "Utkarsh Dubey",
+        phone: "+91 95558 26615",
+        street: "N-52, Delta-3, Near Delta Metro Station",
+        city: "Greater Noida, Uttar Pradesh",
+        pincode: "201308"
+      },
+      {
+        id: "addr-2",
+        type: "Studio / Office",
+        isDefault: false,
+        name: "SweepSage Creative Studio",
+        phone: "+91 95558 26615",
+        street: "Block B, Sector 62",
+        city: "Noida, Uttar Pradesh",
+        pincode: "201301"
+      }
+    ];
+
+    document.addEventListener("DOMContentLoaded", function () {
+      initProfile();
+      initAddresses();
+      initTabs();
+    });
+
+    // Profile Init
+    function initProfile() {
+      const savedName = localStorage.getItem("ss_user_name") || "Utkarsh Dubey";
+      const savedPhone = localStorage.getItem("ss_user_phone") || "9555826615";
+      const savedEmail = localStorage.getItem("ss_user_email") || "dubeyutkarsh461@gmail.com";
+
+      document.getElementById("displayUserName").textContent = savedName;
+      document.getElementById("inputUserName").value = savedName;
+      document.getElementById("displayUserPhone").textContent = savedPhone;
+      document.getElementById("inputUserPhone").value = savedPhone;
+      document.getElementById("displayUserEmail").textContent = savedEmail;
+      document.getElementById("inputUserEmail").value = savedEmail;
+    }
+
+    // Tabs Init
+    function initTabs() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const requestedTab = urlParams.get("tab") || "orders";
+      activateTab(requestedTab);
+
+      document.querySelectorAll(".sidebar-tab-btn").forEach(btn => {
+        btn.addEventListener("click", function () {
+          const target = this.getAttribute("data-tab-target");
+          activateTab(target);
+          window.history.replaceState(null, "", "?tab=" + target);
+        });
+      });
+    }
+
+    function activateTab(tabId) {
+      document.querySelectorAll(".sidebar-tab-btn").forEach(btn => {
+        if (btn.getAttribute("data-tab-target") === tabId) {
+          btn.classList.add("active");
+        } else {
+          btn.classList.remove("active");
+        }
+      });
+
+      document.querySelectorAll(".tab-view").forEach(view => {
+        if (view.id === "tab-" + tabId) {
+          view.classList.add("active");
+        } else {
+          view.classList.remove("active");
+        }
+      });
+    }
+
+    // Filter Orders
+    function filterOrders(filter, triggerBtn) {
+      document.querySelectorAll(".order-filter-btn").forEach(btn => btn.classList.remove("active"));
+      triggerBtn.classList.add("active");
+
+      const orderCards = document.querySelectorAll(".orders-list .order-card");
+      orderCards.forEach(card => {
+        const cardStatus = card.getAttribute("data-status");
+        if (filter === "all") {
+          card.style.display = "block";
+        } else if (filter === "active") {
+          card.style.display = (cardStatus === "active") ? "block" : "none";
+        } else if (filter === "completed") {
+          card.style.display = (cardStatus === "completed") ? "block" : "none";
+        }
+      });
+    }
+
+    // Modals Management
+    function openModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.add("open");
+        modal.setAttribute("aria-hidden", "false");
+      }
+    }
+
+    function closeModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.remove("open");
+        modal.setAttribute("aria-hidden", "true");
+      }
+    }
+
+    // Close on backdrop click
+    document.querySelectorAll(".account-modal-backdrop").forEach(backdrop => {
+      backdrop.addEventListener("click", function (e) {
+        if (e.target === this) {
+          this.classList.remove("open");
+          this.setAttribute("aria-hidden", "true");
+        }
+      });
+    });
+
+    // Toast Notification
+    function showToast(message) {
+      const toast = document.getElementById("accountToast");
+      const text = document.getElementById("toastMessage");
+      text.textContent = message;
+      toast.classList.add("show");
+      window.clearTimeout(window._toastTimer);
+      window._toastTimer = window.setTimeout(() => {
+        toast.classList.remove("show");
+      }, 3000);
+    }
+
+    // 1. ORDER RECEIPT POPUP
+    function openOrderReceipt(orderId) {
+      const order = ORDERS_DATA[orderId];
+      if (!order) return;
+
+      document.getElementById("receiptOrderId").textContent = "#" + order.id;
+      document.getElementById("receiptServiceTitle").textContent = order.service;
+      document.getElementById("receiptServiceAddress").textContent = order.address;
+
+      const badge = document.getElementById("receiptStatusBadge");
+      badge.textContent = order.badge;
+      if (order.isActive) {
+        badge.className = "receipt-status-pill active";
+      } else {
+        badge.className = "receipt-status-pill";
+      }
+
+      // Populate Timeline
+      const timelineBox = document.getElementById("receiptTimelineContainer");
+      timelineBox.innerHTML = "";
+      order.timeline.forEach(step => {
+        const row = document.createElement("div");
+        row.className = "timeline-event-row" + (step.done ? " done" : (step.active ? " active" : ""));
+        row.innerHTML = `
+          <div class="timeline-event-title">${step.title}</div>
+          <div class="timeline-event-time">${step.time}</div>
+        `;
+        timelineBox.appendChild(row);
+      });
+
+      // Populate Bill Breakdown
+      const billTable = document.getElementById("receiptBillTable");
+      billTable.innerHTML = "";
+      order.items.forEach(item => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${item.name}</td>
+          <td>₹${item.price.toFixed(2)}</td>
+        `;
+        billTable.appendChild(tr);
+      });
+
+      const totalTr = document.createElement("tr");
+      totalTr.className = "total-row";
+      totalTr.innerHTML = `
+        <td>Total Paid</td>
+        <td>₹${order.total.toFixed(2)}</td>
+      `;
+      billTable.appendChild(totalTr);
+
+      openModal("receiptModal");
+    }
+
+    // 2. HELP & SUPPORT MODAL
+    function openHelpSupportModal(orderId, serviceName) {
+      document.getElementById("helpModalSubtitle").textContent = `Assistance for Order #${orderId} (${serviceName})`;
+      
+      const whatsappBtn = document.getElementById("helpWhatsappBtn");
+      whatsappBtn.href = `https://wa.me/919555826615?text=${encodeURIComponent('Hello SweepSage Concierge, I need assistance with my Booking #' + orderId + ' (' + serviceName + ').')}`;
+
+      openModal("helpSupportModal");
+    }
+
+    function handleSupportTicketSubmit(e) {
+      e.preventDefault();
+      const issue = document.getElementById("supportIssueType").value;
+      const msg = document.getElementById("supportMessage").value.trim();
+
+      closeModal("helpSupportModal");
+      document.getElementById("supportMessage").value = "";
+      showToast("Support ticket submitted! Ticket ID: #TKT-" + Math.floor(1000 + Math.random() * 9000));
+    }
+
+    // 3. 4K CLOUD ALBUM MODAL
+    function openCloudAlbumModal(orderId) {
+      openModal("cloudAlbumModal");
+    }
+
+    function copyAlbumLink() {
+      const input = document.getElementById("albumShareUrl");
+      input.select();
+      navigator.clipboard.writeText(input.value).then(() => {
+        showToast("Album private link copied to clipboard!");
+      }).catch(() => {
+        showToast("Link: " + input.value);
+      });
+    }
+
+    function downloadAlbumZip() {
+      showToast("Starting secure download of high-res 4K gallery (3.4 GB)...");
+    }
+
+    // 4. TAX INVOICE MODAL
+    function openInvoiceModal(orderId) {
+      const order = ORDERS_DATA[orderId] || ORDERS_DATA["SS-98214"];
+      document.getElementById("invoiceNumber").textContent = "INV-2026-" + order.id.replace("SS-", "");
+      document.getElementById("invoiceDate").textContent = "Date: " + order.date;
+      document.getElementById("invoiceCustomerName").textContent = document.getElementById("displayUserName").textContent;
+
+      const tbody = document.getElementById("invoiceTableBody");
+      tbody.innerHTML = "";
+      order.items.forEach(item => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${item.name}</td>
+          <td style="text-align: center;">${item.sac}</td>
+          <td>₹${item.price.toFixed(2)}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      const totalTr = document.createElement("tr");
+      totalTr.className = "total-row";
+      totalTr.innerHTML = `
+        <td>Total (Inc. GST)</td>
+        <td style="text-align: center;">-</td>
+        <td>₹${order.total.toFixed(2)}</td>
+      `;
+      tbody.appendChild(totalTr);
+
+      openModal("invoiceModal");
+    }
+
+    // 5. ADDRESSES MANAGEMENT (Saved to localStorage)
+    function initAddresses() {
+      let saved = [];
+      try {
+        saved = JSON.parse(localStorage.getItem("ss_saved_addresses"));
+      } catch(e){}
+
+      if (!saved || saved.length === 0) {
+        saved = DEFAULT_ADDRESSES;
+        localStorage.setItem("ss_saved_addresses", JSON.stringify(saved));
+      }
+
+      renderAddresses(saved);
+    }
+
+    function renderAddresses(addresses) {
+      const grid = document.getElementById("savedAddressesGrid");
+      grid.innerHTML = "";
+
+      addresses.forEach(addr => {
+        const card = document.createElement("div");
+        card.className = "address-card";
+        card.id = "card-" + addr.id;
+        card.innerHTML = `
+          <div class="address-card-head">
+            <span class="address-type-badge">${addr.type}</span>
+            ${addr.isDefault ? '<span class="address-default-pill">Default</span>' : ''}
+          </div>
+          <div class="address-text">
+            <strong>${addr.name} (${addr.phone})</strong><br>
+            <span>${addr.street}</span><br>
+            <span>${addr.city}, ${addr.pincode}</span>
+          </div>
+          <div class="address-actions">
+            ${!addr.isDefault ? `<button type="button" class="address-action-btn" onclick="setDefaultAddress('${addr.id}')">Set as Default</button>` : ''}
+            <button type="button" class="address-action-btn" style="color: #ef4444;" onclick="deleteAddress('${addr.id}')">Delete</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function openAddAddressModal() {
+      openModal("addAddressModal");
+    }
+
+    function handleSaveNewAddress(e) {
+      e.preventDefault();
+      const type = document.getElementById("addrType").value;
+      const name = document.getElementById("addrName").value.trim();
+      const phone = document.getElementById("addrPhone").value.trim();
+      const street = document.getElementById("addrStreet").value.trim();
+      const city = document.getElementById("addrCity").value.trim();
+      const pincode = document.getElementById("addrPincode").value.trim();
+
+      let addresses = [];
+      try {
+        addresses = JSON.parse(localStorage.getItem("ss_saved_addresses")) || [];
+      } catch(e){}
+
+      const newAddr = {
+        id: "addr-" + Date.now(),
+        type: type,
+        isDefault: addresses.length === 0,
+        name: name,
+        phone: phone,
+        street: street,
+        city: city,
+        pincode: pincode
+      };
+
+      addresses.push(newAddr);
+      localStorage.setItem("ss_saved_addresses", JSON.stringify(addresses));
+      renderAddresses(addresses);
+      closeModal("addAddressModal");
+      showToast("New address added successfully!");
+    }
+
+    function setDefaultAddress(addrId) {
+      let addresses = [];
+      try {
+        addresses = JSON.parse(localStorage.getItem("ss_saved_addresses")) || [];
+      } catch(e){}
+
+      addresses.forEach(a => {
+        a.isDefault = (a.id === addrId);
+      });
+
+      localStorage.setItem("ss_saved_addresses", JSON.stringify(addresses));
+      renderAddresses(addresses);
+      showToast("Default delivery address updated!");
+    }
+
+    function deleteAddress(addrId) {
+      let addresses = [];
+      try {
+        addresses = JSON.parse(localStorage.getItem("ss_saved_addresses")) || [];
+      } catch(e){}
+
+      addresses = addresses.filter(a => a.id !== addrId);
+      if (addresses.length > 0 && !addresses.some(a => a.isDefault)) {
+        addresses[0].isDefault = true;
+      }
+
+      localStorage.setItem("ss_saved_addresses", JSON.stringify(addresses));
+      renderAddresses(addresses);
+      showToast("Address deleted.");
+    }
+
+    // 6. EDIT PROFILE
+    function openProfileEditModal() {
+      openModal("editProfileModal");
+    }
+
+    function saveProfileChanges(e) {
+      e.preventDefault();
+      const newName = document.getElementById("inputUserName").value.trim();
+      const newPhone = document.getElementById("inputUserPhone").value.trim();
+      const newEmail = document.getElementById("inputUserEmail").value.trim();
+
+      if (newName) {
+        localStorage.setItem("ss_user_name", newName);
+        document.getElementById("displayUserName").textContent = newName;
+      }
+      if (newPhone) {
+        localStorage.setItem("ss_user_phone", newPhone);
+        document.getElementById("displayUserPhone").textContent = newPhone;
+      }
+      if (newEmail) {
+        localStorage.setItem("ss_user_email", newEmail);
+        document.getElementById("displayUserEmail").textContent = newEmail;
+      }
+
+      closeModal("editProfileModal");
+      showToast("Profile updated successfully!");
+    }
+
+    // 7. PREFERENCES
+    function savePreferences() {
+      showToast("Preferences saved.");
+    }
+
+    // 8. LOGOUT MODAL
+    function openLogoutModal() {
+      openModal("logoutConfirmModal");
+    }
+
+    function executeLogout() {
+      localStorage.removeItem("ss_user_name");
+      localStorage.removeItem("ss_user_phone");
+      localStorage.removeItem("ss_user_email");
+      showToast("Logged out successfully.");
+      window.setTimeout(() => {
+        window.location.href = "index.html";
+      }, 700);
+    }
+  </script>
+</body>
+</html>

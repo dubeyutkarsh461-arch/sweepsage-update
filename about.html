@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="Meet Utkarsh Dubey, Founder of SweepSage. Discover our philosophy: We capture moments, we create experiences, blending creativity, convenience, and genuine care.">
+  <title>Our Philosophy &amp; Founder — SweepSage</title>
+
+  <!-- Browser Tab Favicon / Logo -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="canonical" href="https://sweepsage.com/about.html">
+
+  <!-- Social & Search Preview -->
+  <meta property="og:type" content="profile">
+  <meta property="og:site_name" content="SweepSage">
+  <meta property="og:title" content="Our Philosophy &amp; Founder — SweepSage">
+  <meta property="og:description" content="We capture moments. We create experiences. Read about founder Utkarsh Dubey and the philosophy driving SweepSage.">
+  <meta property="og:image" content="https://sweepsage.com/founder.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="STYLE.CSS?v=3.3">
+  <script>
+    (function(){
+      try { localStorage.removeItem('sweepsage_theme'); } catch(e){}
+      document.documentElement.setAttribute('data-theme', 'light');
+      document.documentElement.classList.remove('dark-theme');
+    })();
+  </script>
+</head>
+
+<body>
+  <div class="noise"></div>
+  <div class="cursor-glow"></div>
+  <div class="scroll-progress"></div>
+
+  <!-- NAVBAR -->
+  <header class="navbar" id="navbar">
+    <div class="nav-left">
+      <a class="brand" href="index.html">
+        <img src="logo.png" alt="SweepSage">
+        <span>sweepsage<span>.com</span></span>
+      </a>
+
+      <!-- Enter your delivery location -->
+      <div class="nav-location">
+        <button class="nav-location-btn" id="openLocationModalBtn" type="button" aria-label="Choose delivery location" onclick="openLocationModal()">
+          <span class="location-pin-icon">
+            <svg class="nav-svg-icon pin-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          </span>
+          <div class="location-text-wrap">
+            <span class="location-title">Deliver to</span>
+            <span class="location-current" id="navDeliveryLocation">Enter your delivery location</span>
+          </div>
+          <span class="location-chevron">▼</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation actions -->
+    <div class="nav-right">
+      <a class="nav-instant-btn magnetic" href="PHOTOGRAPHER-BOOKING.HTML?event=instant" data-open-booking="instant">⚡ Book in Minutes</a>
+
+      <button class="nav-icon-btn nav-search-btn" id="openSearchBtn" type="button" aria-label="Search experiences" title="Search experiences (Ctrl+K)" onclick="openSearchModal()">
+        <span class="action-icon">
+          <svg class="nav-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </span>
+      </button>
+
+      <!-- Active About Button -->
+      <a class="nav-about-btn active" href="about.html" title="About Sweepsage &amp; Founder" aria-label="About Us">
+        <span class="about-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+        </span>
+        <span class="about-text">About</span>
+      </a>
+
+
+      <button class="nav-action-btn nav-icon-btn" id="openGetAppBtn" type="button" onclick="openGetAppModal()" title="Get the App" aria-label="Get the App">
+        <span class="action-icon">
+          <svg class="nav-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="3" ry="3"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+        </span>
+        <span class="btn-text">Get the App</span>
+      </button>
+
+      <!-- Login with subparts -->
+      <div class="nav-user-dropdown" id="userMenuDropdown">
+        <button class="nav-login-btn nav-icon-btn" id="userMenuTrigger" type="button" aria-haspopup="true" aria-expanded="false" title="Account &amp; Login" aria-label="Account &amp; Login">
+          <span class="user-avatar-circle">
+            <svg class="nav-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          </span>
+          <span id="navLoginBtnText" class="btn-text">Login</span>
+        </button>
+
+        <div class="user-dropdown-menu" id="userDropdownMenu" role="menu">
+          <div class="user-dropdown-head">
+            <strong id="dropdownUserName">Welcome to SweepSage</strong>
+            <small id="dropdownUserSub">Manage your account &amp; perks</small>
+          </div>
+          <div class="user-dropdown-divider"></div>
+          <a class="user-dropdown-item" href="my-account.html?tab=orders" role="menuitem">
+            <span class="item-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            </span>
+            <span class="item-text">Profile</span>
+            <span class="item-arrow">→</span>
+          </a>
+          <a class="user-dropdown-item" href="my-account.html?tab=orders" role="menuitem">
+            <span class="item-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+            </span>
+            <span class="item-text">Orders</span>
+            <span class="item-badge" id="dropdownOrderCount">0</span>
+          </a>
+          <a class="user-dropdown-item" href="my-account.html?tab=favourites" role="menuitem">
+            <span class="item-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </span>
+            <span class="item-text">Favourites</span>
+            <span class="item-arrow">→</span>
+          </a>
+
+          <div class="user-dropdown-divider"></div>
+          <a class="user-dropdown-item logout-item" href="javascript:void(0)" onclick="handleUserLogout()" role="menuitem">
+            <span class="item-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+            </span>
+            <span class="item-text">Logout</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN ABOUT & FOUNDER CONTAINER -->
+  <main class="founder-page-wrap">
+    <div class="founder-back-nav">
+      <button type="button" class="service-page-back-btn" onclick="window.smartGoBack()">
+        <span>←</span>
+        <span>Back to Overview</span>
+      </button>
+      <span class="eyebrow dark">COMPANY / ABOUT &amp; FOUNDER</span>
+    </div>
+
+    <!-- HERO FOUNDER & PHILOSOPHY SECTION -->
+    <section class="founder-hero-grid reveal" id="founderPhilosophy">
+      <!-- Left Column: Visual with Clean White Portrait + User Requested Quote Box -->
+      <div class="founder-visual-col">
+        <div class="founder-image-card">
+          <div class="founder-badge-pill">
+            <span class="pulse-dot"></span>
+            <span>Founder &amp; CEO</span>
+          </div>
+          <img src="founder.png?v=4.0" alt="Utkarsh Dubey, Founder of SweepSage" width="440" height="440" loading="eager">
+        </div>
+
+        <!-- Image Ke Quote Box Ke Liye (User Requested) -->
+        <div class="founder-floating-quote-box">
+          <div class="quote-box-header">
+            <div class="quote-icon-badge">“</div>
+            <span class="quote-tag">Founder's Vision</span>
+          </div>
+          <blockquote class="founder-quote-text">
+            "A great brand isn't just built on the services it delivers, but on the experiences it creates. At Sweepsage, we bring creativity, convenience, and care together to make every moment count."
+          </blockquote>
+          <div class="founder-quote-footer">
+            <div class="founder-avatar-mini">
+              <img src="founder.png?v=4.0" alt="Utkarsh Dubey">
+            </div>
+            <div class="founder-quote-author">
+              <strong>Utkarsh Dubey</strong>
+              <span>Founder, SweepSage</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Philosophy Narrative -->
+      <div class="philosophy-content-col">
+        <span class="philosophy-eyebrow">
+          <span>✨</span> OUR PHILOSOPHY
+        </span>
+
+        <h1 class="philosophy-title">
+          We Capture Moments.<br>
+          <span>We Create Experiences.</span>
+        </h1>
+
+        <p class="philosophy-body-p">
+          At <strong>Sweepsage</strong>, we believe great experiences deserve great people. We're building more than a service brand — we're building a team that values <strong>creativity, trust, speed</strong>, and <strong>genuine care</strong> for every customer.
+        </p>
+
+        <p class="philosophy-body-p">
+          From capturing life's most precious moments to bringing everyday services to your doorstep, our mission is simple: <strong>make quality experiences more accessible, personal, and effortless.</strong>
+        </p>
+
+        <!-- User Requested Highlight Box -->
+        <div class="philosophy-highlight-card">
+          <p class="highlight-quote-text">
+            “We believe innovation matters. But how we make people feel matters just as much.”
+          </p>
+          <div class="highlight-author-line">
+            — <strong>Utkarsh Dubey</strong>, Founder, SweepSage
+          </div>
+        </div>
+
+        <div class="philosophy-actions-row">
+          <a class="btn btn-gold magnetic" href="PHOTOGRAPHER-BOOKING.HTML?event=instant" data-open-booking="instant">
+            ⚡ Book in Minutes <span>↗</span>
+          </a>
+          <a class="btn btn-light magnetic" href="#contactFounder">
+            Connect Directly <span>↓</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE GUIDING PILLARS SECTION -->
+    <section class="philosophy-pillars-section reveal">
+      <div class="pillars-header">
+        <span class="eyebrow dark">THE PRINCIPLES BEHIND SWEEPSAGE</span>
+        <h3>Built on Values, Driven by Experience</h3>
+        <p>Everything we design, deliver, and cultivate is shaped around four uncompromising commitments to our community.</p>
+      </div>
+
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-icon-box">🎨</div>
+          <h4>Creativity &amp; Artistry</h4>
+          <p>Every photograph, hairstyle, or travel itinerary is treated as a personalized work of craft tailored to your individuality.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon-box">⚡</div>
+          <h4>Speed &amp; Convenience</h4>
+          <p>Instant 10-minute photographer dispatch and doorstep salon setups that fit effortlessly into your busy schedule.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon-box">🤝</div>
+          <h4>Trust &amp; Verified Safety</h4>
+          <p>100% background-verified professionals, transparent zero-hidden-fee pricing, and strict hygiene protocols.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon-box">❤️</div>
+          <h4>Genuine Care</h4>
+          <p>Because beyond technology and speed, the memory of how respected and valued you felt is what truly lasts.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEET THE SERVICES -->
+    <section class="reveal" style="margin-bottom: 60px;">
+      <div class="section-head" style="margin-bottom: 28px;">
+        <div>
+          <span class="eyebrow dark">EXPLORE EXPERIENCES</span>
+          <h2>Three Worlds.<br><span>One Unified Standard.</span></h2>
+        </div>
+        <p>Curated doorstep and destination services designed with passion.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+        <a href="photography.html" style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 24px; padding: 26px; text-decoration: none; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.25s var(--ease), box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 18px 40px rgba(0,0,0,0.08)';" onmouseout="this.style.transform='none'; this.style.boxShadow='none';">
+          <div>
+            <div style="width: 48px; height: 48px; border-radius: 14px; background: rgba(252,94,104,0.12); display: grid; place-items: center; margin-bottom: 16px;">
+              <img src="loader-camera-logo.png" alt="Photography" width="28" height="28">
+            </div>
+            <span style="font-size: 11px; font-weight: 800; color: #fc5e68; letter-spacing: 0.08em; text-transform: uppercase;">01 / PHOTOGRAPHY</span>
+            <h3 style="font-family: 'Manrope', sans-serif; font-size: 20px; font-weight: 800; color: #09090b; margin: 6px 0 10px;">Instant &amp; Event Creators</h3>
+            <p style="font-size: 13.5px; color: #64748b; line-height: 1.6; margin: 0;">Verified photographers dispatched to your location in 10 minutes or booked for premium weddings and shoots.</p>
+          </div>
+          <div style="margin-top: 20px; font-size: 13px; font-weight: 700; color: #fc5e68; display: flex; align-items: center; gap: 6px;">
+            Explore Photography <span>→</span>
+          </div>
+        </a>
+
+        <a href="salon.html" style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 24px; padding: 26px; text-decoration: none; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.25s var(--ease), box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 18px 40px rgba(0,0,0,0.08)';" onmouseout="this.style.transform='none'; this.style.boxShadow='none';">
+          <div>
+            <div style="width: 48px; height: 48px; border-radius: 14px; background: rgba(252,94,104,0.12); display: grid; place-items: center; margin-bottom: 16px;">
+              <img src="loader-salon-logo.png" alt="Salon" width="28" height="28">
+            </div>
+            <span style="font-size: 11px; font-weight: 800; color: #fc5e68; letter-spacing: 0.08em; text-transform: uppercase;">02 / SALON AT HOME</span>
+            <h3 style="font-family: 'Manrope', sans-serif; font-size: 20px; font-weight: 800; color: #09090b; margin: 6px 0 10px;">Luxury Beauty &amp; Grooming</h3>
+            <p style="font-size: 13.5px; color: #64748b; line-height: 1.6; margin: 0;">Certified makeup artists and stylists arriving with single-use sterile kits to pamper you in your private sanctuary.</p>
+          </div>
+          <div style="margin-top: 20px; font-size: 13px; font-weight: 700; color: #fc5e68; display: flex; align-items: center; gap: 6px;">
+            Explore Salon <span>→</span>
+          </div>
+        </a>
+
+        <a href="travel.html" style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 24px; padding: 26px; text-decoration: none; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.25s var(--ease), box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 18px 40px rgba(0,0,0,0.08)';" onmouseout="this.style.transform='none'; this.style.boxShadow='none';">
+          <div>
+            <div style="width: 48px; height: 48px; border-radius: 14px; background: rgba(252,94,104,0.12); display: grid; place-items: center; margin-bottom: 16px;">
+              <img src="loader-airplane-logo.png" alt="Travel" width="28" height="28">
+            </div>
+            <span style="font-size: 11px; font-weight: 800; color: #fc5e68; letter-spacing: 0.08em; text-transform: uppercase;">03 / TRAVEL</span>
+            <h3 style="font-family: 'Manrope', sans-serif; font-size: 20px; font-weight: 800; color: #09090b; margin: 6px 0 10px;">Bespoke Journeys</h3>
+            <p style="font-size: 13.5px; color: #64748b; line-height: 1.6; margin: 0;">Custom-crafted weekend getaways, domestic escapes, and international luxury travels tailored to your story.</p>
+          </div>
+          <div style="margin-top: 20px; font-size: 13px; font-weight: 700; color: #fc5e68; display: flex; align-items: center; gap: 6px;">
+            Explore Travel <span>→</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- DIRECT CONNECT WITH FOUNDER -->
+    <section class="founder-connect-box reveal" id="contactFounder">
+      <div class="connect-left">
+        <span class="quote-tag" style="color: #ff858e; margin-bottom: 6px; display: inline-block;">FOUNDER'S OFFICE</span>
+        <h3>Have a thought, collaboration, or story to share?</h3>
+        <p>Utkarsh and the leadership team are always eager to hear from creators and customers directly.</p>
+      </div>
+
+      <div class="connect-channels">
+        <a href="https://www.instagram.com/sweepsage_/" target="_blank" rel="noopener" class="connect-pill-link">
+          <span>📸</span>
+          <span>Instagram @sweepsage_</span>
+        </a>
+        <a href="mailto:sweepsage25@gmail.com" class="connect-pill-link">
+          <span>✉️</span>
+          <span>sweepsage25@gmail.com</span>
+        </a>
+        <a href="tel:+919555826615" class="connect-pill-link">
+          <span>📞</span>
+          <span>+91 9555826615</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="logo.png" alt="SweepSage">
+        <h3>sweepsage<span>.com</span></h3>
+        <p>Photography. Salon. Travel.<br>All in one place.</p>
+      </div>
+
+      <div class="footer-column">
+        <span>COMPANY</span>
+        <a href="about.html" style="color: #ffffff; font-weight: 700;">About &amp; Founder</a>
+        <a href="index.html#about">Our Story</a>
+        <a href="#">Terms &amp; Conditions</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+
+      <div class="footer-column">
+        <span>SERVICES</span>
+        <a href="photography.html">Photography</a>
+        <a href="salon.html">Salon at Home</a>
+        <a href="travel.html">Travel</a>
+      </div>
+
+      <div class="footer-column">
+        <span>CONNECT</span>
+        <a href="admin.html">Admin Console</a>
+        <a href="https://www.instagram.com/sweepsage_/" target="_blank" rel="noopener">Instagram ↗</a>
+        <a href="tel:+919555826615">Call us ↗</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 SweepSage. All rights reserved.</span>
+      <span>Made for moments that matter.</span>
+    </div>
+  </footer>
+
+  <!-- PERSISTENT FOOTER SERVICE DOCK -->
+  <nav class="persistent-service-dock" aria-label="Persistent Services Dock">
+    <div class="service-dock-inner">
+      <a href="photography.html" class="service-dock-btn" data-dock="photography" title="Photography on demand">
+        <div class="dock-icon-wrap">
+          <img src="loader-camera-logo.png" alt="Photography" width="22" height="22">
+        </div>
+        <span>Photography</span>
+      </a>
+      <div class="dock-divider"></div>
+      <a href="salon.html" class="service-dock-btn" data-dock="salon" title="Salon &amp; Beauty at Home">
+        <div class="dock-icon-wrap">
+          <img src="loader-salon-logo.png" alt="Salon" width="22" height="22">
+        </div>
+        <span>Salon</span>
+      </a>
+      <div class="dock-divider"></div>
+      <a href="travel.html" class="service-dock-btn" data-dock="travel" title="Curated Travel">
+        <div class="dock-icon-wrap">
+          <img src="loader-airplane-logo.png" alt="Travel" width="22" height="22">
+        </div>
+        <span>Travel</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- LOCATION MODAL -->
+  <div class="custom-modal-backdrop" id="locationModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="custom-modal-box">
+      <button type="button" class="modal-close-cross" onclick="closeLocationModal()" aria-label="Close location picker">&times;</button>
+      <div class="modal-head-title">Enter your delivery location</div>
+      <p class="modal-head-desc">Choose your location to check available doorstep photographers, salon artists, and travel curators.</p>
+      
+      <div class="location-search-box">
+        <span>🔍</span>
+        <input type="text" id="locationSearchInput" placeholder="Search city (Delhi, Noida, Ghaziabad, Lucknow, Gorakhpur)..." oninput="filterCities(this.value)" onkeydown="if(event.key==='Enter')handleCitySearchSubmit(this.value)">
+      </div>
+
+      <!-- Unavailable City Notice Banner -->
+      <div class="location-unavail-notice" id="locationUnavailNotice" style="display: none;">
+        <div class="unavail-icon">⚠️</div>
+        <div class="unavail-content">
+          <strong class="unavail-title">Currently Not Available Here!</strong>
+          <p class="unavail-desc" id="locationUnavailText">SweepSage is currently not available in this location. We are operational only in <strong>Delhi NCR, Noida, Ghaziabad, Lucknow</strong>, and <strong>Gorakhpur</strong>. We are launching in your area soon!</p>
+          <div class="unavail-quick-switch">
+            <span>Choose from available cities:</span>
+            <div class="unavail-pills">
+              <button type="button" onclick="selectCity('Delhi NCR')">Delhi NCR</button>
+              <button type="button" onclick="selectCity('Noida, UP')">Noida</button>
+              <button type="button" onclick="selectCity('Ghaziabad, UP')">Ghaziabad</button>
+              <button type="button" onclick="selectCity('Lucknow, UP')">Lucknow</button>
+              <button type="button" onclick="selectCity('Gorakhpur, UP')">Gorakhpur</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="location-gps-btn" onclick="useGpsLocation()">
+        <span>🎯</span>
+        <span>Use current location (GPS)</span>
+      </button>
+
+      <div class="popular-cities-label">
+        <span>AVAILABLE CITIES (5 LOCATIONS)</span>
+        <span class="live-status-dot">● LIVE NOW</span>
+      </div>
+      <div class="popular-cities-grid" id="availableCitiesGrid">
+        <button type="button" class="city-pill-btn available" onclick="selectCity('Delhi NCR')">📍 Delhi NCR</button>
+        <button type="button" class="city-pill-btn available" onclick="selectCity('Noida, UP')">📍 Noida</button>
+        <button type="button" class="city-pill-btn available" onclick="selectCity('Ghaziabad, UP')">📍 Ghaziabad</button>
+        <button type="button" class="city-pill-btn available" onclick="selectCity('Lucknow, UP')">📍 Lucknow</button>
+        <button type="button" class="city-pill-btn available" onclick="selectCity('Gorakhpur, UP')">📍 Gorakhpur</button>
+      </div>
+
+      <div class="other-cities-label" style="margin-top: 18px; margin-bottom: 10px; font-size: 11px; font-weight: 800; color: #64748b; letter-spacing: 0.08em; text-transform: uppercase;">
+        OTHER CITIES (LAUNCHING SOON)
+      </div>
+      <div class="popular-cities-grid other-cities-grid">
+        <button type="button" class="city-pill-btn disabled-city" onclick="handleUnavailableCityClick('Mumbai')">Mumbai <small>Soon</small></button>
+        <button type="button" class="city-pill-btn disabled-city" onclick="handleUnavailableCityClick('Bengaluru')">Bengaluru <small>Soon</small></button>
+        <button type="button" class="city-pill-btn disabled-city" onclick="handleUnavailableCityClick('Pune')">Pune <small>Soon</small></button>
+        <button type="button" class="city-pill-btn disabled-city" onclick="handleUnavailableCityClick('Jaipur')">Jaipur <small>Soon</small></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GET THE APP MODAL -->
+  <div class="custom-modal-backdrop" id="getAppModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="custom-modal-box">
+      <button type="button" class="modal-close-cross" onclick="closeGetAppModal()" aria-label="Close">&times;</button>
+      <div class="modal-head-title">Experience SweepSage on Mobile</div>
+      <p class="modal-head-desc">Book photographers in 10 minutes, get doorstep beauty services, and track your travel itineraries in real time.</p>
+
+      <div class="app-modal-grid">
+        <div class="app-qr-box">
+          <img src="logo.png" alt="SweepSage App QR Code">
+        </div>
+        <div>
+          <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 6px;">Scan to download</h4>
+          <p style="font-size: 12.5px; color: #94a3b8; line-height: 1.4;">Point your camera at the QR code to install the SweepSage iOS or Android application instantly.</p>
+          <div class="app-store-badges">
+            <a href="javascript:void(0)" class="store-badge-btn" onclick="selectCity('Delhi NCR'); closeGetAppModal();">
+              <span>🍏</span> App Store
+            </a>
+            <a href="javascript:void(0)" class="store-badge-btn" onclick="selectCity('Delhi NCR'); closeGetAppModal();">
+              <span>🤖</span> Google Play
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROFILE MODAL -->
+  <div class="custom-modal-backdrop" id="profileModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="custom-modal-box">
+      <button type="button" class="modal-close-cross" onclick="closeUserProfileModal()" aria-label="Close profile">&times;</button>
+      <div class="modal-head-title">My Profile</div>
+      <p class="modal-head-desc">Manage your personal details, default delivery address, and active preferences.</p>
+
+      <div style="background: #181925; border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 20px; margin-bottom: 16px;">
+        <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 16px;">
+          <div style="width: 50px; height: 50px; border-radius: 50%; background: #ffffff; color: #09090b; display: grid; place-items: center; font-size: 22px; font-weight: 800;">U</div>
+          <div>
+            <strong style="font-size: 16px; display: block;">Utkarsh Dubey</strong>
+            <small style="color: #94a3b8; font-size: 12.5px;">+91 95558 26615 • sweepsage25@gmail.com</small>
+          </div>
+        </div>
+        <div style="font-size: 13px; color: #cbd5e1; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.08);">
+          <span style="color: #94a3b8; display: block; font-size: 11px; text-transform: uppercase; font-weight: 700; margin-bottom: 4px;">Primary Delivery Address</span>
+          <span>N-52, Delta-3, Greater Noida, Uttar Pradesh, 201308</span>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 10px;">
+        <button type="button" class="btn btn-gold" style="flex: 1;" onclick="closeUserProfileModal()">Save Changes</button>
+        <button type="button" class="btn btn-outline-light" onclick="handleUserLogout(); closeUserProfileModal();">Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORDERS MODAL -->
+  <div class="custom-modal-backdrop" id="ordersModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="custom-modal-box">
+      <button type="button" class="modal-close-cross" onclick="closeUserOrdersModal()" aria-label="Close orders">&times;</button>
+      <div class="modal-head-title">My Orders</div>
+      <p class="modal-head-desc">Track ongoing requests and review past photography, salon, and travel bookings.</p>
+
+      <div class="modal-order-card">
+        <div class="modal-order-header">
+          <strong>📸 Instant Photographer (Doorstep)</strong>
+          <span class="modal-order-status">Confirmed</span>
+        </div>
+        <div class="modal-order-details">
+          <span>Date: Today • 10-Minute Dispatch</span><br>
+          <span>Amount: ₹1,499/- • Professional Studio Gear</span>
+        </div>
+      </div>
+
+      <div class="modal-order-card">
+        <div class="modal-order-header">
+          <strong>💄 Salon at Home Glow Package</strong>
+          <span class="modal-order-status">Completed</span>
+        </div>
+        <div class="modal-order-details">
+          <span>Date: Yesterday • Certified Stylist Assigned</span><br>
+          <span>Amount: ₹2,199/- • Complete Doorstep Setup</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAVOURITES MODAL -->
+  <div class="custom-modal-backdrop" id="favouritesModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="custom-modal-box">
+      <button type="button" class="modal-close-cross" onclick="closeUserFavouritesModal()" aria-label="Close favourites">&times;</button>
+      <div class="modal-head-title">My Favourites</div>
+      <p class="modal-head-desc">Your saved photographers, verified makeup artists, and dream destinations.</p>
+
+      <div id="favouritesListContainer" style="text-align: center; padding: 28px 16px;">
+        <div style="font-size: 32px; margin-bottom: 8px;">❤️</div>
+        <strong style="display: block; font-size: 15px; margin-bottom: 4px;">No favourites saved yet</strong>
+        <p style="font-size: 13px; color: #888; margin: 0;">Save your favourite creators and services to access them quickly here.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEARCH MODAL -->
+  <div class="search-modal" id="searchModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="search-modal-backdrop" id="searchModalBackdrop"></div>
+    <div class="search-modal-dialog">
+      <div class="search-input-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="globalSearchInput" placeholder="Search experiences (portrait, bridal makeup, Manali, Ladakh)..." autocomplete="off">
+        <button type="button" class="search-close-cross" id="closeSearchBtn" aria-label="Close search">&times;</button>
+      </div>
+      <div class="search-results-box" id="searchResultsBox">
+        <div class="search-empty-state">Start typing to search services across Photography, Salon &amp; Travel.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">Opening your enquiry…</div>
+
+  <script src="api.js?v=3.2"></script>
+  <script src="supabase.config.js"></script>
+  <script src="SCRIPT.JS?v=3.2"></script>
+</body>
+</html>

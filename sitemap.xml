@@ -17,14 +17,6 @@
     <priority>0.90</priority>
   </url>
 
-  <!-- Verified Partners & Creators Directory -->
-  <url>
-    <loc>https://sweepsage.com/partners.html</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
   <!-- Salon at Home -->
   <url>
     <loc>https://sweepsage.com/salon.html</loc>
@@ -40,20 +32,11 @@
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
-
-  <!-- Partner Registration Portal -->
+  <!-- My Account & Order Tracking -->
   <url>
-    <loc>https://sweepsage.com/partner-register.html</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
-  </url>
-
-  <!-- Partner Login Portal -->
-  <url>
-    <loc>https://sweepsage.com/partner-login.html</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
+    <loc>https://sweepsage.com/my-account.html</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.85</priority>
   </url>
 </urlset>

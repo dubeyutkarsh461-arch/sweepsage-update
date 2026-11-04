@@ -1408,11 +1408,21 @@ function initUserDropdown() {
   const dropdown = document.getElementById('userMenuDropdown');
   if (!trigger || !dropdown) return;
 
+  const savedName = localStorage.getItem('ss_user_name') || 'Utkarsh Dubey';
+  const nameEl = document.getElementById('dropdownUserName');
+  if (nameEl) nameEl.textContent = savedName;
+  const loginText = document.getElementById('navLoginBtnText');
+  if (loginText) loginText.textContent = savedName.split(' ')[0] + '...';
+
   trigger.addEventListener('click', (e) => {
-    e.stopPropagation();
-    dropdown.classList.toggle('open');
-    const isOpen = dropdown.classList.contains('open');
-    trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    if (window.innerWidth <= 768) {
+      e.preventDefault();
+      e.stopPropagation();
+      dropdown.classList.toggle('open');
+      const isOpen = dropdown.classList.contains('open');
+      trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    }
+    // On desktop, clicking navigates directly to href (my-account.html) while hover reveals menu
   });
 
   document.addEventListener('click', (e) => {
@@ -1424,13 +1434,7 @@ function initUserDropdown() {
 }
 
 window.openUserProfileModal = function() {
-  const modal = document.getElementById('profileModal');
-  if (modal) {
-    modal.classList.add('open');
-    modal.setAttribute('aria-hidden', 'false');
-  }
-  const dd = document.getElementById('userMenuDropdown');
-  if (dd) dd.classList.remove('open');
+  window.location.href = 'my-account.html?tab=orders';
 };
 
 window.closeUserProfileModal = function() {
@@ -1442,13 +1446,7 @@ window.closeUserProfileModal = function() {
 };
 
 window.openUserOrdersModal = function() {
-  const modal = document.getElementById('ordersModal');
-  if (modal) {
-    modal.classList.add('open');
-    modal.setAttribute('aria-hidden', 'false');
-  }
-  const dd = document.getElementById('userMenuDropdown');
-  if (dd) dd.classList.remove('open');
+  window.location.href = 'my-account.html?tab=orders';
 };
 
 window.closeUserOrdersModal = function() {
@@ -1572,7 +1570,6 @@ const SEARCH_ICONS = {
   photography: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>`,
   salon: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>`,
   travel: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>`,
-  partners: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`,
   search: `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>`
 };
 
@@ -1696,22 +1693,6 @@ const SEARCH_INDEX = [
     sub: "Bespoke itineraries for Bali, Maldives, Dubai & Europe",
     price: "Custom",
     url: "TRAVEL-BOOKING.HTML?event=international"
-  },
-  {
-    id: "partners-directory",
-    category: "partners",
-    title: "Verified Partner Creators Directory",
-    sub: "Explore verified photographers, videographers & makeup artists",
-    price: "Explore",
-    url: "partners.html"
-  },
-  {
-    id: "partner-register",
-    category: "partners",
-    title: "Become a SweepSage Partner",
-    sub: "Join our premium verified creator & stylist network",
-    price: "Free Signup",
-    url: "partner-register.html"
   }
 ];
 
@@ -1738,7 +1719,6 @@ function ensureSearchModalDOM() {
         <button type="button" class="search-cat-pill" onclick="setSearchCategory('photography', this)">${SEARCH_ICONS.photography} Photography</button>
         <button type="button" class="search-cat-pill" onclick="setSearchCategory('salon', this)">${SEARCH_ICONS.salon} Salon</button>
         <button type="button" class="search-cat-pill" onclick="setSearchCategory('travel', this)">${SEARCH_ICONS.travel} Travel</button>
-        <button type="button" class="search-cat-pill" onclick="setSearchCategory('partners', this)">${SEARCH_ICONS.partners} Partners</button>
       </div>
 
       <div class="search-results-list" id="searchResultsList">
@@ -1924,4 +1904,4 @@ document.addEventListener("keydown", (e) => {
     e.preventDefault();
     openSearchModal();
   }
-});
+});

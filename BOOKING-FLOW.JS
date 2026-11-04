@@ -208,7 +208,7 @@ const events = {
             id:"international",
             icon:"🌍",
             name:"International",
-            description:"International holidays planned around your budget."
+            description:"International holidays planned around your preferences."
         },
 
         {
@@ -286,7 +286,6 @@ wedding:[
             "1 main function",
             "25 sheets Album (12x36)",
             "1- Traditional Highlight",
-            "Full Event Video of All Events",
             "Couple Photo Frame",
             
         ]
@@ -1082,10 +1081,10 @@ travel:{
     honeymoon:[
 
         {
-            name:"Budget Honeymoon",
-            price:"From ₹25,000/-",
-            tag:"BUDGET",
-            description:"Short domestic honeymoon planned around your budget.",
+            name:"Classic Honeymoon",
+            price:"Custom Quote",
+            tag:"CURATED",
+            description:"Romantic domestic honeymoon tailored to your style.",
             features:[
                 "Destination planning",
                 "Hotel options",
@@ -1097,7 +1096,7 @@ travel:{
 
         {
             name:"Comfort Honeymoon",
-            price:"From ₹40,000/-",
+            price:"Custom Quote",
             tag:"POPULAR",
             description:"Comfort-focused romantic holiday.",
             features:[
@@ -1111,7 +1110,7 @@ travel:{
 
         {
             name:"Premium Honeymoon",
-            price:"From ₹70,000/-",
+            price:"Custom Quote",
             tag:"PREMIUM",
             description:"Premium honeymoon experience.",
             features:[
@@ -1130,13 +1129,13 @@ travel:{
     family:[
 
         {
-            name:"Family Budget",
-            price:"From ₹15,000/-",
-            tag:"BUDGET",
-            description:"Budget family holiday.",
+            name:"Classic Family",
+            price:"Custom Quote",
+            tag:"CURATED",
+            description:"Curated family holiday.",
             features:[
                 "Destination planning",
-                "Budget hotel options",
+                "Handpicked stay options",
                 "Transport",
                 "Sightseeing"
             ]
@@ -1144,7 +1143,7 @@ travel:{
 
         {
             name:"Family Comfort",
-            price:"From ₹30,000/-",
+            price:"Custom Quote",
             tag:"POPULAR",
             description:"Comfortable family trip.",
             features:[
@@ -1157,7 +1156,7 @@ travel:{
 
         {
             name:"Family Premium",
-            price:"From ₹60,000/-",
+            price:"Custom Quote",
             tag:"PREMIUM",
             description:"Premium family holiday.",
             features:[
@@ -1174,13 +1173,13 @@ travel:{
     solo:[
 
         {
-            name:"Solo Budget",
-            price:"From ₹10,000/-",
-            tag:"BUDGET",
-            description:"Affordable solo trip.",
+            name:"Classic Solo",
+            price:"Custom Quote",
+            tag:"CURATED",
+            description:"Independent solo journey.",
             features:[
                 "Destination plan",
-                "Budget stay",
+                "Comfortable stay",
                 "Transport",
                 "Sightseeing"
             ]
@@ -1188,7 +1187,7 @@ travel:{
 
         {
             name:"Solo Comfort",
-            price:"From ₹20,000/-",
+            price:"Custom Quote",
             tag:"POPULAR",
             description:"Comfortable independent trip.",
             features:[
@@ -1201,7 +1200,7 @@ travel:{
 
         {
             name:"Solo Premium",
-            price:"From ₹40,000/-",
+            price:"Custom Quote",
             tag:"PREMIUM",
             description:"Premium solo experience.",
             features:[
@@ -1218,10 +1217,10 @@ travel:{
     group:[
 
         {
-            name:"Group Budget",
+            name:"Classic Group",
             price:"Custom Quote",
             tag:"VALUE",
-            description:"Large group travel with budget optimisation.",
+            description:"Large group travel tailored to your group needs.",
             features:[
                 "Group hotel",
                 "Transport",
@@ -1262,8 +1261,8 @@ travel:{
     adventure:[
 
         {
-            name:"Adventure Basic",
-            price:"From ₹12,000/-",
+            name:"Classic Adventure",
+            price:"Custom Quote",
             tag:"STARTER",
             description:"Short adventure experience.",
             features:[
@@ -1276,7 +1275,7 @@ travel:{
 
         {
             name:"Adventure Plus",
-            price:"From ₹25,000/-",
+            price:"Custom Quote",
             tag:"POPULAR",
             description:"Multi-activity adventure trip.",
             features:[
@@ -1308,10 +1307,10 @@ travel:{
     international:[
 
         {
-            name:"International Budget",
+            name:"Curated International",
             price:"Custom Quote",
-            tag:"BUDGET",
-            description:"Budget international holiday.",
+            tag:"CURATED",
+            description:"Curated international holiday tailored around your preferences.",
             features:[
                 "Destination planning",
                 "Visa guidance",
@@ -1355,9 +1354,9 @@ travel:{
     spiritual:[
 
         {
-            name:"Spiritual Basic",
-            price:"From ₹8,000/-",
-            tag:"BUDGET",
+            name:"Classic Spiritual",
+            price:"Custom Quote",
+            tag:"CURATED",
             description:"Simple pilgrimage itinerary.",
             features:[
                 "Transport planning",
@@ -1369,7 +1368,7 @@ travel:{
 
         {
             name:"Spiritual Comfort",
-            price:"From ₹15,000/-",
+            price:"Custom Quote",
             tag:"POPULAR",
             description:"Comfort-focused pilgrimage.",
             features:[
@@ -1400,8 +1399,8 @@ travel:{
     roadtrip:[
 
         {
-            name:"Road Trip Basic",
-            price:"From ₹10,000/-",
+            name:"Classic Road Trip",
+            price:"Custom Quote",
             tag:"STARTER",
             description:"Simple road trip planning.",
             features:[
@@ -1414,7 +1413,7 @@ travel:{
 
         {
             name:"Road Trip Comfort",
-            price:"From ₹20,000/-",
+            price:"Custom Quote",
             tag:"POPULAR",
             description:"Complete road trip planning.",
             features:[
@@ -1503,7 +1502,7 @@ travel:{
                 "Flights",
                 "Transport",
                 "Activities",
-                "Custom budget",
+                "Custom preferences",
                 "Personalised itinerary"
             ]
         }
@@ -2214,7 +2213,7 @@ function renderForm(){
             "hotel",
             "Hotel Preference",
             "text",
-            "Budget / 3 Star / 4 Star / 5 Star"
+            "Boutique / 3 Star / 4 Star / 5 Star / Resort"
         );
 
         html += field(
@@ -2225,10 +2224,10 @@ function renderForm(){
         );
 
         html += field(
-            "budget",
-            "Approx. Trip Budget",
+            "stayType",
+            "Stay & Experience Style",
             "text",
-            "e.g. ₹50,000"
+            "e.g. Heritage, Luxury, Villa, Resort"
         );
 
         html += textarea(
@@ -2627,9 +2626,9 @@ function showToast(message){
 }
 
 const serviceCopy={
-photographer:{title:"Photography Booking | SweepSage",icon:"\uD83D\uDCF8",heading:'<span>10-Min Photographer</span> \u2014 Just \u20B91,499/-',copy:"Quick professional photography for portraits, couples, birthdays, products and special moments.",pageHeading:'Book your <em>photography experience.</em>',intro:"Choose your photography requirement and package, then share your event details. Our team will confirm availability and the final quotation.",eventDescription:"Choose the shoot or event you need covered."},
+photographer:{title:"Photography Booking | SweepSage",icon:"\uD83D\uDCF8",heading:'<span>10-Min Photographer</span> \u2014 Just \u20B91,499/-',copy:"Quick professional photography for portraits, couples, birthdays, products and special moments.",pageHeading:'Book your <em>photography experience.</em>',intro:"Choose your photography requirement and package, then share your event details. Our team will confirm availability and the final quotation.",eventDescription:"Choose your photography requirement."},
 salon:{title:"Salon at Home Booking | SweepSage",icon:"\uD83D\uDC84",heading:"Salon at Home \u2014 Beauty, delivered to you",copy:"Book bridal, makeup, hair, skin and grooming services from the comfort of your home.",pageHeading:'Book your <em>salon experience.</em>',intro:"Choose the beauty service and package you need, then share your preferred date, time and location. Our team will confirm availability and the final quotation.",eventDescription:"Choose the salon or beauty service you would like at home."},
-travel:{title:"Travel Planning | SweepSage",icon:"\u2708\uFE0F",heading:"Travel, planned for you \u2014 Your trip, your way",copy:"Tell us your travel style and destination. We will help plan a trip around your dates and budget.",pageHeading:'Plan your <em>next journey.</em>',intro:"Choose the kind of trip you have in mind, select a travel style and share your dates, destination and budget. Our team will prepare a tailored quotation.",eventDescription:"Choose the kind of journey you want us to plan."}
+travel:{title:"Travel Planning | SweepSage",icon:"\u2708\uFE0F",heading:"Travel, planned for you \u2014 Your trip, your way",copy:"Tell us your travel style and destination. We will help plan a trip around your dates and personal interests.",pageHeading:'Plan your <em>next journey.</em>',intro:"Choose the kind of trip you have in mind, select a travel style and share your dates, destination and preferences. Our team will prepare a tailored quotation.",eventDescription:"Choose the kind of journey you want us to plan."}
 };
 const pageService=document.body.dataset.service;
 if(!Object.prototype.hasOwnProperty.call(serviceCopy,pageService))throw new Error(`Unsupported booking page service: ${pageService}`);

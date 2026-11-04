@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#ffffff">
   <meta name="color-scheme" content="light">
-  <meta name="description" content="SweepSage Admin Management Console - Live Bookings and Partner Approvals.">
+  <meta name="description" content="SweepSage Admin Management Console - Live Customer Bookings and Pipeline.">
   <title>Admin Management Console | SweepSage</title>
   <link rel="icon" type="image/png" href="logo.png">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -14,7 +14,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="STYLE.CSS?v=3.2">
-  <link rel="stylesheet" href="PARTNERS.CSS?v=3.2">
   <style>
     :root {
       --admin-bg: #090a0c;
@@ -449,11 +448,6 @@
         <span class="sub">Active pipeline</span>
       </div>
       <div class="admin-stat-card">
-        <span class="label">Verified Partners</span>
-        <h2 class="value" id="statTotalPartners">-</h2>
-        <span class="sub" id="statPendingPartners">0 pending approval</span>
-      </div>
-      <div class="admin-stat-card">
         <span class="label">Server Status</span>
         <h2 class="value" style="color: #10b981; font-size: 26px;">ONLINE</h2>
         <span class="sub" id="statDbInfo">SQLite Database Connected</span>
@@ -463,7 +457,6 @@
     <!-- Tabs Navigation -->
     <div class="admin-tabs">
       <button class="tab-btn active" data-tab="bookings">Customer Bookings &amp; Inquiries</button>
-      <button class="tab-btn" data-tab="partners">Partner Applications &amp; Network</button>
     </div>
 
     <!-- BOOKINGS TAB -->
@@ -511,41 +504,6 @@
       </div>
     </div>
 
-    <!-- PARTNERS TAB -->
-    <div id="partnersTabContent" style="display: none;">
-      <div class="table-controls">
-        <div class="filter-group">
-          <select id="partnerStatusFilter" class="admin-select">
-            <option value="">All Partners</option>
-            <option value="PENDING">Pending Review</option>
-            <option value="APPROVED" selected>Approved</option>
-            <option value="REJECTED">Rejected</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="table-wrapper">
-        <table class="admin-table">
-          <thead>
-            <tr>
-              <th>Partner</th>
-              <th>Profession</th>
-              <th>Location</th>
-              <th>Contact</th>
-              <th>Rating</th>
-              <th>Portfolio</th>
-              <th>Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="partnersTableBody">
-            <tr>
-              <td colspan="8" class="empty-state">Loading partners from backend...</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
   </div>
 
   <!-- Booking Details Modal -->
@@ -559,7 +517,6 @@
 
   <script>
     let allBookings = [];
-    let allPartners = [];
 
     async function loadOverview() {
       try {
@@ -568,8 +525,6 @@
           document.getElementById('statTotalBookings').textContent = overview.bookings.total;
           document.getElementById('statPendingBookings').textContent = `${overview.bookings.pending} pending review`;
           document.getElementById('statConfirmedBookings').textContent = overview.bookings.confirmed;
-          document.getElementById('statTotalPartners').textContent = overview.partners.approved;
-          document.getElementById('statPendingPartners').textContent = `${overview.partners.pending} pending approval`;
         }
       } catch (err) {
         console.error('Failed to load overview:', err);
@@ -680,64 +635,7 @@
 
       document.getElementById('modalDetailsContent').innerHTML = detailsHtml;
       document.getElementById('detailModal').classList.add('show');
-    }
-
-    async function loadPartners() {
-      const tbody = document.getElementById('partnersTableBody');
-      const status = document.getElementById('partnerStatusFilter').value;
-
-      try {
-        const partners = await SweepSageAPI.getPublicPartners({ status: status || undefined });
-        allPartners = partners;
-
-        if (!partners.length) {
-          tbody.innerHTML = '<tr><td colspan="8" class="empty-state">No partners found.</td></tr>';
-          return;
-        }
-
-        tbody.innerHTML = partners.map(p => `
-          <tr>
-            <td>
-              <div style="display: flex; align-items: center; gap: 10px;">
-                <img src="${p.profile_image || p.profileImage || 'logo.png'}" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover;">
-                <div>
-                  <strong>${p.name}</strong>
-                  <div style="font-size: 11px; color: var(--admin-muted);">${p.slug}</div>
-                </div>
-              </div>
-            </td>
-            <td><span class="service-badge">${p.profession}</span></td>
-            <td>${p.location}</td>
-            <td>
-              <div>${p.email}</div>
-              <div style="font-size: 11px; color: var(--admin-muted);">${p.phone || '-'}</div>
-            </td>
-            <td>⭐ ${p.rating || 4.9}</td>
-            <td>${p.portfolioCount || (p.portfolio ? p.portfolio.length : 0)} items</td>
-            <td><span class="badge ${p.status === 'APPROVED' ? 'badge-confirmed' : (p.status === 'REJECTED' ? 'badge-cancelled' : 'badge-pending')}">${p.status}</span></td>
-            <td>
-              <div class="actions-cell">
-                ${p.status !== 'APPROVED' ? `
-                  <button class="action-btn btn-approve" onclick="setPartnerStatus(${p.id}, 'APPROVED')">Approve</button>
-                ` : ''}
-                ${p.status !== 'REJECTED' ? `
-                  <button class="action-btn btn-reject" onclick="setPartnerStatus(${p.id}, 'REJECTED')">Reject</button>
-                ` : ''}
-                <a href="partner-profile.html?slug=${p.slug}" target="_blank" class="action-btn">View Profile ↗</a>
-              </div>
-            </td>
-          </tr>
-        `).join('');
-      } catch (err) {
-        tbody.innerHTML = `<tr><td colspan="8" class="empty-state" style="color: #ef4444;">Error: ${err.message}</td></tr>`;
-      }
-    }
-
-    async function setPartnerStatus(id, status) {
-      try {
-        await SweepSageAPI.updatePartnerApproval(id, status);
-        await loadPartners();
-        await loadOverview();
+    }        await loadOverview();
       } catch (err) {
         alert('Failed: ' + err.message);
       }
@@ -746,23 +644,14 @@
     // Event listeners
     document.getElementById('bookingSearch').addEventListener('input', () => loadBookings());
     document.getElementById('serviceFilter').addEventListener('change', () => loadBookings());
-    document.getElementById('statusFilter').addEventListener('change', () => loadBookings());
-    document.getElementById('partnerStatusFilter').addEventListener('change', () => loadPartners());
-    document.getElementById('refreshBtn').addEventListener('click', () => {
-      loadOverview();
-      loadBookings();
-      loadPartners();
-    });
+    document.getElementById('statusFilter').addEventListener('change', () => loadBookings());    });
 
     document.querySelectorAll('.tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         const tab = btn.dataset.tab;
-        document.getElementById('bookingsTabContent').style.display = tab === 'bookings' ? 'block' : 'none';
-        document.getElementById('partnersTabContent').style.display = tab === 'partners' ? 'block' : 'none';
-        if (tab === 'partners') loadPartners();
-      });
+        document.getElementById('bookingsTabContent').style.display = tab === 'bookings' ? 'block' : 'none';      });
     });
 
     document.getElementById('modalCloseBtn').addEventListener('click', () => {

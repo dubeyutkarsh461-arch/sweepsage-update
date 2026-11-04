@@ -2,108 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#ffffff">
-  <meta name="color-scheme" content="light">
-  <meta name="description" content="Browse a SweepSage partner portfolio and discover their work.">
-  <title>Partner Profile | SweepSage</title>
-  <link rel="icon" type="image/png" href="logo.png">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="STYLE.CSS?v=3.2">
-  <link rel="stylesheet" href="PARTNERS.CSS?v=3.2">
-  <script src="api.js?v=3.3" defer></script>
-  <script src="supabase.config.js" defer></script>
-  <script src="SCRIPT.JS?v=3.2" defer></script>
-  <script src="PARTNERS.JS?v=3.3" defer></script>
-  <script>
-    (function(){
-      try { localStorage.removeItem('sweepsage_theme'); } catch(e){}
-      document.documentElement.setAttribute('data-theme', 'light');
-      if (document.documentElement.classList) {
-        document.documentElement.classList.remove('dark-theme');
-      }
-    })();
-  </script>
+  <meta http-equiv="refresh" content="0; url=index.html">
+  <title>Redirecting to SweepSage...</title>
+  <script>window.location.replace("index.html");</script>
 </head>
 <body>
-  <header class="navbar" id="navbar">
-    <a class="brand" href="index.html#home">
-      <img src="logo.png" alt="SweepSage">
-      <span>sweepsage<span>.com</span></span>
-    </a>
-
-    <nav class="nav-links" id="mainNav" aria-label="Main navigation">
-      <a href="index.html#photography">Photography</a>
-      <a href="index.html#salon">Salon</a>
-      <a href="index.html#travel">Travel</a>
-      <a href="partners.html">Partners</a>
-      <a href="partner-login.html">Partner Login</a>
-    </nav>
-
-    <div style="display: flex; align-items: center; gap: 8px;">
-      <a class="nav-instant-btn magnetic" href="PHOTOGRAPHER-BOOKING.HTML?event=instant" data-open-booking="instant">⚡ Book in Minutes</a>
-      <button class="nav-icon-btn nav-search-btn" type="button" aria-label="Search experiences" title="Search experiences (Ctrl+K)" onclick="openSearchModal()">
-        <span class="action-icon">
-          <svg class="nav-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        </span>
-      </button>
-      <a class="nav-cta nav-icon-btn magnetic" href="partner-register.html" title="Become a Partner" aria-label="Become a Partner">
-        <span class="action-icon">
-          <svg class="nav-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-        </span>
-        <span class="btn-text">Become a Partner <span>↗</span></span>
-      </a>
-    </div>
-    <button class="menu-btn" id="menuBtn" type="button" aria-label="Open navigation menu" aria-controls="mainNav" aria-expanded="false"><span></span><span></span><span></span></button>
-  </header>
-  <button class="menu-backdrop" id="menuBackdrop" type="button" aria-label="Close navigation menu" tabindex="-1"></button>
-
-  <main class="partner-profile-page">
-    <div style="max-width: 1240px; margin: 0 auto 16px;">
-      <button class="btn btn-back" type="button" onclick="smartGoBack()">← Back</button>
-    </div>
-    <div id="partnerProfile"></div>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <img src="logo.png" alt="SweepSage">
-        <h3>sweepsage<span>.com</span></h3>
-        <p>Photography • Salon at Home • Travel<br>Made for moments that matter.</p>
-      </div>
-
-      <div class="footer-column">
-        <span>COMPANY</span>
-        <a href="index.html#about">About Us</a>
-        <a href="partners.html">Partners</a>
-        <a href="partner-login.html">Partner Login</a>
-        <a href="index.html#contact">Contact Us</a>
-      </div>
-
-      <div class="footer-column">
-        <span>SERVICES</span>
-        <a href="PHOTOGRAPHER-BOOKING.HTML">Photography</a>
-        <a href="SALON-BOOKING.HTML">Salon at Home</a>
-        <a href="TRAVEL-BOOKING.HTML">Travel</a>
-      </div>
-
-      <div class="footer-column">
-        <span>CONNECT</span>
-        <a href="https://www.instagram.com/sweepsage_/" target="_blank" rel="noopener">Instagram ↗</a>
-        <a href="tel:+919555826615">Call Us ↗</a>
-        <a href="mailto:sweepsage25@gmail.com">Email Us ↗</a>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <span>© 2026 SweepSage. All rights reserved.</span>
-      <span>Made for moments that matter.</span>
-    </div>
-  </footer>
+  <p>Redirecting to <a href="index.html">SweepSage</a>...</p>
 </body>
 </html>
