@@ -1,4 +1,5 @@
- <!DOCTYPE html>
+<!-- SweepSage Admin Management Console — Real-time Customer Bookings, Service Pipelines & Operations -->
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -628,6 +629,13 @@
             <pre style="background: rgba(0,0,0,0.4); padding: 10px; border-radius: 8px; font-size: 12px; overflow-x: auto;">${JSON.stringify(b.details, null, 2)}</pre>
           </div>
         ` : ''}
+        <div class="detail-row" style="flex-direction: column; align-items: flex-start; gap: 8px; margin-top: 14px;">
+          <strong>Admin Notes &amp; Comments:</strong>
+          <div style="display: flex; gap: 8px; width: 100%; margin-top: 4px;">
+            <input type="text" id="adminCommentInput" class="admin-input" placeholder="Add any comment or note for this booking..." style="flex: 1;" value="${b.notes || ''}">
+            <button type="button" class="btn-outline btn-gold" onclick="saveBookingComment(${b.id})" style="padding: 8px 16px;">Save Comment</button>
+          </div>
+        </div>
         <div style="margin-top: 20px; display: flex; gap: 10px;">
           <a href="https://wa.me/${(b.customer_phone||'').replace(/[^0-9]/g, '')}?text=Hi%20${encodeURIComponent(b.customer_name)},%20regarding%20your%20SweepSage%20booking%20(${b.reference})..." target="_blank" class="btn-outline btn-gold" style="flex: 1; text-align: center; justify-content: center;">Chat on WhatsApp ↗</a>
         </div>
@@ -635,23 +643,36 @@
 
       document.getElementById('modalDetailsContent').innerHTML = detailsHtml;
       document.getElementById('detailModal').classList.add('show');
-    }        await loadOverview();
-      } catch (err) {
-        alert('Failed: ' + err.message);
+    }
+
+    function saveBookingComment(id) {
+      const commentInput = document.getElementById('adminCommentInput');
+      const comment = commentInput ? commentInput.value.trim() : '';
+      const b = allBookings.find(item => item.id === id);
+      if (b) {
+        b.notes = comment;
+        try {
+          const notesStore = JSON.parse(localStorage.getItem('sweepsage_admin_notes') || '{}');
+          notesStore[id] = comment;
+          localStorage.setItem('sweepsage_admin_notes', JSON.stringify(notesStore));
+        } catch(e) {}
+        alert('Comment saved successfully!');
+        loadBookings();
       }
     }
 
     // Event listeners
     document.getElementById('bookingSearch').addEventListener('input', () => loadBookings());
     document.getElementById('serviceFilter').addEventListener('change', () => loadBookings());
-    document.getElementById('statusFilter').addEventListener('change', () => loadBookings());    });
+    document.getElementById('statusFilter').addEventListener('change', () => loadBookings());
 
     document.querySelectorAll('.tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         const tab = btn.dataset.tab;
-        document.getElementById('bookingsTabContent').style.display = tab === 'bookings' ? 'block' : 'none';      });
+        document.getElementById('bookingsTabContent').style.display = tab === 'bookings' ? 'block' : 'none';
+      });
     });
 
     document.getElementById('modalCloseBtn').addEventListener('click', () => {
