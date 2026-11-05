@@ -1,6 +1,7 @@
 <!-- SweepSage Admin Management Console — Real-time Customer Bookings, Service Pipelines & Operations -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +14,9 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="STYLE.CSS?v=3.2">
   <style>
     :root {
@@ -231,7 +234,8 @@
       flex-wrap: wrap;
     }
 
-    .admin-input, .admin-select {
+    .admin-input,
+    .admin-select {
       background: var(--admin-surface);
       border: 1px solid var(--admin-border);
       color: #fff;
@@ -243,7 +247,8 @@
       min-width: 160px;
     }
 
-    .admin-input:focus, .admin-select:focus {
+    .admin-input:focus,
+    .admin-select:focus {
       border-color: var(--admin-gold);
     }
 
@@ -253,7 +258,7 @@
       border: 1px solid var(--admin-border);
       border-radius: 14px;
       overflow-x: auto;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     }
 
     .admin-table {
@@ -295,10 +300,29 @@
       letter-spacing: 0.5px;
     }
 
-    .badge-pending { background: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3); }
-    .badge-confirmed { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
-    .badge-completed { background: rgba(59, 130, 246, 0.15); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.3); }
-    .badge-cancelled { background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); }
+    .badge-pending {
+      background: rgba(245, 158, 11, 0.15);
+      color: #f59e0b;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .badge-confirmed {
+      background: rgba(16, 185, 129, 0.15);
+      color: #10b981;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .badge-completed {
+      background: rgba(59, 130, 246, 0.15);
+      color: #3b82f6;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+
+    .badge-cancelled {
+      background: rgba(239, 68, 68, 0.15);
+      color: #ef4444;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
 
     .service-badge {
       padding: 3px 8px;
@@ -409,8 +433,8 @@
   </style>
   <script src="api.js?v=3.2"></script>
   <script>
-    (function(){
-      try { localStorage.removeItem('sweepsage_theme'); } catch(e){}
+    (function () {
+      try { localStorage.removeItem('sweepsage_theme'); } catch (e) { }
       document.documentElement.setAttribute('data-theme', 'light');
       if (document.documentElement.classList) {
         document.documentElement.classList.remove('dark-theme');
@@ -418,6 +442,7 @@
     })();
   </script>
 </head>
+
 <body>
   <div class="admin-wrapper">
     <!-- Header -->
@@ -426,12 +451,12 @@
         <img src="logo.png" alt="SweepSage">
         <div>
           <h1>SweepSage Operations</h1>
-          <span>Backend Management Console</span>
+          <span>Concierge Management Console</span>
         </div>
       </div>
       <div class="admin-actions">
         <a href="index.html" class="btn-outline">View Live Website ↗</a>
-        <a href="http://127.0.0.1:8000/docs" class="btn-outline" target="_blank">API Docs (/docs) ↗</a>
+        <a href="my-account.html" class="btn-outline">Track Orders ↗</a>
         <button id="refreshBtn" class="btn-outline btn-gold" type="button">↻ Refresh Data</button>
       </div>
     </header>
@@ -451,7 +476,7 @@
       <div class="admin-stat-card">
         <span class="label">Server Status</span>
         <h2 class="value" style="color: #10b981; font-size: 26px;">ONLINE</h2>
-        <span class="sub" id="statDbInfo">SQLite Database Connected</span>
+        <span class="sub" id="statDbInfo">Client Storage Active</span>
       </div>
     </section>
 
@@ -637,7 +662,7 @@
           </div>
         </div>
         <div style="margin-top: 20px; display: flex; gap: 10px;">
-          <a href="https://wa.me/${(b.customer_phone||'').replace(/[^0-9]/g, '')}?text=Hi%20${encodeURIComponent(b.customer_name)},%20regarding%20your%20SweepSage%20booking%20(${b.reference})..." target="_blank" class="btn-outline btn-gold" style="flex: 1; text-align: center; justify-content: center;">Chat on WhatsApp ↗</a>
+          <a href="https://wa.me/${(b.customer_phone || '').replace(/[^0-9]/g, '')}?text=Hi%20${encodeURIComponent(b.customer_name)},%20regarding%20your%20SweepSage%20booking%20(${b.reference})..." target="_blank" class="btn-outline btn-gold" style="flex: 1; text-align: center; justify-content: center;">Chat on WhatsApp ↗</a>
         </div>
       `;
 
@@ -655,7 +680,7 @@
           const notesStore = JSON.parse(localStorage.getItem('sweepsage_admin_notes') || '{}');
           notesStore[id] = comment;
           localStorage.setItem('sweepsage_admin_notes', JSON.stringify(notesStore));
-        } catch(e) {}
+        } catch (e) { }
         alert('Comment saved successfully!');
         loadBookings();
       }
@@ -688,6 +713,15 @@
     // Initial load
     loadOverview();
     loadBookings();
+
+    const refreshBtn = document.getElementById('refreshBtn');
+    if (refreshBtn) {
+      refreshBtn.addEventListener('click', () => {
+        loadOverview();
+        loadBookings();
+      });
+    }
   </script>
 </body>
+
 </html>

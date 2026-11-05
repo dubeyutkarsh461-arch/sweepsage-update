@@ -1,330 +1,262 @@
 /**
- * SWEEPSAGE API CLIENT
- * Connects frontend booking flows, partner portal, and admin views
- * to the Python FastAPI + SQLite backend with seamless offline fallback.
+ * SWEEPSAGE CLIENT API ENGINE
+ * Pure client-side resilient operations engine for bookings, admin console,
+ * and order tracking with instant LocalStorage persistence and zero backend dependency.
  */
 
 (function () {
-  // Determine API base: Use current origin if on backend port (8000) or deployed domain; default to 127.0.0.1:8000
-  let API_BASE = "http://127.0.0.1:8000";
-  try {
-    const loc = window.location;
-    if (loc.origin && loc.origin.startsWith("http")) {
-      if (loc.port === "8000") {
-        API_BASE = loc.origin;
-      } else if (loc.hostname && loc.hostname !== "localhost" && loc.hostname !== "127.0.0.1") {
-        API_BASE = loc.origin;
-      } else {
-        API_BASE = `http://${loc.hostname || "127.0.0.1"}:8000`;
-      }
-    }
-  } catch (_e) {
-    API_BASE = "http://127.0.0.1:8000";
-  }
-
   const STORAGE_KEYS = {
-    token: "sweepsagePartnerToken",
-    session: "sweepsagePartnerSession",
     offlineBookings: "sweepsageOfflineBookings",
-    partnersCache: "sweepsagePartnersData"
+    adminNotes: "sweepsage_admin_notes"
   };
 
-  async function request(endpoint, options = {}) {
-    const url = `${API_BASE}${endpoint}`;
-    const headers = {
-      "Content-Type": "application/json",
-      ...(options.headers || {})
-    };
-
-    const token = localStorage.getItem(STORAGE_KEYS.token);
-    if (token) {
-      headers["Authorization"] = `Bearer ${token}`;
-      headers["X-Partner-Token"] = token;
+  const DEFAULT_INITIAL_BOOKINGS = [
+    {
+      id: 1,
+      reference: "SS-98214",
+      service: "photographer",
+      event_id: "instant",
+      event_name: "Instant Doorstep Photographer",
+      package_name: "10-Min Doorstep Portrait Session",
+      price: "₹1,499",
+      customer_name: "Utkarsh Dubey",
+      customer_phone: "+91 95558 26615",
+      customer_email: "dubeyutkarsh461@gmail.com",
+      location: "N-52, Delta-3, Greater Noida, Uttar Pradesh, 201308",
+      booking_date: "2026-10-29",
+      booking_time: "15:30",
+      status: "CONFIRMED",
+      notes: "Pro Aman Sharma assigned. Priority doorstep dispatch.",
+      created_at: "2026-10-29T15:30:00.000Z",
+      updated_at: "2026-10-29T15:35:00.000Z"
+    },
+    {
+      id: 2,
+      reference: "SS-84192",
+      service: "photographer",
+      event_id: "prewedding",
+      event_name: "Pre-Wedding & Cinematic Storytelling",
+      package_name: "Signature Wedding Story",
+      price: "₹12,999",
+      customer_name: "Rohan & Sneha",
+      customer_phone: "+91 98712 34567",
+      customer_email: "rohan.sneha@gmail.com",
+      location: "Lodhi Garden & Sunder Nursery, Delhi NCR",
+      booking_date: "2026-10-18",
+      booking_time: "11:30",
+      status: "COMPLETED",
+      notes: "120 RAW 4K Frames delivered to cloud album.",
+      created_at: "2026-10-10T10:00:00.000Z",
+      updated_at: "2026-10-18T21:30:00.000Z"
+    },
+    {
+      id: 3,
+      reference: "SS-76210",
+      service: "salon",
+      event_id: "facial_spa",
+      event_name: "Salon at Home — Glow Facial & Hair Spa",
+      package_name: "Deep Glow Deluxe Ritual",
+      price: "₹2,199",
+      customer_name: "Priya Sharma",
+      customer_phone: "+91 98101 22334",
+      customer_email: "priya.sharma@outlook.com",
+      location: "Sector 50, Noida, UP",
+      booking_date: "2026-09-12",
+      booking_time: "14:15",
+      status: "COMPLETED",
+      notes: "Single-use sealed hygiene kit used. Clean-up done.",
+      created_at: "2026-09-12T13:00:00.000Z",
+      updated_at: "2026-09-12T16:00:00.000Z"
+    },
+    {
+      id: 4,
+      reference: "SS-61405",
+      service: "travel",
+      event_id: "himachal",
+      event_name: "Himalayan Luxury Escape — Rishikesh & Mussoorie",
+      package_name: "Handcrafted Boutique Getaway",
+      price: "₹18,500",
+      customer_name: "Amitabh Verma",
+      customer_phone: "+91 99203 11452",
+      customer_email: "averma@corp.in",
+      location: "Rishikesh Boutique Resort",
+      booking_date: "2026-11-15",
+      booking_time: "09:00",
+      status: "PENDING",
+      notes: "Private cab transfer and riverside cottage request.",
+      created_at: "2026-11-04T11:20:00.000Z",
+      updated_at: "2026-11-04T11:20:00.000Z"
     }
+  ];
 
+  function getStoredBookings() {
     try {
-      const response = await fetch(url, {
-        ...options,
-        headers
-      });
-
-      const data = await response.json().catch(() => null);
-
-      if (!response.ok) {
-        const errorMsg = (data && (data.detail || data.message)) || `HTTP ${response.status}`;
-        const error = new Error(errorMsg);
-        error.status = response.status;
-        error.data = data;
-        throw error;
+      const stored = localStorage.getItem(STORAGE_KEYS.offlineBookings);
+      if (stored) {
+        const list = JSON.parse(stored);
+        if (Array.isArray(list) && list.length > 0) {
+          return list;
+        }
       }
+    } catch (_) {}
+    try {
+      localStorage.setItem(STORAGE_KEYS.offlineBookings, JSON.stringify(DEFAULT_INITIAL_BOOKINGS));
+    } catch (_) {}
+    return DEFAULT_INITIAL_BOOKINGS;
+  }
 
-      return data;
-    } catch (err) {
-      // If server is not responding at current origin and origin wasn't 8000, try 8000
-      if (API_BASE !== "http://127.0.0.1:8000" && err.name === "TypeError") {
-        API_BASE = "http://127.0.0.1:8000";
-        return request(endpoint, options);
-      }
-      throw err;
+  function saveStoredBookings(bookings) {
+    try {
+      localStorage.setItem(STORAGE_KEYS.offlineBookings, JSON.stringify(bookings));
+    } catch (e) {
+      console.warn("[SweepSage API] Could not persist to localStorage:", e);
     }
   }
 
   const SweepSageAPI = {
-    getBaseUrl: () => API_BASE,
+    getBaseUrl: () => "",
 
     // ---------------------------------------------
     // HEALTH
     // ---------------------------------------------
     async checkHealth() {
-      try {
-        return await request("/api/health");
-      } catch (err) {
-        return { status: "offline", error: err.message };
-      }
+      return {
+        status: "online",
+        mode: "client-storage",
+        service: "SweepSage Operations",
+        time: new Date().toISOString()
+      };
     },
 
     // ---------------------------------------------
     // BOOKINGS
     // ---------------------------------------------
     async createBooking(bookingData) {
-      try {
-        const res = await request("/api/bookings", {
-          method: "POST",
-          body: JSON.stringify(bookingData)
-        });
-        return res;
-      } catch (err) {
-        console.warn("[SweepSage API] Backend unreachable, caching booking locally:", err.message);
-        // Resilient fallback: store locally
-        const ref = "SS-" + new Date().toISOString().slice(0, 10).replace(/-/g, "") + "-" + Math.random().toString(36).substring(2, 6).toUpperCase();
-        const fallbackBooking = {
-          ...bookingData,
-          reference: ref,
-          created_at: new Date().toISOString(),
-          status: "PENDING_OFFLINE"
-        };
-        try {
-          const offline = JSON.parse(localStorage.getItem(STORAGE_KEYS.offlineBookings) || "[]");
-          offline.unshift(fallbackBooking);
-          localStorage.setItem(STORAGE_KEYS.offlineBookings, JSON.stringify(offline));
-        } catch (_) {}
-        return {
-          success: true,
-          reference: ref,
-          booking: fallbackBooking,
-          offline: true
-        };
-      }
+      const dateCode = new Date().toISOString().slice(0, 10).replace(/-/g, "");
+      const randCode = Math.random().toString(36).substring(2, 6).toUpperCase();
+      const ref = `SS-${dateCode}-${randCode}`;
+
+      const newBooking = {
+        id: Date.now(),
+        reference: ref,
+        service: bookingData.service || "general",
+        event_id: bookingData.event_id || "",
+        event_name: bookingData.event_name || "",
+        package_name: bookingData.package_name || "",
+        price: bookingData.price || "",
+        customer_name: bookingData.customer_name || "Valued Customer",
+        customer_phone: bookingData.customer_phone || "",
+        customer_email: bookingData.customer_email || "",
+        location: bookingData.location || "",
+        booking_date: bookingData.booking_date || new Date().toISOString().slice(0, 10),
+        booking_time: bookingData.booking_time || "",
+        details: bookingData.details || {},
+        status: "PENDING",
+        notes: bookingData.notes || "",
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      };
+
+      const all = getStoredBookings();
+      all.unshift(newBooking);
+      saveStoredBookings(all);
+
+      return {
+        success: true,
+        reference: ref,
+        booking: newBooking
+      };
     },
 
     async getBookings(params = {}) {
-      const query = new URLSearchParams();
-      if (params.service) query.set("service", params.service);
-      if (params.status) query.set("status", params.status);
-      if (params.search) query.set("search", params.search);
-      if (params.limit) query.set("limit", params.limit);
-      if (params.offset) query.set("offset", params.offset);
+      let list = [...getStoredBookings()];
 
-      const qs = query.toString() ? `?${query.toString()}` : "";
-      return await request(`/api/bookings${qs}`);
+      if (params.service) {
+        const s = params.service.toLowerCase();
+        list = list.filter(b => (b.service || "").toLowerCase() === s);
+      }
+
+      if (params.status) {
+        const st = params.status.toUpperCase();
+        list = list.filter(b => (b.status || "").toUpperCase() === st);
+      }
+
+      if (params.search) {
+        const q = params.search.toLowerCase();
+        list = list.filter(b =>
+          (b.customer_name || "").toLowerCase().includes(q) ||
+          (b.customer_phone || "").toLowerCase().includes(q) ||
+          (b.reference || "").toLowerCase().includes(q) ||
+          (b.package_name || "").toLowerCase().includes(q) ||
+          (b.location || "").toLowerCase().includes(q)
+        );
+      }
+
+      return {
+        bookings: list,
+        total: list.length
+      };
     },
 
     async updateBookingStatus(id, newStatus, notes) {
-      return await request(`/api/bookings/${id}/status`, {
-        method: "PATCH",
-        body: JSON.stringify({ status: newStatus, notes })
-      });
+      const all = getStoredBookings();
+      const index = all.findIndex(b => b.id == id || b.reference === id);
+
+      if (index !== -1) {
+        all[index].status = newStatus;
+        if (notes !== undefined) {
+          all[index].notes = notes;
+        }
+        all[index].updated_at = new Date().toISOString();
+        saveStoredBookings(all);
+        return { success: true, booking: all[index] };
+      }
+      return { success: false, message: "Booking not found" };
     },
 
     async deleteBooking(id) {
-      return await request(`/api/bookings/${id}`, {
-        method: "DELETE"
-      });
-    },
-
-    // ---------------------------------------------
-    // PARTNER PORTAL & AUTH
-    // ---------------------------------------------
-    async registerPartner(payload) {
-      return await request("/api/partners/register", {
-        method: "POST",
-        body: JSON.stringify(payload)
-      });
-    },
-
-    async loginPartner(email, password) {
-      const res = await request("/api/partners/login", {
-        method: "POST",
-        body: JSON.stringify({ email, password })
-      });
-
-      if (res && res.token) {
-        localStorage.setItem(STORAGE_KEYS.token, res.token);
-        localStorage.setItem(STORAGE_KEYS.session, JSON.stringify(res.partner));
-      }
-      return res;
-    },
-
-    async logoutPartner() {
-      try {
-        await request("/api/partners/logout", { method: "POST" });
-      } catch (_) {}
-      localStorage.removeItem(STORAGE_KEYS.token);
-      localStorage.removeItem(STORAGE_KEYS.session);
-    },
-
-    getStoredPartnerSession() {
-      const session = localStorage.getItem(STORAGE_KEYS.session);
-      if (!session) return null;
-      try {
-        return JSON.parse(session);
-      } catch (_) {
-        return null;
-      }
-    },
-
-    getStoredToken() {
-      return localStorage.getItem(STORAGE_KEYS.token);
-    },
-
-    async getPartnerMe() {
-      return await request("/api/partners/me");
-    },
-
-    async updatePartnerProfile(profileData) {
-      const res = await request("/api/partners/me", {
-        method: "PUT",
-        body: JSON.stringify(profileData)
-      });
-      if (res && res.partner) {
-        localStorage.setItem(STORAGE_KEYS.session, JSON.stringify(res.partner));
-      }
-      return res;
-    },
-
-    async uploadPortfolio(itemData) {
-      return await request("/api/partners/me/portfolio", {
-        method: "POST",
-        body: JSON.stringify(itemData)
-      });
-    },
-
-    async uploadPartnerMediaFile(formData) {
-      const url = `${API_BASE}/api/partners/me/upload`;
-      const token = localStorage.getItem(STORAGE_KEYS.token);
-      const headers = {};
-      if (token) {
-        headers["Authorization"] = `Bearer ${token}`;
-        headers["X-Partner-Token"] = token;
-      }
-      const response = await fetch(url, {
-        method: "POST",
-        headers,
-        body: formData
-      });
-      const data = await response.json().catch(() => null);
-      if (!response.ok) {
-        throw new Error((data && (data.detail || data.message)) || `Upload failed (${response.status})`);
-      }
-      return data;
-    },
-
-    async uploadPartnerAvatar(file) {
-      const url = `${API_BASE}/api/partners/me/avatar`;
-      const token = localStorage.getItem(STORAGE_KEYS.token);
-      const headers = {};
-      if (token) {
-        headers["Authorization"] = `Bearer ${token}`;
-        headers["X-Partner-Token"] = token;
-      }
-      const formData = new FormData();
-      formData.append("file", file);
-      const response = await fetch(url, {
-        method: "POST",
-        headers,
-        body: formData
-      });
-      const data = await response.json().catch(() => null);
-      if (!response.ok) {
-        throw new Error((data && (data.detail || data.message)) || "Avatar upload failed");
-      }
-      if (data && data.partner) {
-        localStorage.setItem(STORAGE_KEYS.session, JSON.stringify(data.partner));
-      }
-      return data;
-    },
-
-    async deletePortfolioItem(itemId) {
-      return await request(`/api/partners/me/portfolio/${itemId}`, {
-        method: "DELETE"
-      });
-    },
-
-    // ---------------------------------------------
-    // PUBLIC PARTNERS DIRECTORY
-    // ---------------------------------------------
-    async getPublicPartners(options = {}) {
-      const query = new URLSearchParams();
-      if (options.group) query.set("group", options.group);
-      if (options.category) query.set("category", options.category);
-      if (options.status) query.set("status_filter", options.status);
-
-      const qs = query.toString() ? `?${query.toString()}` : "";
-      try {
-        const partners = await request(`/api/partners${qs}`);
-        if (Array.isArray(partners) && partners.length > 0) {
-          partners.forEach((p) => {
-            if (!p.profileImage && p.profile_image) {
-              p.profileImage = p.profile_image;
-            }
-          });
-          localStorage.setItem(STORAGE_KEYS.partnersCache, JSON.stringify(partners));
-        }
-        return partners;
-      } catch (err) {
-        console.warn("[SweepSage API] Falling back to cached partners:", err.message);
-        const cached = localStorage.getItem(STORAGE_KEYS.partnersCache);
-        if (cached) {
-          try {
-            const list = JSON.parse(cached);
-            if (Array.isArray(list)) {
-              list.forEach((p) => {
-                if (!p.profileImage && p.profile_image) {
-                  p.profileImage = p.profile_image;
-                }
-              });
-              return list;
-            }
-          } catch (_e) {}
-        }
-        return [];
-      }
-    },
-
-    async getPublicPartnerBySlug(slug) {
-      return await request(`/api/partners/${encodeURIComponent(slug)}`);
+      let all = getStoredBookings();
+      all = all.filter(b => b.id != id && b.reference !== id);
+      saveStoredBookings(all);
+      return { success: true };
     },
 
     // ---------------------------------------------
     // ADMIN OVERVIEW
     // ---------------------------------------------
     async getAdminOverview() {
-      return await request("/api/admin/overview");
+      const all = getStoredBookings();
+      const total = all.length;
+      const pending = all.filter(b => (b.status || "").toUpperCase() === "PENDING").length;
+      const confirmed = all.filter(b => (b.status || "").toUpperCase() === "CONFIRMED").length;
+      const completed = all.filter(b => (b.status || "").toUpperCase() === "COMPLETED").length;
+
+      return {
+        bookings: {
+          total,
+          pending,
+          confirmed,
+          completed
+        }
+      };
     },
 
-    async updatePartnerApproval(id, status) {
-      return await request(`/api/admin/partners/${id}/status`, {
-        method: "PATCH",
-        body: JSON.stringify({ status })
-      });
+    // ---------------------------------------------
+    // PARTNER DIRECTORY COMPATIBILITY STUBS
+    // ---------------------------------------------
+    async getPublicPartners() {
+      return [];
     },
-
-    async updatePortfolioApproval(id, status) {
-      return await request(`/api/admin/portfolio/${id}/status`, {
-        method: "PATCH",
-        body: JSON.stringify({ status })
-      });
-    }
+    async getPublicPartnerBySlug() {
+      return null;
+    },
+    getStoredPartnerSession() {
+      return null;
+    },
+    getStoredToken() {
+      return null;
+    },
+    async logoutPartner() {}
   };
 
   window.SweepSageAPI = SweepSageAPI;
