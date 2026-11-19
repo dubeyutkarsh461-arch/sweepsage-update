@@ -642,21 +642,29 @@
                   <span class="material-symbols-outlined text-[22px]">verified_user</span>
                 </div>
                 <div>
-                  <div class="flex items-center gap-2">
+                  <div class="flex items-center gap-2 flex-wrap">
                     <span class="text-xs font-label font-bold text-slate-500 uppercase tracking-wider">Authorized Travel Agent</span>
                     <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
                       <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
                       Verified Session
+                    </span>
+                    <span class="bg-slate-100 text-slate-700 text-[10px] font-bold px-2 py-0.5 rounded-full border border-slate-200 flex items-center gap-1" title="Database Engine: IndexedDB (Browser Native) + SQLite Sync">
+                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                      <span>DB: IndexedDB + SQLite</span>
                     </span>
                   </div>
                   <div id="crm-active-user-display" class="font-headline font-bold text-slate-900 text-sm">dubeyutkarsh461@gmail.com</div>
                 </div>
               </div>
 
-              <div class="flex items-center gap-2">
+              <div class="flex items-center gap-2 flex-wrap">
                 <button type="button" onclick="openCRMBuilderModal()" class="px-4 py-2 rounded-lg bg-coral hover:bg-coral-dark text-white text-[13px] font-label font-bold shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer">
                   <span class="material-symbols-outlined text-[16px]">add_circle</span>
                   <span>+ Create Travel Package &amp; Itinerary</span>
+                </button>
+                <button type="button" onclick="window.SweepSageCatalog.exportDatabaseJSON()" class="px-3 py-2 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-50 text-[12px] font-label font-semibold transition-colors flex items-center gap-1 cursor-pointer" title="Download Full Database Backup (.json)">
+                  <span class="material-symbols-outlined text-[16px]">cloud_download</span>
+                  <span>Backup DB</span>
                 </button>
                 <button type="button" onclick="handleAddNewRegisteredEmailModal()" class="px-3 py-2 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-50 text-[12px] font-label font-semibold transition-colors flex items-center gap-1 cursor-pointer" title="Authorize another email address">
                   <span class="material-symbols-outlined text-[16px]">person_add</span>

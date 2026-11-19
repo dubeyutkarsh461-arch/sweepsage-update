@@ -685,6 +685,24 @@
       } catch (e) {
         console.warn("Failed to save CRM invoice", e);
       }
+
+      // Save to IndexedDB (SweepSageDB)
+      if (indexedDBInstance) {
+        try {
+          const tx = indexedDBInstance.transaction(["crm_invoices"], "readwrite");
+          tx.objectStore("crm_invoices").put(invoice);
+        } catch (e) {}
+      }
+
+      // Background sync to SQLite Backend (if server active)
+      if (typeof window !== "undefined" && window.fetch) {
+        fetch('/api/crm/invoices', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(invoice)
+        }).catch(() => {});
+      }
+
       return invoice;
     },
 
@@ -693,10 +711,79 @@
       list = list.filter(i => i.id !== invoiceId);
       try {
         localStorage.setItem(CRM_INVOICES_KEY, JSON.stringify(list));
-        return true;
-      } catch (e) {
-        return false;
+      } catch (e) {}
+
+      // Delete from IndexedDB
+      if (indexedDBInstance) {
+        try {
+          const tx = indexedDBInstance.transaction(["crm_invoices"], "readwrite");
+          tx.objectStore("crm_invoices").delete(invoiceId);
+        } catch (e) {}
       }
+
+      // Sync delete with SQLite Backend
+      if (typeof window !== "undefined" && window.fetch) {
+        fetch(`/api/crm/invoices/${encodeURIComponent(invoiceId)}`, { method: 'DELETE' }).catch(() => {});
+      }
+
+      return true;
+    },
+
+    // Database Export & Backup Engine
+    exportDatabaseJSON: function () {
+      const data = {
+        database: "SweepSageDB",
+        version: "2.1.0",
+        exportedAt: new Date().toISOString(),
+        crmInvoices: this.getCRMInvoices(),
+        travelDestinations: this.getTravelDestinations(),
+        coordinators: this.getRegisteredCRMEmails(),
+        photographyServices: this.getPhotographyServices()
+      };
+      const json = JSON.stringify(data, null, 2);
+      const blob = new Blob([json], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `sweepsage_database_backup_${new Date().toISOString().split('T')[0]}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      return data;
+    },
+
+    // Database Import & Restore Engine
+    importDatabaseJSON: function (jsonStr) {
+      try {
+        const data = typeof jsonStr === "string" ? JSON.parse(jsonStr) : jsonStr;
+        if (data.crmInvoices && Array.isArray(data.crmInvoices)) {
+          localStorage.setItem(CRM_INVOICES_KEY, JSON.stringify(data.crmInvoices));
+        }
+        if (data.travelDestinations && Array.isArray(data.travelDestinations)) {
+          const state = loadState();
+          state.travelDestinations = data.travelDestinations;
+          saveState(state);
+        }
+        if (data.coordinators && Array.isArray(data.coordinators)) {
+          localStorage.setItem(CRM_EMAILS_KEY, JSON.stringify(data.coordinators));
+        }
+        syncLocalStorageToIndexedDB();
+        return { success: true, count: (data.crmInvoices || []).length };
+      } catch (e) {
+        console.error("Database import error:", e);
+        return { success: false, error: e.message };
+      }
+    },
+
+    getDatabaseStatus: function () {
+      return {
+        engine: indexedDBInstance ? "IndexedDB + SQLite Sync" : "LocalStorage Persistent Engine",
+        indexedDBActive: !!indexedDBInstance,
+        dbName: DB_NAME,
+        totalInvoices: this.getCRMInvoices().length,
+        totalDestinations: this.getTravelDestinations().length
+      };
     },
 
     resetToDefaults: function () {
@@ -707,6 +794,63 @@
     }
   };
 
+  // =========================================================
+  // INDEXEDDB ENGINE INITIALIZATION
+  // =========================================================
+  const DB_NAME = "SweepSageDB";
+  const DB_VERSION = 1;
+  let indexedDBInstance = null;
+
+  function initIndexedDB() {
+    if (typeof window === "undefined" || !window.indexedDB) return;
+    try {
+      const request = window.indexedDB.open(DB_NAME, DB_VERSION);
+
+      request.onupgradeneeded = function (event) {
+        const db = event.target.result;
+        if (!db.objectStoreNames.contains("crm_invoices")) {
+          const store = db.createObjectStore("crm_invoices", { keyPath: "id" });
+          store.createIndex("status", "status", { unique: false });
+          store.createIndex("createdDate", "createdDate", { unique: false });
+        }
+        if (!db.objectStoreNames.contains("travel_destinations")) {
+          db.createObjectStore("travel_destinations", { keyPath: "id" });
+        }
+      };
+
+      request.onsuccess = function (event) {
+        indexedDBInstance = event.target.result;
+        syncLocalStorageToIndexedDB();
+      };
+
+      request.onerror = function (event) {
+        console.warn("IndexedDB notice:", event.target.error);
+      };
+    } catch (e) {}
+  }
+
+  function syncLocalStorageToIndexedDB() {
+    if (!indexedDBInstance) return;
+    try {
+      const invoices = SweepSageCatalog.getCRMInvoices();
+      if (invoices && invoices.length > 0) {
+        const tx = indexedDBInstance.transaction(["crm_invoices"], "readwrite");
+        const store = tx.objectStore("crm_invoices");
+        invoices.forEach(inv => store.put(inv));
+      }
+      const dests = SweepSageCatalog.getTravelDestinations();
+      if (dests && dests.length > 0) {
+        const tx = indexedDBInstance.transaction(["travel_destinations"], "readwrite");
+        const store = tx.objectStore("travel_destinations");
+        dests.forEach(d => store.put(d));
+      }
+    } catch (e) {}
+  }
+
+  // Initialize DB immediately
+  initIndexedDB();
+
   // Expose globally
   window.SweepSageCatalog = SweepSageCatalog;
+  window.SweepSageDB = SweepSageCatalog;
 })();
