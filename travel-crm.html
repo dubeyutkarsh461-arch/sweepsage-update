@@ -228,25 +228,42 @@
   </main>
 
   <!-- MODALS -->
-  <!-- 1. BUILDER MODAL -->
-  <div id="crmBuilderModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 hidden overflow-y-auto">
-    <div class="bg-white rounded-2xl max-w-5xl w-full p-6 md:p-8 shadow-2xl border border-slate-200 my-8 max-h-[92vh] overflow-y-auto">
-      <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
+  <!-- 1. BUILDER MODAL (FULL SCREEN) -->
+  <div id="crmBuilderModal" class="fixed inset-0 z-50 bg-slate-100 flex flex-col hidden overflow-hidden">
+    <!-- Top Sticky Full-Screen Header -->
+    <header class="h-16 bg-white border-b border-slate-200 px-6 md:px-10 flex items-center justify-between shrink-0 sticky top-0 z-30 shadow-xs">
+      <div class="flex items-center gap-3 md:gap-4">
+        <button type="button" onclick="closeModal('crmBuilderModal')" class="w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition-colors cursor-pointer" title="Exit Full Screen">
+          <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+        </button>
         <div>
           <div class="flex items-center gap-2">
-            <span class="material-symbols-outlined text-coral text-[22px]">flight_takeoff</span>
-            <span class="text-[11px] uppercase font-bold tracking-wider text-coral font-label">SweepSage Travel CRM</span>
+            <span class="material-symbols-outlined text-coral text-[18px]">flight_takeoff</span>
+            <span class="text-[10px] uppercase font-bold tracking-wider text-coral font-label">SweepSage Travel CRM Studio</span>
+            <span class="text-slate-300 hidden md:inline">•</span>
+            <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400 font-label hidden md:inline">Full Screen Package Builder</span>
           </div>
-          <h3 id="crm-builder-modal-title" class="font-headline font-bold text-2xl text-slate-900 mt-1">Create Travel Itinerary &amp; Invoice</h3>
-          <p class="text-xs text-slate-500">Comprehensive itinerary creator, live GST commercial calculations, and official client quotation dispatch</p>
+          <h3 id="crm-builder-modal-title" class="font-headline font-bold text-base md:text-xl text-slate-900 leading-tight">Create Custom Travel Package &amp; Itinerary</h3>
         </div>
-        <button type="button" onclick="closeModal('crmBuilderModal')" class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center transition-colors cursor-pointer">
-          <span class="material-symbols-outlined text-[18px]">close</span>
-        </button>
       </div>
 
-      <form id="crm-builder-form" onsubmit="handleSaveCRMInvoice(event)" class="space-y-6 text-sm">
-        <input type="hidden" id="crm-edit-invoice-id" value="">
+      <div class="flex items-center gap-2 md:gap-3">
+        <button type="button" onclick="closeModal('crmBuilderModal')" class="px-3.5 py-2 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 text-xs font-label font-bold transition-colors cursor-pointer flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-[16px]">close</span>
+          <span class="hidden sm:inline">Close</span>
+        </button>
+        <button type="button" onclick="document.getElementById('crm-builder-form').requestSubmit()" class="px-4 md:px-5 py-2 rounded-lg bg-coral hover:bg-coral-dark text-white text-xs font-label font-bold shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer">
+          <span class="material-symbols-outlined text-[16px]">verified</span>
+          <span>Save &amp; Generate Invoice</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Scrollable Canvas -->
+    <div class="flex-1 overflow-y-auto px-4 md:px-10 py-6">
+      <div class="max-w-6xl mx-auto">
+        <form id="crm-builder-form" onsubmit="handleSaveCRMInvoice(event)" class="space-y-6 text-sm pb-16">
+          <input type="hidden" id="crm-edit-invoice-id" value="">
 
         <!-- SECTION 1: CLIENT & BOOKING DETAILS -->
         <div class="bg-slate-50/80 p-5 rounded-xl border border-slate-200 space-y-4">
@@ -534,58 +551,67 @@
           </label>
         </div>
 
-        <!-- FORM BUTTONS -->
-        <div class="flex items-center gap-3 pt-3 border-t border-slate-100">
-          <button type="submit" class="flex-1 py-3.5 rounded-xl bg-coral hover:bg-coral-dark text-white font-label font-bold text-sm transition-colors shadow-sm cursor-pointer flex items-center justify-center gap-2">
-            <span class="material-symbols-outlined text-[18px]">verified</span>
-            <span>Save Travel Package &amp; Generate Invoice</span>
-          </button>
-          <button type="button" onclick="closeModal('crmBuilderModal')" class="px-6 py-3.5 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 font-label font-semibold text-sm transition-colors cursor-pointer">
-            Cancel
-          </button>
+        <!-- FORM BOTTOM BAR -->
+        <div class="flex items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm sticky bottom-3 z-20 flex-wrap gap-3">
+          <div class="text-xs text-slate-500 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>Real-time GST calculations and client tax invoice ready</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <button type="button" onclick="closeModal('crmBuilderModal')" class="px-5 py-2.5 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 font-label font-semibold text-xs transition-colors cursor-pointer">
+              Cancel / Close
+            </button>
+            <button type="submit" class="px-6 py-2.5 rounded-xl bg-coral hover:bg-coral-dark text-white font-label font-bold text-xs transition-colors shadow-sm cursor-pointer flex items-center gap-2">
+              <span class="material-symbols-outlined text-[16px]">verified</span>
+              <span>Save Travel Package &amp; Generate Invoice</span>
+            </button>
+          </div>
         </div>
       </form>
     </div>
   </div>
+</div>
 
-  <!-- 2. INVOICE VIEWER MODAL -->
-  <div id="crmInvoiceViewModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 hidden overflow-y-auto">
-    <div class="bg-white rounded-2xl max-w-4xl w-full p-6 md:p-8 shadow-2xl border border-slate-200 my-8 max-h-[95vh] overflow-y-auto">
-      
-      <!-- Top Action Bar -->
-      <div class="flex items-center justify-between pb-4 border-b border-slate-200 mb-6 gap-3 flex-wrap no-print">
-        <div class="flex items-center gap-2">
-          <button type="button" onclick="closeModal('crmInvoiceViewModal')" class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition-colors cursor-pointer">
-            <span class="material-symbols-outlined text-[18px]">arrow_back</span>
-          </button>
-          <div>
-            <span class="text-xs font-label font-bold text-slate-400 uppercase tracking-wider">Official Invoice Preview</span>
-            <h4 id="crm-preview-inv-id" class="font-headline font-bold text-slate-900 text-base leading-tight">INV-SWP-XXXX</h4>
-          </div>
-        </div>
-
-        <div class="flex items-center gap-2 flex-wrap">
-          <button type="button" id="crm-btn-edit-proposal" onclick="editActiveCRMInvoice()" class="px-3 py-2 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-50 font-label font-bold text-[12px] shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer">
-            <span class="material-symbols-outlined text-[16px]">edit</span>
-            <span>Edit Itinerary</span>
-          </button>
-          <button type="button" id="crm-btn-send-whatsapp" onclick="sendActiveCRMInvoiceWhatsApp()" class="px-3.5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-label font-bold text-[12px] shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer">
-            <span class="material-symbols-outlined text-[16px]">chat</span>
-            <span>Send on WhatsApp</span>
-          </button>
-          <button type="button" id="crm-btn-send-email" onclick="sendActiveCRMInvoiceEmail()" class="px-3.5 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white font-label font-bold text-[12px] shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer">
-            <span class="material-symbols-outlined text-[16px]">mail</span>
-            <span>Send Email</span>
-          </button>
-          <button type="button" onclick="printCRMInvoice()" class="px-3.5 py-2 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-50 font-label font-bold text-[12px] shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer">
-            <span class="material-symbols-outlined text-[16px]">print</span>
-            <span>Print / PDF</span>
-          </button>
+  <!-- 2. INVOICE VIEWER MODAL (FULL SCREEN) -->
+  <div id="crmInvoiceViewModal" class="fixed inset-0 z-50 bg-slate-100 flex flex-col hidden overflow-hidden">
+    <!-- Top Action Bar -->
+    <header class="h-16 bg-white border-b border-slate-200 px-6 md:px-10 flex items-center justify-between shrink-0 sticky top-0 z-30 shadow-xs no-print">
+      <div class="flex items-center gap-3 md:gap-4">
+        <button type="button" onclick="closeModal('crmInvoiceViewModal')" class="w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition-colors cursor-pointer" title="Back to CRM">
+          <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+        </button>
+        <div>
+          <span class="text-[10px] font-label font-bold text-slate-400 uppercase tracking-wider block">Official Invoice Preview</span>
+          <h4 id="crm-preview-inv-id" class="font-headline font-bold text-slate-900 text-base md:text-lg leading-tight">INV-SWP-XXXX</h4>
         </div>
       </div>
 
-      <!-- Printable Document -->
-      <div id="crm-printable-invoice" class="bg-white p-2 md:p-6 text-slate-800 text-body-sm space-y-6">
+      <div class="flex items-center gap-2 flex-wrap">
+        <button type="button" id="crm-btn-edit-proposal" onclick="editActiveCRMInvoice()" class="px-3.5 py-2 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-50 font-label font-bold text-xs shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer">
+          <span class="material-symbols-outlined text-[16px]">edit</span>
+          <span>Edit Package</span>
+        </button>
+        <button type="button" id="crm-btn-send-whatsapp" onclick="sendActiveCRMInvoiceWhatsApp()" class="px-3.5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-label font-bold text-xs shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer">
+          <span class="material-symbols-outlined text-[16px]">chat</span>
+          <span>Send on WhatsApp</span>
+        </button>
+        <button type="button" id="crm-btn-send-email" onclick="sendActiveCRMInvoiceEmail()" class="px-3.5 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white font-label font-bold text-xs shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer">
+          <span class="material-symbols-outlined text-[16px]">mail</span>
+          <span>Send Email</span>
+        </button>
+        <button type="button" onclick="printCRMInvoice()" class="px-3.5 py-2 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-50 font-label font-bold text-xs shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer">
+          <span class="material-symbols-outlined text-[16px]">print</span>
+          <span>Print / PDF</span>
+        </button>
+        <button type="button" onclick="closeModal('crmInvoiceViewModal')" class="w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition-colors cursor-pointer" title="Close Preview">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Scrollable Canvas for Printable Document -->
+    <div class="flex-1 overflow-y-auto px-4 md:px-10 py-8 bg-slate-100">
+      <div id="crm-printable-invoice" class="max-w-4xl mx-auto bg-white rounded-2xl border border-slate-200 p-6 md:p-10 shadow-sm space-y-6 mb-16">
         <!-- Brand Header -->
         <div class="flex items-start justify-between border-b-2 border-slate-900 pb-5">
           <div class="space-y-1">
@@ -763,13 +789,33 @@
 
     function openModal(id) {
       const el = document.getElementById(id);
-      if (el) el.classList.remove('hidden');
+      if (el) {
+        el.classList.remove('hidden');
+        el.style.display = 'flex';
+        document.body.classList.add('overflow-hidden');
+      }
     }
 
     function closeModal(id) {
       const el = document.getElementById(id);
-      if (el) el.classList.add('hidden');
+      if (el) {
+        el.classList.add('hidden');
+        el.style.display = 'none';
+        document.body.classList.remove('overflow-hidden');
+      }
     }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const modals = ['crmBuilderModal', 'crmInvoiceViewModal', 'crmAddEmailModal'];
+        modals.forEach(m => {
+          const el = document.getElementById(m);
+          if (el && !el.classList.contains('hidden') && el.style.display !== 'none') {
+            closeModal(m);
+          }
+        });
+      }
+    });
 
     function showToast(msg) {
       const toast = document.getElementById('dashboard-toast');
