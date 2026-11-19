@@ -2,6 +2,9 @@ User-agent: *
 Allow: /
 Disallow: /admin.html
 Disallow: /dashboard.html
+Disallow: /travel-crm.html
+Disallow: /crm.html
+Disallow: /crm
 
 # Primary XML Sitemaps
 Sitemap: https://sweepsage.com/sitemap.xml

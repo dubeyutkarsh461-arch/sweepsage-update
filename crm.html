@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SweepSage Travel CRM — Official Itinerary &amp; Invoice Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            coral: '#FC5E68',
+            'coral-dark': '#E03A48',
+          },
+          fontFamily: {
+            headline: ['"DM Sans"', 'sans-serif'],
+            body: ['"Instrument Sans"', 'sans-serif'],
+            label: ['"DM Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
+
+  <style>
+    .material-symbols-outlined {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      line-height: 1 !important;
+      vertical-align: middle;
+    }
+    @media print {
+      body * {
+        visibility: hidden !important;
+      }
+      #crm-printable-invoice, #crm-printable-invoice * {
+        visibility: visible !important;
+      }
+      #crm-printable-invoice {
+        position: fixed !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        min-height: 100vh !important;
+        margin: 0 !important;
+        padding: 24px !important;
+        background: #ffffff !important;
+        z-index: 999999 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-body antialiased min-h-screen flex flex-col">
+
+  <!-- TOP HEADER -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-30 no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-coral text-white font-bold flex items-center justify-center text-sm shadow-xs">SS</div>
+          <span class="font-headline font-bold text-lg text-slate-900">SweepSage</span>
+        </a>
+        <span class="text-slate-300">|</span>
+        <div class="flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-coral text-[20px]">flight_takeoff</span>
+          <span class="font-headline font-bold text-sm text-slate-800">Travel CRM &amp; Invoicing</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="dashboard.html" class="text-xs font-label font-semibold text-slate-500 hover:text-coral transition-colors flex items-center gap-1">
+          <span class="material-symbols-outlined text-[16px]">dashboard</span>
+          <span>Admin Console</span>
+        </a>
+        <a href="travel.html" class="text-xs font-label font-semibold text-slate-500 hover:text-coral transition-colors flex items-center gap-1">
+          <span class="material-symbols-outlined text-[16px]">open_in_new</span>
+          <span>Customer Travel Page</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN WORKSPACE -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full space-y-6">
+
+    <!-- 1. AUTH GATE (LOCKED) -->
+    <div id="crm-locked-state" class="py-12">
+      <div class="max-w-md mx-auto bg-white rounded-2xl border border-slate-200 p-8 shadow-sm text-center space-y-6">
+        <div class="w-16 h-16 rounded-2xl bg-coral/10 text-coral flex items-center justify-center mx-auto shadow-inner">
+          <span class="material-symbols-outlined text-[36px]">shield_person</span>
+        </div>
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-label font-bold uppercase tracking-wider bg-amber-50 text-amber-800 border border-amber-200 mb-2">
+            <span class="material-symbols-outlined text-[14px]">lock</span>
+            Authorized Access Only
+          </span>
+          <h2 class="font-headline font-bold text-2xl text-slate-900">Travel CRM Portal</h2>
+          <p class="text-xs text-slate-500 mt-1.5">Enter your registered email address to access itinerary builders and generate tax invoices.</p>
+        </div>
+
+        <div class="space-y-3 text-left">
+          <label class="block text-xs font-label font-bold text-slate-700 uppercase tracking-wider">Registered Email Address</label>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-3.5 top-3 text-slate-400 text-[18px]">alternate_email</span>
+            <input type="email" id="crm-auth-email-input" placeholder="dubeyutkarsh461@gmail.com" class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-800 focus:outline-none focus:border-coral focus:ring-1 focus:ring-coral transition-all" onkeypress="if(event.key==='Enter') handleCRMEmailVerification()">
+          </div>
+          <p id="crm-auth-error" class="text-xs text-rose-500 font-medium hidden flex items-center gap-1">
+            <span class="material-symbols-outlined text-[14px]">error</span>
+            <span>Email is not authorized. Try dubeyutkarsh461@gmail.com</span>
+          </p>
+        </div>
+
+        <button type="button" onclick="handleCRMEmailVerification()" class="w-full py-3 rounded-xl bg-coral hover:bg-coral-dark text-white font-label font-bold text-sm shadow-sm transition-colors flex items-center justify-center gap-2 cursor-pointer">
+          <span class="material-symbols-outlined text-[18px]">key</span>
+          <span>Verify &amp; Unlock CRM</span>
+        </button>
+
+        <div class="pt-4 border-t border-slate-100 text-left">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-2">Registered Accounts:</span>
+          <div class="flex flex-col gap-1.5 text-xs">
+            <button type="button" onclick="quickFillCRMEmail('dubeyutkarsh461@gmail.com')" class="text-left px-2.5 py-1.5 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-700 font-medium transition-colors flex items-center justify-between">
+              <span class="font-bold">dubeyutkarsh461@gmail.com</span>
+              <span class="text-[10px] text-coral font-bold uppercase">Founder</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. UNLOCKED CRM WORKSPACE -->
+    <div id="crm-unlocked-state" class="space-y-6 hidden">
+      <!-- Session Bar -->
+      <div class="bg-white rounded-xl border border-slate-200 p-4 flex items-center justify-between flex-wrap gap-3 shadow-xs">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-coral/10 text-coral flex items-center justify-center font-bold">
+            <span class="material-symbols-outlined text-[22px]">verified_user</span>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-label font-bold text-slate-500 uppercase tracking-wider">Authorized Coordinator</span>
+              <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">Active Session</span>
+            </div>
+            <div id="crm-active-user-display" class="font-headline font-bold text-slate-900 text-sm">dubeyutkarsh461@gmail.com</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="openCRMBuilderModal()" class="px-4 py-2 rounded-lg bg-coral hover:bg-coral-dark text-white text-[13px] font-label font-bold shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer">
+            <span class="material-symbols-outlined text-[16px]">add_circle</span>
+            <span>+ Create Travel Package &amp; Itinerary</span>
+          </button>
+          <button type="button" onclick="handleAddNewRegisteredEmailModal()" class="px-3 py-2 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-50 text-[12px] font-label font-semibold transition-colors flex items-center gap-1 cursor-pointer">
+            <span class="material-symbols-outlined text-[16px]">person_add</span>
+            <span>Add Coordinator</span>
+          </button>
+          <button type="button" onclick="handleCRMLogout()" class="px-3 py-2 rounded-lg border border-rose-200 text-rose-600 hover:bg-rose-50 text-[12px] font-label font-semibold transition-colors flex items-center gap-1 cursor-pointer">
+            <span class="material-symbols-outlined text-[16px]">lock</span>
+            <span>Lock</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- KPI Metrics -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-xs">
+          <span class="text-xs font-label font-bold text-slate-400 uppercase tracking-wider">Total Proposals</span>
+          <div id="crm-stat-proposals" class="font-headline font-bold text-2xl text-slate-900 mt-2">0</div>
+          <div class="text-[11px] text-slate-400 mt-1">Generated and archived</div>
+        </div>
+        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-xs">
+          <span class="text-xs font-label font-bold text-slate-400 uppercase tracking-wider">Quoted Pipeline</span>
+          <div id="crm-stat-revenue" class="font-headline font-bold text-2xl text-emerald-600 mt-2">₹0</div>
+          <div class="text-[11px] text-slate-400 mt-1">Total commercial value</div>
+        </div>
+        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-xs">
+          <span class="text-xs font-label font-bold text-slate-400 uppercase tracking-wider">Confirmed Trips</span>
+          <div id="crm-stat-confirmed" class="font-headline font-bold text-2xl text-amber-600 mt-2">0</div>
+          <div class="text-[11px] text-slate-400 mt-1">Advance received</div>
+        </div>
+        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-xs">
+          <span class="text-xs font-label font-bold text-slate-400 uppercase tracking-wider">WhatsApp Delivery</span>
+          <div class="font-headline font-bold text-2xl text-slate-900 mt-2">100%</div>
+          <div class="text-[11px] text-emerald-600 font-semibold mt-1">Instant 1-Click dispatch</div>
+        </div>
+      </div>
+
+      <!-- Invoices Ledger -->
+      <div class="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
+        <div class="p-5 border-b border-slate-100 flex items-center justify-between flex-wrap gap-3">
+          <div>
+            <h3 class="font-headline font-bold text-lg text-slate-900">Custom Itineraries &amp; Invoice Ledger</h3>
+            <p class="text-xs text-slate-500">Day-by-day customized travel plans and official tax invoices</p>
+          </div>
+          <button type="button" onclick="openCRMBuilderModal()" class="px-3.5 py-1.5 rounded-lg bg-coral text-white text-[12px] font-label font-bold shadow-xs hover:bg-coral-dark transition-colors flex items-center gap-1.5 cursor-pointer">
+            <span class="material-symbols-outlined text-[16px]">add_circle</span>
+            <span>+ Build Travel Package &amp; Invoice</span>
+          </button>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-50/80 text-slate-500 font-label text-[11px] uppercase tracking-wider border-b border-slate-200">
+              <tr>
+                <th class="px-5 py-3">Invoice &amp; Date</th>
+                <th class="px-5 py-3">Client Details</th>
+                <th class="px-5 py-3">Destination &amp; Schedule</th>
+                <th class="px-5 py-3">Total Amount</th>
+                <th class="px-5 py-3">Status</th>
+                <th class="px-5 py-3 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="crm-invoices-tbody" class="divide-y divide-slate-100 font-normal">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- MODALS -->
+  <!-- 1. BUILDER MODAL (FULL SCREEN) -->
+  <div id="crmBuilderModal" class="fixed inset-0 z-50 bg-slate-100 flex flex-col hidden overflow-hidden">
+    <!-- Top Sticky Full-Screen Header -->
+    <header class="h-16 bg-white border-b border-slate-200 px-6 md:px-10 flex items-center justify-between shrink-0 sticky top-0 z-30 shadow-xs">
+      <div class="flex items-center gap-3 md:gap-4">
+        <button type="button" onclick="closeModal('crmBuilderModal')" class="w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition-colors cursor-pointer" title="Exit Full Screen">
+          <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+        </button>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-coral text-[18px]">flight_takeoff</span>
+            <span class="text-[10px] uppercase font-bold tracking-wider text-coral font-label">SweepSage Travel CRM Studio</span>
+            <span class="text-slate-300 hidden md:inline">•</span>
+            <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400 font-label hidden md:inline">Full Screen Package Builder</span>
+          </div>
+          <h3 id="crm-builder-modal-title" class="font-headline font-bold text-base md:text-xl text-slate-900 leading-tight">Create Custom Travel Package &amp; Itinerary</h3>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2 md:gap-3">
+        <button type="button" onclick="closeModal('crmBuilderModal')" class="px-3.5 py-2 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 text-xs font-label font-bold transition-colors cursor-pointer flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-[16px]">close</span>
+          <span class="hidden sm:inline">Close</span>
+        </button>
+        <button type="button" onclick="document.getElementById('crm-builder-form').requestSubmit()" class="px-4 md:px-5 py-2 rounded-lg bg-coral hover:bg-coral-dark text-white text-xs font-label font-bold shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer">
+          <span class="material-symbols-outlined text-[16px]">verified</span>
+          <span>Save &amp; Generate Invoice</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Scrollable Canvas -->
+    <div class="flex-1 overflow-y-auto px-4 md:px-10 py-6">
+      <div class="max-w-6xl mx-auto">
+        <form id="crm-builder-form" onsubmit="handleSaveCRMInvoice(event)" class="space-y-6 text-sm pb-16">
+          <input type="hidden" id="crm-edit-invoice-id" value="">
+
+        <!-- SECTION 1: CLIENT & BOOKING DETAILS -->
+        <div class="bg-slate-50/80 p-5 rounded-xl border border-slate-200 space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[18px] text-slate-700">person</span>
+              <h4 class="font-headline font-bold text-sm text-slate-900">1. Client &amp; Inquirer Information</h4>
+            </div>
+            <div>
+              <label class="text-[10px] font-label font-bold text-slate-500 uppercase tracking-wider mr-2">Status:</label>
+              <select id="crm-booking-status" class="px-2.5 py-1 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-800 focus:outline-none focus:border-coral">
+                <option value="Quotation Generated">Quotation Generated</option>
+                <option value="Sent via WhatsApp">Sent via WhatsApp</option>
+                <option value="Sent via Email">Sent via Email</option>
+                <option value="Advance Received &amp; Confirmed">Advance Received &amp; Confirmed</option>
+                <option value="Trip Completed">Trip Completed</option>
+                <option value="Cancelled / On Hold">Cancelled / On Hold</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div>
+              <label class="text-[11px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Client Full Name</label>
+              <input type="text" id="crm-client-name" placeholder="Enter client full name (or leave blank)" class="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral">
+            </div>
+            <div>
+              <label class="text-[11px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">WhatsApp Phone Number</label>
+              <input type="tel" id="crm-client-phone" placeholder="e.g. +91 98765 43210 (optional)" class="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral">
+            </div>
+            <div>
+              <label class="text-[11px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Client Email Address</label>
+              <input type="email" id="crm-client-email" placeholder="client@example.com (optional)" class="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral">
+            </div>
+            <div>
+              <label class="text-[11px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Billing City / State</label>
+              <input type="text" id="crm-client-address" placeholder="e.g. New Delhi, Delhi" class="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral">
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 2: TRIP & DESTINATION SPECIFICATIONS -->
+        <div class="bg-slate-50/80 p-5 rounded-xl border border-slate-200 space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[18px] text-slate-700">travel_explore</span>
+            <h4 class="font-headline font-bold text-sm text-slate-900">2. Destination &amp; Trip Specifications</h4>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div>
+              <label class="text-[11px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Destination / Region *</label>
+              <input type="text" id="crm-trip-dest" placeholder="e.g. Kashmir / Bali / Goa / Dubai" class="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral" required>
+            </div>
+            <div class="md:col-span-2">
+              <label class="text-[11px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Package / Trip Title</label>
+              <input type="text" id="crm-trip-title" placeholder="e.g. Kashmir Paradise 5D/4N Family Tour" class="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral">
+            </div>
+            <div>
+              <label class="text-[11px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Duration</label>
+              <input type="text" id="crm-trip-duration" placeholder="e.g. 5 Days • 4 Nights" class="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral">
+            </div>
+
+            <div>
+              <label class="text-[11px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Departure Date</label>
+              <input type="date" id="crm-trip-start-date" onchange="autoFormatTripDates()" class="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral text-xs">
+            </div>
+            <div>
+              <label class="text-[11px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Return Date</label>
+              <input type="date" id="crm-trip-end-date" onchange="autoFormatTripDates()" class="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral text-xs">
+            </div>
+            <div class="md:col-span-2">
+              <label class="text-[11px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Display Travel Dates</label>
+              <input type="text" id="crm-trip-dates" placeholder="e.g. Dec 15, 2026 – Dec 20, 2026 (or Flexible Dates)" class="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral">
+            </div>
+          </div>
+
+          <!-- Travelers Breakdown & Hotel Category -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-2 border-t border-slate-200/70">
+            <div>
+              <label class="text-[10px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Adults (12+ yrs)</label>
+              <input type="number" id="crm-pax-adults" min="1" value="2" onchange="updatePaxSummary()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral text-xs" required>
+            </div>
+            <div>
+              <label class="text-[10px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Children (2-12 yrs)</label>
+              <input type="number" id="crm-pax-children" min="0" value="0" onchange="updatePaxSummary()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral text-xs">
+            </div>
+            <div>
+              <label class="text-[10px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Infants (&lt;2 yrs)</label>
+              <input type="number" id="crm-pax-infants" min="0" value="0" onchange="updatePaxSummary()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral text-xs">
+            </div>
+            <div>
+              <label class="text-[10px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Number of Rooms</label>
+              <input type="number" id="crm-pax-rooms" min="1" value="1" onchange="updatePaxSummary()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral text-xs" required>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2 border-t border-slate-200/70">
+            <div>
+              <label class="text-[11px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Hotel Tier / Category</label>
+              <select id="crm-trip-hotel-tier" class="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral text-xs">
+                <option value="4-Star Premium Hotel &amp; Resort">4-Star Premium Hotel &amp; Resort</option>
+                <option value="5-Star Luxury Resort &amp; Villa">5-Star Luxury Resort &amp; Villa</option>
+                <option value="3-Star Deluxe Hotel">3-Star Deluxe Hotel</option>
+                <option value="Heritage Villa / Deluxe Houseboat">Heritage Villa / Deluxe Houseboat</option>
+                <option value="Boutique Luxury Stay">Boutique Luxury Stay</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-[11px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Meal Plan Included</label>
+              <select id="crm-trip-meal-plan" class="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral text-xs">
+                <option value="MAP — Modified American Plan (Breakfast &amp; Dinner)">MAP — Modified American Plan (Breakfast &amp; Dinner)</option>
+                <option value="CP — Continental Plan (Daily Breakfast Only)">CP — Continental Plan (Daily Breakfast Only)</option>
+                <option value="AP — American Plan (All Meals: Breakfast + Lunch + Dinner)">AP — American Plan (All Meals: Breakfast + Lunch + Dinner)</option>
+                <option value="EP — European Plan (Room Only / No Meals)">EP — European Plan (Room Only / No Meals)</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-[11px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Specific Hotel Name(s) &amp; Stays</label>
+              <input type="text" id="crm-trip-hotel-names" placeholder="e.g. Radisson Srinagar (2N) + Deluxe Houseboat (1N)" class="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral text-xs">
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 3: TRANSPORTATION & FLEET -->
+        <div class="bg-slate-50/80 p-5 rounded-xl border border-slate-200 space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[18px] text-slate-700">directions_car</span>
+            <h4 class="font-headline font-bold text-sm text-slate-900">3. Transportation &amp; Fleet Allocation</h4>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <label class="text-[11px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Vehicle Assigned</label>
+              <select id="crm-trip-vehicle" class="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral text-xs">
+                <option value="Dedicated SUV (Innova Crysta / Ertiga)">Dedicated SUV (Innova Crysta / Ertiga)</option>
+                <option value="Dedicated Sedan (Swift Dzire / Toyota Etios)">Dedicated Sedan (Swift Dzire / Toyota Etios)</option>
+                <option value="Luxury SUV (Toyota Fortuner / Mercedes)">Luxury SUV (Toyota Fortuner / Mercedes)</option>
+                <option value="Tempo Traveller (12/16 Seater AC)">Tempo Traveller (12/16 Seater AC)</option>
+                <option value="Private Airport Transfers Only">Private Airport Transfers Only</option>
+                <option value="Self-Drive / No Vehicle">Self-Drive / No Vehicle</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-[11px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Cab Inclusions Scope</label>
+              <input type="text" id="crm-trip-cab-scope" value="Dedicated AC cab for all transfers, sightseeing, tolls, parking, fuel &amp; driver charges" class="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral text-xs">
+            </div>
+            <div>
+              <label class="text-[11px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Airfare / Flight Status</label>
+              <select id="crm-trip-flights" class="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral text-xs">
+                <option value="Not Included (Client Arranged)">Not Included (Client Arranged)</option>
+                <option value="Domestic Flights Included">Domestic Flights Included</option>
+                <option value="Train Tickets Included">Train Tickets Included</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 4: DAY-BY-DAY ITINERARY BUILDER -->
+        <div class="bg-slate-50/80 p-5 rounded-xl border border-slate-200 space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[18px] text-coral">calendar_month</span>
+              <div>
+                <h4 class="font-headline font-bold text-sm text-slate-900">4. Detailed Day-by-Day Activity Schedule</h4>
+                <p class="text-[11px] text-slate-500">Plan each day's sightseeing, night stays, and meals. Use "+ Add Day" for more days.</p>
+              </div>
+            </div>
+            <button type="button" onclick="addCRMDayRow()" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-[12px] font-label font-bold transition-colors flex items-center gap-1 cursor-pointer">
+              <span class="material-symbols-outlined text-[15px]">add</span>
+              <span>+ Add Day</span>
+            </button>
+          </div>
+
+          <div id="crm-days-container" class="space-y-3">
+            <!-- Dynamically populated via renderCRMDays() -->
+          </div>
+        </div>
+
+        <!-- SECTION 5: INCLUSIONS, EXCLUSIONS & NOTES -->
+        <div class="bg-slate-50/80 p-5 rounded-xl border border-slate-200 space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[18px] text-emerald-600">checklist</span>
+            <h4 class="font-headline font-bold text-sm text-slate-900">5. Inclusions, Exclusions &amp; Special Notes</h4>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="text-[11px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Package Inclusions (Line by line or comma-separated)</label>
+              <textarea id="crm-trip-inclusions" rows="4" class="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral text-xs" placeholder="e.g. Hotel Stay with Meal Plan, Dedicated Private Cab, All toll taxes and parking, 24x7 Ground Concierge Assistance"></textarea>
+            </div>
+            <div>
+              <label class="text-[11px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Package Exclusions</label>
+              <textarea id="crm-trip-exclusions" rows="4" class="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral text-xs" placeholder="e.g. Airfare / Train tickets, Monument entry fees, Personal expenses, Adventure activities not mentioned"></textarea>
+            </div>
+          </div>
+
+          <div>
+            <label class="text-[11px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Special Customer Requests / Honeymoon / Dietary Notes</label>
+            <input type="text" id="crm-trip-notes" placeholder="e.g. Pure Veg / Jain meals requested, Honeymoon flower bed decoration, Child extra bed" class="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral text-xs">
+          </div>
+        </div>
+
+        <!-- SECTION 6: ITEMIZED COMMERCIALS & GST CALCULATOR -->
+        <div class="bg-slate-50/80 p-5 rounded-xl border border-slate-200 space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[18px] text-emerald-600">payments</span>
+              <h4 class="font-headline font-bold text-sm text-slate-900">6. Commercial Pricing, GST &amp; Payment Schedule</h4>
+            </div>
+            <div class="flex items-center gap-2">
+              <label class="text-[11px] font-label font-bold text-slate-500 uppercase tracking-wider">GST Rate:</label>
+              <select id="crm-gst-rate" onchange="recalculateCRMTotals()" class="px-2.5 py-1 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-800 focus:outline-none focus:border-coral">
+                <option value="5">5% (Tour Operator GST)</option>
+                <option value="18">18% (Standard GST)</option>
+                <option value="0">0% (Tax Exempt / Nil)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 md:grid-cols-6 gap-3">
+            <div>
+              <label class="text-[10px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Hotels &amp; Stay (₹)</label>
+              <input type="number" id="crm-cost-hotel" value="0" min="0" oninput="recalculateCRMTotals()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral font-mono text-sm" required>
+            </div>
+            <div>
+              <label class="text-[10px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Transfers/Cab (₹)</label>
+              <input type="number" id="crm-cost-transport" value="0" min="0" oninput="recalculateCRMTotals()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral font-mono text-sm" required>
+            </div>
+            <div>
+              <label class="text-[10px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Tours/Activities (₹)</label>
+              <input type="number" id="crm-cost-activities" value="0" min="0" oninput="recalculateCRMTotals()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral font-mono text-sm" required>
+            </div>
+            <div>
+              <label class="text-[10px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Flights/Train (₹)</label>
+              <input type="number" id="crm-cost-flights" value="0" min="0" oninput="recalculateCRMTotals()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral font-mono text-sm">
+            </div>
+            <div>
+              <label class="text-[10px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Concierge Fee (₹)</label>
+              <input type="number" id="crm-cost-concierge" value="0" min="0" oninput="recalculateCRMTotals()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral font-mono text-sm" required>
+            </div>
+            <div>
+              <label class="text-[10px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Discount (₹)</label>
+              <input type="number" id="crm-cost-discount" value="0" min="0" oninput="recalculateCRMTotals()" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral font-mono text-sm">
+            </div>
+          </div>
+
+          <!-- Dynamic Calculation Summary Box -->
+          <div class="bg-white p-4 rounded-xl border border-slate-200 flex items-center justify-between flex-wrap gap-4">
+            <div class="space-y-1 text-xs">
+              <div class="text-slate-500">Subtotal: <span id="crm-calc-subtotal" class="font-bold text-slate-800">₹0</span></div>
+              <div class="text-slate-500">Government GST (<span id="crm-calc-gst-label">5%</span>): <span id="crm-calc-gst" class="font-bold text-slate-800">₹0</span></div>
+            </div>
+            <div class="text-right">
+              <div class="text-[11px] font-label font-bold uppercase tracking-wider text-slate-400">Grand Total Payable</div>
+              <div id="crm-calc-grand-total" class="font-headline font-bold text-2xl text-coral">₹0</div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+            <div>
+              <label class="text-[11px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Advance Booking Deposit Required</label>
+              <input type="text" id="crm-trip-advance" placeholder="e.g. ₹15,000 / 30% to confirm booking" class="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral text-xs">
+            </div>
+            <div>
+              <label class="text-[11px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Balance Payment &amp; Cancellation Terms</label>
+              <input type="text" id="crm-trip-terms" value="30% advance to confirm booking. Balance payable 7 days prior to travel." class="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral text-xs">
+            </div>
+          </div>
+        </div>
+
+        <!-- OPTIONAL: PUBLISH TO PUBLIC CATALOG -->
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 rounded-lg bg-coral/10 text-coral flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-[20px]">public</span>
+            </span>
+            <div>
+              <span class="font-headline font-bold text-xs text-slate-900 block">Publish as Public Package on Website (travel.html)</span>
+              <span class="text-[11px] text-slate-500">Show this package directly in the consumer retreat catalog</span>
+            </div>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer shrink-0">
+            <input type="checkbox" id="crm-publish-website" class="sr-only peer">
+            <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-coral"></div>
+          </label>
+        </div>
+
+        <!-- FORM BOTTOM BAR -->
+        <div class="flex items-center justify-between p-4 bg-white rounded-xl border border-slate-200 shadow-sm sticky bottom-3 z-20 flex-wrap gap-3">
+          <div class="text-xs text-slate-500 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>Real-time GST calculations and client tax invoice ready</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <button type="button" onclick="closeModal('crmBuilderModal')" class="px-5 py-2.5 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 font-label font-semibold text-xs transition-colors cursor-pointer">
+              Cancel / Close
+            </button>
+            <button type="submit" class="px-6 py-2.5 rounded-xl bg-coral hover:bg-coral-dark text-white font-label font-bold text-xs transition-colors shadow-sm cursor-pointer flex items-center gap-2">
+              <span class="material-symbols-outlined text-[16px]">verified</span>
+              <span>Save Travel Package &amp; Generate Invoice</span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+  <!-- 2. INVOICE VIEWER MODAL (FULL SCREEN) -->
+  <div id="crmInvoiceViewModal" class="fixed inset-0 z-50 bg-slate-100 flex flex-col hidden overflow-hidden">
+    <!-- Top Action Bar -->
+    <header class="h-16 bg-white border-b border-slate-200 px-6 md:px-10 flex items-center justify-between shrink-0 sticky top-0 z-30 shadow-xs no-print">
+      <div class="flex items-center gap-3 md:gap-4">
+        <button type="button" onclick="closeModal('crmInvoiceViewModal')" class="w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition-colors cursor-pointer" title="Back to CRM">
+          <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+        </button>
+        <div>
+          <span class="text-[10px] font-label font-bold text-slate-400 uppercase tracking-wider block">Official Invoice Preview</span>
+          <h4 id="crm-preview-inv-id" class="font-headline font-bold text-slate-900 text-base md:text-lg leading-tight">INV-SWP-XXXX</h4>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2 flex-wrap">
+        <button type="button" id="crm-btn-edit-proposal" onclick="editActiveCRMInvoice()" class="px-3.5 py-2 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-50 font-label font-bold text-xs shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer">
+          <span class="material-symbols-outlined text-[16px]">edit</span>
+          <span>Edit Package</span>
+        </button>
+        <button type="button" id="crm-btn-send-whatsapp" onclick="sendActiveCRMInvoiceWhatsApp()" class="px-3.5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-label font-bold text-xs shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer">
+          <span class="material-symbols-outlined text-[16px]">chat</span>
+          <span>Send on WhatsApp</span>
+        </button>
+        <button type="button" id="crm-btn-send-email" onclick="sendActiveCRMInvoiceEmail()" class="px-3.5 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white font-label font-bold text-xs shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer">
+          <span class="material-symbols-outlined text-[16px]">mail</span>
+          <span>Send Email</span>
+        </button>
+        <button type="button" onclick="printCRMInvoice()" class="px-3.5 py-2 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-50 font-label font-bold text-xs shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer">
+          <span class="material-symbols-outlined text-[16px]">print</span>
+          <span>Print / PDF</span>
+        </button>
+        <button type="button" onclick="closeModal('crmInvoiceViewModal')" class="w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition-colors cursor-pointer" title="Close Preview">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Scrollable Canvas for Printable Document -->
+    <div class="flex-1 overflow-y-auto px-4 md:px-10 py-8 bg-slate-100">
+      <div id="crm-printable-invoice" class="max-w-4xl mx-auto bg-white rounded-2xl border border-slate-200 p-6 md:p-10 shadow-sm space-y-6 mb-16">
+        <!-- Brand Header -->
+        <div class="flex items-start justify-between border-b-2 border-slate-900 pb-5">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-lg bg-coral text-white font-bold flex items-center justify-center text-sm shadow-xs">
+                SS
+              </div>
+              <span class="font-headline font-bold text-2xl text-slate-900 tracking-tight">SweepSage</span>
+            </div>
+            <div class="text-[12px] font-medium text-slate-500">SweepSage Travel &amp; Doorstep Concierge Services</div>
+            <div class="text-[11px] text-slate-400">GSTIN: 07AAECS1234F1Z8 • Reg: Bengaluru &amp; Delhi NCR</div>
+          </div>
+
+          <div class="text-right space-y-1">
+            <span id="inv-doc-status-badge" class="inline-block px-3 py-1 rounded-full text-[11px] font-label font-bold uppercase tracking-wider bg-coral/10 text-coral">
+              Tax Invoice &amp; Proposal
+            </span>
+            <div id="inv-doc-number" class="font-headline font-bold text-lg text-slate-900">INV-SWP-XXXX</div>
+            <div class="text-[11px] text-slate-500">Date: <span id="inv-doc-date">Nov 19, 2026</span></div>
+          </div>
+        </div>
+
+        <!-- Bill To & Trip Specs -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-50 p-4 rounded-xl border border-slate-200">
+          <div>
+            <div class="text-[10px] font-label font-bold uppercase tracking-wider text-slate-400 mb-1">Billed To (Client):</div>
+            <div id="inv-doc-client-name" class="font-headline font-bold text-base text-slate-900">Client Name</div>
+            <div id="inv-doc-client-phone" class="text-xs text-slate-600 mt-0.5">-</div>
+            <div id="inv-doc-client-email" class="text-xs text-slate-600">-</div>
+            <div id="inv-doc-client-address" class="text-xs text-slate-500 mt-1">-</div>
+          </div>
+
+          <div>
+            <div class="text-[10px] font-label font-bold uppercase tracking-wider text-slate-400 mb-1">Trip Specifications:</div>
+            <div id="inv-doc-destination" class="font-headline font-bold text-base text-slate-900">Destination</div>
+            <div class="text-xs text-slate-600 mt-0.5">Duration: <span id="inv-doc-duration" class="font-semibold text-slate-800">-</span></div>
+            <div class="text-xs text-slate-600">Travel Dates: <span id="inv-doc-dates" class="font-semibold text-slate-800">-</span></div>
+            <div class="text-xs text-slate-600">Travelers: <span id="inv-doc-guests" class="font-semibold text-slate-800">-</span></div>
+            <div class="text-xs text-slate-600">Hotel Category: <span id="inv-doc-hotel" class="font-semibold text-slate-800">-</span></div>
+            <div class="text-xs text-slate-600">Meal Plan: <span id="inv-doc-meal-plan" class="font-semibold text-slate-800">-</span></div>
+            <div class="text-xs text-slate-600">Vehicle: <span id="inv-doc-vehicle" class="font-semibold text-slate-800">-</span></div>
+          </div>
+        </div>
+
+        <!-- Day-by-Day Itinerary Schedule -->
+        <div class="space-y-3">
+          <div class="text-[11px] font-label font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[16px] text-coral">event_note</span>
+            <span>Customized Day-by-Day Travel Schedule</span>
+          </div>
+          <div id="inv-doc-itinerary-list" class="divide-y divide-slate-100 border border-slate-200 rounded-xl overflow-hidden bg-white">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+        <!-- Inclusions & Exclusions -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="space-y-2">
+            <div class="text-[11px] font-label font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[16px] text-emerald-600">check_circle</span>
+              <span>Package Inclusions</span>
+            </div>
+            <div id="inv-doc-inclusions-list" class="space-y-1 text-xs text-slate-700 bg-emerald-50/40 p-3 rounded-xl border border-emerald-100"></div>
+          </div>
+
+          <div class="space-y-2">
+            <div class="text-[11px] font-label font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[16px] text-rose-500">cancel</span>
+              <span>Package Exclusions</span>
+            </div>
+            <div id="inv-doc-exclusions-list" class="space-y-1 text-xs text-slate-600 bg-rose-50/40 p-3 rounded-xl border border-rose-100"></div>
+          </div>
+        </div>
+
+        <!-- Special Notes -->
+        <div id="inv-doc-notes-box" class="p-3 bg-amber-50 rounded-xl border border-amber-200 text-xs hidden">
+          <span class="font-label font-bold text-amber-900 uppercase text-[10px] block mb-0.5">Special Requests &amp; Notes:</span>
+          <span id="inv-doc-notes" class="text-amber-800"></span>
+        </div>
+
+        <!-- Commercials Table -->
+        <div class="border border-slate-200 rounded-xl overflow-hidden">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-100 text-slate-700 font-label uppercase tracking-wider text-[10px]">
+              <tr>
+                <th class="px-4 py-2.5">Component Description</th>
+                <th class="px-4 py-2.5 text-right">Amount (INR)</th>
+              </tr>
+            </thead>
+            <tbody id="inv-doc-cost-breakdown" class="divide-y divide-slate-100"></tbody>
+            <tfoot class="bg-slate-50 border-t border-slate-200 text-xs">
+              <tr>
+                <td class="px-4 py-2 font-semibold text-slate-700">Subtotal</td>
+                <td id="inv-doc-subtotal" class="px-4 py-2 text-right font-semibold text-slate-900 font-mono">₹0</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 text-slate-500">Government GST @ <span id="inv-doc-gst-pct">5%</span></td>
+                <td id="inv-doc-gst" class="px-4 py-2 text-right font-medium text-slate-800 font-mono">₹0</td>
+              </tr>
+              <tr class="bg-coral/5 font-headline font-bold text-sm">
+                <td class="px-4 py-3 text-coral-dark">GRAND TOTAL PAYABLE</td>
+                <td id="inv-doc-grand-total" class="px-4 py-3 text-right text-coral-dark font-mono text-base">₹0</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <!-- Advance & Terms -->
+        <div id="inv-doc-advance-box" class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-xs flex items-center justify-between flex-wrap gap-2">
+          <div>
+            <span class="text-slate-500">Advance Deposit Required: </span>
+            <strong id="inv-doc-advance" class="text-slate-900 font-mono font-bold">-</strong>
+          </div>
+          <div>
+            <span class="text-slate-500">Payment Terms: </span>
+            <span id="inv-doc-terms" class="text-slate-700 font-medium">-</span>
+          </div>
+        </div>
+
+        <!-- Payment & Signature -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-slate-200 items-end">
+          <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-xs space-y-1">
+            <div class="font-label font-bold text-slate-900 text-[11px] uppercase tracking-wider">Payment Instructions:</div>
+            <div>• Instant UPI ID: <strong class="text-coral font-mono">sweepsage@upi</strong></div>
+            <div>• Bank Account: <strong class="text-slate-800">SweepSage Concierge Pvt Ltd</strong></div>
+            <div>• HDFC Bank, Indiranagar Branch • IFSC: <strong class="text-slate-800 font-mono">HDFC0001234</strong></div>
+          </div>
+          <div class="text-right space-y-1">
+            <div class="text-[11px] text-slate-400">Authorized Signatory</div>
+            <div class="font-headline font-bold text-slate-900 text-sm">Utkarsh Dubey</div>
+            <div class="text-[11px] text-slate-500">Founder &amp; Lead Travel Concierge, SweepSage</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. ADD EMAIL MODAL -->
+  <div id="crmAddEmailModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200">
+      <div class="flex items-center gap-2 mb-1">
+        <span class="material-symbols-outlined text-coral text-[20px]">person_add</span>
+        <span class="text-[11px] uppercase font-bold tracking-wider text-coral font-label">Coordinator Access</span>
+      </div>
+      <h3 class="font-headline font-bold text-xl text-slate-900 mb-1">Authorize Travel CRM Email</h3>
+      <p class="text-[12px] text-slate-500 mb-4">Grant another email address access to create itineraries and generate invoices</p>
+      <form onsubmit="handleSaveNewRegisteredEmail(event)" class="space-y-3.5 text-[13px]">
+        <div>
+          <label class="text-[12px] font-label font-semibold text-slate-700 block mb-1">Business Email Address</label>
+          <input type="email" id="new-crm-email" placeholder="e.g. agent@sweepsage.com" class="w-full px-3 py-2 border border-slate-200 rounded-lg text-slate-800 focus:outline-none focus:border-coral" required>
+        </div>
+        <div class="flex items-center gap-2 pt-2">
+          <button type="submit" class="flex-1 py-2.5 rounded-lg bg-coral hover:bg-coral-dark text-white font-label font-bold text-[13px] transition-colors cursor-pointer shadow-xs">
+            Authorize Email
+          </button>
+          <button type="button" onclick="closeModal('crmAddEmailModal')" class="px-4 py-2.5 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 font-label font-semibold text-[13px] cursor-pointer">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="dashboard-toast" class="fixed bottom-6 right-6 z-50 bg-slate-900 text-white text-[13px] px-4 py-2.5 rounded-xl shadow-xl flex items-center gap-2 transition-all duration-300 transform translate-y-20 opacity-0 pointer-events-none">
+    <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+    <span id="toast-text">Update saved</span>
+  </div>
+
+  <!-- Scripts -->
+  <script src="catalog.js"></script>
+  <script>
+    let activeCRMInvoice = null;
+    let tempCRMDays = [];
+
+    function openModal(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.remove('hidden');
+        el.style.display = 'flex';
+        document.body.classList.add('overflow-hidden');
+      }
+    }
+
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.add('hidden');
+        el.style.display = 'none';
+        document.body.classList.remove('overflow-hidden');
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const modals = ['crmBuilderModal', 'crmInvoiceViewModal', 'crmAddEmailModal'];
+        modals.forEach(m => {
+          const el = document.getElementById(m);
+          if (el && !el.classList.contains('hidden') && el.style.display !== 'none') {
+            closeModal(m);
+          }
+        });
+      }
+    });
+
+    function showToast(msg) {
+      const toast = document.getElementById('dashboard-toast');
+      const text = document.getElementById('toast-text');
+      if (!toast || !text) return;
+      text.textContent = msg;
+      toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+      }, 3000);
+    }
+
+    function initCRM() {
+      if (!window.SweepSageCatalog) return;
+      const currentUser = window.SweepSageCatalog.getCurrentCRMUser();
+      const isAuth = currentUser && window.SweepSageCatalog.isEmailRegistered(currentUser);
+
+      const lockedState = document.getElementById('crm-locked-state');
+      const unlockedState = document.getElementById('crm-unlocked-state');
+      const userDisplay = document.getElementById('crm-active-user-display');
+      const authError = document.getElementById('crm-auth-error');
+
+      if (isAuth) {
+        if (lockedState) lockedState.classList.add('hidden');
+        if (unlockedState) unlockedState.classList.remove('hidden');
+        if (userDisplay) userDisplay.textContent = currentUser;
+        if (authError) authError.classList.add('hidden');
+        renderCRMInvoicesTable();
+        updateCRMMetrics();
+      } else {
+        if (lockedState) lockedState.classList.remove('hidden');
+        if (unlockedState) unlockedState.classList.add('hidden');
+      }
+    }
+
+    function handleCRMEmailVerification() {
+      const input = document.getElementById('crm-auth-email-input');
+      const error = document.getElementById('crm-auth-error');
+      if (!input || !window.SweepSageCatalog) return;
+
+      const email = input.value.trim().toLowerCase();
+      if (!email) {
+        if (error) {
+          error.textContent = "Please enter your registered email address.";
+          error.classList.remove('hidden');
+        }
+        return;
+      }
+
+      if (window.SweepSageCatalog.isEmailRegistered(email)) {
+        window.SweepSageCatalog.setCRMUser(email);
+        if (error) error.classList.add('hidden');
+        input.value = "";
+        showToast(`Welcome! CRM access unlocked for ${email} ✈️`);
+        initCRM();
+      } else {
+        if (error) {
+          error.innerHTML = `<span class="material-symbols-outlined text-[14px]">error</span><span>Email "${email}" is not authorized. Try dubeyutkarsh461@gmail.com</span>`;
+          error.classList.remove('hidden');
+        }
+      }
+    }
+
+    function quickFillCRMEmail(email) {
+      const input = document.getElementById('crm-auth-email-input');
+      if (input) input.value = email;
+      handleCRMEmailVerification();
+    }
+
+    function handleCRMLogout() {
+      if (window.SweepSageCatalog) {
+        window.SweepSageCatalog.logoutCRMUser();
+        showToast("Travel CRM console locked. 🔒");
+        initCRM();
+      }
+    }
+
+    function handleAddNewRegisteredEmailModal() {
+      document.getElementById('new-crm-email').value = "";
+      openModal('crmAddEmailModal');
+    }
+
+    function handleSaveNewRegisteredEmail(e) {
+      e.preventDefault();
+      const input = document.getElementById('new-crm-email');
+      if (!input || !window.SweepSageCatalog) return;
+      const email = input.value.trim().toLowerCase();
+      window.SweepSageCatalog.addRegisteredCRMEmail(email);
+      closeModal('crmAddEmailModal');
+      showToast(`Coordinator email "${email}" authorized for CRM! 🛡️`);
+    }
+
+    function updateCRMMetrics() {
+      if (!window.SweepSageCatalog) return;
+      const list = window.SweepSageCatalog.getCRMInvoices();
+      const proposalsEl = document.getElementById('crm-stat-proposals');
+      const revEl = document.getElementById('crm-stat-revenue');
+      const confirmedEl = document.getElementById('crm-stat-confirmed');
+
+      if (proposalsEl) proposalsEl.textContent = list.length;
+      const totalRev = list.reduce((sum, item) => sum + (item.grandTotal || 0), 0);
+      if (revEl) revEl.textContent = '₹' + totalRev.toLocaleString('en-IN');
+      const confirmedCount = list.filter(i => (i.status || '').toLowerCase().includes('confirm') || (i.status || '').toLowerCase().includes('paid')).length;
+      if (confirmedEl) confirmedEl.textContent = confirmedCount;
+    }
+
+    function renderCRMInvoicesTable() {
+      const tbody = document.getElementById('crm-invoices-tbody');
+      if (!tbody || !window.SweepSageCatalog) return;
+
+      const list = window.SweepSageCatalog.getCRMInvoices();
+      if (list.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="6" class="px-5 py-12 text-center text-slate-400">
+              <div class="w-12 h-12 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-3">
+                <span class="material-symbols-outlined text-[24px]">receipt_long</span>
+              </div>
+              <div class="font-headline font-bold text-slate-700 text-sm">No Travel Proposals or Invoices Yet</div>
+              <p class="text-xs text-slate-400 mt-1 max-w-sm mx-auto">Click "+ Create Itinerary &amp; Invoice" above to build customized travel plans with live GST calculations.</p>
+            </td>
+          </tr>`;
+        return;
+      }
+
+      tbody.innerHTML = list.map(inv => {
+        const isPaid = (inv.status || '').toLowerCase().includes('paid') || (inv.status || '').toLowerCase().includes('confirm');
+        const statusBadge = isPaid 
+          ? `<span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800">Confirmed &amp; Paid</span>`
+          : `<span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800">${inv.status || 'Quotation Generated'}</span>`;
+
+        return `
+          <tr class="hover:bg-slate-50/80 transition-colors">
+            <td class="px-5 py-3.5">
+              <div class="font-headline font-bold text-slate-900">${inv.id}</div>
+              <div class="text-[11px] text-slate-400">${inv.createdDate || 'Recent'}</div>
+            </td>
+            <td class="px-5 py-3.5">
+              <div class="font-bold text-slate-800">${inv.clientName}</div>
+              <div class="text-[11px] text-slate-500">${inv.clientPhone} • ${inv.clientEmail || 'No email'}</div>
+            </td>
+            <td class="px-5 py-3.5">
+              <div class="font-semibold text-slate-900">${inv.tripTitle || inv.destination}</div>
+              <div class="text-[11px] text-slate-500">${inv.travelDates || ''} • ${inv.duration || ''} (${inv.guestsSummary || inv.guests || ''})</div>
+            </td>
+            <td class="px-5 py-3.5">
+              <div class="font-headline font-bold text-coral text-base">${inv.grandTotalFormatted || '₹' + (inv.grandTotal || 0).toLocaleString('en-IN')}</div>
+              <div class="text-[10px] text-slate-400">Incl. ${inv.taxPercent || 5}% GST (₹${(inv.taxAmount || 0).toLocaleString('en-IN')})</div>
+            </td>
+            <td class="px-5 py-3.5">
+              ${statusBadge}
+            </td>
+            <td class="px-5 py-3.5 text-right">
+              <div class="flex items-center justify-end gap-1.5">
+                <button type="button" onclick="viewCRMInvoice('${inv.id}')" class="p-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer" title="View &amp; Print Official Invoice">
+                  <span class="material-symbols-outlined text-[18px]">visibility</span>
+                </button>
+                <button type="button" onclick="openCRMBuilderModal('${inv.id}')" class="p-1.5 rounded-lg text-amber-600 hover:text-amber-700 hover:bg-amber-50 transition-colors cursor-pointer" title="Edit Proposal &amp; Itinerary">
+                  <span class="material-symbols-outlined text-[18px]">edit</span>
+                </button>
+                <button type="button" onclick="sendCRMInvoiceWhatsApp('${inv.id}')" class="p-1.5 rounded-lg text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50 transition-colors cursor-pointer" title="Send Quotation on WhatsApp">
+                  <span class="material-symbols-outlined text-[18px]">chat</span>
+                </button>
+                <button type="button" onclick="sendCRMInvoiceEmail('${inv.id}')" class="p-1.5 rounded-lg text-blue-600 hover:text-blue-700 hover:bg-blue-50 transition-colors cursor-pointer" title="Send via Email">
+                  <span class="material-symbols-outlined text-[18px]">mail</span>
+                </button>
+                <button type="button" onclick="deleteCRMInvoice('${inv.id}')" class="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer" title="Delete Invoice">
+                  <span class="material-symbols-outlined text-[18px]">delete</span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function autoFormatTripDates() {
+      const start = document.getElementById('crm-trip-start-date').value;
+      const end = document.getElementById('crm-trip-end-date').value;
+      if (!start) return;
+
+      const startDate = new Date(start);
+      const options = { month: 'short', day: 'numeric', year: 'numeric' };
+      const startStr = startDate.toLocaleDateString('en-US', options);
+
+      if (end) {
+        const endDate = new Date(end);
+        const endStr = endDate.toLocaleDateString('en-US', options);
+        document.getElementById('crm-trip-dates').value = `${startStr} – ${endStr}`;
+
+        const diffTime = Math.abs(endDate - startDate);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        if (diffDays > 0) {
+          document.getElementById('crm-trip-duration').value = `${diffDays + 1} Days • ${diffDays} Nights`;
+          while (tempCRMDays.length < diffDays + 1) {
+            addCRMDayRow();
+          }
+        }
+      } else {
+        document.getElementById('crm-trip-dates').value = startStr;
+      }
+    }
+
+    function updatePaxSummary() {
+      const adults = parseInt(document.getElementById('crm-pax-adults').value) || 2;
+      const children = parseInt(document.getElementById('crm-pax-children').value) || 0;
+      const infants = parseInt(document.getElementById('crm-pax-infants').value) || 0;
+      const rooms = parseInt(document.getElementById('crm-pax-rooms').value) || 1;
+
+      let parts = [`${adults} Adult${adults > 1 ? 's' : ''}`];
+      if (children > 0) parts.push(`${children} Child${children > 1 ? 'ren' : ''}`);
+      if (infants > 0) parts.push(`${infants} Infant${infants > 1 ? 's' : ''}`);
+      parts.push(`(${rooms} Room${rooms > 1 ? 's' : ''})`);
+      return parts.join(', ');
+    }
+
+    function openCRMBuilderModal(invoiceId = null) {
+      const editTitle = document.getElementById('crm-builder-modal-title');
+      const editIdInput = document.getElementById('crm-edit-invoice-id');
+
+      if (invoiceId && window.SweepSageCatalog) {
+        const inv = window.SweepSageCatalog.getCRMInvoices().find(i => i.id === invoiceId);
+        if (inv) {
+          if (editTitle) editTitle.textContent = `Edit Travel Itinerary & Invoice (${inv.id})`;
+          if (editIdInput) editIdInput.value = inv.id;
+          document.getElementById('crm-booking-status').value = inv.status || 'Quotation Generated';
+          document.getElementById('crm-client-name').value = inv.clientName || '';
+          document.getElementById('crm-client-phone').value = inv.clientPhone || '';
+          document.getElementById('crm-client-email').value = inv.clientEmail || '';
+          document.getElementById('crm-client-address').value = inv.clientAddress || '';
+
+          document.getElementById('crm-trip-dest').value = inv.destination || '';
+          document.getElementById('crm-trip-title').value = inv.tripTitle || inv.destination || '';
+          document.getElementById('crm-trip-duration').value = inv.duration || '';
+          document.getElementById('crm-trip-start-date').value = inv.startDate || '';
+          document.getElementById('crm-trip-end-date').value = inv.endDate || '';
+          document.getElementById('crm-trip-dates').value = inv.travelDates || '';
+
+          document.getElementById('crm-pax-adults').value = inv.adults || 2;
+          document.getElementById('crm-pax-children').value = inv.children || 0;
+          document.getElementById('crm-pax-infants').value = inv.infants || 0;
+          document.getElementById('crm-pax-rooms').value = inv.rooms || 1;
+
+          document.getElementById('crm-trip-hotel-tier').value = inv.hotelCategory || '4-Star Premium Hotel & Resort';
+          document.getElementById('crm-trip-meal-plan').value = inv.mealPlan || 'MAP — Modified American Plan (Breakfast & Dinner)';
+          document.getElementById('crm-trip-hotel-names').value = inv.hotelNames || '';
+
+          document.getElementById('crm-trip-vehicle').value = inv.vehicleType || 'Dedicated SUV (Innova Crysta / Ertiga)';
+          document.getElementById('crm-trip-cab-scope').value = inv.cabScope || 'Dedicated AC cab for all transfers, sightseeing, tolls, parking, fuel & driver charges';
+          document.getElementById('crm-trip-flights').value = inv.flightStatus || 'Not Included (Client Arranged)';
+
+          document.getElementById('crm-trip-inclusions').value = (inv.inclusions || []).join('\n');
+          document.getElementById('crm-trip-exclusions').value = (inv.exclusions || []).join('\n');
+          document.getElementById('crm-trip-notes').value = inv.specialNotes || '';
+
+          document.getElementById('crm-cost-hotel').value = inv.accommodationCost || 0;
+          document.getElementById('crm-cost-transport').value = inv.transportCost || 0;
+          document.getElementById('crm-cost-activities').value = inv.activitiesCost || 0;
+          document.getElementById('crm-cost-flights').value = inv.flightCost || 0;
+          document.getElementById('crm-cost-concierge').value = inv.conciergeFee || 0;
+          document.getElementById('crm-cost-discount').value = inv.discount || 0;
+          document.getElementById('crm-gst-rate').value = inv.taxPercent !== undefined ? inv.taxPercent : 5;
+
+          document.getElementById('crm-trip-advance').value = inv.advanceRequired || '';
+          document.getElementById('crm-trip-terms').value = inv.paymentTerms || '30% advance to confirm booking. Balance payable 7 days prior to travel.';
+
+          tempCRMDays = (inv.itinerary && inv.itinerary.length) ? JSON.parse(JSON.stringify(inv.itinerary)) : [
+            { day: 1, title: "", plan: "", evening: "", stay: "", meals: "" }
+          ];
+          renderCRMDays();
+          recalculateCRMTotals();
+          openModal('crmBuilderModal');
+          return;
+        }
+      }
+
+      // Default new invoice (ZERO fake data)
+      if (editTitle) editTitle.textContent = "Create Custom Travel Package & Itinerary";
+      if (editIdInput) editIdInput.value = "";
+      document.getElementById('crm-booking-status').value = "Quotation Generated";
+      document.getElementById('crm-client-name').value = "";
+      document.getElementById('crm-client-phone').value = "";
+      document.getElementById('crm-client-email').value = "";
+      document.getElementById('crm-client-address').value = "";
+
+      document.getElementById('crm-trip-dest').value = "";
+      document.getElementById('crm-trip-title').value = "";
+      document.getElementById('crm-trip-duration').value = "5 Days • 4 Nights";
+      document.getElementById('crm-trip-start-date').value = "";
+      document.getElementById('crm-trip-end-date').value = "";
+      document.getElementById('crm-trip-dates').value = "";
+
+      document.getElementById('crm-pax-adults').value = 2;
+      document.getElementById('crm-pax-children').value = 0;
+      document.getElementById('crm-pax-infants').value = 0;
+      document.getElementById('crm-pax-rooms').value = 1;
+
+      document.getElementById('crm-trip-hotel-tier').value = "4-Star Premium Hotel & Resort";
+      document.getElementById('crm-trip-meal-plan').value = "MAP — Modified American Plan (Breakfast & Dinner)";
+      document.getElementById('crm-trip-hotel-names').value = "";
+
+      document.getElementById('crm-trip-vehicle').value = "Dedicated SUV (Innova Crysta / Ertiga)";
+      document.getElementById('crm-trip-cab-scope').value = "Dedicated AC cab for all transfers, sightseeing, tolls, parking, fuel & driver charges";
+      document.getElementById('crm-trip-flights').value = "Not Included (Client Arranged)";
+
+      document.getElementById('crm-trip-inclusions').value = [
+        "Hotel accommodation with specified meal plan on double sharing basis",
+        "Dedicated private vehicle for all transfers, pickups & sightseeing",
+        "All toll taxes, state permits, parking fees, fuel & driver night allowances",
+        "24x7 Dedicated SweepSage Ground Travel Coordinator support"
+      ].join('\n');
+
+      document.getElementById('crm-trip-exclusions').value = [
+        "Airfare / Train tickets (unless specifically mentioned)",
+        "Any monument entry fees, camera passes, personal expenses",
+        "Adventure activities, pony rides, cable car tickets (unless mentioned)",
+        "Anything not specifically included in package inclusions"
+      ].join('\n');
+
+      document.getElementById('crm-trip-notes').value = "";
+
+      document.getElementById('crm-cost-hotel').value = 0;
+      document.getElementById('crm-cost-transport').value = 0;
+      document.getElementById('crm-cost-activities').value = 0;
+      document.getElementById('crm-cost-flights').value = 0;
+      document.getElementById('crm-cost-concierge').value = 0;
+      document.getElementById('crm-cost-discount').value = 0;
+      document.getElementById('crm-gst-rate').value = 5;
+
+      document.getElementById('crm-trip-advance').value = "";
+      document.getElementById('crm-trip-terms').value = "30% advance to confirm booking. Balance payable 7 days prior to travel.";
+
+      const pubCb = document.getElementById('crm-publish-website');
+      if (pubCb) pubCb.checked = false;
+
+      tempCRMDays = [
+        { day: 1, title: "", plan: "", evening: "", stay: "", meals: "" }
+      ];
+
+      renderCRMDays();
+      recalculateCRMTotals();
+      openModal('crmBuilderModal');
+    }
+
+    function renderCRMDays() {
+      const container = document.getElementById('crm-days-container');
+      if (!container) return;
+
+      container.innerHTML = tempCRMDays.map((item, idx) => `
+        <div class="p-4 bg-white rounded-xl border border-slate-200 space-y-3 relative shadow-2xs">
+          <div class="flex items-center justify-between">
+            <span class="font-headline font-bold text-coral text-xs flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[16px]">pin_drop</span>
+              <span>Day ${item.day || (idx + 1)}</span>
+            </span>
+            ${tempCRMDays.length > 1 ? `
+              <button type="button" onclick="removeCRMDay(${idx})" class="text-slate-400 hover:text-rose-600 text-[11px] font-bold cursor-pointer flex items-center gap-0.5">
+                <span class="material-symbols-outlined text-[14px]">delete</span>
+                <span>Remove Day</span>
+              </button>` : ''}
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div class="md:col-span-2">
+              <label class="text-[10px] font-label font-bold text-slate-500 uppercase tracking-wider block mb-0.5">Day Title / Theme</label>
+              <input type="text" value="${item.title || ''}" placeholder="e.g. Arrival in Srinagar &amp; Dal Lake Shikara Sunset" oninput="updateCRMDay(${idx}, 'title', this.value)" class="w-full px-3 py-1.5 text-xs font-semibold border border-slate-200 rounded-lg focus:outline-none focus:border-coral">
+            </div>
+            <div>
+              <label class="text-[10px] font-label font-bold text-slate-500 uppercase tracking-wider block mb-0.5">Day &amp; Afternoon Sightseeing Schedule</label>
+              <textarea rows="2" placeholder="Details of morning &amp; afternoon sightseeing, points covered..." oninput="updateCRMDay(${idx}, 'plan', this.value)" class="w-full px-3 py-1.5 text-xs border border-slate-200 rounded-lg focus:outline-none focus:border-coral">${item.plan || item.desc || ''}</textarea>
+            </div>
+            <div>
+              <label class="text-[10px] font-label font-bold text-slate-500 uppercase tracking-wider block mb-0.5">Evening &amp; Night Schedule</label>
+              <textarea rows="2" placeholder="Evening relaxation, markets, authentic dinner, leisure time..." oninput="updateCRMDay(${idx}, 'evening', this.value)" class="w-full px-3 py-1.5 text-xs border border-slate-200 rounded-lg focus:outline-none focus:border-coral">${item.evening || ''}</textarea>
+            </div>
+            <div>
+              <label class="text-[10px] font-label font-bold text-slate-500 uppercase tracking-wider block mb-0.5">Night Stay Hotel / Location</label>
+              <input type="text" value="${item.stay || ''}" placeholder="e.g. Deluxe Houseboat, Dal Lake" oninput="updateCRMDay(${idx}, 'stay', this.value)" class="w-full px-3 py-1.5 text-xs border border-slate-200 rounded-lg focus:outline-none focus:border-coral">
+            </div>
+            <div>
+              <label class="text-[10px] font-label font-bold text-slate-500 uppercase tracking-wider block mb-0.5">Meals Included on Day</label>
+              <input type="text" value="${item.meals || ''}" placeholder="e.g. Breakfast &amp; Dinner" oninput="updateCRMDay(${idx}, 'meals', this.value)" class="w-full px-3 py-1.5 text-xs border border-slate-200 rounded-lg focus:outline-none focus:border-coral">
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function addCRMDayRow() {
+      const nextDay = tempCRMDays.length + 1;
+      tempCRMDays.push({
+        day: nextDay,
+        title: "",
+        plan: "",
+        evening: "",
+        stay: "",
+        meals: ""
+      });
+      renderCRMDays();
+    }
+
+    function removeCRMDay(idx) {
+      tempCRMDays.splice(idx, 1);
+      tempCRMDays.forEach((item, i) => item.day = i + 1);
+      renderCRMDays();
+    }
+
+    function updateCRMDay(idx, field, val) {
+      if (tempCRMDays[idx]) {
+        tempCRMDays[idx][field] = val;
+      }
+    }
+
+    function recalculateCRMTotals() {
+      const hotel = parseFloat(document.getElementById('crm-cost-hotel').value) || 0;
+      const transport = parseFloat(document.getElementById('crm-cost-transport').value) || 0;
+      const activities = parseFloat(document.getElementById('crm-cost-activities').value) || 0;
+      const flights = parseFloat(document.getElementById('crm-cost-flights').value) || 0;
+      const concierge = parseFloat(document.getElementById('crm-cost-concierge').value) || 0;
+      const discount = parseFloat(document.getElementById('crm-cost-discount').value) || 0;
+      const gstRate = parseFloat(document.getElementById('crm-gst-rate').value) || 5;
+
+      const subtotal = Math.max(0, hotel + transport + activities + flights + concierge - discount);
+      const gst = Math.round(subtotal * (gstRate / 100));
+      const grandTotal = subtotal + gst;
+
+      const subtotalEl = document.getElementById('crm-calc-subtotal');
+      const gstEl = document.getElementById('crm-calc-gst');
+      const gstLabelEl = document.getElementById('crm-calc-gst-label');
+      const grandTotalEl = document.getElementById('crm-calc-grand-total');
+
+      if (subtotalEl) subtotalEl.textContent = '₹' + subtotal.toLocaleString('en-IN');
+      if (gstLabelEl) gstLabelEl.textContent = gstRate + '%';
+      if (gstEl) gstEl.textContent = '₹' + gst.toLocaleString('en-IN');
+      if (grandTotalEl) grandTotalEl.textContent = '₹' + grandTotal.toLocaleString('en-IN');
+
+      return { hotel, transport, activities, flights, concierge, discount, gstRate, subtotal, gst, grandTotal };
+    }
+
+    function handleSaveCRMInvoice(e) {
+      e.preventDefault();
+      if (!window.SweepSageCatalog) return;
+
+      const editId = document.getElementById('crm-edit-invoice-id').value;
+      const status = document.getElementById('crm-booking-status').value;
+      const clientName = document.getElementById('crm-client-name').value.trim() || 'Valued Traveler';
+      const clientPhone = document.getElementById('crm-client-phone').value.trim() || '';
+      const clientEmail = document.getElementById('crm-client-email').value.trim() || '';
+      const clientAddress = document.getElementById('crm-client-address').value.trim() || 'India';
+
+      const destination = document.getElementById('crm-trip-dest').value.trim();
+      if (!destination) {
+        showToast("Please enter a Destination for the package ✈️");
+        const destEl = document.getElementById('crm-trip-dest');
+        if (destEl) destEl.focus();
+        return;
+      }
+      const tripTitle = document.getElementById('crm-trip-title').value.trim() || `${destination} Travel Package`;
+      const duration = document.getElementById('crm-trip-duration').value.trim() || `${tempCRMDays.length} Days • ${Math.max(1, tempCRMDays.length - 1)} Nights`;
+      const startDate = document.getElementById('crm-trip-start-date').value;
+      const endDate = document.getElementById('crm-trip-end-date').value;
+      const travelDates = document.getElementById('crm-trip-dates').value.trim() || 'Flexible / Custom Dates';
+
+      const adults = parseInt(document.getElementById('crm-pax-adults').value) || 2;
+      const children = parseInt(document.getElementById('crm-pax-children').value) || 0;
+      const infants = parseInt(document.getElementById('crm-pax-infants').value) || 0;
+      const rooms = parseInt(document.getElementById('crm-pax-rooms').value) || 1;
+      const guestsSummary = updatePaxSummary();
+
+      const hotelCategory = document.getElementById('crm-trip-hotel-tier').value;
+      const mealPlan = document.getElementById('crm-trip-meal-plan').value;
+      const hotelNames = document.getElementById('crm-trip-hotel-names').value.trim();
+
+      const vehicleType = document.getElementById('crm-trip-vehicle').value;
+      const cabScope = document.getElementById('crm-trip-cab-scope').value.trim();
+      const flightStatus = document.getElementById('crm-trip-flights').value;
+
+      const inclusionsRaw = document.getElementById('crm-trip-inclusions').value.trim();
+      const inclusions = inclusionsRaw ? inclusionsRaw.split('\n').map(i => i.trim()).filter(Boolean) : [];
+
+      const exclusionsRaw = document.getElementById('crm-trip-exclusions').value.trim();
+      const exclusions = exclusionsRaw ? exclusionsRaw.split('\n').map(i => i.trim()).filter(Boolean) : [];
+
+      const specialNotes = document.getElementById('crm-trip-notes').value.trim();
+      const advanceRequired = document.getElementById('crm-trip-advance').value.trim();
+      const paymentTerms = document.getElementById('crm-trip-terms').value.trim();
+
+      const costs = recalculateCRMTotals();
+      const invId = editId || `INV-SWP-${Math.floor(1000 + Math.random() * 9000)}`;
+      const currentUser = window.SweepSageCatalog.getCurrentCRMUser() || 'dubeyutkarsh461@gmail.com';
+
+      const invoiceData = {
+        id: invId,
+        status,
+        clientName,
+        clientPhone,
+        clientEmail,
+        clientAddress,
+        destination,
+        tripTitle,
+        duration,
+        startDate,
+        endDate,
+        travelDates,
+        adults,
+        children,
+        infants,
+        rooms,
+        guestsSummary,
+        hotelCategory,
+        mealPlan,
+        hotelNames,
+        vehicleType,
+        cabScope,
+        flightStatus,
+        itinerary: tempCRMDays,
+        inclusions,
+        exclusions,
+        specialNotes,
+        advanceRequired,
+        paymentTerms,
+        accommodationCost: costs.hotel,
+        transportCost: costs.transport,
+        activitiesCost: costs.activities,
+        flightCost: costs.flights,
+        conciergeFee: costs.concierge,
+        discount: costs.discount,
+        subtotal: costs.subtotal,
+        taxPercent: costs.gstRate,
+        taxAmount: costs.gst,
+        grandTotal: costs.grandTotal,
+        grandTotalFormatted: '₹' + costs.grandTotal.toLocaleString('en-IN'),
+        createdDate: new Date().toISOString().split('T')[0],
+        createdBy: currentUser
+      };
+
+      window.SweepSageCatalog.saveCRMInvoice(invoiceData);
+
+      // Optional: Also sync to public website catalog if checkbox is checked
+      const publishCb = document.getElementById('crm-publish-website');
+      if (publishCb && publishCb.checked && window.SweepSageCatalog) {
+        const destId = destination.toLowerCase().replace(/[^a-z0-9]/g, '-') || `dest-${Date.now()}`;
+        window.SweepSageCatalog.saveTravelDestination({
+          id: destId,
+          name: tripTitle,
+          tag: destination.toUpperCase(),
+          duration: duration,
+          price: costs.grandTotal > 0 ? `₹${Math.round(costs.grandTotal / (adults || 1)).toLocaleString('en-IN')}/- per person` : '₹19,999/- per person',
+          image: "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=800&q=80",
+          overview: specialNotes || `${duration} bespoke retreat in ${destination} with premium resort stays and dedicated vehicle.`,
+          itinerary: tempCRMDays.map(d => ({
+            day: d.day,
+            title: d.title || `Day ${d.day} Highlights`,
+            desc: (d.plan ? d.plan + '. ' : '') + (d.evening || '')
+          })),
+          inclusions: inclusions
+        });
+      }
+
+      closeModal('crmBuilderModal');
+      showToast(`Package & Invoice ${invId} saved successfully! ✈️📄`);
+      renderCRMInvoicesTable();
+      updateCRMMetrics();
+      viewCRMInvoice(invId);
+    }
+
+    function viewCRMInvoice(invoiceId) {
+      if (!window.SweepSageCatalog) return;
+      const list = window.SweepSageCatalog.getCRMInvoices();
+      const inv = list.find(i => i.id === invoiceId);
+      if (!inv) return;
+
+      activeCRMInvoice = inv;
+
+      document.getElementById('crm-preview-inv-id').textContent = inv.id;
+      document.getElementById('inv-doc-number').textContent = inv.id;
+      document.getElementById('inv-doc-date').textContent = inv.createdDate || new Date().toISOString().split('T')[0];
+
+      const statusBadge = document.getElementById('inv-doc-status-badge');
+      if (statusBadge) statusBadge.textContent = inv.status || 'Tax Invoice & Proposal';
+
+      document.getElementById('inv-doc-client-name').textContent = inv.clientName || 'Valued Traveler';
+      document.getElementById('inv-doc-client-phone').textContent = inv.clientPhone || '-';
+      document.getElementById('inv-doc-client-email').textContent = inv.clientEmail || 'N/A';
+      document.getElementById('inv-doc-client-address').textContent = inv.clientAddress || 'Client Location On File';
+
+      document.getElementById('inv-doc-destination').textContent = inv.tripTitle || inv.destination || 'Custom Travel Package';
+      document.getElementById('inv-doc-duration').textContent = inv.duration || '-';
+      document.getElementById('inv-doc-dates').textContent = inv.travelDates || '-';
+      document.getElementById('inv-doc-guests').textContent = inv.guestsSummary || inv.guests || '-';
+      document.getElementById('inv-doc-hotel').textContent = `${inv.hotelCategory || 'Standard'}${inv.hotelNames ? ' — ' + inv.hotelNames : ''}`;
+      document.getElementById('inv-doc-meal-plan').textContent = inv.mealPlan || 'As specified';
+      document.getElementById('inv-doc-vehicle').textContent = inv.vehicleType || 'Dedicated Private Cab';
+
+      // Render day-by-day itinerary
+      const daysContainer = document.getElementById('inv-doc-itinerary-list');
+      if (daysContainer) {
+        if (!inv.itinerary || inv.itinerary.length === 0) {
+          daysContainer.innerHTML = `<div class="p-4 text-center text-slate-400 text-xs">Custom trip schedule configured with concierge desk.</div>`;
+        } else {
+          daysContainer.innerHTML = inv.itinerary.map(d => `
+            <div class="p-3.5 space-y-1.5">
+              <div class="font-headline font-bold text-slate-900 text-xs flex items-center justify-between flex-wrap gap-2">
+                <div class="flex items-center gap-2">
+                  <span class="px-2 py-0.5 rounded bg-coral/10 text-coral font-bold text-[10px]">Day ${d.day}</span>
+                  <span class="text-sm text-slate-900">${d.title || 'Day ' + d.day + ' Exploration'}</span>
+                </div>
+                ${d.stay ? `<span class="text-[11px] text-slate-500 font-medium">🏨 Stay: ${d.stay}</span>` : ''}
+              </div>
+              ${d.plan || d.desc ? `<p class="text-[12px] text-slate-700 pl-8 leading-relaxed">${d.plan || d.desc}</p>` : ''}
+              ${d.evening ? `<p class="text-[11px] text-slate-500 pl-8 leading-relaxed">🌙 <em>Evening:</em> ${d.evening}</p>` : ''}
+              ${d.meals ? `<div class="text-[10px] text-emerald-700 font-semibold pl-8">🍽️ Meals: ${d.meals}</div>` : ''}
+            </div>
+          `).join('');
+        }
+      }
+
+      // Render inclusions
+      const incContainer = document.getElementById('inv-doc-inclusions-list');
+      if (incContainer) {
+        const incList = inv.inclusions || [];
+        if (incList.length === 0) {
+          incContainer.innerHTML = `<span class="text-slate-400">Standard curated concierge inclusions apply.</span>`;
+        } else {
+          incContainer.innerHTML = incList.map(item => `
+            <div class="flex items-start gap-1.5">
+              <span class="material-symbols-outlined text-[14px] text-emerald-600 shrink-0 mt-0.5">check_circle</span>
+              <span>${item}</span>
+            </div>
+          `).join('');
+        }
+      }
+
+      // Render exclusions
+      const excContainer = document.getElementById('inv-doc-exclusions-list');
+      if (excContainer) {
+        const excList = inv.exclusions || [];
+        if (excList.length === 0) {
+          excContainer.innerHTML = `<span class="text-slate-400">Any items not explicitly listed in inclusions.</span>`;
+        } else {
+          excContainer.innerHTML = excList.map(item => `
+            <div class="flex items-start gap-1.5">
+              <span class="material-symbols-outlined text-[14px] text-rose-500 shrink-0 mt-0.5">cancel</span>
+              <span>${item}</span>
+            </div>
+          `).join('');
+        }
+      }
+
+      // Special notes
+      const notesBox = document.getElementById('inv-doc-notes-box');
+      const notesText = document.getElementById('inv-doc-notes');
+      if (inv.specialNotes) {
+        if (notesBox) notesBox.classList.remove('hidden');
+        if (notesText) notesText.textContent = inv.specialNotes;
+      } else {
+        if (notesBox) notesBox.classList.add('hidden');
+      }
+
+      // Render commercial cost table
+      const costTbody = document.getElementById('inv-doc-cost-breakdown');
+      if (costTbody) {
+        costTbody.innerHTML = `
+          ${inv.accommodationCost ? `
+          <tr>
+            <td class="px-4 py-2 font-medium text-slate-700">Hotel &amp; Resort Accommodation (${inv.hotelCategory || 'Curated Stay'})</td>
+            <td class="px-4 py-2 text-right font-mono text-slate-900">₹${(inv.accommodationCost || 0).toLocaleString('en-IN')}</td>
+          </tr>` : ''}
+          ${inv.transportCost ? `
+          <tr>
+            <td class="px-4 py-2 font-medium text-slate-700">Dedicated Vehicle, Chauffeur Fleet &amp; All Road Taxes (${inv.vehicleType || 'Cab'})</td>
+            <td class="px-4 py-2 text-right font-mono text-slate-900">₹${(inv.transportCost || 0).toLocaleString('en-IN')}</td>
+          </tr>` : ''}
+          ${inv.activitiesCost ? `
+          <tr>
+            <td class="px-4 py-2 font-medium text-slate-700">Curated Excursions, Tours, Guide &amp; Permits</td>
+            <td class="px-4 py-2 text-right font-mono text-slate-900">₹${(inv.activitiesCost || 0).toLocaleString('en-IN')}</td>
+          </tr>` : ''}
+          ${inv.flightCost ? `
+          <tr>
+            <td class="px-4 py-2 font-medium text-slate-700">Flights / Train Reservations</td>
+            <td class="px-4 py-2 text-right font-mono text-slate-900">₹${(inv.flightCost || 0).toLocaleString('en-IN')}</td>
+          </tr>` : ''}
+          ${inv.conciergeFee ? `
+          <tr>
+            <td class="px-4 py-2 font-medium text-slate-700">SweepSage 24x7 Dedicated Concierge &amp; Ground Coordination Fee</td>
+            <td class="px-4 py-2 text-right font-mono text-slate-900">₹${(inv.conciergeFee || 0).toLocaleString('en-IN')}</td>
+          </tr>` : ''}
+          ${inv.discount ? `
+          <tr class="text-emerald-700">
+            <td class="px-4 py-2 font-medium">Special Privilege / Promotional Discount</td>
+            <td class="px-4 py-2 text-right font-mono">-₹${(inv.discount).toLocaleString('en-IN')}</td>
+          </tr>` : ''}
+        `;
+      }
+
+      document.getElementById('inv-doc-subtotal').textContent = '₹' + (inv.subtotal || 0).toLocaleString('en-IN');
+      const gstPctEl = document.getElementById('inv-doc-gst-pct');
+      if (gstPctEl) gstPctEl.textContent = (inv.taxPercent !== undefined ? inv.taxPercent : 5) + '%';
+      document.getElementById('inv-doc-gst').textContent = '₹' + (inv.taxAmount || 0).toLocaleString('en-IN');
+      document.getElementById('inv-doc-grand-total').textContent = inv.grandTotalFormatted || ('₹' + (inv.grandTotal || 0).toLocaleString('en-IN'));
+
+      // Advance & payment terms
+      const advBox = document.getElementById('inv-doc-advance-box');
+      if (inv.advanceRequired || inv.paymentTerms) {
+        if (advBox) advBox.classList.remove('hidden');
+        document.getElementById('inv-doc-advance').textContent = inv.advanceRequired || 'As per booking terms';
+        document.getElementById('inv-doc-terms').textContent = inv.paymentTerms || 'Standard cancellation policy applies.';
+      } else {
+        if (advBox) advBox.classList.add('hidden');
+      }
+
+      openModal('crmInvoiceViewModal');
+    }
+
+    function editActiveCRMInvoice() {
+      if (activeCRMInvoice) {
+        closeModal('crmInvoiceViewModal');
+        openCRMBuilderModal(activeCRMInvoice.id);
+      }
+    }
+
+    function sendActiveCRMInvoiceWhatsApp() {
+      if (activeCRMInvoice) {
+        sendCRMInvoiceWhatsApp(activeCRMInvoice.id);
+      }
+    }
+
+    function sendActiveCRMInvoiceEmail() {
+      if (activeCRMInvoice) {
+        sendCRMInvoiceEmail(activeCRMInvoice.id);
+      }
+    }
+
+    function sendCRMInvoiceWhatsApp(invoiceId) {
+      if (!window.SweepSageCatalog) return;
+      const list = window.SweepSageCatalog.getCRMInvoices();
+      const inv = list.find(i => i.id === invoiceId);
+      if (!inv) return;
+
+      const phone = (inv.clientPhone || '').replace(/[^0-9]/g, '');
+      const daySummary = (inv.itinerary || []).map(d => `• *Day ${d.day}:* ${d.title}${d.stay ? ' (Stay: ' + d.stay + ')' : ''}`).join('\n');
+      const inclusions = (inv.inclusions || []).join('\n• ');
+
+      const msg = 
+`🌟 *SWEEPSAGE TRAVEL PROPOSAL & QUOTATION* 🌟
+----------------------------------------------
+*Invoice / Ref No:* ${inv.id}
+*Client Name:* ${inv.clientName}
+*Destination:* ${inv.tripTitle || inv.destination}
+*Duration:* ${inv.duration || 'Custom Trip'}
+*Travel Dates:* ${inv.travelDates || 'Flexible'}
+*Travelers:* ${inv.guestsSummary || inv.guests || 'N/A'}
+*Hotel Category:* ${inv.hotelCategory || 'Standard'}
+*Meal Plan:* ${inv.mealPlan || 'Standard'}
+*Vehicle:* ${inv.vehicleType || 'Dedicated Cab'}
+
+📅 *DAY-BY-DAY ITINERARY SCHEDULE:*
+${daySummary}
+
+✨ *KEY PACKAGE INCLUSIONS:*
+• ${inclusions || 'Curated Accommodation, Dedicated Cab Transfers, Daily Breakfast & Dinner, 24x7 Ground Concierge'}
+
+💰 *COMMERCIAL INVESTMENT:*
+• Package Subtotal: ₹${(inv.subtotal || 0).toLocaleString('en-IN')}
+• Govt GST (${inv.taxPercent || 5}%): ₹${(inv.taxAmount || 0).toLocaleString('en-IN')}
+*GRAND TOTAL: ${inv.grandTotalFormatted || '₹' + (inv.grandTotal || 0).toLocaleString('en-IN')}*
+${inv.advanceRequired ? `• *Advance Required to Confirm:* ${inv.advanceRequired}` : ''}
+
+💳 *PAYMENT & BOOKING:*
+• Instant UPI ID: sweepsage@upi
+• Account: SweepSage Concierge Pvt Ltd (HDFC Bank)
+
+For booking confirmation or customized itinerary modifications, please reply directly to this message.
+Warm regards,
+*SweepSage Travel Concierge Desk* ✈️`;
+
+      const waUrl = phone 
+        ? `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(msg)}`
+        : `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
+
+      window.open(waUrl, '_blank');
+      showToast("WhatsApp quotation opened! 💬");
+    }
+
+    function sendCRMInvoiceEmail(invoiceId) {
+      if (!window.SweepSageCatalog) return;
+      const list = window.SweepSageCatalog.getCRMInvoices();
+      const inv = list.find(i => i.id === invoiceId);
+      if (!inv) return;
+
+      const subject = `SweepSage Travel Itinerary & Tax Invoice [${inv.id}] - ${inv.tripTitle || inv.destination}`;
+      const body = 
+`Dear ${inv.clientName},
+
+Thank you for connecting with SweepSage Travel Concierge!
+
+Attached is your customized travel proposal and official invoice (${inv.id}) for ${inv.tripTitle || inv.destination}.
+
+Trip Summary:
+- Destination: ${inv.tripTitle || inv.destination}
+- Duration: ${inv.duration || ''}
+- Travel Dates: ${inv.travelDates || ''}
+- Travelers: ${inv.guestsSummary || inv.guests || ''}
+- Hotel Tier: ${inv.hotelCategory || ''}
+- Meal Plan: ${inv.mealPlan || ''}
+- Vehicle: ${inv.vehicleType || ''}
+
+Commercial Breakdown:
+- Package Subtotal: ₹${(inv.subtotal || 0).toLocaleString('en-IN')}
+- Govt GST (${inv.taxPercent || 5}%): ₹${(inv.taxAmount || 0).toLocaleString('en-IN')}
+- Grand Total: ${inv.grandTotalFormatted || '₹' + (inv.grandTotal || 0).toLocaleString('en-IN')}
+${inv.advanceRequired ? '- Advance Required: ' + inv.advanceRequired : ''}
+
+Day-by-Day Schedule:
+${(inv.itinerary || []).map(d => `Day ${d.day}: ${d.title}\n${d.plan || d.desc || ''}\nStay: ${d.stay || '-'}\n`).join('\n')}
+
+Payment Details:
+- Instant UPI: sweepsage@upi
+- Account: SweepSage Concierge Pvt Ltd (HDFC Bank)
+
+Please let us know if you require any adjustments or are ready to confirm your reservation.
+
+Warm regards,
+SweepSage Travel Concierge Desk
+www.sweepsage.com`;
+
+      const mailtoUrl = `mailto:${inv.clientEmail || ''}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailtoUrl;
+      showToast("Email client opened! ✉️");
+    }
+
+    function printCRMInvoice() {
+      window.print();
+    }
+
+    function deleteCRMInvoice(invoiceId) {
+      if (!confirm(`Are you sure you want to delete invoice ${invoiceId}?`)) return;
+      if (window.SweepSageCatalog) {
+        window.SweepSageCatalog.deleteCRMInvoice(invoiceId);
+        showToast(`Invoice ${invoiceId} deleted.`);
+        renderCRMInvoicesTable();
+        updateCRMMetrics();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initCRM();
+    });
+  </script>
+</body>
+</html>
