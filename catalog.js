@@ -630,7 +630,9 @@
     },
 
     getCurrentCRMUser: function () {
-      return localStorage.getItem(CRM_SESSION_KEY) || null;
+      const session = localStorage.getItem(CRM_SESSION_KEY);
+      if (session === "logged_out") return null;
+      return session || DEFAULT_CRM_EMAILS[0];
     },
 
     setCRMUser: function (email) {
@@ -640,7 +642,7 @@
     },
 
     logoutCRMUser: function () {
-      localStorage.removeItem(CRM_SESSION_KEY);
+      localStorage.setItem(CRM_SESSION_KEY, "logged_out");
     },
 
     getCRMInvoices: function () {
