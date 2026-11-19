@@ -435,10 +435,123 @@
     </div>
   </div>
 
+  <!-- TRAVEL DAY-BY-DAY ITINERARY MODAL -->
+  <div class="custom-modal-backdrop" id="travelItineraryModal" aria-hidden="true" role="dialog" aria-modal="true" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); backdrop-filter: blur(5px); z-index: 99999; align-items: center; justify-content: center; padding: 16px;">
+    <div class="custom-modal-box" style="background: #ffffff; color: #111827; border-radius: 24px; max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 32px; box-shadow: 0 25px 60px rgba(0,0,0,0.4); position: relative;">
+      <button type="button" class="modal-close-cross" onclick="closeTravelItineraryModal()" aria-label="Close itinerary" style="position: absolute; top: 20px; right: 24px; background: none; border: none; font-size: 26px; color: #9ca3af; cursor: pointer;">&times;</button>
+      
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+        <span id="itinerary-modal-tag" style="background: rgba(252,94,104,0.12); color: #fc5e68; border: 1px solid rgba(252,94,104,0.3); font-size: 11px; font-weight: 800; padding: 4px 12px; border-radius: 9999px; letter-spacing: 0.05em; text-transform: uppercase;">HIMALAYAS</span>
+        <span id="itinerary-modal-duration" style="font-size: 13px; font-weight: 700; color: #4b5563;">5 Days • 4 Nights</span>
+      </div>
+
+      <h2 id="itinerary-modal-title" style="font-size: 26px; font-weight: 800; color: #111827; margin: 0 0 4px; letter-spacing: -0.02em;">Kashmir Paradise</h2>
+      <div id="itinerary-modal-price" style="font-size: 18px; font-weight: 800; color: #fc5e68; margin-bottom: 12px;">₹18,999/- per person</div>
+      <p id="itinerary-modal-overview" style="font-size: 14px; color: #4b5563; line-height: 1.6; margin-bottom: 24px;">Mountains, lakes, slow days, and shikara rides on Dal Lake.</p>
+
+      <div style="margin-bottom: 24px;">
+        <h4 style="font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #9ca3af; margin: 0 0 12px;">Day-by-Day Journey</h4>
+        <div id="itinerary-modal-days-list" style="display: flex; flex-direction: column; gap: 12px;">
+          <!-- Injected via JavaScript -->
+        </div>
+      </div>
+
+      <div style="margin-bottom: 24px; background: #f9fafb; padding: 16px; border-radius: 14px; border: 1px solid #e5e7eb;">
+        <h4 style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #6b7280; margin: 0 0 8px;">Package Inclusions</h4>
+        <div id="itinerary-modal-inclusions" style="display: flex; flex-wrap: wrap; gap: 6px;">
+          <!-- Injected via JavaScript -->
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 10px; align-items: center;">
+        <a id="itinerary-modal-book-btn" href="TRAVEL-BOOKING.HTML?destination=kashmir" class="btn btn-gold" style="flex: 1; text-align: center; text-decoration: none; padding: 14px 20px; font-weight: 700; font-size: 14px; border-radius: 9999px;">
+          Plan &amp; Book This Trip ↗
+        </a>
+        <button type="button" onclick="closeTravelItineraryModal()" style="padding: 14px 20px; border: 1px solid #e5e7eb; background: #fff; border-radius: 9999px; font-weight: 600; font-size: 14px; cursor: pointer; color: #4b5563;">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
   <div class="toast" id="toast">Opening your enquiry…</div>
 
+  <script src="catalog.js"></script>
   <script src="api.js?v=3.2"></script>
   <script src="supabase.config.js"></script>
   <script src="SCRIPT.JS?v=3.2"></script>
+  <script>
+    function renderTravelCollection() {
+      if (!window.SweepSageCatalog) return;
+      const destinations = window.SweepSageCatalog.getTravelDestinations();
+      const row = document.querySelector('.destination-row');
+      if (!row || !destinations || destinations.length === 0) return;
+
+      row.innerHTML = destinations.map((d, idx) => {
+        const fallbackClass = d.imageClass || (`d${(idx % 4) + 1}`);
+        const customBg = d.image ? `background-image: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%), url('${d.image}'); background-size: cover; background-position: center;` : '';
+        return `
+          <article class="destination-card ${fallbackClass} reveal" style="${customBg}" onclick="openTravelItineraryModal('${d.id}')" role="button" tabindex="0">
+            <span>${d.tag}</span>
+            <h3>${d.name}</h3>
+            <div style="color: #fc5e68; font-weight: 700; font-size: 13px; margin: 4px 0 6px;">${d.price} • ${d.duration}</div>
+            <p>${d.overview}</p>
+            <div style="margin-top: 12px;">
+              <span class="btn btn-light" style="font-size: 12px; padding: 6px 14px; border-radius: 9999px; display: inline-block;">
+                View ${d.itinerary ? d.itinerary.length : 4}-Day Itinerary ↗
+              </span>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function openTravelItineraryModal(destId) {
+      if (!window.SweepSageCatalog) return;
+      const destinations = window.SweepSageCatalog.getTravelDestinations();
+      const d = destinations.find(x => x.id === destId);
+      if (!d) return;
+
+      document.getElementById('itinerary-modal-tag').textContent = d.tag;
+      document.getElementById('itinerary-modal-duration').textContent = d.duration;
+      document.getElementById('itinerary-modal-title').textContent = d.name;
+      document.getElementById('itinerary-modal-price').textContent = d.price;
+      document.getElementById('itinerary-modal-overview').textContent = d.overview;
+      document.getElementById('itinerary-modal-book-btn').href = `TRAVEL-BOOKING.HTML?destination=${encodeURIComponent(d.id)}`;
+
+      const daysList = document.getElementById('itinerary-modal-days-list');
+      if (daysList) {
+        daysList.innerHTML = (d.itinerary || []).map(step => `
+          <div style="display: flex; gap: 12px; align-items: flex-start; padding: 10px 14px; background: #f9fafb; border-radius: 12px; border-left: 3px solid #fc5e68;">
+            <div style="font-weight: 800; font-size: 13px; color: #fc5e68; min-width: 48px;">Day ${step.day}</div>
+            <div>
+              <strong style="font-size: 13px; color: #111827; display: block; margin-bottom: 2px;">${step.title}</strong>
+              <p style="font-size: 12px; color: #6b7280; margin: 0; line-height: 1.4;">${step.desc}</p>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      const incDiv = document.getElementById('itinerary-modal-inclusions');
+      if (incDiv) {
+        incDiv.innerHTML = (d.inclusions || []).map(inc => `
+          <span style="background: #e5e7eb; color: #374151; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 9999px;">
+            ✓ ${inc}
+          </span>
+        `).join('');
+      }
+
+      const modal = document.getElementById('travelItineraryModal');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeTravelItineraryModal() {
+      const modal = document.getElementById('travelItineraryModal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    document.addEventListener('DOMContentLoaded', renderTravelCollection);
+    window.addEventListener('sweepsage_catalog_updated', renderTravelCollection);
+  </script>
 </body>
 </html>

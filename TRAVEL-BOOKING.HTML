@@ -14,9 +14,28 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="BOOKING-FLOW.CSS?v=3.2">
+<script src="catalog.js"></script>
 <script src="api.js?v=3.2" defer></script>
 <script src="SCRIPT.JS?v=3.2" defer></script>
 <script src="BOOKING-FLOW.JS?v=3.2" defer></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const params = new URLSearchParams(window.location.search);
+    const dest = params.get('destination');
+    if (dest && window.SweepSageCatalog) {
+      const list = window.SweepSageCatalog.getTravelDestinations();
+      const match = list.find(d => d.id === dest.toLowerCase());
+      if (match) {
+        const destInput = document.getElementById('details_destination') || document.querySelector('input[name="destination"]');
+        if (destInput) destInput.value = match.name;
+        const noteInput = document.getElementById('details_notes') || document.querySelector('textarea[name="notes"]');
+        if (noteInput && !noteInput.value) {
+          noteInput.value = `Interested in the ${match.name} itinerary (${match.duration}). Quoted: ${match.price}.`;
+        }
+      }
+    }
+  });
+</script>
   <script>
     (function(){
       try { localStorage.removeItem('sweepsage_theme'); } catch(e){}

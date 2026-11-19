@@ -14,9 +14,26 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="BOOKING-FLOW.CSS?v=3.2">
+<script src="catalog.js"></script>
 <script src="api.js?v=3.2" defer></script>
 <script src="SCRIPT.JS?v=3.2" defer></script>
 <script src="BOOKING-FLOW.JS?v=3.2" defer></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    if (window.SweepSageCatalog) {
+      const services = window.SweepSageCatalog.getPhotographyServices();
+      const inst = services.find(s => s.id === 'instant');
+      if (inst) {
+        const uspStrong = document.querySelector("#uspPrice strong");
+        if (uspStrong) uspStrong.textContent = inst.price;
+        const tenStrong = document.querySelector(".ten-price strong");
+        if (tenStrong) tenStrong.textContent = inst.price;
+        const navBtn = document.querySelector(".nav-instant-btn");
+        if (navBtn) navBtn.innerHTML = `⚡ BOOK IN MINUTES (${inst.price})`;
+      }
+    }
+  });
+</script>
   <script>
     (function(){
       try { localStorage.removeItem('sweepsage_theme'); } catch(e){}

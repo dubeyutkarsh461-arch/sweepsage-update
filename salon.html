@@ -132,48 +132,53 @@
     </div>
   </header>
 
+  <!-- COMING SOON ANNOUNCEMENT BANNER -->
+  <div class="coming-soon-banner" style="background: linear-gradient(135deg, #18181b 0%, #27272a 100%); border-bottom: 2px solid #fc5e68; color: #fff; padding: 12px 20px; text-align: center; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; z-index: 20; position: relative;">
+    <span style="background: #fc5e68; color: #fff; text-transform: uppercase; font-size: 10px; font-weight: 800; letter-spacing: 0.08em; padding: 3px 10px; border-radius: 9999px;">LAUNCHING SOON</span>
+    <span>Doorstep Salon &amp; Beauty is launching soon in Bengaluru &amp; Delhi NCR!</span>
+    <button type="button" onclick="openSalonWaitlistModal()" style="background: transparent; color: #fc5e68; border: 1px solid #fc5e68; padding: 4px 14px; border-radius: 9999px; font-weight: 700; cursor: pointer; font-size: 12px; transition: all 0.2s;" onmouseover="this.style.background='#fc5e68';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#fc5e68'">Join VIP Waitlist (50% Off) →</button>
+  </div>
+
   <main class="service-page-wrap">
     <div class="service-page-back-row">
       <button type="button" class="service-page-back-btn" onclick="window.smartGoBack()">
         <span>←</span>
         <span>Back to Overview</span>
       </button>
-      <span class="eyebrow dark">02 / SALON AT HOME</span>
+      <span class="eyebrow dark">02 / SALON AT HOME — COMING SOON</span>
     </div>
 
     <!-- SALON SHOWCASE -->
     <section class="service-section salon-section" id="salon" style="border-radius: 28px; width: min(100% - 36px, var(--max)); margin: 0 auto 40px; box-shadow: 0 16px 50px rgba(0,0,0,0.18);">
       <div class="service-copy reveal-left">
-        <span class="eyebrow">SALON, WITHOUT THE SALON</span>
-        <h2>Beauty comes<br><em>to you.</em></h2>
+        <span class="eyebrow">SALON AT HOME — COMING SOON</span>
+        <h2>Beauty comes<br><em>to you soon.</em></h2>
         <p>
           Hair, skin, makeup, grooming and wellness — professionally delivered
-          at home, at your preferred time with sealed single-use hygiene kits.
+          at home with sealed single-use sterile kits. We are currently certifying top-tier stylists across Bengaluru and Delhi NCR. Join our VIP early access waitlist for an exclusive launch voucher.
         </p>
 
         <div class="salon-pills">
-          <a href="SALON-BOOKING.HTML?service=hair" style="text-decoration:none; color:inherit;"><span>Hair</span></a>
-          <a href="SALON-BOOKING.HTML?service=makeup" style="text-decoration:none; color:inherit;"><span>Makeup</span></a>
-          <a href="SALON-BOOKING.HTML?service=skin" style="text-decoration:none; color:inherit;"><span>Facial</span></a>
-          <a href="SALON-BOOKING.HTML?service=nails" style="text-decoration:none; color:inherit;"><span>Nails</span></a>
-          <a href="SALON-BOOKING.HTML?service=spa" style="text-decoration:none; color:inherit;"><span>Spa</span></a>
-          <a href="SALON-BOOKING.HTML?service=grooming" style="text-decoration:none; color:inherit;"><span>Grooming</span></a>
-          <a href="SALON-BOOKING.HTML?service=bridal" style="text-decoration:none; color:inherit;"><span>Bridal</span></a>
-          <a href="SALON-BOOKING.HTML?service=kids" style="text-decoration:none; color:inherit;"><span>Kids</span></a>
+          <a href="javascript:void(0)" onclick="openSalonWaitlistModal('Hair')" style="text-decoration:none; color:inherit;"><span>Hair (Soon)</span></a>
+          <a href="javascript:void(0)" onclick="openSalonWaitlistModal('Makeup')" style="text-decoration:none; color:inherit;"><span>Makeup (Soon)</span></a>
+          <a href="javascript:void(0)" onclick="openSalonWaitlistModal('Facial')" style="text-decoration:none; color:inherit;"><span>Facial (Soon)</span></a>
+          <a href="javascript:void(0)" onclick="openSalonWaitlistModal('Nails')" style="text-decoration:none; color:inherit;"><span>Nails (Soon)</span></a>
+          <a href="javascript:void(0)" onclick="openSalonWaitlistModal('Spa')" style="text-decoration:none; color:inherit;"><span>Spa (Soon)</span></a>
+          <a href="javascript:void(0)" onclick="openSalonWaitlistModal('Bridal')" style="text-decoration:none; color:inherit;"><span>Bridal (Soon)</span></a>
         </div>
 
         <div class="service-buttons">
-          <a class="btn btn-light magnetic" href="SALON-BOOKING.HTML">Book Salon at Home <span>↗</span></a>
-          <a class="text-link light-link" href="#salon-services">Explore salon services <span>→</span></a>
+          <button class="btn btn-gold magnetic" type="button" onclick="openSalonWaitlistModal()" style="cursor: pointer; border: none; font-size: 14px; font-weight: 700; padding: 14px 24px; border-radius: 9999px;">Join VIP Waitlist (50% Off) <span>↗</span></button>
+          <a class="text-link light-link" href="#salon-services">Preview upcoming services <span>→</span></a>
         </div>
       </div>
 
       <div class="section-image reveal-right">
         <div class="image-card salon-card">
-          <div class="floating-label">02 / SALON AT HOME</div>
+          <div class="floating-label">02 / LAUNCHING SOON</div>
           <div class="image-caption">
             <span>YOUR SPACE. YOUR TIME.</span>
-            <strong>Self-care,<br>delivered.</strong>
+            <strong>Self-care,<br>coming soon.</strong>
           </div>
         </div>
       </div>
@@ -183,40 +188,58 @@
     <section class="cards-section dark-section" id="salon-services">
       <div class="section-head reveal">
         <div>
-          <span class="eyebrow">SALON AT HOME</span>
+          <span class="eyebrow">UPCOMING CATALOG</span>
           <h2>Everything you need<br><span>under one roof.</span></h2>
         </div>
         <p>Certified stylists bringing salon-grade chairs, mirrors, sanitized tools, and luxury products to your living room.</p>
       </div>
 
       <div class="compact-grid">
-        <article class="dark-card reveal" onclick="window.location.href='SALON-BOOKING.HTML?service=hair'" role="button" tabindex="0">
-          <span>01</span>
+        <article class="dark-card reveal" onclick="openSalonWaitlistModal('Hair & Styling')" role="button" tabindex="0">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <span>01</span>
+            <span style="background: rgba(252,94,104,0.15); color: #fc5e68; border: 1px solid rgba(252,94,104,0.3); font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.05em;">COMING SOON</span>
+          </div>
           <h3>Hair & Styling</h3>
           <p>Haircut, blow-dry, styling, coloring, highlights, and deep conditioning treatments.</p>
         </article>
-        <article class="dark-card reveal" onclick="window.location.href='SALON-BOOKING.HTML?service=makeup'" role="button" tabindex="0">
-          <span>02</span>
+        <article class="dark-card reveal" onclick="openSalonWaitlistModal('Makeup')" role="button" tabindex="0">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <span>02</span>
+            <span style="background: rgba(252,94,104,0.15); color: #fc5e68; border: 1px solid rgba(252,94,104,0.3); font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.05em;">COMING SOON</span>
+          </div>
           <h3>Makeup</h3>
           <p>Party, engagement, bridal, pre-wedding HD glam and fashion editorial makeup.</p>
         </article>
-        <article class="dark-card reveal" onclick="window.location.href='SALON-BOOKING.HTML?service=skin'" role="button" tabindex="0">
-          <span>03</span>
+        <article class="dark-card reveal" onclick="openSalonWaitlistModal('Skin & Facial')" role="button" tabindex="0">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <span>03</span>
+            <span style="background: rgba(252,94,104,0.15); color: #fc5e68; border: 1px solid rgba(252,94,104,0.3); font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.05em;">COMING SOON</span>
+          </div>
           <h3>Skin & Facial</h3>
           <p>Organic facials, cleanup, anti-aging skincare, de-tan, and radiant glow treatments.</p>
         </article>
-        <article class="dark-card reveal" onclick="window.location.href='SALON-BOOKING.HTML?service=nails'" role="button" tabindex="0">
-          <span>04</span>
+        <article class="dark-card reveal" onclick="openSalonWaitlistModal('Nails')" role="button" tabindex="0">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <span>04</span>
+            <span style="background: rgba(252,94,104,0.15); color: #fc5e68; border: 1px solid rgba(252,94,104,0.3); font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.05em;">COMING SOON</span>
+          </div>
           <h3>Nails</h3>
           <p>Classic manicure, pedicure, gel extensions, custom nail art and cuticle care.</p>
         </article>
-        <article class="dark-card reveal" onclick="window.location.href='SALON-BOOKING.HTML?service=spa'" role="button" tabindex="0">
-          <span>05</span>
+        <article class="dark-card reveal" onclick="openSalonWaitlistModal('Spa & Wellness')" role="button" tabindex="0">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <span>05</span>
+            <span style="background: rgba(252,94,104,0.15); color: #fc5e68; border: 1px solid rgba(252,94,104,0.3); font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.05em;">COMING SOON</span>
+          </div>
           <h3>Spa & Wellness</h3>
           <p>Therapeutic head massage, body relaxation, reflexology and aromatherapy at home.</p>
         </article>
-        <article class="dark-card reveal" onclick="window.location.href='SALON-BOOKING.HTML?service=grooming'" role="button" tabindex="0">
-          <span>06</span>
+        <article class="dark-card reveal" onclick="openSalonWaitlistModal('Men\'s Grooming')" role="button" tabindex="0">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <span>06</span>
+            <span style="background: rgba(252,94,104,0.15); color: #fc5e68; border: 1px solid rgba(252,94,104,0.3); font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.05em;">COMING SOON</span>
+          </div>
           <h3>Men's Grooming</h3>
           <p>Hair styling, beard grooming, detan, face cleanup and personal wellness.</p>
         </article>
@@ -450,10 +473,98 @@
     </div>
   </div>
 
+  <!-- SALON VIP WAITLIST MODAL -->
+  <div class="custom-modal-backdrop" id="salonWaitlistModal" aria-hidden="true" role="dialog" aria-modal="true" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); z-index: 99999; align-items: center; justify-content: center; padding: 16px;">
+    <div class="custom-modal-box" style="background: #18181b; color: #fff; border: 1px solid #3f3f46; border-radius: 20px; max-width: 440px; width: 100%; padding: 28px; box-shadow: 0 25px 60px rgba(0,0,0,0.5); position: relative;">
+      <button type="button" class="modal-close-cross" onclick="closeSalonWaitlistModal()" aria-label="Close" style="position: absolute; top: 18px; right: 20px; background: none; border: none; color: #a1a1aa; font-size: 24px; cursor: pointer;">&times;</button>
+      
+      <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(252,94,104,0.15); border: 1px solid rgba(252,94,104,0.3); padding: 4px 12px; border-radius: 9999px; margin-bottom: 12px;">
+        <span style="width: 6px; height: 6px; border-radius: 50%; background: #fc5e68;"></span>
+        <span style="color: #fc5e68; font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase;">VIP EARLY ACCESS</span>
+      </div>
+
+      <div class="modal-head-title" style="font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 6px;">Salon at Home — Launching Soon</div>
+      <p class="modal-head-desc" style="font-size: 13px; color: #a1a1aa; margin-bottom: 20px; line-height: 1.5;">
+        Join our exclusive priority waitlist. You will receive first appointment booking access plus a <strong>flat 50% discount voucher</strong> directly on WhatsApp when we launch!
+      </p>
+
+      <form id="publicSalonWaitlistForm" onsubmit="handlePublicSalonWaitlist(event)" style="display: flex; flex-direction: column; gap: 14px;">
+        <div>
+          <label style="display: block; font-size: 11px; font-weight: 700; color: #d4d4d8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">Your Full Name</label>
+          <input type="text" id="sw-name" required placeholder="e.g. Riya Verma" style="width: 100%; padding: 10px 14px; background: #27272a; border: 1px solid #3f3f46; border-radius: 10px; color: #fff; font-size: 14px; outline: none; box-sizing: border-box;">
+        </div>
+
+        <div>
+          <label style="display: block; font-size: 11px; font-weight: 700; color: #d4d4d8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">WhatsApp Mobile Number</label>
+          <input type="tel" id="sw-phone" required placeholder="e.g. +91 98450 12345" style="width: 100%; padding: 10px 14px; background: #27272a; border: 1px solid #3f3f46; border-radius: 10px; color: #fff; font-size: 14px; outline: none; box-sizing: border-box;">
+        </div>
+
+        <div>
+          <label style="display: block; font-size: 11px; font-weight: 700; color: #d4d4d8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">Service You Are Interested In</label>
+          <input type="text" id="sw-service" value="Hair & Styling" placeholder="e.g. Haircut, Bridal, Facial" style="width: 100%; padding: 10px 14px; background: #27272a; border: 1px solid #3f3f46; border-radius: 10px; color: #fff; font-size: 14px; outline: none; box-sizing: border-box;">
+        </div>
+
+        <div>
+          <label style="display: block; font-size: 11px; font-weight: 700; color: #d4d4d8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px;">City / Neighborhood</label>
+          <input type="text" id="sw-city" required placeholder="e.g. Bengaluru (Koramangala) or Delhi NCR" style="width: 100%; padding: 10px 14px; background: #27272a; border: 1px solid #3f3f46; border-radius: 10px; color: #fff; font-size: 14px; outline: none; box-sizing: border-box;">
+        </div>
+
+        <button type="submit" style="margin-top: 6px; padding: 12px; background: #fc5e68; color: #fff; border: none; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='#e03a48'" onmouseout="this.style.background='#fc5e68'">
+          Claim 50% Off &amp; Join Waitlist ⚡
+        </button>
+      </form>
+    </div>
+  </div>
+
   <div class="toast" id="toast">Opening your enquiry…</div>
 
+  <script src="catalog.js"></script>
   <script src="api.js?v=3.2"></script>
   <script src="supabase.config.js"></script>
   <script src="SCRIPT.JS?v=3.2"></script>
+  <script>
+    function openSalonWaitlistModal(serviceName) {
+      const modal = document.getElementById('salonWaitlistModal');
+      if (modal) {
+        modal.style.display = 'flex';
+        if (serviceName) {
+          const sInput = document.getElementById('sw-service');
+          if (sInput) sInput.value = serviceName;
+        }
+      }
+    }
+
+    function closeSalonWaitlistModal() {
+      const modal = document.getElementById('salonWaitlistModal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function handlePublicSalonWaitlist(e) {
+      e.preventDefault();
+      const name = document.getElementById('sw-name').value.trim();
+      const phone = document.getElementById('sw-phone').value.trim();
+      const service = document.getElementById('sw-service').value.trim();
+      const city = document.getElementById('sw-city').value.trim();
+
+      if (window.SweepSageCatalog) {
+        window.SweepSageCatalog.addSalonWaitlist({
+          name: name,
+          phone: phone,
+          serviceInterest: service,
+          city: city
+        });
+      }
+
+      closeSalonWaitlistModal();
+      e.target.reset();
+      
+      const toast = document.getElementById('toast');
+      if (toast) {
+        toast.textContent = `🎉 You are on the VIP waitlist, ${name}! 50% discount code reserved.`;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 4000);
+      }
+    }
+  </script>
 </body>
 </html>

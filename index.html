@@ -228,8 +228,11 @@
           <div class="tab-icon">
             <img src="loader-salon-logo.png" alt="Salon at Home">
           </div>
-          <strong>Salon at Home</strong>
-          <small>Beauty, grooming & wellness</small>
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <strong>Salon at Home</strong>
+            <span style="background: rgba(252,94,104,0.15); color: #fc5e68; border: 1px solid rgba(252,94,104,0.3); font-size: 9px; font-weight: 800; padding: 1px 6px; border-radius: 9999px; text-transform: uppercase;">SOON</span>
+          </div>
+          <small>Launching Soon • VIP Waitlist</small>
           <span class="tab-arrow">↗</span>
         </a>
         <a class="service-tab" href="travel.html">
@@ -819,8 +822,21 @@
 
   <div class="toast" id="toast">Opening your enquiry…</div>
 
+  <script src="catalog.js"></script>
   <script src="api.js?v=3.2"></script>
   <script src="supabase.config.js"></script>
   <script src="SCRIPT.JS?v=3.2"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.SweepSageCatalog) {
+        const services = window.SweepSageCatalog.getPhotographyServices();
+        const inst = services.find(s => s.id === 'instant');
+        if (inst) {
+          const navInstant = document.querySelector('.nav-instant-btn');
+          if (navInstant) navInstant.textContent = `⚡ Book in Minutes (${inst.price})`;
+        }
+      }
+    });
+  </script>
 </body>
 </html>

@@ -1576,7 +1576,15 @@ function renderEvents(){
 
     grid.innerHTML = "";
 
-    events[booking.service].forEach(event => {
+    let eventList = events[booking.service] || [];
+    if (booking.service === "photographer" && window.SweepSageCatalog) {
+        const catalogServices = window.SweepSageCatalog.getPhotographyServices();
+        if (catalogServices && catalogServices.length > 0) {
+            eventList = catalogServices.filter(s => s.active !== false);
+        }
+    }
+
+    eventList.forEach(event => {
 
         const card = document.createElement("button");
 
@@ -1672,8 +1680,15 @@ function renderPackages(){
 
     grid.innerHTML = "";
 
-    const list =
-        packages[booking.service][booking.event] || [];
+    let list =
+        (packages[booking.service] && packages[booking.service][booking.event]) || [];
+
+    if (booking.service === "photographer" && window.SweepSageCatalog) {
+        const catList = window.SweepSageCatalog.getPhotographyPackages(booking.event);
+        if (catList && catList.length > 0) {
+            list = catList;
+        }
+    }
 
     const travel = booking.service === "travel";
 

@@ -14,6 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="BOOKING-FLOW.CSS?v=3.2">
+<script src="catalog.js"></script>
 <script src="api.js?v=3.2" defer></script>
 <script src="SCRIPT.JS?v=3.2" defer></script>
 <script src="BOOKING-FLOW.JS?v=3.2" defer></script>
@@ -149,6 +150,47 @@
 <main class="page">
 
 <div class="container">
+
+    <!-- SALON COMING SOON CARD -->
+    <div class="salon-coming-soon-card" style="background: linear-gradient(135deg, #18181b 0%, #27272a 100%); border: 1px solid #3f3f46; border-radius: 18px; padding: 24px; margin-bottom: 24px; color: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
+        <span style="background: rgba(252,94,104,0.2); color: #fc5e68; border: 1px solid rgba(252,94,104,0.4); font-size: 11px; font-weight: 800; padding: 4px 12px; border-radius: 9999px; letter-spacing: 0.06em; text-transform: uppercase;">
+          LAUNCHING SOON IN BENGALURU &amp; DELHI NCR
+        </span>
+        <span style="font-size: 12px; color: #a1a1aa;">Estimated: Early 2027</span>
+      </div>
+      <h2 style="font-size: 20px; font-weight: 700; color: #fff; margin: 0 0 8px;">Salon at Home is Launching Soon!</h2>
+      <p style="font-size: 13px; color: #d4d4d8; line-height: 1.5; margin: 0 0 16px;">
+        We are currently certifying senior stylists and assembling sealed single-use sterile kits. Join our VIP Early Access waitlist below to get first priority and an exclusive <strong>flat 50% discount voucher</strong>.
+      </p>
+      <form onsubmit="handleSalonBookingWaitlist(event)" style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <input type="text" id="sb-waitlist-name" required placeholder="Your Name" style="flex: 1; min-width: 140px; padding: 10px 14px; background: #27272a; border: 1px solid #52525b; border-radius: 10px; color: #fff; font-size: 13px; outline: none;">
+        <input type="tel" id="sb-waitlist-phone" required placeholder="WhatsApp Number" style="flex: 1; min-width: 140px; padding: 10px 14px; background: #27272a; border: 1px solid #52525b; border-radius: 10px; color: #fff; font-size: 13px; outline: none;">
+        <button type="submit" style="padding: 10px 20px; background: #fc5e68; color: #fff; font-weight: 700; font-size: 13px; border: none; border-radius: 10px; cursor: pointer;">
+          Join VIP Waitlist (50% Off) ⚡
+        </button>
+      </form>
+      <div id="sb-waitlist-success" style="display: none; margin-top: 12px; font-size: 13px; color: #34d399; font-weight: 600;">
+        ✓ You are registered! Your 50% discount code has been locked in.
+      </div>
+    </div>
+    <script>
+      function handleSalonBookingWaitlist(e) {
+        e.preventDefault();
+        const name = document.getElementById('sb-waitlist-name').value.trim();
+        const phone = document.getElementById('sb-waitlist-phone').value.trim();
+        if (window.SweepSageCatalog) {
+          window.SweepSageCatalog.addSalonWaitlist({
+            name: name,
+            phone: phone,
+            serviceInterest: 'Salon at Home Booking Page',
+            city: 'Bengaluru / Delhi NCR'
+          });
+        }
+        document.getElementById('sb-waitlist-success').style.display = 'block';
+        e.target.reset();
+      }
+    </script>
 
     <div class="intro">
 
