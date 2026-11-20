@@ -19,7 +19,7 @@
 <script src="SCRIPT.JS?v=3.2" defer></script>
 <script src="BOOKING-FLOW.JS?v=3.2" defer></script>
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  function syncBookingPhotography() {
     if (window.SweepSageCatalog) {
       const services = window.SweepSageCatalog.getPhotographyServices();
       const inst = services.find(s => s.id === 'instant');
@@ -30,9 +30,17 @@
         if (tenStrong) tenStrong.textContent = inst.price;
         const navBtn = document.querySelector(".nav-instant-btn");
         if (navBtn) navBtn.innerHTML = `⚡ BOOK IN MINUTES (${inst.price})`;
+        const tenOffer = document.getElementById("tenMinuteOffer");
+        if (tenOffer) {
+          const tenSmall = tenOffer.querySelector("small");
+          if (tenSmall) tenSmall.textContent = `Doorstep dispatch • Verified Pro • ${inst.price}`;
+        }
       }
     }
-  });
+  }
+  document.addEventListener('DOMContentLoaded', syncBookingPhotography);
+  window.addEventListener('sweepsage_catalog_updated', syncBookingPhotography);
+  syncBookingPhotography();
 </script>
   <script>
     (function(){

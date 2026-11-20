@@ -134,9 +134,9 @@
 
   <!-- COMING SOON ANNOUNCEMENT BANNER -->
   <div class="coming-soon-banner" style="background: linear-gradient(135deg, #18181b 0%, #27272a 100%); border-bottom: 2px solid #fc5e68; color: #fff; padding: 12px 20px; text-align: center; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; z-index: 20; position: relative;">
-    <span style="background: #fc5e68; color: #fff; text-transform: uppercase; font-size: 10px; font-weight: 800; letter-spacing: 0.08em; padding: 3px 10px; border-radius: 9999px;">LAUNCHING SOON</span>
-    <span>Doorstep Salon &amp; Beauty is launching soon in Bengaluru &amp; Delhi NCR!</span>
-    <button type="button" onclick="openSalonWaitlistModal()" style="background: transparent; color: #fc5e68; border: 1px solid #fc5e68; padding: 4px 14px; border-radius: 9999px; font-weight: 700; cursor: pointer; font-size: 12px; transition: all 0.2s;" onmouseover="this.style.background='#fc5e68';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#fc5e68'">Join VIP Waitlist (50% Off) →</button>
+    <span id="salon-banner-badge" style="background: #fc5e68; color: #fff; text-transform: uppercase; font-size: 10px; font-weight: 800; letter-spacing: 0.08em; padding: 3px 10px; border-radius: 9999px;">LAUNCHING SOON</span>
+    <span id="salon-banner-text">Doorstep Salon &amp; Beauty is launching soon in Bengaluru &amp; Delhi NCR!</span>
+    <button type="button" id="salon-banner-btn" onclick="openSalonWaitlistModal()" style="background: transparent; color: #fc5e68; border: 1px solid #fc5e68; padding: 4px 14px; border-radius: 9999px; font-weight: 700; cursor: pointer; font-size: 12px; transition: all 0.2s;" onmouseover="this.style.background='#fc5e68';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#fc5e68'">Join VIP Waitlist (50% Off) →</button>
   </div>
 
   <main class="service-page-wrap">
@@ -145,15 +145,15 @@
         <span>←</span>
         <span>Back to Overview</span>
       </button>
-      <span class="eyebrow dark">02 / SALON AT HOME — COMING SOON</span>
+      <span class="eyebrow dark" id="salon-back-eyebrow">02 / SALON AT HOME — COMING SOON</span>
     </div>
 
     <!-- SALON SHOWCASE -->
     <section class="service-section salon-section" id="salon" style="border-radius: 28px; width: min(100% - 36px, var(--max)); margin: 0 auto 40px; box-shadow: 0 16px 50px rgba(0,0,0,0.18);">
       <div class="service-copy reveal-left">
-        <span class="eyebrow">SALON AT HOME — COMING SOON</span>
-        <h2>Beauty comes<br><em>to you soon.</em></h2>
-        <p>
+        <span class="eyebrow" id="salon-hero-eyebrow">SALON AT HOME — COMING SOON</span>
+        <h2 id="salon-hero-headline">Beauty comes<br><em>to you soon.</em></h2>
+        <p id="salon-hero-subheadline">
           Hair, skin, makeup, grooming and wellness — professionally delivered
           at home with sealed single-use sterile kits. We are currently certifying top-tier stylists across Bengaluru and Delhi NCR. Join our VIP early access waitlist for an exclusive launch voucher.
         </p>
@@ -168,7 +168,7 @@
         </div>
 
         <div class="service-buttons">
-          <button class="btn btn-gold magnetic" type="button" onclick="openSalonWaitlistModal()" style="cursor: pointer; border: none; font-size: 14px; font-weight: 700; padding: 14px 24px; border-radius: 9999px;">Join VIP Waitlist (50% Off) <span>↗</span></button>
+          <button class="btn btn-gold magnetic" id="salon-hero-cta" type="button" onclick="openSalonWaitlistModal()" style="cursor: pointer; border: none; font-size: 14px; font-weight: 700; padding: 14px 24px; border-radius: 9999px;">Join VIP Waitlist (50% Off) <span>↗</span></button>
           <a class="text-link light-link" href="#salon-services">Preview upcoming services <span>→</span></a>
         </div>
       </div>
@@ -565,6 +565,42 @@
         setTimeout(() => toast.classList.remove('show'), 4000);
       }
     }
+
+    function syncSalonPageCMS() {
+      if (!window.SweepSageCatalog) return;
+      const cfg = window.SweepSageCatalog.getSalonConfig();
+      if (!cfg) return;
+
+      const bBadge = document.getElementById('salon-banner-badge');
+      if (bBadge) bBadge.textContent = cfg.badgeText || (cfg.isComingSoon ? "LAUNCHING SOON" : "NOW LIVE");
+      
+      const bText = document.getElementById('salon-banner-text');
+      if (bText && cfg.subheadline) bText.textContent = cfg.subheadline;
+
+      const bBtn = document.getElementById('salon-banner-btn');
+      if (bBtn) bBtn.textContent = (cfg.offerTag || "Join VIP Waitlist (50% Off)") + " →";
+
+      const backEyebrow = document.getElementById('salon-back-eyebrow');
+      if (backEyebrow) backEyebrow.textContent = `02 / SALON AT HOME — ${cfg.badgeText || 'COMING SOON'}`;
+
+      const heroEyebrow = document.getElementById('salon-hero-eyebrow');
+      if (heroEyebrow) heroEyebrow.textContent = `SALON AT HOME — ${cfg.badgeText || 'COMING SOON'}`;
+
+      const heroH = document.getElementById('salon-hero-headline');
+      if (heroH && cfg.headline) heroH.innerHTML = cfg.headline;
+
+      const heroSub = document.getElementById('salon-hero-subheadline');
+      if (heroSub && cfg.subheadline) heroSub.textContent = cfg.subheadline;
+
+      const heroCta = document.getElementById('salon-hero-cta');
+      if (heroCta) {
+        heroCta.innerHTML = `${cfg.offerTag || 'Join VIP Waitlist (50% Off)'} <span>↗</span>`;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', syncSalonPageCMS);
+    window.addEventListener('sweepsage_catalog_updated', syncSalonPageCMS);
+    syncSalonPageCMS();
   </script>
 </body>
 </html>

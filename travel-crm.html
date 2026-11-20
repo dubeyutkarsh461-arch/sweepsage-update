@@ -1673,6 +1673,10 @@ www.sweepsage.com`;
     document.addEventListener('DOMContentLoaded', () => {
       initCRM();
     });
+    window.addEventListener('sweepsage_catalog_updated', () => {
+      renderCRMInvoicesTable();
+      updateCRMMetrics();
+    });
   </script>
 </body>
 </html>

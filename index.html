@@ -220,7 +220,7 @@
             <img src="loader-camera-logo.png" alt="Photography">
           </div>
           <strong>Photography</strong>
-          <small>Book in minutes — Just ₹1,499/-</small>
+          <small>Book in minutes — Just <span id="home-instant-price">₹1,499/-</span></small>
           <span class="tab-arrow">↗</span>
         </a>
         <a class="service-tab" href="salon.html">
@@ -230,9 +230,9 @@
           </div>
           <div style="display: flex; align-items: center; gap: 6px;">
             <strong>Salon at Home</strong>
-            <span style="background: rgba(252,94,104,0.15); color: #fc5e68; border: 1px solid rgba(252,94,104,0.3); font-size: 9px; font-weight: 800; padding: 1px 6px; border-radius: 9999px; text-transform: uppercase;">SOON</span>
+            <span id="home-salon-badge" style="background: rgba(252,94,104,0.15); color: #fc5e68; border: 1px solid rgba(252,94,104,0.3); font-size: 9px; font-weight: 800; padding: 1px 6px; border-radius: 9999px; text-transform: uppercase;">SOON</span>
           </div>
-          <small>Launching Soon • VIP Waitlist</small>
+          <small id="home-salon-sub">Launching Soon • VIP Waitlist</small>
           <span class="tab-arrow">↗</span>
         </a>
         <a class="service-tab" href="travel.html">
@@ -296,7 +296,7 @@
             <div class="mockup-service-chips">
               <div class="mockup-chip active">
                 <span class="mockup-chip-icon">📸</span>
-                <span>Photographer <small>₹1,499</small></span>
+                <span>Photographer <small id="home-step1-price">₹1,499</small></span>
               </div>
               <div class="mockup-chip">
                 <span class="mockup-chip-icon">💄</span>
@@ -787,7 +787,7 @@
         </div>
         <div class="modal-order-details">
           <span>Date: Today • 10-Minute Dispatch</span><br>
-          <span>Amount: ₹1,499/- • Professional Studio Gear</span>
+          <span>Amount: <span id="home-modal-price">₹1,499/-</span> • Professional Studio Gear</span>
         </div>
       </div>
 
@@ -827,16 +827,32 @@
   <script src="supabase.config.js"></script>
   <script src="SCRIPT.JS?v=3.2"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      if (window.SweepSageCatalog) {
-        const services = window.SweepSageCatalog.getPhotographyServices();
-        const inst = services.find(s => s.id === 'instant');
-        if (inst) {
-          const navInstant = document.querySelector('.nav-instant-btn');
-          if (navInstant) navInstant.textContent = `⚡ Book in Minutes (${inst.price})`;
-        }
+    function syncHomePageCatalog() {
+      if (!window.SweepSageCatalog) return;
+      const services = window.SweepSageCatalog.getPhotographyServices();
+      const inst = services.find(s => s.id === 'instant');
+      if (inst) {
+        const navInstant = document.querySelector('.nav-instant-btn');
+        if (navInstant) navInstant.textContent = `⚡ Book in Minutes (${inst.price})`;
+        const homeInst = document.getElementById('home-instant-price');
+        if (homeInst) homeInst.textContent = inst.price;
+        const step1 = document.getElementById('home-step1-price');
+        if (step1) step1.textContent = inst.price;
+        const modalP = document.getElementById('home-modal-price');
+        if (modalP) modalP.textContent = inst.price;
       }
-    });
+
+      const salon = window.SweepSageCatalog.getSalonConfig();
+      if (salon) {
+        const badge = document.getElementById('home-salon-badge');
+        if (badge) badge.textContent = salon.isComingSoon ? (salon.badgeText || 'SOON') : 'LIVE';
+        const sub = document.getElementById('home-salon-sub');
+        if (sub) sub.textContent = salon.launchTimeline || 'Launching Soon • VIP Waitlist';
+      }
+    }
+    document.addEventListener('DOMContentLoaded', syncHomePageCatalog);
+    window.addEventListener('sweepsage_catalog_updated', syncHomePageCatalog);
+    syncHomePageCatalog();
   </script>
 </body>
 </html>

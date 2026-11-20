@@ -382,11 +382,43 @@
     }
   ];
 
+  // Real-time cross-tab synchronization channel
+  let syncChannel = null;
+  try {
+    if (typeof window !== "undefined" && window.BroadcastChannel) {
+      syncChannel = new BroadcastChannel("sweepsage_realtime_sync");
+      syncChannel.onmessage = function (e) {
+        if (e && e.data && e.data.type === "SWEEPSAGE_CATALOG_SYNC") {
+          try {
+            window.dispatchEvent(new CustomEvent("sweepsage_catalog_updated", { detail: e.data.state }));
+          } catch (err) {}
+        }
+      };
+    }
+  } catch (e) {}
+
+  if (typeof window !== "undefined") {
+    window.addEventListener("storage", function (e) {
+      if (e.key === STORAGE_KEY && e.newValue) {
+        try {
+          const state = JSON.parse(e.newValue);
+          window.dispatchEvent(new CustomEvent("sweepsage_catalog_updated", { detail: state }));
+        } catch (err) {}
+      }
+    });
+  }
+
   function loadState() {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
-        return JSON.parse(raw);
+        const parsed = JSON.parse(raw);
+        return {
+          photographyServices: (parsed.photographyServices && parsed.photographyServices.length > 0) ? parsed.photographyServices : DEFAULT_PHOTOGRAPHY_SERVICES,
+          photographyPackages: parsed.photographyPackages || DEFAULT_PHOTOGRAPHY_PACKAGES,
+          salonConfig: parsed.salonConfig || DEFAULT_SALON_CONFIG,
+          travelDestinations: (parsed.travelDestinations && parsed.travelDestinations.length > 0) ? parsed.travelDestinations : DEFAULT_TRAVEL_DESTINATIONS
+        };
       }
     } catch (e) {
       console.warn("SweepSage Catalog: Failed to load from localStorage", e);
@@ -403,8 +435,22 @@
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
       window.dispatchEvent(new CustomEvent("sweepsage_catalog_updated", { detail: state }));
+      if (syncChannel) {
+        try {
+          syncChannel.postMessage({ type: "SWEEPSAGE_CATALOG_SYNC", state: state });
+        } catch (err) {}
+      }
     } catch (e) {
       console.error("SweepSage Catalog: Failed to save to localStorage", e);
+    }
+
+    // Background sync to backend SQLite / Vercel API
+    if (typeof window !== "undefined" && window.fetch) {
+      fetch('/api/catalog', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(state)
+      }).catch(() => {});
     }
   }
 
@@ -682,6 +728,10 @@
       }
       try {
         localStorage.setItem(CRM_INVOICES_KEY, JSON.stringify(list));
+        window.dispatchEvent(new CustomEvent("sweepsage_catalog_updated", { detail: { invoices: list } }));
+        if (syncChannel) {
+          try { syncChannel.postMessage({ type: "SWEEPSAGE_CATALOG_SYNC", detail: { invoices: list } }); } catch (err) {}
+        }
       } catch (e) {
         console.warn("Failed to save CRM invoice", e);
       }
@@ -711,6 +761,10 @@
       list = list.filter(i => i.id !== invoiceId);
       try {
         localStorage.setItem(CRM_INVOICES_KEY, JSON.stringify(list));
+        window.dispatchEvent(new CustomEvent("sweepsage_catalog_updated", { detail: { invoices: list } }));
+        if (syncChannel) {
+          try { syncChannel.postMessage({ type: "SWEEPSAGE_CATALOG_SYNC", detail: { invoices: list } }); } catch (err) {}
+        }
       } catch (e) {}
 
       // Delete from IndexedDB
@@ -849,6 +903,22 @@
 
   // Initialize DB immediately
   initIndexedDB();
+
+  // Attempt background sync from server if available
+  if (typeof window !== "undefined" && window.fetch) {
+    fetch('/api/catalog')
+      .then(res => res.ok ? res.json() : null)
+      .then(remoteState => {
+        if (remoteState && (remoteState.photographyServices || remoteState.travelDestinations)) {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(remoteState));
+            window.dispatchEvent(new CustomEvent("sweepsage_catalog_updated", { detail: remoteState }));
+          }
+        }
+      })
+      .catch(() => {});
+  }
 
   // Expose globally
   window.SweepSageCatalog = SweepSageCatalog;

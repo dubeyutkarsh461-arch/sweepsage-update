@@ -487,23 +487,48 @@
       const row = document.querySelector('.destination-row');
       if (!row || !destinations || destinations.length === 0) return;
 
-      row.innerHTML = destinations.map((d, idx) => {
-        const fallbackClass = d.imageClass || (`d${(idx % 4) + 1}`);
-        const customBg = d.image ? `background-image: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%), url('${d.image}'); background-size: cover; background-position: center;` : '';
-        return `
-          <article class="destination-card ${fallbackClass} reveal" style="${customBg}" onclick="openTravelItineraryModal('${d.id}')" role="button" tabindex="0">
-            <span>${d.tag}</span>
-            <h3>${d.name}</h3>
-            <div style="color: #fc5e68; font-weight: 700; font-size: 13px; margin: 4px 0 6px;">${d.price} • ${d.duration}</div>
-            <p>${d.overview}</p>
-            <div style="margin-top: 12px;">
-              <span class="btn btn-light" style="font-size: 12px; padding: 6px 14px; border-radius: 9999px; display: inline-block;">
-                View ${d.itinerary ? d.itinerary.length : 4}-Day Itinerary ↗
-              </span>
-            </div>
-          </article>
+      // Update existing 4 cards in place without deleting them:
+      const cards = row.querySelectorAll('.destination-card:not(.custom-crm-destination)');
+      const defaultIds = ['kashmir', 'maldives', 'singapore', 'paris'];
+
+      defaultIds.forEach((id, idx) => {
+        const d = destinations.find(x => x.id === id);
+        if (d && cards[idx]) {
+          cards[idx].onclick = function() { openTravelItineraryModal(d.id); };
+          const p = cards[idx].querySelector('p');
+          if (p && d.overview) {
+            p.innerHTML = `<span style="color:#fc5e68; font-weight:700;">${d.price} • ${d.duration}</span><br>${d.overview}`;
+          }
+        }
+      });
+
+      // If user added extra custom destinations from CRM / CMS, append them
+      const customDests = destinations.filter(d => !defaultIds.includes(d.id));
+      row.querySelectorAll('.custom-crm-destination').forEach(el => el.remove());
+
+      customDests.forEach((d, idx) => {
+        const card = document.createElement('article');
+        card.className = `destination-card d${(idx % 4) + 1} custom-crm-destination reveal visible`;
+        if (d.image) {
+          card.style.backgroundImage = `linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%), url('${d.image}')`;
+          card.style.backgroundSize = 'cover';
+          card.style.backgroundPosition = 'center';
+        }
+        card.setAttribute('role', 'button');
+        card.setAttribute('tabindex', '0');
+        card.onclick = function() { openTravelItineraryModal(d.id); };
+        card.innerHTML = `
+          <span>${d.tag || 'EXCLUSIVE'}</span>
+          <h3>${d.name}</h3>
+          <p><span style="color:#fc5e68; font-weight:700;">${d.price} • ${d.duration}</span><br>${d.overview}</p>
+          <div style="margin-top: 12px;">
+            <span class="btn btn-light" style="font-size: 12px; padding: 6px 14px; border-radius: 9999px; display: inline-block;">
+              View Itinerary ↗
+            </span>
+          </div>
         `;
-      }).join('');
+        row.appendChild(card);
+      });
     }
 
     function openTravelItineraryModal(destId) {
@@ -552,6 +577,7 @@
 
     document.addEventListener('DOMContentLoaded', renderTravelCollection);
     window.addEventListener('sweepsage_catalog_updated', renderTravelCollection);
+    renderTravelCollection();
   </script>
 </body>
 </html>

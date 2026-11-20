@@ -130,6 +130,15 @@ def init_db():
         );
         """)
 
+        # 5. Global Site Catalog (Photography, Salon Config, Travel Packages)
+        cur.execute("""
+        CREATE TABLE IF NOT EXISTS site_catalog (
+            id TEXT PRIMARY KEY,
+            catalog_json TEXT,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+        """)
+
         # Seed founder email if empty
         cur.execute("INSERT OR IGNORE INTO crm_coordinators (email, role) VALUES ('dubeyutkarsh461@gmail.com', 'Founder');")
 
@@ -347,3 +356,35 @@ async def save_travel_destination(request: Request):
     conn.commit()
     conn.close()
     return JSONResponse({"status": "success", "id": dest_id, "database": "SQLite"})
+
+# -------------------------------------------------------------
+# GLOBAL SITE CATALOG API (PHOTOGRAPHY, SALON, TRAVEL)
+# -------------------------------------------------------------
+
+@app.get("/api/catalog")
+def get_site_catalog():
+    """Fetch global site catalog state (Photography services, Salon teaser config, Travel packages) from SQLite."""
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT catalog_json FROM site_catalog WHERE id = 'main'")
+    row = cur.fetchone()
+    conn.close()
+    if row and row["catalog_json"]:
+        return JSONResponse(json.loads(row["catalog_json"]))
+    return JSONResponse({})
+
+@app.post("/api/catalog")
+async def save_site_catalog(request: Request):
+    """Save global site catalog state to SQLite database."""
+    data = await request.json()
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("""
+    INSERT INTO site_catalog (id, catalog_json, updated_at)
+    VALUES ('main', ?, CURRENT_TIMESTAMP)
+    ON CONFLICT(id) DO UPDATE SET catalog_json = excluded.catalog_json, updated_at = CURRENT_TIMESTAMP;
+    """, (json.dumps(data),))
+    conn.commit()
+    conn.close()
+    return JSONResponse({"status": "success", "database": "SQLite", "synced": True})
+

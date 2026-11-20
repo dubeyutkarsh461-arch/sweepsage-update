@@ -1556,7 +1556,8 @@ function selectService(service){
             goToPackages();
 
             if (matched.id === "instant") {
-                selectPackage("10-Min Photographer", "₹1,499/-", false);
+                const currentInstPrice = (window.SweepSageCatalog && window.SweepSageCatalog.getPhotographyServices().find(s => s.id === 'instant')?.price) || "₹1,499/-";
+                selectPackage("10-Min Photographer", currentInstPrice, false);
             }
             return;
         }
@@ -1576,11 +1577,18 @@ function renderEvents(){
 
     grid.innerHTML = "";
 
-    let eventList = events[booking.service] || [];
+    // Preserve all comprehensive original events
+    let eventList = [...(events[booking.service] || [])];
+
+    // If photography, dynamically sync instant shoot price into description without removing any options
     if (booking.service === "photographer" && window.SweepSageCatalog) {
         const catalogServices = window.SweepSageCatalog.getPhotographyServices();
-        if (catalogServices && catalogServices.length > 0) {
-            eventList = catalogServices.filter(s => s.active !== false);
+        const inst = catalogServices.find(s => s.id === "instant");
+        if (inst) {
+            const evInstant = eventList.find(e => e.id === "instant");
+            if (evInstant) {
+                evInstant.description = `Book in minutes (${inst.price}): Professional photographer at your doorstep for portraits and special moments.`;
+            }
         }
     }
 
@@ -1683,10 +1691,12 @@ function renderPackages(){
     let list =
         (packages[booking.service] && packages[booking.service][booking.event]) || [];
 
-    if (booking.service === "photographer" && window.SweepSageCatalog) {
-        const catList = window.SweepSageCatalog.getPhotographyPackages(booking.event);
-        if (catList && catList.length > 0) {
-            list = catList;
+    // Dynamically update instant shoot price from catalog without touching or deleting any package options
+    if (booking.service === "photographer" && booking.event === "instant" && window.SweepSageCatalog) {
+        const inst = window.SweepSageCatalog.getPhotographyServices().find(s => s.id === "instant");
+        if (inst && list.length > 0) {
+            list[0].price = inst.price;
+            list[0].tag = `SWEEPSAGE USP — JUST ${inst.price}`;
         }
     }
 
@@ -1824,14 +1834,15 @@ function renderPackages(){
             tenOfferEl.style.display = "none";
         } else {
             tenOfferEl.style.display = "";
+            const currentInstPrice = (window.SweepSageCatalog && window.SweepSageCatalog.getPhotographyServices().find(s => s.id === 'instant')?.price) || "₹1,499/-";
             tenOfferEl.onclick = function(e){
-                selectPackage("10-Min Photographer", "₹1,499/-", true);
+                selectPackage("10-Min Photographer", currentInstPrice, true);
             };
             const tenBtn = tenOfferEl.querySelector(".ten-button");
             if (tenBtn) {
                 tenBtn.onclick = function(e){
                     e.stopPropagation();
-                    selectPackage("10-Min Photographer", "₹1,499/-", true);
+                    selectPackage("10-Min Photographer", currentInstPrice, true);
                 };
             }
         }

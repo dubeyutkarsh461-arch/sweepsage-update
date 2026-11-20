@@ -157,7 +157,7 @@
         <span class="eyebrow">PHOTOGRAPHY ON DEMAND</span>
         <h2>A photographer<br><em>in minutes.</em></h2>
         <p>
-          From a 10-minute quick portrait at home for just <strong>₹1,499/-</strong> to a full wedding production, book the
+          From a 10-minute quick portrait at home for just <strong id="photo-hero-inline-price">₹1,499/-</strong> to a full wedding production, book the
           photography experience you need without the usual back-and-forth.
         </p>
 
@@ -470,34 +470,84 @@
       const services = window.SweepSageCatalog.getPhotographyServices();
       const instant = services.find(s => s.id === 'instant');
       if (instant) {
+        const inlinePrice = document.getElementById('photo-hero-inline-price');
+        if (inlinePrice) inlinePrice.textContent = instant.price;
         const heroPrice = document.getElementById('photo-hero-instant-price');
         if (heroPrice) heroPrice.textContent = instant.price;
         const ctaPrice = document.getElementById('photo-hero-cta-price');
         if (ctaPrice) ctaPrice.textContent = instant.price;
       }
 
-      const grid = document.querySelector('.cards-grid');
-      if (grid && services && services.length > 0) {
-        grid.innerHTML = services.filter(s => s.active !== false).map((s, idx) => {
-          const num = String(idx + 1).padStart(2, '0');
-          const isFeatured = s.id === 'instant';
-          const link = `PHOTOGRAPHER-BOOKING.HTML?event=${encodeURIComponent(s.id)}`;
-          return `
-            <article class="service-card ${isFeatured ? 'featured' : ''} reveal" onclick="window.location.href='${link}'" role="button" tabindex="0" aria-label="Book ${s.name}">
-              <div class="card-number">${num}</div>
-              <span class="card-price-tag">${s.price}</span>
-              <h3>${s.name}</h3>
-              <p>${s.description}</p>
-              <a href="${link}" class="btn ${isFeatured ? 'btn-gold' : 'btn-light'}" style="margin-top: 14px; text-decoration: none;">
-                ${isFeatured ? 'Book in Minutes' : 'Explore Packages'} <span>↗</span>
-              </a>
-            </article>
-          `;
-        }).join('');
+      // Preserve all 6 original cards intact; only update prices in-place
+      const cards = document.querySelectorAll('.cards-grid .service-card');
+      if (cards && cards.length > 0) {
+        // Card 1: Instant
+        if (instant && cards[0]) {
+          const tag = cards[0].querySelector('.card-price-tag');
+          if (tag) tag.textContent = instant.price;
+          const p = cards[0].querySelector('p');
+          if (p) p.textContent = `Need photos now? Request an available professional photographer at your doorstep in minutes for ${instant.price}.`;
+        }
+        // Card 2: Wedding
+        const wed = services.find(s => s.id === 'wedding');
+        if (wed && cards[1]) {
+          let tag = cards[1].querySelector('.card-price-tag');
+          if (!tag) {
+            tag = document.createElement('span');
+            tag.className = 'card-price-tag';
+            cards[1].insertBefore(tag, cards[1].querySelector('h3'));
+          }
+          if (tag) tag.textContent = wed.price;
+        }
+        // Card 3: Pre-wedding
+        const pre = services.find(s => s.id === 'prewedding');
+        if (pre && cards[2]) {
+          let tag = cards[2].querySelector('.card-price-tag');
+          if (!tag) {
+            tag = document.createElement('span');
+            tag.className = 'card-price-tag';
+            cards[2].insertBefore(tag, cards[2].querySelector('h3'));
+          }
+          if (tag) tag.textContent = pre.price;
+        }
+        // Card 4: Event & Birthday
+        const bday = services.find(s => s.id === 'birthday');
+        if (bday && cards[3]) {
+          let tag = cards[3].querySelector('.card-price-tag');
+          if (!tag) {
+            tag = document.createElement('span');
+            tag.className = 'card-price-tag';
+            cards[3].insertBefore(tag, cards[3].querySelector('h3'));
+          }
+          if (tag) tag.textContent = bday.price;
+        }
+        // Card 5: Commercial
+        const comm = services.find(s => s.id === 'commercial');
+        if (comm && cards[4]) {
+          let tag = cards[4].querySelector('.card-price-tag');
+          if (!tag) {
+            tag = document.createElement('span');
+            tag.className = 'card-price-tag';
+            cards[4].insertBefore(tag, cards[4].querySelector('h3'));
+          }
+          if (tag) tag.textContent = comm.price;
+        }
+        // Card 6: Portrait
+        const port = services.find(s => s.id === 'portrait');
+        if (port && cards[5]) {
+          let tag = cards[5].querySelector('.card-price-tag');
+          if (!tag) {
+            tag = document.createElement('span');
+            tag.className = 'card-price-tag';
+            cards[5].insertBefore(tag, cards[5].querySelector('h3'));
+          }
+          if (tag) tag.textContent = port.price;
+        }
       }
     }
     document.addEventListener('DOMContentLoaded', syncPhotographyPricing);
     window.addEventListener('sweepsage_catalog_updated', syncPhotographyPricing);
+    syncPhotographyPricing();
   </script>
 </body>
 </html>
