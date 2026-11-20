@@ -1349,9 +1349,13 @@
               <label class="text-[11px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Return Date</label>
               <input type="date" id="crm-trip-end-date" onchange="autoFormatTripDates()" class="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral text-xs">
             </div>
-            <div class="md:col-span-2">
+            <div>
               <label class="text-[11px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Display Travel Dates</label>
               <input type="text" id="crm-trip-dates" placeholder="e.g. Dec 15, 2026 – Dec 20, 2026 (or Flexible Dates)" class="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral">
+            </div>
+            <div>
+              <label class="text-[11px] font-label font-bold text-slate-600 block mb-1 uppercase tracking-wider">Cover Photo (Website)</label>
+              <input type="url" id="crm-trip-image" placeholder="Image URL (leave blank for auto photo)" class="w-full px-3.5 py-2 bg-white border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:border-coral text-xs">
             </div>
           </div>
 
@@ -1550,19 +1554,22 @@
         </div>
 
         <!-- OPTIONAL: PUBLISH TO PUBLIC CATALOG -->
-        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between gap-4">
+        <div class="p-4 bg-emerald-50/60 rounded-xl border border-emerald-200/80 flex items-center justify-between gap-4">
           <div class="flex items-center gap-3">
-            <span class="w-9 h-9 rounded-lg bg-coral/10 text-coral flex items-center justify-center shrink-0">
-              <span class="material-symbols-outlined text-[20px]">public</span>
+            <span class="w-9 h-9 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 border border-emerald-300">
+              <span class="material-symbols-outlined text-[20px]">cloud_upload</span>
             </span>
             <div>
-              <span class="font-headline font-bold text-xs text-slate-900 block">Publish as Public Package on Website (travel.html)</span>
-              <span class="text-[11px] text-slate-500">Show this package directly in the consumer retreat catalog</span>
+              <span class="font-headline font-bold text-xs text-slate-900 block flex items-center gap-1.5">
+                <span>Automatically Connect &amp; Publish to Website (travel.html)</span>
+                <span class="px-1.5 py-0.2 bg-emerald-200/80 text-emerald-800 text-[10px] rounded font-bold uppercase tracking-wider">Automated</span>
+              </span>
+              <span class="text-[11px] text-slate-500">Whatever you save here is immediately published to public website packages and booking flow</span>
             </div>
           </div>
           <label class="relative inline-flex items-center cursor-pointer shrink-0">
-            <input type="checkbox" id="crm-publish-website" class="sr-only peer">
-            <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-coral"></div>
+            <input type="checkbox" id="crm-publish-website" checked class="sr-only peer">
+            <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500"></div>
           </label>
         </div>
 
@@ -2778,6 +2785,34 @@
     let activeCRMInvoice = null;
     let tempCRMDays = [];
 
+    function getDestinationPresetImage(destinationName) {
+      const d = (destinationName || '').toLowerCase();
+      if (d.includes('kashmir') || d.includes('gulmarg') || d.includes('srinagar')) {
+        return 'https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=800&q=80';
+      } else if (d.includes('goa') || d.includes('beach')) {
+        return 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80';
+      } else if (d.includes('dubai')) {
+        return 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80';
+      } else if (d.includes('maldives')) {
+        return 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=800&q=80';
+      } else if (d.includes('manali') || d.includes('himachal') || d.includes('shimla') || d.includes('kasol') || d.includes('spiti')) {
+        return 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80';
+      } else if (d.includes('kerala') || d.includes('munnar') || d.includes('alleppey')) {
+        return 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80';
+      } else if (d.includes('rajasthan') || d.includes('jaipur') || d.includes('udaipur') || d.includes('jaisalmer')) {
+        return 'https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=800&q=80';
+      } else if (d.includes('paris') || d.includes('europe') || d.includes('switzerland')) {
+        return 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80';
+      } else if (d.includes('singapore') || d.includes('bali') || d.includes('thailand') || d.includes('phuket')) {
+        return 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80';
+      } else if (d.includes('ladakh') || d.includes('leh')) {
+        return 'https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?auto=format&fit=crop&w=800&q=80';
+      } else if (d.includes('uttarakhand') || d.includes('rishikesh') || d.includes('mussoorie') || d.includes('nainital')) {
+        return 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80';
+      }
+      return 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80';
+    }
+
     function initCRM() {
       if (!window.SweepSageCatalog) return;
       const currentUser = window.SweepSageCatalog.getCurrentCRMUser();
@@ -2910,6 +2945,10 @@
             <td class="px-5 py-3.5">
               <div class="font-semibold text-slate-900">${inv.tripTitle || inv.destination}</div>
               <div class="text-[11px] text-slate-500">${inv.travelDates || ''} • ${inv.duration || ''} (${inv.guestsSummary || inv.guests || ''})</div>
+              <a href="travel.html" target="_blank" class="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 hover:bg-emerald-100 transition-colors mt-1" title="View published retreat on live website">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>Live on Website ↗</span>
+              </a>
             </td>
             <td class="px-5 py-3.5">
               <div class="font-headline font-bold text-coral text-base">${inv.grandTotalFormatted || '₹' + (inv.grandTotal || 0).toLocaleString('en-IN')}</div>
@@ -3004,6 +3043,10 @@
           document.getElementById('crm-trip-start-date').value = inv.startDate || '';
           document.getElementById('crm-trip-end-date').value = inv.endDate || '';
           document.getElementById('crm-trip-dates').value = inv.travelDates || '';
+          const imgInput = document.getElementById('crm-trip-image');
+          if (imgInput) imgInput.value = inv.image || '';
+          const pubCb = document.getElementById('crm-publish-website');
+          if (pubCb) pubCb.checked = true;
 
           document.getElementById('crm-pax-adults').value = inv.adults || 2;
           document.getElementById('crm-pax-children').value = inv.children || 0;
@@ -3099,8 +3142,11 @@
       document.getElementById('crm-trip-advance').value = "";
       document.getElementById('crm-trip-terms').value = "30% advance to confirm booking. Balance payable 7 days prior to travel.";
 
+      const imgInput = document.getElementById('crm-trip-image');
+      if (imgInput) imgInput.value = "";
+
       const pubCb = document.getElementById('crm-publish-website');
-      if (pubCb) pubCb.checked = false;
+      if (pubCb) pubCb.checked = true;
 
       tempCRMDays = [
         { day: 1, title: "", plan: "", evening: "", stay: "", meals: "" }
@@ -3258,6 +3304,8 @@
       const invId = editId || `INV-SWP-${Math.floor(1000 + Math.random() * 9000)}`;
       const currentUser = window.SweepSageCatalog.getCurrentCRMUser() || 'dubeyutkarsh461@gmail.com';
 
+      const coverPhoto = (document.getElementById('crm-trip-image')?.value?.trim()) || getDestinationPresetImage(destination);
+
       const invoiceData = {
         id: invId,
         status,
@@ -3266,7 +3314,8 @@
         clientEmail,
         clientAddress,
         destination,
-        tripTitle,
+        tripTitle: tripTitle || `${destination} Curated Trip`,
+        image: coverPhoto,
         duration,
         startDate,
         endDate,
@@ -3305,24 +3354,27 @@
 
       window.SweepSageCatalog.saveCRMInvoice(invoiceData);
 
-      // Optional: Also sync to public website catalog if checkbox is checked
+      // Automated Sync to Website Travel Catalog & Itinerary Modal
       const publishCb = document.getElementById('crm-publish-website');
-      if (publishCb && publishCb.checked && window.SweepSageCatalog) {
+      const shouldPublish = !publishCb || publishCb.checked;
+      if (shouldPublish && window.SweepSageCatalog) {
         const destId = destination.toLowerCase().replace(/[^a-z0-9]/g, '-') || `dest-${Date.now()}`;
+        const perPersonPrice = costs.grandTotal > 0 ? `₹${Math.round(costs.grandTotal / (adults || 1)).toLocaleString('en-IN')}/- per person` : '₹19,999/- per person';
         window.SweepSageCatalog.saveTravelDestination({
           id: destId,
-          name: tripTitle,
-          tag: destination.toUpperCase(),
-          duration: duration,
-          price: costs.grandTotal > 0 ? `₹${Math.round(costs.grandTotal / (adults || 1)).toLocaleString('en-IN')}/- per person` : '₹19,999/- per person',
-          image: "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=800&q=80",
-          overview: specialNotes || `${duration} bespoke retreat in ${destination} with premium resort stays and dedicated vehicle.`,
-          itinerary: tempCRMDays.map(d => ({
-            day: d.day,
-            title: d.title || `Day ${d.day} Highlights`,
+          name: tripTitle || `${destination} Curated Experience`,
+          tag: (destination || 'EXCLUSIVE').toUpperCase(),
+          duration: duration || '5 Days • 4 Nights',
+          price: perPersonPrice,
+          numericPrice: costs.grandTotal || 19999,
+          image: coverPhoto,
+          overview: specialNotes || `${duration} bespoke retreat in ${destination} with curated hotel stays and dedicated vehicle.`,
+          itinerary: tempCRMDays.map((d, i) => ({
+            day: d.day || (i + 1),
+            title: d.title || `Day ${d.day || (i + 1)} Highlights`,
             desc: (d.plan ? d.plan + '. ' : '') + (d.evening || '')
           })),
-          inclusions: inclusions
+          inclusions: (inclusions && inclusions.length) ? inclusions : ["Boutique Hotel Stay", "Private Cab Transfer", "Daily Breakfast & Dinner", "Sightseeing Tour"]
         });
         if (typeof renderTravelCMS === 'function') renderTravelCMS();
       }
