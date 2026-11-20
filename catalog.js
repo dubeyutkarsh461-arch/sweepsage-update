@@ -452,6 +452,9 @@
         body: JSON.stringify(state)
       }).catch(() => {});
     }
+
+    // Sync to Supabase Cloud Database (Multi-Device Persistent Engine)
+    syncCatalogToSupabase(state);
   }
 
   const SweepSageCatalog = {
@@ -753,6 +756,9 @@
         }).catch(() => {});
       }
 
+      // Sync to Supabase Cloud Database (Multi-Device Engine)
+      syncInvoiceToSupabase(invoice);
+
       return invoice;
     },
 
@@ -779,6 +785,9 @@
       if (typeof window !== "undefined" && window.fetch) {
         fetch(`/api/crm/invoices/${encodeURIComponent(invoiceId)}`, { method: 'DELETE' }).catch(() => {});
       }
+
+      // Sync delete from Supabase Cloud Database
+      deleteInvoiceFromSupabase(invoiceId);
 
       return true;
     },
@@ -918,6 +927,126 @@
         }
       })
       .catch(() => {});
+  }
+
+  // =========================================================
+  // SUPABASE CLOUD DATABASE SYNC ENGINE (REALTIME MULTI-DEVICE)
+  // =========================================================
+  let supabaseClient = null;
+
+  function getSupabaseClient() {
+    if (supabaseClient) return supabaseClient;
+    const cfg = window.SweepSageSupabaseConfig;
+    if (cfg && cfg.enabled && cfg.url && cfg.anonKey && cfg.url !== 'https://your-project-ref.supabase.co' && window.supabase && typeof window.supabase.createClient === 'function') {
+      try {
+        supabaseClient = window.supabase.createClient(cfg.url, cfg.anonKey);
+        return supabaseClient;
+      } catch (err) {
+        console.warn("SweepSage: Supabase init error:", err);
+      }
+    }
+    return null;
+  }
+
+  async function syncCatalogToSupabase(state) {
+    const sb = getSupabaseClient();
+    if (!sb) return;
+    try {
+      await sb.from("site_catalog").upsert({
+        id: "main_catalog",
+        catalog_json: JSON.stringify(state),
+        updated_at: new Date().toISOString()
+      });
+      console.log("☁️ Supabase: Catalog synced to cloud successfully!");
+    } catch (err) {
+      console.warn("Supabase catalog save notice:", err);
+    }
+  }
+
+  async function syncInvoiceToSupabase(inv) {
+    const sb = getSupabaseClient();
+    if (!sb) return;
+    try {
+      await sb.from("crm_invoices").upsert({
+        id: inv.id,
+        data: inv,
+        updated_at: new Date().toISOString()
+      });
+      console.log("☁️ Supabase: Invoice saved to cloud:", inv.id);
+    } catch (err) {
+      console.warn("Supabase invoice save notice:", err);
+    }
+  }
+
+  async function deleteInvoiceFromSupabase(invId) {
+    const sb = getSupabaseClient();
+    if (!sb) return;
+    try {
+      await sb.from("crm_invoices").delete().eq("id", invId);
+      console.log("☁️ Supabase: Invoice deleted from cloud:", invId);
+    } catch (err) {
+      console.warn("Supabase invoice delete notice:", err);
+    }
+  }
+
+  async function initCloudSupabaseSync() {
+    const sb = getSupabaseClient();
+    if (!sb) return;
+    try {
+      // 1. Fetch site catalog from cloud
+      const { data: catRow } = await sb.from("site_catalog").select("catalog_json").eq("id", "main_catalog").maybeSingle();
+      if (catRow && catRow.catalog_json) {
+        try {
+          const cloudState = JSON.parse(catRow.catalog_json);
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(cloudState));
+          window.dispatchEvent(new CustomEvent("sweepsage_catalog_updated", { detail: cloudState }));
+        } catch (e) {}
+      } else {
+        // If empty in cloud, seed current default state to Supabase
+        const cur = loadState();
+        await syncCatalogToSupabase(cur);
+      }
+
+      // 2. Fetch CRM invoices from cloud
+      const { data: invRows } = await sb.from("crm_invoices").select("data");
+      if (invRows && Array.isArray(invRows) && invRows.length > 0) {
+        const cloudInvoices = invRows.map(r => r.data).filter(Boolean);
+        localStorage.setItem(CRM_INVOICES_KEY, JSON.stringify(cloudInvoices));
+        window.dispatchEvent(new CustomEvent("sweepsage_catalog_updated", { detail: { invoices: cloudInvoices } }));
+      }
+
+      // 3. Setup Supabase Realtime across all open devices (mobile, laptop, client screens)
+      sb.channel("sweepsage_global_realtime")
+        .on("postgres_changes", { event: "*", schema: "public", table: "site_catalog" }, payload => {
+          if (payload.new && payload.new.catalog_json) {
+            try {
+              const updated = JSON.parse(payload.new.catalog_json);
+              localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+              window.dispatchEvent(new CustomEvent("sweepsage_catalog_updated", { detail: updated }));
+            } catch (err) {}
+          }
+        })
+        .on("postgres_changes", { event: "*", schema: "public", table: "crm_invoices" }, async () => {
+          const { data: refreshed } = await sb.from("crm_invoices").select("data");
+          if (refreshed) {
+            const list = refreshed.map(r => r.data).filter(Boolean);
+            localStorage.setItem(CRM_INVOICES_KEY, JSON.stringify(list));
+            window.dispatchEvent(new CustomEvent("sweepsage_catalog_updated", { detail: { invoices: list } }));
+          }
+        })
+        .subscribe();
+      console.log("⚡ Supabase Realtime active! Instant sync across all devices connected.");
+    } catch (err) {
+      console.warn("Supabase initCloudSupabaseSync notice:", err);
+    }
+  }
+
+  if (typeof document !== "undefined") {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initCloudSupabaseSync);
+    } else {
+      initCloudSupabaseSync();
+    }
   }
 
   // Expose globally
