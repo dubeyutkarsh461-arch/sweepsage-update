@@ -1691,12 +1691,42 @@ function renderPackages(){
     let list =
         (packages[booking.service] && packages[booking.service][booking.event]) || [];
 
-    // Dynamically update instant shoot price from catalog without touching or deleting any package options
-    if (booking.service === "photographer" && booking.event === "instant" && window.SweepSageCatalog) {
-        const inst = window.SweepSageCatalog.getPhotographyServices().find(s => s.id === "instant");
-        if (inst && list.length > 0) {
-            list[0].price = inst.price;
-            list[0].tag = `SWEEPSAGE USP — JUST ${inst.price}`;
+    // Dynamically synchronize photography pricing & newly added packages from dashboard catalog
+    if (booking.service === "photographer" && window.SweepSageCatalog) {
+        // Sync instant shoot price if applicable
+        if (booking.event === "instant") {
+            const inst = window.SweepSageCatalog.getPhotographyServices().find(s => s.id === "instant");
+            if (inst && list.length > 0) {
+                list[0].price = inst.price;
+                list[0].tag = `SWEEPSAGE USP — JUST ${inst.price}`;
+            }
+        }
+
+        // Incorporate custom or edited packages created from the dashboard CMS for this category
+        try {
+            const catPkgs = window.SweepSageCatalog.getPhotographyPackages(booking.event);
+            if (Array.isArray(catPkgs) && catPkgs.length > 0) {
+                catPkgs.forEach(cp => {
+                    const existing = list.find(item => item.id === cp.id || (item.name && item.name.toLowerCase() === cp.name.toLowerCase()));
+                    if (existing) {
+                        if (cp.price) existing.price = cp.price;
+                        if (cp.tag) existing.tag = cp.tag;
+                        if (cp.description) existing.description = cp.description;
+                        if (Array.isArray(cp.features) && cp.features.length) existing.features = cp.features;
+                    } else if (cp.name && cp.price) {
+                        list.push({
+                            id: cp.id || ("pkg_" + Date.now()),
+                            tag: cp.tag || "EXCLUSIVE CMS",
+                            name: cp.name,
+                            price: cp.price,
+                            description: cp.description || "Curated photography package configured via dashboard.",
+                            features: (Array.isArray(cp.features) && cp.features.length) ? cp.features : ["1 Verified Professional Photographer", "Digital delivery within 24 hours", "Color-graded high-resolution photos"]
+                        });
+                    }
+                });
+            }
+        } catch (err) {
+            console.warn("Could not merge catalog packages", err);
         }
     }
 
