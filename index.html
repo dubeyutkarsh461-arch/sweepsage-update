@@ -708,7 +708,7 @@
           name: '10-Min Doorstep Shoot',
           price: instPrice,
           priceSub: 'Flat all-inclusive',
-          image: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=600&q=80',
+          image: 'https://images.unsplash.com/photo-1554080353-a576cf803bda?auto=format&fit=crop&w=600&q=80',
           description: 'Verified professional creator arrives at your doorstep equipped with pro gear. Ideal for portraits, birthdays, or quick moments.',
           features: [
             '10-Minute professional portrait session',
@@ -727,7 +727,7 @@
           name: 'Signature Cinematic Pre-Wedding',
           price: '₹12,999/-',
           priceSub: 'Full day shoot',
-          image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80',
+          image: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=600&q=80',
           description: 'Curated pre-wedding storytelling with creative lighting, cinematic direction, and social media highlight reels.',
           features: [
             '1 Lead Photographer + 1 Cinematographer',
@@ -736,6 +736,25 @@
           ],
           ctaText: 'Explore Pre-Wedding ↗',
           ctaLink: 'PHOTOGRAPHER-BOOKING.HTML?event=prewedding',
+          featured: false
+        },
+        {
+          id: 'trend_photo_wedding',
+          category: 'photography',
+          categoryLabel: '📸 Photography',
+          tag: '💍 WEDDING SPECIAL',
+          name: 'Essential Wedding & Ceremonies',
+          price: '₹60,000/-',
+          priceSub: 'Complete Coverage',
+          image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=600&q=80',
+          description: 'Traditional and candid coverage capturing all precious moments of your big day with custom albums.',
+          features: [
+            'Traditional & candid photo + video',
+            '25-Sheet premium wedding album (12x36)',
+            'Cinematic highlight teaser video'
+          ],
+          ctaText: 'Book Wedding ↗',
+          ctaLink: 'PHOTOGRAPHER-BOOKING.HTML?event=wedding',
           featured: false
         }
       ];
@@ -752,7 +771,7 @@
               name: p.name,
               price: p.price,
               priceSub: p.serviceId ? p.serviceId.toUpperCase() : 'Custom Package',
-              image: p.image || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80',
+              image: p.image || 'https://images.unsplash.com/photo-1554080353-a576cf803bda?auto=format&fit=crop&w=600&q=80',
               description: p.description || 'Exclusive curated photography experience.',
               features: (p.features && p.features.length) ? p.features.slice(0, 3) : ['Verified professional creator', '24-Hour digital delivery'],
               ctaText: 'Select Package ↗',
@@ -764,6 +783,13 @@
       });
 
       // 2. Travel Trending Items
+      const travelImagesMap = {
+        kashmir: 'https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=600&q=80',
+        maldives: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=600&q=80',
+        singapore: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=600&q=80',
+        paris: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=600&q=80'
+      };
+
       const travelItems = destinations.slice(0, 3).map((d, idx) => ({
         id: 'trend_travel_' + d.id,
         category: 'travel',
@@ -772,7 +798,7 @@
         name: d.name,
         price: d.price,
         priceSub: d.duration || 'Curated Itinerary',
-        image: d.image || (idx === 1 ? 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=600&q=80' : 'https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=600&q=80'),
+        image: travelImagesMap[d.id] || d.image || 'https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=600&q=80',
         description: d.overview || 'Bespoke guided holiday retreat with boutique hotel stays and private transfers.',
         features: (d.inclusions && d.inclusions.length) ? d.inclusions.slice(0, 3) : [
           'Handcrafted day-by-day itinerary',
@@ -821,6 +847,25 @@
             'Advanced hair styling & accessories'
           ],
           ctaText: 'Explore Bridal ↗',
+          ctaLink: 'salon.html',
+          featured: false
+        },
+        {
+          id: 'trend_salon_hair',
+          category: 'salon',
+          categoryLabel: '💄 Salon At Home',
+          tag: '✂️ HAIR THERAPY',
+          name: 'Hair Spa & Keratin Therapy',
+          price: 'Starting ₹1,899/-',
+          priceSub: 'Professional Stylist',
+          image: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=600&q=80',
+          description: 'Intense salon-grade hair repair, protein smoothing, and relaxation head massage at your home.',
+          features: [
+            'Deep conditioning hair mask',
+            'Aromatherapy scalp massage',
+            'Professional blow-dry & styling finish'
+          ],
+          ctaText: 'Book Hair Spa ↗',
           ctaLink: 'salon.html',
           featured: false
         }

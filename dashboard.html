@@ -1093,6 +1093,11 @@
         </div>
 
         <div>
+          <label class="text-[12px] font-label font-semibold text-slate-700 block mb-1">Image URL (Real Web Photo)</label>
+          <input type="url" id="photo-pkg-image" placeholder="https://images.unsplash.com/..." class="w-full px-3 py-2 border border-slate-200 rounded-lg text-slate-800 focus:outline-none focus:border-coral">
+        </div>
+
+        <div>
           <label class="text-[12px] font-label font-semibold text-slate-700 block mb-1">Short Description</label>
           <textarea id="photo-pkg-desc" rows="2" placeholder="Brief explanation of what the client gets..." class="w-full px-3 py-2 border border-slate-200 rounded-lg text-slate-800 focus:outline-none focus:border-coral" required></textarea>
         </div>
@@ -2382,6 +2387,10 @@
       grid.innerHTML = allPackages.map(p => `
         <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-xs flex flex-col justify-between hover:border-coral/40 transition-colors">
           <div>
+            ${p.image ? `
+            <div class="h-28 w-full rounded-lg overflow-hidden mb-3 bg-slate-100">
+              <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover" loading="lazy">
+            </div>` : ''}
             <div class="flex items-center justify-between mb-2">
               <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${p.tag ? 'bg-coral/10 text-coral' : 'bg-slate-100 text-slate-500'}">
                 ${p.tag || p.serviceId.toUpperCase()}
@@ -2412,6 +2421,7 @@
       document.getElementById('photo-pkg-name').value = "";
       document.getElementById('photo-pkg-price').value = "₹1,499/-";
       document.getElementById('photo-pkg-tag').value = "NEW";
+      document.getElementById('photo-pkg-image').value = "https://images.unsplash.com/photo-1554080353-a576cf803bda?auto=format&fit=crop&w=600&q=80";
       document.getElementById('photo-pkg-desc').value = "";
       document.getElementById('photo-pkg-features').value = "1 Verified Photographer\nDigital delivery within 24 hours\nHigh-res color-graded shots";
       document.getElementById('photoPackageModal').classList.remove('hidden');
@@ -2429,6 +2439,7 @@
       document.getElementById('photo-pkg-name').value = pkg.name;
       document.getElementById('photo-pkg-price').value = pkg.price;
       document.getElementById('photo-pkg-tag').value = pkg.tag || "";
+      document.getElementById('photo-pkg-image').value = pkg.image || "";
       document.getElementById('photo-pkg-desc').value = pkg.description || "";
       document.getElementById('photo-pkg-features').value = (pkg.features || []).join('\n');
       document.getElementById('photoPackageModal').classList.remove('hidden');
@@ -2443,6 +2454,7 @@
       const name = document.getElementById('photo-pkg-name').value.trim();
       const price = document.getElementById('photo-pkg-price').value.trim();
       const tag = document.getElementById('photo-pkg-tag').value.trim();
+      const image = document.getElementById('photo-pkg-image').value.trim();
       const desc = document.getElementById('photo-pkg-desc').value.trim();
       const featuresRaw = document.getElementById('photo-pkg-features').value.trim();
       const features = featuresRaw.split('\n').map(f => f.trim()).filter(Boolean);
@@ -2453,6 +2465,7 @@
         name: name,
         price: price,
         tag: tag,
+        image: image || "https://images.unsplash.com/photo-1554080353-a576cf803bda?auto=format&fit=crop&w=600&q=80",
         description: desc,
         features: features
       };

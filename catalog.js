@@ -110,6 +110,7 @@
         name: "10-Min Doorstep Shoot",
         price: "₹1,499/-",
         tag: "SWEEPSAGE USP",
+        image: "https://images.unsplash.com/photo-1554080353-a576cf803bda?auto=format&fit=crop&w=600&q=80",
         description: "Fast professional photography for quick moments at your doorstep.",
         features: [
           "10-minute professional shoot",
@@ -125,6 +126,7 @@
         name: "30-Min Extended Portrait",
         price: "₹2,999/-",
         tag: "BEST VALUE",
+        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
         description: "Extended session for outfit change and diverse angles.",
         features: [
           "30-minute doorstep session",
@@ -141,6 +143,7 @@
         name: "Essential Wedding",
         price: "₹60,000/-",
         tag: "STARTER",
+        image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=600&q=80",
         description: "Budget-friendly wedding coverage for smaller functions.",
         features: [
           "Traditional Photos & Traditional Videos",
@@ -157,6 +160,7 @@
         name: "Signature Wedding",
         price: "₹85,000/-",
         tag: "MOST POPULAR",
+        image: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80",
         description: "Balanced wedding coverage for couples wanting complete candid storytelling.",
         features: [
           "Candid Photographer + Traditional Team",
@@ -172,6 +176,7 @@
         name: "Royal Cinema Production",
         price: "₹1,40,000/-",
         tag: "LUXURY",
+        image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80",
         description: "Full multi-day luxury wedding production with cinematic 4K video.",
         features: [
           "2 Candid + 2 Traditional + 1 Drone Master",
@@ -189,6 +194,7 @@
         name: "Classic Pre-Wedding",
         price: "₹18,000/-",
         tag: "STARTER",
+        image: "https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=600&q=80",
         description: "1-day local outdoor location shoot with stylized frames.",
         features: [
           "1 Pro Candid Photographer",
@@ -203,6 +209,7 @@
         name: "Cinematic Pre-Wedding Film",
         price: "₹35,000/-",
         tag: "POPULAR",
+        image: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80",
         description: "Photo + 4K Cinema video for your romantic love story.",
         features: [
           "1 Photographer + 1 Cinematographer",
@@ -219,6 +226,7 @@
         name: "Roka & Ring Ceremony",
         price: "₹15,000/-",
         tag: "STANDARD",
+        image: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=600&q=80",
         description: "Complete ceremony photo coverage with family portraits.",
         features: [
           "1 Candid + 1 Traditional Photographer",
@@ -235,6 +243,7 @@
         name: "Birthday Party Special",
         price: "₹4,999/-",
         tag: "POPULAR",
+        image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=600&q=80",
         description: "2 hours coverage for birthday celebration and cake cutting.",
         features: [
           "1 Professional Event Photographer",
@@ -251,6 +260,7 @@
         name: "Corporate Headshots & Team",
         price: "₹9,999/-",
         tag: "BUSINESS",
+        image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80",
         description: "High-impact headshots and office ambiance shoot.",
         features: [
           "Mobile studio flash setup at your office",
@@ -267,6 +277,7 @@
         name: "Product & E-Commerce",
         price: "₹7,499/-",
         tag: "COMMERCIAL",
+        image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80",
         description: "Clean white background & lifestyle product photography.",
         features: [
           "Up to 15 product items",
@@ -283,6 +294,7 @@
         name: "Personal Branding Portrait",
         price: "₹2,499/-",
         tag: "INDIVIDUAL",
+        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
         description: "1-hour portrait session for LinkedIn, portfolios, or maternity.",
         features: [
           "1-hour doorstep session",
@@ -413,9 +425,25 @@
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
         const parsed = JSON.parse(raw);
+        const photoPkgs = parsed.photographyPackages || DEFAULT_PHOTOGRAPHY_PACKAGES;
+        if (photoPkgs) {
+          Object.keys(DEFAULT_PHOTOGRAPHY_PACKAGES).forEach(sKey => {
+            if (photoPkgs[sKey]) {
+              photoPkgs[sKey].forEach(p => {
+                if (!p.image) {
+                  const def = DEFAULT_PHOTOGRAPHY_PACKAGES[sKey]?.find(dp => dp.id === p.id || dp.name === p.name);
+                  if (def && def.image) {
+                    p.image = def.image;
+                  }
+                }
+              });
+            }
+          });
+        }
+
         return {
           photographyServices: (parsed.photographyServices && parsed.photographyServices.length > 0) ? parsed.photographyServices : DEFAULT_PHOTOGRAPHY_SERVICES,
-          photographyPackages: parsed.photographyPackages || DEFAULT_PHOTOGRAPHY_PACKAGES,
+          photographyPackages: photoPkgs,
           salonConfig: parsed.salonConfig || DEFAULT_SALON_CONFIG,
           travelDestinations: (parsed.travelDestinations && parsed.travelDestinations.length > 0) ? parsed.travelDestinations : DEFAULT_TRAVEL_DESTINATIONS
         };
