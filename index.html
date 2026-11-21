@@ -249,183 +249,29 @@
       </div>
     </section>
 
-    <!-- HOW OUR MODEL WORKS -->
-    <section class="how-section" id="how-it-works">
-      <div class="how-header-wrap reveal">
-        <div class="how-intro">
-          <span class="eyebrow dark">HOW DOES OUR MODEL WORK?</span>
-          <h2>Simple from<br><span>start to finish.</span></h2>
+    <!-- TRENDING PACKAGES SHOWCASE -->
+    <section class="trending-section" id="trending-packages">
+      <div class="trending-header-wrap reveal">
+        <div class="trending-intro">
+          <span class="eyebrow dark">MOST BOOKED &amp; CURATED</span>
+          <h2>Trending <span>Packages.</span></h2>
         </div>
-        <p class="how-subtext">
-          Tell us what you need. Our algorithm instantly matches you with verified professionals, coordinates doorstep execution, and guarantees premium delivery.
+        <p class="trending-subtext">
+          Handpicked client favourites across doorstep photography, luxury travel retreats, and salon at home — transparent pricing with instant booking.
         </p>
       </div>
 
-      <!-- Process timeline flow indicator -->
-      <div class="model-flow-tracker reveal">
-        <div class="flow-track-step active">
-          <span class="flow-pill-num">01</span>
-          <span class="flow-pill-title">Select &amp; Customize</span>
-        </div>
-        <div class="flow-track-arrow">→</div>
-        <div class="flow-track-step">
-          <span class="flow-pill-num">02</span>
-          <span class="flow-pill-title">Instant Verified Match</span>
-        </div>
-        <div class="flow-track-arrow">→</div>
-        <div class="flow-track-step">
-          <span class="flow-pill-num">03</span>
-          <span class="flow-pill-title">Doorstep Delivery</span>
-        </div>
+      <!-- Category Filter Pills -->
+      <div class="trending-filter-bar reveal">
+        <button type="button" class="trending-filter-btn active" onclick="filterTrendingPackages('all')">All Trending</button>
+        <button type="button" class="trending-filter-btn" onclick="filterTrendingPackages('photography')">📸 Photography</button>
+        <button type="button" class="trending-filter-btn" onclick="filterTrendingPackages('travel')">✈️ Travel Retreats</button>
+        <button type="button" class="trending-filter-btn" onclick="filterTrendingPackages('salon')">💄 Salon at Home</button>
       </div>
 
-      <!-- 3 Visual Graphic Cards Grid -->
-      <div class="model-steps-grid">
-        <!-- STEP 01 -->
-        <article class="model-card reveal">
-          <div class="model-card-top">
-            <span class="model-step-badge">STEP 01</span>
-            <span class="model-kicker">CONSULTATION &amp; PLANNING</span>
-          </div>
-
-          <div class="model-graphic-box">
-            <!-- Simulated interactive service selection UI graphic -->
-            <div class="mockup-header-row">
-              <span class="mockup-dot"></span>
-              <span class="mockup-title">Select Experience</span>
-              <span class="mockup-chip-live">● Live</span>
-            </div>
-            <div class="mockup-service-chips">
-              <div class="mockup-chip active">
-                <span class="mockup-chip-icon">📸</span>
-                <span>Photographer <small id="home-step1-price">₹1,499</small></span>
-              </div>
-              <div class="mockup-chip">
-                <span class="mockup-chip-icon">💄</span>
-                <span>Salon At Home</span>
-              </div>
-              <div class="mockup-chip">
-                <span class="mockup-chip-icon">✈️</span>
-                <span>Curated Trip</span>
-              </div>
-            </div>
-            <div class="mockup-location-field">
-              <span class="mockup-pin">📍</span>
-              <div class="mockup-field-texts">
-                <strong>Delivery Location</strong>
-                <span>Greater Noida / Delhi NCR</span>
-              </div>
-              <span class="mockup-time-badge">⚡ 10 Min Dispatch</span>
-            </div>
-          </div>
-
-          <div class="model-card-copy">
-            <h3>We understand your vision.</h3>
-            <p>
-              Tell us what you need in seconds. Choose your service, preferred time, and location with 100% upfront transparent pricing — no awkward bargaining or endless phone calls.
-            </p>
-            <div class="model-feature-tags">
-              <span>✓ Instant Doorstep Booking</span>
-              <span>✓ Custom Date &amp; Slot Selection</span>
-              <span>✓ Clear ₹0 Hidden Fee Guarantee</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- STEP 02 -->
-        <article class="model-card reveal">
-          <div class="model-card-top">
-            <span class="model-step-badge">STEP 02</span>
-            <span class="model-kicker">SMART MATCH &amp; DISPATCH</span>
-          </div>
-
-          <div class="model-graphic-box">
-            <!-- Radar & Pro Verified Match Graphic -->
-            <div class="mockup-radar-card">
-              <div class="mockup-radar-visual">
-                <div class="radar-pulse-ring"></div>
-                <div class="radar-pulse-ring delay"></div>
-                <div class="radar-center-dot">🎯</div>
-              </div>
-              <div class="mockup-matched-profile">
-                <div class="matched-avatar">
-                  <span>★</span>
-                  <span class="verified-glyph" title="Verified Professional">✓</span>
-                </div>
-                <div class="matched-info">
-                  <div class="matched-name-row">
-                    <strong>Verified Creator</strong>
-                    <span class="matched-rating">★ 4.9</span>
-                  </div>
-                  <span class="matched-role">Certified Specialist • Pro Gear &amp; Tooling</span>
-                  <span class="matched-distance">📍 Nearest Pro in your city • Quick Dispatch</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="model-card-copy">
-            <h3>The right person, at your place.</h3>
-            <p>
-              Our automated matching system connects you with background-verified, top-rated creators and certified stylists nearest to you, equipped with professional gear and sealed hygiene kits.
-            </p>
-            <div class="model-feature-tags">
-              <span>✓ Background Verified Experts</span>
-              <span>✓ High-End Pro Equipment</span>
-              <span>✓ Real-Time Arrival ETA Tracking</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- STEP 03 -->
-        <article class="model-card reveal">
-          <div class="model-card-top">
-            <span class="model-step-badge">STEP 03</span>
-            <span class="model-kicker">DELIVERY &amp; EXPERIENCE</span>
-          </div>
-
-          <div class="model-graphic-box">
-            <!-- Delivery & Quality Assurance Graphic -->
-            <div class="mockup-delivery-card">
-              <div class="delivery-status-track">
-                <div class="track-node done">
-                  <span class="node-icon">✓</span>
-                  <span>Booked</span>
-                </div>
-                <div class="track-bar done"></div>
-                <div class="track-node done">
-                  <span class="node-icon">✓</span>
-                  <span>Arrived</span>
-                </div>
-                <div class="track-bar done"></div>
-                <div class="track-node active">
-                  <span class="node-icon">★</span>
-                  <span>Delivered</span>
-                </div>
-              </div>
-              <div class="mockup-album-download">
-                <div class="album-icon-box">📦</div>
-                <div class="album-text-col">
-                  <strong>4K Ultra HD Gallery Ready</strong>
-                  <span>Private Cloud Link &amp; App Access</span>
-                </div>
-                <span class="album-badge">Ready</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="model-card-copy">
-            <h3>You enjoy. We handle the rest.</h3>
-            <p>
-              Relax and enjoy the moment at your home. Photos and films are color-graded and delivered digitally within hours. Salon services guarantee complete cleanliness. 24/7 dedicated support.
-            </p>
-            <div class="model-feature-tags">
-              <span>✓ Rapid Cloud Gallery Delivery</span>
-              <span>✓ 100% Satisfaction Guarantee</span>
-              <span>✓ 24/7 Concierge Support</span>
-            </div>
-          </div>
-        </article>
+      <!-- Dynamic Cards Grid -->
+      <div class="trending-cards-grid" id="trendingPackagesGrid">
+        <!-- Loaded dynamically from SweepSageCatalog -->
       </div>
     </section>
 
@@ -830,6 +676,194 @@
   <script src="api.js?v=3.2"></script>
   <script src="SCRIPT.JS?v=3.2"></script>
   <script>
+    let currentTrendingFilter = 'all';
+
+    function filterTrendingPackages(cat) {
+      currentTrendingFilter = cat;
+      document.querySelectorAll('.trending-filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('onclick').includes(`'${cat}'`));
+      });
+      renderTrendingPackages();
+    }
+
+    function renderTrendingPackages() {
+      const grid = document.getElementById('trendingPackagesGrid');
+      if (!grid || !window.SweepSageCatalog) return;
+
+      const services = window.SweepSageCatalog.getPhotographyServices() || [];
+      const pkgsObj = window.SweepSageCatalog.getPhotographyPackages() || {};
+      const destinations = window.SweepSageCatalog.getTravelDestinations() || [];
+      const salonCfg = window.SweepSageCatalog.getSalonConfig() || {};
+
+      const instService = services.find(s => s.id === 'instant');
+      const instPrice = instService ? instService.price : "₹1,499/-";
+
+      // 1. Photography Trending Items
+      const photoItems = [
+        {
+          id: 'trend_photo_instant',
+          category: 'photography',
+          categoryLabel: '📸 Photography',
+          tag: '🔥 SWEEPSAGE USP',
+          name: '10-Min Doorstep Shoot',
+          price: instPrice,
+          priceSub: 'Flat all-inclusive',
+          description: 'Verified professional creator arrives at your doorstep equipped with pro gear. Ideal for portraits, birthdays, or quick moments.',
+          features: [
+            '10-Minute professional portrait session',
+            '1 Verified creator with high-end camera & lighting',
+            '10 Color-graded high-resolution frames',
+            '24-Hour digital cloud delivery link'
+          ],
+          ctaText: `Book Shoot (${instPrice}) ↗`,
+          ctaLink: 'PHOTOGRAPHER-BOOKING.HTML?event=instant',
+          featured: true
+        },
+        {
+          id: 'trend_photo_prewed',
+          category: 'photography',
+          categoryLabel: '📸 Photography',
+          tag: '⭐ BESTSELLER',
+          name: 'Signature Cinematic Pre-Wedding',
+          price: '₹12,999/-',
+          priceSub: 'Full day shoot',
+          description: 'Curated pre-wedding storytelling with creative lighting, cinematic direction, and social media highlight reels.',
+          features: [
+            '1 Lead Photographer + 1 Cinematographer',
+            '4K Aerial drone shots & location direction',
+            '60-Sec cinematic Instagram Reel included',
+            '120+ Master edited high-res digital frames'
+          ],
+          ctaText: 'Explore Pre-Wedding ↗',
+          ctaLink: 'PHOTOGRAPHER-BOOKING.HTML?event=prewedding',
+          featured: false
+        }
+      ];
+
+      // Merge custom packages from dashboard if tagged
+      Object.keys(pkgsObj).forEach(catKey => {
+        (pkgsObj[catKey] || []).forEach(p => {
+          if (p.tag && (p.tag.includes('TREND') || p.tag.includes('POPULAR') || p.tag.includes('NEW'))) {
+            photoItems.push({
+              id: p.id,
+              category: 'photography',
+              categoryLabel: '📸 Photography',
+              tag: p.tag,
+              name: p.name,
+              price: p.price,
+              priceSub: p.serviceId ? p.serviceId.toUpperCase() : 'Custom Package',
+              description: p.description || 'Exclusive curated photography experience.',
+              features: (p.features && p.features.length) ? p.features : ['Verified professional creator', '24-Hour digital delivery'],
+              ctaText: 'Select Package ↗',
+              ctaLink: `PHOTOGRAPHER-BOOKING.HTML?event=${encodeURIComponent(p.serviceId || 'instant')}`,
+              featured: false
+            });
+          }
+        });
+      });
+
+      // 2. Travel Trending Items
+      const travelItems = destinations.slice(0, 3).map((d, idx) => ({
+        id: 'trend_travel_' + d.id,
+        category: 'travel',
+        categoryLabel: '✈️ Travel Retreat',
+        tag: d.tag || (idx === 0 ? '🏔️ TOP RETREAT' : '💎 LUXURY ESCAPE'),
+        name: d.name,
+        price: d.price,
+        priceSub: d.duration || 'Curated Itinerary',
+        description: d.overview || 'Bespoke guided holiday retreat with boutique hotel stays and private transfers.',
+        features: (d.inclusions && d.inclusions.length) ? d.inclusions.slice(0, 4) : [
+          'Handcrafted day-by-day itinerary',
+          'Private dedicated cab transfers',
+          'Boutique resort accommodation',
+          'Daily breakfast & local experiences'
+        ],
+        ctaText: 'View Itinerary & Book ↗',
+        ctaLink: `TRAVEL-BOOKING.HTML?destination=${encodeURIComponent(d.id)}`,
+        featured: idx === 0
+      }));
+
+      // 3. Salon Trending Items
+      const salonItems = [
+        {
+          id: 'trend_salon_glow',
+          category: 'salon',
+          categoryLabel: '💄 Salon At Home',
+          tag: '✨ VIP EARLY ACCESS',
+          name: 'Deep Glow Facial & Hair Spa Ritual',
+          price: 'Starting ₹2,199/-',
+          priceSub: salonCfg.offerTag || 'VIP 50% Off Available',
+          description: 'Complete beauty rejuvenation delivered at home with sealed sterile hygiene kits and certified top-tier stylists.',
+          features: [
+            '100% Sealed single-use sterile kits',
+            'Luxury deep radiance fruit/gold facial',
+            'Intense nourishing hair spa & scalp massage',
+            'Complimentary setup & doorstep cleanup'
+          ],
+          ctaText: 'Join VIP Waitlist (50% Off) ↗',
+          ctaLink: 'salon.html',
+          featured: false
+        },
+        {
+          id: 'trend_salon_bridal',
+          category: 'salon',
+          categoryLabel: '💄 Salon At Home',
+          tag: '👑 BRIDAL SPECIAL',
+          name: 'Bridal & HD Glam Makeover',
+          price: 'Starting ₹8,999/-',
+          priceSub: 'Bespoke Artist Booking',
+          description: 'High-definition bridal makeup, hairstyling, saree draping, and pre-bridal skin prep by certified celebrity stylists.',
+          features: [
+            'Premium international cosmetics (MAC/Huda)',
+            'HD / Airbrush makeup with trial options',
+            'Advanced hair styling & floral accessories',
+            'At-home convenience for the entire bridal party'
+          ],
+          ctaText: 'Explore Bridal ↗',
+          ctaLink: 'salon.html',
+          featured: false
+        }
+      ];
+
+      let displayed = [];
+      if (currentTrendingFilter === 'all') {
+        displayed = [photoItems[0], travelItems[0], salonItems[0], photoItems[1], travelItems[1], salonItems[1]].filter(Boolean);
+      } else if (currentTrendingFilter === 'photography') {
+        displayed = photoItems;
+      } else if (currentTrendingFilter === 'travel') {
+        displayed = travelItems;
+      } else if (currentTrendingFilter === 'salon') {
+        displayed = salonItems;
+      }
+
+      grid.innerHTML = displayed.map(pkg => `
+        <article class="trending-card ${pkg.featured ? 'featured' : ''}">
+          <div>
+            <div class="trending-card-top">
+              <span class="trending-category-badge">${pkg.categoryLabel}</span>
+              <span class="trending-tag-badge">${pkg.tag}</span>
+            </div>
+            <h3 class="trending-card-title">${pkg.name}</h3>
+            <div class="trending-card-price">
+              ${pkg.price}
+              ${pkg.priceSub ? `<small>• ${pkg.priceSub}</small>` : ''}
+            </div>
+            <p class="trending-card-desc">${pkg.description}</p>
+            <ul class="trending-card-features">
+              ${(pkg.features || []).map(f => `
+                <li><span class="check">✓</span><span>${f}</span></li>
+              `).join('')}
+            </ul>
+          </div>
+          <div style="margin-top: auto; padding-top: 14px;">
+            <a href="${pkg.ctaLink}" class="trending-card-cta ${pkg.featured ? '' : 'outline'}">
+              ${pkg.ctaText}
+            </a>
+          </div>
+        </article>
+      `).join('');
+    }
+
     function syncHomePageCatalog() {
       if (!window.SweepSageCatalog) return;
       const services = window.SweepSageCatalog.getPhotographyServices();
@@ -839,8 +873,6 @@
         if (navInstant) navInstant.textContent = `⚡ Book in Minutes (${inst.price})`;
         const homeInst = document.getElementById('home-instant-price');
         if (homeInst) homeInst.textContent = inst.price;
-        const step1 = document.getElementById('home-step1-price');
-        if (step1) step1.textContent = inst.price;
         const modalP = document.getElementById('home-modal-price');
         if (modalP) modalP.textContent = inst.price;
       }
@@ -852,10 +884,19 @@
         const sub = document.getElementById('home-salon-sub');
         if (sub) sub.textContent = salon.launchTimeline || 'Launching Soon • VIP Waitlist';
       }
+
+      renderTrendingPackages();
     }
-    document.addEventListener('DOMContentLoaded', syncHomePageCatalog);
-    window.addEventListener('sweepsage_catalog_updated', syncHomePageCatalog);
+    document.addEventListener('DOMContentLoaded', () => {
+      syncHomePageCatalog();
+      renderTrendingPackages();
+    });
+    window.addEventListener('sweepsage_catalog_updated', () => {
+      syncHomePageCatalog();
+      renderTrendingPackages();
+    });
     syncHomePageCatalog();
+    renderTrendingPackages();
   </script>
 </body>
 </html>
