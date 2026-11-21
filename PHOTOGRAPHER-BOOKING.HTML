@@ -75,7 +75,7 @@
             </span>
         </button>
 
-        <!-- 3-Dots More Options Menu (⚡ Book in Minutes & About) -->
+        <!-- 3-Dots More Options Menu (About & Partner) -->
         <div class="nav-more-dropdown" id="navMoreDropdown">
             <button class="nav-more-btn nav-icon-btn" id="navMoreTrigger" type="button" aria-label="More options" title="More options" aria-haspopup="true" aria-expanded="false" onclick="this.closest('.nav-more-dropdown')?.classList.toggle('open'); event.stopPropagation();">
                 <span class="action-icon">
@@ -88,21 +88,6 @@
             </button>
 
             <div class="nav-more-menu" id="navMoreMenu" role="menu">
-                <!-- ⚡ Book in Minutes -->
-                <a class="nav-more-item nav-more-item-highlight nav-instant-btn" href="PHOTOGRAPHER-BOOKING.HTML?event=instant" onclick="if(typeof selectPackage==='function'){selectPackage('10-Min Photographer','₹1,499/-'); document.getElementById('tenMinuteOffer')?.scrollIntoView({behavior:'smooth'}); this.closest('.nav-more-dropdown')?.classList.remove('open'); return false;}" role="menuitem">
-                    <div class="nav-more-item-icon">⚡</div>
-                    <div class="nav-more-item-body">
-                        <div class="nav-more-item-top">
-                            <span class="nav-more-title">Book in Minutes</span>
-                            <span class="nav-more-badge" id="navMoreInstantPrice">₹1,499/-</span>
-                        </div>
-                        <p class="nav-more-desc">Verified photographer at your doorstep</p>
-                    </div>
-                    <span class="nav-more-arrow">↗</span>
-                </a>
-
-                <div class="nav-more-divider"></div>
-
                 <!-- About Sweepsage & Founder -->
                 <a class="nav-more-item" href="about.html" role="menuitem">
                     <div class="nav-more-item-icon">
@@ -114,6 +99,8 @@
                     </div>
                     <span class="nav-more-arrow">→</span>
                 </a>
+
+                <div class="nav-more-divider"></div>
 
                 <!-- Register as Partner -->
                 <a class="nav-more-item" href="partner-register.html" role="menuitem">
