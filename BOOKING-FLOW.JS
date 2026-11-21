@@ -665,6 +665,7 @@ bridal:[
         name:"Basic Bridal",
         price:"₹7,999/-",
         tag:"STARTER",
+        image:"https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80",
         description:"Affordable complete bridal look.",
         features:[
             "Bridal makeup",
@@ -679,6 +680,7 @@ bridal:[
         name:"HD Bridal",
         price:"₹12,999/-",
         tag:"POPULAR",
+        image:"https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80",
         description:"Camera-ready HD bridal experience.",
         features:[
             "HD makeup",
@@ -694,6 +696,7 @@ bridal:[
         name:"Luxury Bridal",
         price:"₹19,999/-",
         tag:"PREMIUM",
+        image:"https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=600&q=80",
         description:"Premium bridal transformation.",
         features:[
             "Luxury makeup",
@@ -715,6 +718,7 @@ engagement:[
         name:"Basic Engagement",
         price:"₹4,999/-",
         tag:"STARTER",
+        image:"https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80",
         description:"Elegant engagement look.",
         features:[
             "Makeup",
@@ -728,6 +732,7 @@ engagement:[
         name:"HD Engagement",
         price:"₹7,499/-",
         tag:"POPULAR",
+        image:"https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80",
         description:"Professional HD engagement look.",
         features:[
             "HD makeup",
@@ -742,6 +747,7 @@ engagement:[
         name:"Premium Engagement",
         price:"₹9,999/-",
         tag:"PREMIUM",
+        image:"https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=600&q=80",
         description:"Complete premium styling.",
         features:[
             "Premium makeup",
@@ -761,6 +767,7 @@ reception:[
         name:"Reception Basic",
         price:"₹7,999/-",
         tag:"STARTER",
+        image:"https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=600&q=80",
         description:"Beautiful reception-ready look.",
         features:[
             "Makeup",
@@ -774,6 +781,7 @@ reception:[
         name:"Reception HD",
         price:"₹11,999/-",
         tag:"POPULAR",
+        image:"https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80",
         description:"HD reception transformation.",
         features:[
             "HD makeup",
@@ -788,6 +796,7 @@ reception:[
         name:"Reception Luxe",
         price:"₹15,999/-",
         tag:"PREMIUM",
+        image:"https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80",
         description:"Luxury reception styling.",
         features:[
             "Luxury makeup",
@@ -808,6 +817,7 @@ party:[
         name:"Party Makeup",
         price:"₹1,499/-",
         tag:"POPULAR",
+        image:"https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80",
         description:"Professional party-ready makeup.",
         features:[
             "Base makeup",
@@ -821,6 +831,7 @@ party:[
         name:"Party + Hair",
         price:"₹2,499/-",
         tag:"BEST VALUE",
+        image:"https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=600&q=80",
         description:"Makeup and hairstyle together.",
         features:[
             "Party makeup",
@@ -834,6 +845,7 @@ party:[
         name:"Premium Party",
         price:"₹3,999/-",
         tag:"PREMIUM",
+        image:"https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=600&q=80",
         description:"Premium occasion styling.",
         features:[
             "Premium makeup",
@@ -852,6 +864,7 @@ photoshoot:[
         name:"Camera Ready",
         price:"₹2,499/-",
         tag:"STARTER",
+        image:"https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80",
         description:"Professional makeup for photoshoots.",
         features:[
             "Camera-ready makeup",
@@ -865,6 +878,7 @@ photoshoot:[
         name:"HD Shoot",
         price:"₹3,999/-",
         tag:"POPULAR",
+        image:"https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80",
         description:"HD makeup for professional shoots.",
         features:[
             "HD makeup",
@@ -878,6 +892,7 @@ photoshoot:[
         name:"Creative Shoot",
         price:"₹5,999/-",
         tag:"PREMIUM",
+        image:"https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=600&q=80",
         description:"Creative makeup and styling.",
         features:[
             "Creative makeup",
@@ -897,6 +912,7 @@ prebridal:[
         name:"Basic Pre-Bridal",
         price:"₹4,999/-",
         tag:"STARTER",
+        image:"https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=600&q=80",
         description:"Essential pre-wedding grooming.",
         features:[
             "Facial",
@@ -911,6 +927,7 @@ prebridal:[
         name:"Complete Pre-Bridal",
         price:"₹7,999/-",
         tag:"POPULAR",
+        image:"https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=600&q=80",
         description:"Complete beauty preparation.",
         features:[
             "Premium facial",
@@ -926,6 +943,7 @@ prebridal:[
         name:"Luxury Pre-Bridal",
         price:"₹12,999/-",
         tag:"PREMIUM",
+        image:"https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=600&q=80",
         description:"Full beauty preparation package.",
         features:[
             "Premium facial",
@@ -947,6 +965,7 @@ grooming:[
         name:"Essential Grooming",
         price:"₹999/-",
         tag:"STARTER",
+        image:"https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=600&q=80",
         description:"Quick basic grooming.",
         features:[
             "Threading",
@@ -959,6 +978,7 @@ grooming:[
         name:"Complete Grooming",
         price:"₹1,999/-",
         tag:"POPULAR",
+        image:"https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=600&q=80",
         description:"Complete at-home grooming.",
         features:[
             "Facial",
@@ -973,6 +993,7 @@ grooming:[
         name:"Premium Grooming",
         price:"₹3,499/-",
         tag:"PREMIUM",
+        image:"https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=600&q=80",
         description:"Premium self-care session.",
         features:[
             "Premium facial",
@@ -992,6 +1013,7 @@ makeup:[
         name:"Basic Makeup",
         price:"₹1,499/-",
         tag:"STARTER",
+        image:"https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80",
         description:"Professional basic makeup.",
         features:[
             "Base makeup",
@@ -1004,6 +1026,7 @@ makeup:[
         name:"HD Makeup",
         price:"₹2,499/-",
         tag:"POPULAR",
+        image:"https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80",
         description:"HD finish for events.",
         features:[
             "HD base",
@@ -1017,6 +1040,7 @@ makeup:[
         name:"Premium Makeup",
         price:"₹3,999/-",
         tag:"PREMIUM",
+        image:"https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=600&q=80",
         description:"Complete premium makeup.",
         features:[
             "Premium products",
@@ -1035,6 +1059,7 @@ hair:[
         name:"Basic Hair",
         price:"₹599/-",
         tag:"STARTER",
+        image:"https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=600&q=80",
         description:"Simple occasion styling.",
         features:[
             "Curls",
@@ -1047,6 +1072,7 @@ hair:[
         name:"Advanced Hair",
         price:"₹999/-",
         tag:"POPULAR",
+        image:"https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=600&q=80",
         description:"Professional occasion styling.",
         features:[
             "Advanced styling",
@@ -1060,6 +1086,7 @@ hair:[
         name:"Premium Hair",
         price:"₹1,499/-",
         tag:"PREMIUM",
+        image:"https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=600&q=80",
         description:"Detailed premium hairstyling.",
         features:[
             "Advanced hairstyle",
@@ -1077,6 +1104,7 @@ custom:[
         name:"Custom Salon Service",
         price:"Custom Quote",
         tag:"BESPOKE",
+        image:"https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=600&q=80",
         description:"Tell us which services you need.",
         features:[
             "Makeup",
@@ -1106,6 +1134,7 @@ travel:{
             name:"Classic Honeymoon",
             price:"Custom Quote",
             tag:"CURATED",
+            image:"https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=600&q=80",
             description:"Romantic domestic honeymoon tailored to your style.",
             features:[
                 "Destination planning",
@@ -1120,6 +1149,7 @@ travel:{
             name:"Comfort Honeymoon",
             price:"Custom Quote",
             tag:"POPULAR",
+            image:"https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=600&q=80",
             description:"Comfort-focused romantic holiday.",
             features:[
                 "Better hotel category",
@@ -1134,6 +1164,7 @@ travel:{
             name:"Premium Honeymoon",
             price:"Custom Quote",
             tag:"PREMIUM",
+            image:"https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=600&q=80",
             description:"Premium honeymoon experience.",
             features:[
                 "Premium stays",
@@ -1154,6 +1185,7 @@ travel:{
             name:"Classic Family",
             price:"Custom Quote",
             tag:"CURATED",
+            image:"https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=600&q=80",
             description:"Curated family holiday.",
             features:[
                 "Destination planning",
@@ -1167,6 +1199,7 @@ travel:{
             name:"Family Comfort",
             price:"Custom Quote",
             tag:"POPULAR",
+            image:"https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=600&q=80",
             description:"Comfortable family trip.",
             features:[
                 "3-star/4-star options",
@@ -1180,6 +1213,7 @@ travel:{
             name:"Family Premium",
             price:"Custom Quote",
             tag:"PREMIUM",
+            image:"https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=600&q=80",
             description:"Premium family holiday.",
             features:[
                 "Premium hotels",
@@ -1198,6 +1232,7 @@ travel:{
             name:"Classic Solo",
             price:"Custom Quote",
             tag:"CURATED",
+            image:"https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=600&q=80",
             description:"Independent solo journey.",
             features:[
                 "Destination plan",
@@ -1211,6 +1246,7 @@ travel:{
             name:"Solo Comfort",
             price:"Custom Quote",
             tag:"POPULAR",
+            image:"https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=600&q=80",
             description:"Comfortable independent trip.",
             features:[
                 "Better hotels",
@@ -1224,6 +1260,7 @@ travel:{
             name:"Solo Premium",
             price:"Custom Quote",
             tag:"PREMIUM",
+            image:"https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=600&q=80",
             description:"Premium solo experience.",
             features:[
                 "Premium stays",
@@ -1242,6 +1279,7 @@ travel:{
             name:"Classic Group",
             price:"Custom Quote",
             tag:"VALUE",
+            image:"https://images.unsplash.com/photo-1539635278303-d4002c07eae3?auto=format&fit=crop&w=600&q=80",
             description:"Large group travel tailored to your group needs.",
             features:[
                 "Group hotel",
@@ -1255,6 +1293,7 @@ travel:{
             name:"Group Comfort",
             price:"Custom Quote",
             tag:"POPULAR",
+            image:"https://images.unsplash.com/photo-1539635278303-d4002c07eae3?auto=format&fit=crop&w=600&q=80",
             description:"Comfortable group holiday.",
             features:[
                 "Better hotels",
@@ -1268,6 +1307,7 @@ travel:{
             name:"Group Premium",
             price:"Custom Quote",
             tag:"PREMIUM",
+            image:"https://images.unsplash.com/photo-1539635278303-d4002c07eae3?auto=format&fit=crop&w=600&q=80",
             description:"Premium group travel.",
             features:[
                 "Premium stays",
@@ -1286,6 +1326,7 @@ travel:{
             name:"Classic Adventure",
             price:"Custom Quote",
             tag:"STARTER",
+            image:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80",
             description:"Short adventure experience.",
             features:[
                 "Activity planning",
@@ -1299,6 +1340,7 @@ travel:{
             name:"Adventure Plus",
             price:"Custom Quote",
             tag:"POPULAR",
+            image:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80",
             description:"Multi-activity adventure trip.",
             features:[
                 "Multiple activities",
@@ -1312,6 +1354,7 @@ travel:{
             name:"Adventure Custom",
             price:"Custom Quote",
             tag:"BESPOKE",
+            image:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80",
             description:"Fully customised adventure.",
             features:[
                 "Trekking",
@@ -1332,6 +1375,7 @@ travel:{
             name:"Curated International",
             price:"Custom Quote",
             tag:"CURATED",
+            image:"https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=600&q=80",
             description:"Curated international holiday tailored around your preferences.",
             features:[
                 "Destination planning",
@@ -1346,6 +1390,7 @@ travel:{
             name:"International Comfort",
             price:"Custom Quote",
             tag:"POPULAR",
+            image:"https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=600&q=80",
             description:"Comfort international package.",
             features:[
                 "Flights",
@@ -1360,6 +1405,7 @@ travel:{
             name:"International Premium",
             price:"Custom Quote",
             tag:"PREMIUM",
+            image:"https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=600&q=80",
             description:"Premium international experience.",
             features:[
                 "Premium hotels",
@@ -1379,6 +1425,7 @@ travel:{
             name:"Classic Spiritual",
             price:"Custom Quote",
             tag:"CURATED",
+            image:"https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=600&q=80",
             description:"Simple pilgrimage itinerary.",
             features:[
                 "Transport planning",
@@ -1392,6 +1439,7 @@ travel:{
             name:"Spiritual Comfort",
             price:"Custom Quote",
             tag:"POPULAR",
+            image:"https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=600&q=80",
             description:"Comfort-focused pilgrimage.",
             features:[
                 "Better hotels",
@@ -1406,6 +1454,7 @@ travel:{
             name:"Spiritual Premium",
             price:"Custom Quote",
             tag:"PREMIUM",
+            image:"https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=600&q=80",
             description:"Premium pilgrimage experience.",
             features:[
                 "Premium stays",
@@ -1424,6 +1473,7 @@ travel:{
             name:"Classic Road Trip",
             price:"Custom Quote",
             tag:"STARTER",
+            image:"https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80",
             description:"Simple road trip planning.",
             features:[
                 "Route planning",
@@ -1437,6 +1487,7 @@ travel:{
             name:"Road Trip Comfort",
             price:"Custom Quote",
             tag:"POPULAR",
+            image:"https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80",
             description:"Complete road trip planning.",
             features:[
                 "Route planning",
@@ -1451,6 +1502,7 @@ travel:{
             name:"Road Trip Custom",
             price:"Custom Quote",
             tag:"BESPOKE",
+            image:"https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80",
             description:"Long-distance or multi-city road trips.",
             features:[
                 "Multi-city route",
@@ -1470,6 +1522,7 @@ travel:{
             name:"Corporate Basic",
             price:"Custom Quote",
             tag:"STARTER",
+            image:"https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80",
             description:"Business travel planning.",
             features:[
                 "Flights",
@@ -1483,6 +1536,7 @@ travel:{
             name:"Corporate Group",
             price:"Custom Quote",
             tag:"POPULAR",
+            image:"https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80",
             description:"Complete corporate group travel.",
             features:[
                 "Group flights",
@@ -1497,6 +1551,7 @@ travel:{
             name:"Corporate Premium",
             price:"Custom Quote",
             tag:"PREMIUM",
+            image:"https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80",
             description:"End-to-end corporate travel management.",
             features:[
                 "Premium hotels",
@@ -1516,6 +1571,7 @@ travel:{
             name:"Fully Custom Trip",
             price:"Custom Quote",
             tag:"BESPOKE",
+            image:"https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=600&q=80",
             description:"You tell us what you want. We build the itinerary.",
             features:[
                 "Any destination",
