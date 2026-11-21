@@ -1221,30 +1221,80 @@ button { border: 0; cursor: pointer; }
 
 /* COMMON */
 .section-dark { color: #0f172a; background: #ffffff; }
-.hero { min-height: 100svh; position: relative; display: flex; align-items: center; overflow: hidden; }
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 0;
+  height: auto;
+  padding-top: clamp(88px, 9vw, 112px);
+  background: #ffffff;
+  overflow: visible;
+}
+.hero-image-wrap {
+  position: relative;
+  width: min(100% - 36px, var(--max));
+  margin: 0 auto;
+  border-radius: clamp(16px, 2.5vw, 28px);
+  overflow: hidden;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.08);
+  background: #0f172a;
+}
 .hero-image {
-  position:absolute; inset:0;
-  display:block; width:100%; height:100%; object-fit:cover;
-  transform: scale(1.06); animation: heroZoom 14s ease-out forwards;
+  position: relative;
+  inset: auto;
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2048 / 1111;
+  object-fit: contain;
+  transform: none;
+  animation: none;
 }
 .hero-grid {
-  position:absolute; inset:0; opacity:.08;
+  position: absolute;
+  inset: 0;
+  opacity: .08;
+  pointer-events: none;
   background-image: linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px), linear-gradient(90deg,rgba(255,255,255,.3) 1px,transparent 1px);
   background-size: 80px 80px;
   mask-image: linear-gradient(to bottom, black, transparent 80%);
 }
 .hero-service-actions {
-  position: absolute;
+  position: relative;
   z-index: 2;
-  left: 50%;
-  bottom: clamp(40px, 9vh, 80px);
+  left: auto;
+  bottom: auto;
+  transform: none;
   display: flex;
   justify-content: center;
-  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: clamp(10px, 2vw, 18px);
   width: min(100% - 36px, var(--max));
-  transform: translateX(-50%);
+  margin: clamp(20px, 3.5vw, 32px) auto clamp(24px, 4vw, 40px);
 }
-.hero-service-actions .btn { min-width: 145px; }
+.hero-service-actions .btn {
+  min-width: 160px;
+  padding: 14px 32px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 9999px;
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+  transition: all 0.25s ease;
+  text-align: center;
+}
+.hero-service-actions .btn:hover {
+  border-color: var(--logo-color, #fc5e68);
+  color: var(--logo-color, #fc5e68);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(252, 94, 104, 0.2);
+}
 .hero-content { position: relative; z-index: 2; width: min(100% - 44px, var(--max)); margin: 0 auto; padding-top: 90px; }
 .eyebrow { display:flex; align-items:center; gap:9px; color:#aaa; font-size:10px; letter-spacing:.18em; font-weight:700; text-transform:uppercase; }
 .eyebrow.dark { color:#888; }
@@ -2143,6 +2193,10 @@ button { border: 0; cursor: pointer; }
     padding-top:104px;
     background:#ffffff;
   }
+  .hero-image-wrap {
+    width: calc(100% - 24px);
+    border-radius: 16px;
+  }
   .hero-image {
     position:relative;
     inset:auto;
@@ -2155,10 +2209,10 @@ button { border: 0; cursor: pointer; }
     animation:none;
   }
   .hero-grid {
-    top:104px;
-    bottom:auto;
-    height:auto;
-    aspect-ratio:2048 / 1111;
+    position: absolute;
+    inset: 0;
+    height: auto;
+    aspect-ratio: auto;
   }
   .hero-content { padding-top:clamp(80px, 22vw, 110px); }
   .hero h1 { font-size:clamp(40px, 12vw, 56px); }
@@ -2169,10 +2223,10 @@ button { border: 0; cursor: pointer; }
     bottom:auto;
     transform:none;
     gap:8px;
-    width:calc(100% - 28px);
-    margin:14px auto 18px;
+    width:calc(100% - 24px);
+    margin:16px auto 24px;
   }
-  .hero-service-actions .btn { min-width:0; flex:1; padding:0 4px; font-size:10px; }
+  .hero-service-actions .btn { min-width:0; flex:1; padding:11px 6px; font-size:11px; }
   .hero-bottom { display:none; }
   .service-switcher, .cards-section, .destination-section, .contact-section {
     width:calc(100% - 36px);
@@ -3274,9 +3328,14 @@ main > section,
     min-height: 0;
     height: auto;
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
     padding-top: 104px;
     background: #ffffff;
+  }
+
+  .hero-image-wrap {
+    width: calc(100% - 40px);
+    border-radius: 22px;
   }
 
   .hero-image {
@@ -3292,10 +3351,11 @@ main > section,
   }
 
   .hero-grid {
-    top: 104px;
-    bottom: auto;
+    position: absolute;
+    inset: 0;
+    top: 0;
     height: auto;
-    aspect-ratio: 2048 / 1111;
+    aspect-ratio: auto;
   }
 
   .hero-service-actions {
@@ -3304,13 +3364,12 @@ main > section,
     bottom: auto;
     transform: none;
     width: calc(100% - 40px);
-    margin: 14px auto 24px;
-    gap: clamp(8px, 2vw, 14px);
+    margin: 20px auto 32px;
+    gap: clamp(10px, 2vw, 16px);
   }
 
   .hero-service-actions .btn {
-    min-width: 0;
-    flex: 1;
+    min-width: 140px;
   }
 }
 
@@ -3323,7 +3382,7 @@ main > section,
   .hero {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
     min-height: 0;
     height: auto;
     aspect-ratio: auto;
@@ -3331,18 +3390,17 @@ main > section,
     padding-top: 104px;
   }
 
+  .hero-image-wrap {
+    width: calc(100% - 36px);
+    border-radius: 18px;
+  }
+
   .hero-image {
     position: relative;
     inset: auto;
     flex: none;
     width: 100%;
-    aspect-ratio: 2048 / 1111;
-    display:block;
-    position:relative;
-    inset:auto;
-    flex:none;
-    width:100%;
-    height:auto;
+    height: auto;
     aspect-ratio: 2048 / 1111;
     object-fit: contain;
     transform: none;
@@ -3350,10 +3408,11 @@ main > section,
   }
 
   .hero-grid {
-    top: 104px;
-    bottom: auto;
+    position: absolute;
+    inset: 0;
+    top: 0;
     height: auto;
-    aspect-ratio: 2048 / 1111;
+    aspect-ratio: auto;
   }
 
   .hero-service-actions {
@@ -3361,14 +3420,16 @@ main > section,
     left: auto;
     bottom: auto;
     transform: none;
-    width: calc(100% - 40px);
-    margin: 14px auto 24px;
+    width: calc(100% - 36px);
+    margin: 18px auto 28px;
     gap: clamp(8px, 2vw, 14px);
   }
 
   .hero-service-actions .btn {
     min-width: 0;
     flex: 1;
+    padding: 12px 14px;
+    font-size: 13px;
   }
 
   .service-section {
