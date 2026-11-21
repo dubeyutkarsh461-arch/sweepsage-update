@@ -708,12 +708,12 @@
           name: '10-Min Doorstep Shoot',
           price: instPrice,
           priceSub: 'Flat all-inclusive',
+          image: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=600&q=80',
           description: 'Verified professional creator arrives at your doorstep equipped with pro gear. Ideal for portraits, birthdays, or quick moments.',
           features: [
             '10-Minute professional portrait session',
-            '1 Verified creator with high-end camera & lighting',
-            '10 Color-graded high-resolution frames',
-            '24-Hour digital cloud delivery link'
+            '1 Verified creator with high-end camera',
+            '10 Color-graded high-res frames'
           ],
           ctaText: `Book Shoot (${instPrice}) ↗`,
           ctaLink: 'PHOTOGRAPHER-BOOKING.HTML?event=instant',
@@ -727,12 +727,12 @@
           name: 'Signature Cinematic Pre-Wedding',
           price: '₹12,999/-',
           priceSub: 'Full day shoot',
+          image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80',
           description: 'Curated pre-wedding storytelling with creative lighting, cinematic direction, and social media highlight reels.',
           features: [
             '1 Lead Photographer + 1 Cinematographer',
             '4K Aerial drone shots & location direction',
-            '60-Sec cinematic Instagram Reel included',
-            '120+ Master edited high-res digital frames'
+            '60-Sec cinematic Instagram Reel included'
           ],
           ctaText: 'Explore Pre-Wedding ↗',
           ctaLink: 'PHOTOGRAPHER-BOOKING.HTML?event=prewedding',
@@ -752,8 +752,9 @@
               name: p.name,
               price: p.price,
               priceSub: p.serviceId ? p.serviceId.toUpperCase() : 'Custom Package',
+              image: p.image || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80',
               description: p.description || 'Exclusive curated photography experience.',
-              features: (p.features && p.features.length) ? p.features : ['Verified professional creator', '24-Hour digital delivery'],
+              features: (p.features && p.features.length) ? p.features.slice(0, 3) : ['Verified professional creator', '24-Hour digital delivery'],
               ctaText: 'Select Package ↗',
               ctaLink: `PHOTOGRAPHER-BOOKING.HTML?event=${encodeURIComponent(p.serviceId || 'instant')}`,
               featured: false
@@ -771,12 +772,12 @@
         name: d.name,
         price: d.price,
         priceSub: d.duration || 'Curated Itinerary',
+        image: d.image || (idx === 1 ? 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=600&q=80' : 'https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=600&q=80'),
         description: d.overview || 'Bespoke guided holiday retreat with boutique hotel stays and private transfers.',
-        features: (d.inclusions && d.inclusions.length) ? d.inclusions.slice(0, 4) : [
+        features: (d.inclusions && d.inclusions.length) ? d.inclusions.slice(0, 3) : [
           'Handcrafted day-by-day itinerary',
           'Private dedicated cab transfers',
-          'Boutique resort accommodation',
-          'Daily breakfast & local experiences'
+          'Boutique resort accommodation'
         ],
         ctaText: 'View Itinerary & Book ↗',
         ctaLink: `TRAVEL-BOOKING.HTML?destination=${encodeURIComponent(d.id)}`,
@@ -793,12 +794,12 @@
           name: 'Deep Glow Facial & Hair Spa Ritual',
           price: 'Starting ₹2,199/-',
           priceSub: salonCfg.offerTag || 'VIP 50% Off Available',
+          image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=600&q=80',
           description: 'Complete beauty rejuvenation delivered at home with sealed sterile hygiene kits and certified top-tier stylists.',
           features: [
             '100% Sealed single-use sterile kits',
             'Luxury deep radiance fruit/gold facial',
-            'Intense nourishing hair spa & scalp massage',
-            'Complimentary setup & doorstep cleanup'
+            'Intense nourishing hair spa massage'
           ],
           ctaText: 'Join VIP Waitlist (50% Off) ↗',
           ctaLink: 'salon.html',
@@ -812,12 +813,12 @@
           name: 'Bridal & HD Glam Makeover',
           price: 'Starting ₹8,999/-',
           priceSub: 'Bespoke Artist Booking',
+          image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80',
           description: 'High-definition bridal makeup, hairstyling, saree draping, and pre-bridal skin prep by certified celebrity stylists.',
           features: [
             'Premium international cosmetics (MAC/Huda)',
             'HD / Airbrush makeup with trial options',
-            'Advanced hair styling & floral accessories',
-            'At-home convenience for the entire bridal party'
+            'Advanced hair styling & accessories'
           ],
           ctaText: 'Explore Bridal ↗',
           ctaLink: 'salon.html',
@@ -838,11 +839,15 @@
 
       grid.innerHTML = displayed.map(pkg => `
         <article class="trending-card ${pkg.featured ? 'featured' : ''}">
-          <div>
-            <div class="trending-card-top">
+          <div class="trending-card-media">
+            <img src="${pkg.image}" alt="${pkg.name}" class="trending-card-img" loading="lazy">
+            <div class="trending-card-overlay">
               <span class="trending-category-badge">${pkg.categoryLabel}</span>
               <span class="trending-tag-badge">${pkg.tag}</span>
             </div>
+          </div>
+
+          <div class="trending-card-content">
             <h3 class="trending-card-title">${pkg.name}</h3>
             <div class="trending-card-price">
               ${pkg.price}
@@ -855,7 +860,8 @@
               `).join('')}
             </ul>
           </div>
-          <div style="margin-top: auto; padding-top: 14px;">
+
+          <div class="trending-card-footer">
             <a href="${pkg.ctaLink}" class="trending-card-cta ${pkg.featured ? '' : 'outline'}">
               ${pkg.ctaText}
             </a>
