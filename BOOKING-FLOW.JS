@@ -2820,3 +2820,14 @@ try {
     }
     sessionStorage.setItem('sweepsage_last_url', cur);
 } catch(e) {}
+
+// Global click outside to dismiss 3-dots more menu
+document.addEventListener('click', (e) => {
+    document.querySelectorAll('.nav-more-dropdown.open').forEach(dd => {
+        if (!dd.contains(e.target)) {
+            dd.classList.remove('open');
+            const trig = dd.querySelector('.nav-more-btn');
+            if (trig) trig.setAttribute('aria-expanded', 'false');
+        }
+    });
+});

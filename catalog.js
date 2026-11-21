@@ -1077,6 +1077,29 @@
     }
   }
 
+  function updateGlobalNavPrice() {
+    try {
+      const services = SweepSageCatalog.getPhotographyServices();
+      const inst = services.find(s => s.id === 'instant');
+      if (inst && inst.price) {
+        document.querySelectorAll('#navMoreInstantPrice, .nav-more-badge').forEach(el => {
+          el.textContent = inst.price;
+        });
+      }
+    } catch(e) {}
+  }
+
+  if (typeof window !== "undefined") {
+    window.addEventListener('sweepsage_catalog_updated', updateGlobalNavPrice);
+    if (typeof document !== "undefined") {
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", updateGlobalNavPrice);
+      } else {
+        updateGlobalNavPrice();
+      }
+    }
+  }
+
   // Expose globally
   window.SweepSageCatalog = SweepSageCatalog;
   window.SweepSageDB = SweepSageCatalog;
