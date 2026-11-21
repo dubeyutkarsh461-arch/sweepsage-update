@@ -2709,32 +2709,21 @@ function goStep(step){
         .classList.add("active");
 
 
-    document
-        .getElementById("stepText")
-        .innerText =
-        `Step ${step - 1} of 4`;
-
+    const stepEl = document.getElementById("stepText");
+    if (stepEl) stepEl.innerText = `Step ${step - 1} of 4`;
 
     const titles = {
-
         2:"Select Requirement",
         3:"Select Package",
         4:"Enter Details",
         5:"Review Request"
-
     };
 
+    const progTitleEl = document.getElementById("progressTitle");
+    if (progTitleEl) progTitleEl.innerText = titles[step];
 
-    document
-        .getElementById("progressTitle")
-        .innerText =
-        titles[step];
-
-
-    document
-        .getElementById("progressFill")
-        .style.width =
-        `${(step - 1) * 25}%`;
+    const progFillEl = document.getElementById("progressFill");
+    if (progFillEl) progFillEl.style.width = `${(step - 1) * 25}%`;
 
 
     if (step === 2 || step === 3) {
@@ -2785,8 +2774,10 @@ document.title=pageCopy.title;
 document.getElementById("serviceIcon").textContent=pageCopy.icon;
 document.getElementById("uspHeading").innerHTML=pageCopy.heading;
 document.getElementById("uspCopy").textContent=pageCopy.copy;
-document.getElementById("pageHeading").innerHTML=pageCopy.pageHeading;
-document.getElementById("pageIntro").textContent=pageCopy.intro;
+const headingEl = document.getElementById("pageHeading");
+if (headingEl) headingEl.innerHTML = pageCopy.pageHeading;
+const introEl = document.getElementById("pageIntro");
+if (introEl) introEl.textContent = pageCopy.intro;
 document.getElementById("uspPrice").hidden=pageService!=="photographer";
 document.getElementById("tenMinuteOffer").hidden=pageService!=="photographer";
 selectService(pageService);
