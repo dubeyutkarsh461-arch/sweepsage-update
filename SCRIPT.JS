@@ -492,10 +492,10 @@ document.addEventListener("DOMContentLoaded", () => {
     instant: {
 
       title:
-        "Book in minutes — Just ₹1,499/-",
+        "Instant Photographer — From ₹1,499/-",
 
       sub:
-        "10-Min Quick Shoot at your doorstep. Delivered in 24 hours."
+        "On-demand photographer at your doorstep. Delivered in 24 hours."
 
     },
 
@@ -1588,9 +1588,9 @@ const SEARCH_INDEX = [
   {
     id: "instant-photo",
     category: "instant",
-    title: "10-Min Instant Photographer",
-    sub: "Doorstep portrait, candid or reels in 10 minutes",
-    price: "₹1,499/-",
+    title: "Instant Photographer",
+    sub: "Doorstep portraits, events & celebrations from 1 Hr (₹1,499/-)",
+    price: "From ₹1,499/-",
     url: "PHOTOGRAPHER-BOOKING.HTML?event=instant"
   },
   {
@@ -1726,7 +1726,7 @@ function ensureSearchModalDOM() {
 
       <div class="search-categories-row" id="searchCategoryPills">
         <button type="button" class="search-cat-pill active" onclick="setSearchCategory('all', this)">All</button>
-        <button type="button" class="search-cat-pill" onclick="setSearchCategory('instant', this)">${SEARCH_ICONS.instant} 10-Min Instant</button>
+        <button type="button" class="search-cat-pill" onclick="setSearchCategory('instant', this)">${SEARCH_ICONS.instant} Instant Photographer</button>
         <button type="button" class="search-cat-pill" onclick="setSearchCategory('photography', this)">${SEARCH_ICONS.photography} Photography</button>
         <button type="button" class="search-cat-pill" onclick="setSearchCategory('salon', this)">${SEARCH_ICONS.salon} Salon</button>
         <button type="button" class="search-cat-pill" onclick="setSearchCategory('travel', this)">${SEARCH_ICONS.travel} Travel</button>
@@ -1839,7 +1839,7 @@ function renderSearchResults(query, category) {
         <strong style="color: #cbd5e1; font-size: 13.5px; display: block; margin-bottom: 4px;">Trending Experiences & Quick Bookings</strong>
         <p style="font-size: 12px; margin: 0; color: #64748b;">Instant doorstep services, luxury wedding crews, and curated trips.</p>
         <div class="search-trending-pills">
-          <button type="button" class="search-trend-btn" onclick="quickFillSearch('10-Min Photographer')">10-Min Shoot</button>
+          <button type="button" class="search-trend-btn" onclick="quickFillSearch('Instant Photographer')">Instant Photographer</button>
           <button type="button" class="search-trend-btn" onclick="quickFillSearch('Bridal Makeup')">Bridal Glam</button>
           <button type="button" class="search-trend-btn" onclick="quickFillSearch('Kashmir')">Kashmir Tour</button>
           <button type="button" class="search-trend-btn" onclick="quickFillSearch('Wedding')">Wedding Cinema</button>

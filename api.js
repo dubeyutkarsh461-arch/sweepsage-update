@@ -17,7 +17,7 @@
       service: "photographer",
       event_id: "instant",
       event_name: "Instant Doorstep Photographer",
-      package_name: "10-Min Doorstep Portrait Session",
+      package_name: "Instant Shoot (1 Hour)",
       price: "₹1,499",
       customer_name: "Utkarsh Dubey",
       customer_phone: "+91 95558 26615",

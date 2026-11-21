@@ -7,7 +7,7 @@
  */
 
 (function () {
-  const STORAGE_KEY = "sweepsage_catalog_v2";
+  const STORAGE_KEY = "sweepsage_catalog_v3";
   const WAITLIST_KEY = "sweepsage_salon_waitlist";
   const CRM_EMAILS_KEY = "sweepsage_crm_emails";
   const CRM_INVOICES_KEY = "sweepsage_crm_invoices";
@@ -22,12 +22,12 @@
   const DEFAULT_PHOTOGRAPHY_SERVICES = [
     {
       id: "instant",
-      name: "10-Min Quick Shoot",
-      price: "₹1,499/-",
+      name: "Instant Photographer",
+      price: "Starting ₹1,499/-",
       basePriceNum: 1499,
       icon: "⚡",
       tag: "MAIN USP",
-      description: "Book in minutes: Professional photographer at your doorstep for portraits and special moments.",
+      description: "Instant photographer at your doorstep: 1 Hour (₹1,499/-), 4 Hours (₹3,599/-), or 10 Hours (₹9,999/-).",
       active: true
     },
     {
@@ -107,32 +107,49 @@
       {
         id: "pkg_inst_1",
         serviceId: "instant",
-        name: "10-Min Doorstep Shoot",
+        name: "Instant Shoot (1 Hour)",
         price: "₹1,499/-",
-        tag: "SWEEPSAGE USP",
+        tag: "1 HOUR • POPULAR",
         image: "https://images.unsplash.com/photo-1554080353-a576cf803bda?auto=format&fit=crop&w=600&q=80",
-        description: "Fast professional photography for quick moments at your doorstep.",
+        description: "1 hour dedicated professional photography session for portraits, couples, birthdays or special moments at your doorstep.",
         features: [
-          "10-minute professional shoot",
-          "1 verified professional creator",
-          "Portrait / couple / product / birthday",
+          "1 Hour dedicated professional shoot",
+          "1 Verified professional creator",
+          "Portraits, couples, birthdays & occasions",
           "Digital delivery within 24 hours",
-          "10 color-graded high-res frames"
+          "High-res color-graded frames"
         ]
       },
       {
         id: "pkg_inst_2",
         serviceId: "instant",
-        name: "30-Min Extended Portrait",
-        price: "₹2,999/-",
-        tag: "BEST VALUE",
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
-        description: "Extended session for outfit change and diverse angles.",
+        name: "Instant Shoot (4 Hours)",
+        price: "₹3,599/-",
+        tag: "4 HOURS • BEST VALUE",
+        image: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80",
+        description: "4 hours continuous half-day coverage for parties, ceremonies, family gatherings and corporate events.",
         features: [
-          "30-minute doorstep session",
-          "25 color-graded high-res photos",
-          "Portable lighting gear included",
-          "Priority 12-hour turnaround"
+          "4 Hours continuous professional coverage",
+          "Senior verified photographer with pro lighting",
+          "Parties, family gatherings & ceremonies",
+          "All color-graded high-res photos",
+          "Priority 24-hour digital delivery"
+        ]
+      },
+      {
+        id: "pkg_inst_3",
+        serviceId: "instant",
+        name: "Instant Shoot (10 Hours)",
+        price: "₹9,999/-",
+        tag: "10 HOURS • FULL DAY PRO",
+        image: "https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=600&q=80",
+        description: "10 hours comprehensive full-day coverage for full-scale events, day-long functions, weddings and productions.",
+        features: [
+          "10 Hours full-day comprehensive coverage",
+          "Lead verified photographer + studio lighting",
+          "Unlimited captures & full color-graded gallery",
+          "Dedicated concierge & expedited delivery",
+          "Full commercial usage rights"
         ]
       }
     ],

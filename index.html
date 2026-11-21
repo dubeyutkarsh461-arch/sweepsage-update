@@ -251,7 +251,7 @@
             <img src="loader-camera-logo.png" alt="Photography">
           </div>
           <strong>Photography</strong>
-          <small>Book in minutes — Just <span id="home-instant-price">₹1,499/-</span></small>
+          <small>Instant Photographer — From <span id="home-instant-price">₹1,499/-</span></small>
           <span class="tab-arrow">↗</span>
         </a>
         <a class="service-tab" href="salon.html">
@@ -600,7 +600,7 @@
     <div class="custom-modal-box">
       <button type="button" class="modal-close-cross" onclick="closeGetAppModal()" aria-label="Close">&times;</button>
       <div class="modal-head-title">Experience SweepSage on Mobile</div>
-      <p class="modal-head-desc">Book photographers in 10 minutes, get doorstep beauty services, and track your travel itineraries in real time.</p>
+      <p class="modal-head-desc">Book instant photographers on demand, get doorstep beauty services, and track your travel itineraries in real time.</p>
 
       <div class="app-modal-grid">
         <div class="app-qr-box">
@@ -663,7 +663,7 @@
           <span class="modal-order-status">Confirmed</span>
         </div>
         <div class="modal-order-details">
-          <span>Date: Today • 10-Minute Dispatch</span><br>
+          <span>Date: Today • Instant Dispatch</span><br>
           <span>Amount: <span id="home-modal-price">₹1,499/-</span> • Professional Studio Gear</span>
         </div>
       </div>
@@ -730,23 +730,61 @@
       // 1. Photography Trending Items
       const photoItems = [
         {
-          id: 'trend_photo_instant',
+          id: 'trend_photo_instant_1',
           category: 'photography',
           categoryLabel: '📸 Photography',
-          tag: '🔥 SWEEPSAGE USP',
-          name: '10-Min Doorstep Shoot',
-          price: instPrice,
-          priceSub: 'Flat all-inclusive',
+          tag: '⚡ 1 HOUR • POPULAR',
+          name: 'Instant Shoot (1 Hour)',
+          price: '₹1,499/-',
+          priceSub: '1 Hour Dedicated Shoot',
           image: 'https://images.unsplash.com/photo-1554080353-a576cf803bda?auto=format&fit=crop&w=600&q=80',
-          description: 'Verified professional creator arrives at your doorstep equipped with pro gear. Ideal for portraits, birthdays, or quick moments.',
+          description: '1 hour dedicated professional photography session for portraits, couples, birthdays or special moments at your doorstep.',
           features: [
-            '10-Minute professional portrait session',
-            '1 Verified creator with high-end camera',
-            '10 Color-graded high-res frames'
+            '1 Hour dedicated professional shoot',
+            '1 Verified professional creator',
+            'Portraits, birthdays & special moments'
           ],
-          ctaText: `Book Shoot (${instPrice}) ↗`,
+          ctaText: 'Book 1 Hr (₹1,499/-) ↗',
           ctaLink: 'PHOTOGRAPHER-BOOKING.HTML?event=instant',
           featured: true
+        },
+        {
+          id: 'trend_photo_instant_4',
+          category: 'photography',
+          categoryLabel: '📸 Photography',
+          tag: '🔥 4 HOURS • VALUE',
+          name: 'Instant Shoot (4 Hours)',
+          price: '₹3,599/-',
+          priceSub: '4 Hours Half Day Coverage',
+          image: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80',
+          description: '4 hours continuous half-day coverage for parties, ceremonies, family gatherings and corporate events.',
+          features: [
+            '4 Hours continuous professional coverage',
+            'Senior verified photographer with pro lighting',
+            'All color-graded high-res photos'
+          ],
+          ctaText: 'Book 4 Hrs (₹3,599/-) ↗',
+          ctaLink: 'PHOTOGRAPHER-BOOKING.HTML?event=instant',
+          featured: false
+        },
+        {
+          id: 'trend_photo_instant_10',
+          category: 'photography',
+          categoryLabel: '📸 Photography',
+          tag: '👑 10 HOURS • FULL DAY',
+          name: 'Instant Shoot (10 Hours)',
+          price: '₹9,999/-',
+          priceSub: '10 Hours Full Day Coverage',
+          image: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=600&q=80',
+          description: '10 hours comprehensive full-day coverage for full-scale events, day-long functions, weddings and productions.',
+          features: [
+            '10 Hours full-day comprehensive coverage',
+            'Lead verified photographer + studio lighting',
+            'Unlimited captures & full digital gallery'
+          ],
+          ctaText: 'Book 10 Hrs (₹9,999/-) ↗',
+          ctaLink: 'PHOTOGRAPHER-BOOKING.HTML?event=instant',
+          featured: false
         },
         {
           id: 'trend_photo_prewed',

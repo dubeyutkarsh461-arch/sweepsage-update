@@ -29,8 +29,8 @@ const events = {
         {
             id:"instant",
             icon:"⚡",
-            name:"10-Min Quick Shoot",
-            description:"Book in minutes: Professional photographer at your doorstep for portraits and special moments."
+            name:"Instant Photographer",
+            description:"On-demand photographer at your doorstep: 1 Hr (₹1,499/-), 4 Hrs (₹3,599/-), or 10 Hrs (₹9,999/-)."
         },
 
         {
@@ -257,16 +257,47 @@ photographer:{
 instant:[
 
     {
-        name:"10-Min Photographer",
+        name:"Instant Shoot (1 Hour)",
         price:"₹1,499/-",
-        tag:"SWEEPSAGE USP — JUST ₹1,499/-",
+        tag:"1 HOUR • POPULAR",
         image:"https://images.unsplash.com/photo-1554080353-a576cf803bda?auto=format&fit=crop&w=600&q=80",
-        description:"Fast professional photography for quick moments at your doorstep.",
+        description:"1 hour dedicated professional photography session for portraits, couples, birthdays or special moments at your doorstep.",
         features:[
-            "10-minute professional shoot",
-            "1 professional verified photographer",
-            "Portrait / couple / small occasion / product",
-            "Digital delivery within 24 hours"
+            "1 Hour dedicated professional shoot",
+            "1 Verified professional photographer",
+            "Portraits, couples, birthdays & occasions",
+            "Digital gallery delivery within 24 hours",
+            "High-res color-graded frames"
+        ]
+    },
+
+    {
+        name:"Instant Shoot (4 Hours)",
+        price:"₹3,599/-",
+        tag:"4 HOURS • BEST VALUE",
+        image:"https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80",
+        description:"4 hours continuous half-day coverage for parties, ceremonies, family gatherings and corporate events.",
+        features:[
+            "4 Hours continuous professional coverage",
+            "1 Senior verified photographer with pro lighting",
+            "Parties, family gatherings & ceremonies",
+            "All color-graded high-res photos",
+            "Priority 24-hour digital delivery"
+        ]
+    },
+
+    {
+        name:"Instant Shoot (10 Hours)",
+        price:"₹9,999/-",
+        tag:"10 HOURS • FULL DAY PRO",
+        image:"https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=600&q=80",
+        description:"10 hours comprehensive full-day coverage for full-scale events, day-long functions, weddings and productions.",
+        features:[
+            "10 Hours full-day comprehensive coverage",
+            "Lead verified photographer + studio lighting",
+            "Unlimited captures & full color-graded gallery",
+            "Dedicated concierge & expedited delivery",
+            "Full commercial usage rights"
         ]
     }
 
@@ -1634,8 +1665,7 @@ function selectService(service){
             goToPackages();
 
             if (matched.id === "instant") {
-                const currentInstPrice = (window.SweepSageCatalog && window.SweepSageCatalog.getPhotographyServices().find(s => s.id === 'instant')?.price) || "₹1,499/-";
-                selectPackage("10-Min Photographer", currentInstPrice, false);
+                selectPackage("Instant Shoot (1 Hour)", "₹1,499/-", false);
             }
             return;
         }
@@ -1956,15 +1986,14 @@ function renderPackages(){
             tenOfferEl.style.display = "none";
         } else {
             tenOfferEl.style.display = "";
-            const currentInstPrice = (window.SweepSageCatalog && window.SweepSageCatalog.getPhotographyServices().find(s => s.id === 'instant')?.price) || "₹1,499/-";
             tenOfferEl.onclick = function(e){
-                selectPackage("10-Min Photographer", currentInstPrice, true);
+                selectPackage("Instant Shoot (1 Hour)", "₹1,499/-", true);
             };
             const tenBtn = tenOfferEl.querySelector(".ten-button");
             if (tenBtn) {
                 tenBtn.onclick = function(e){
                     e.stopPropagation();
-                    selectPackage("10-Min Photographer", currentInstPrice, true);
+                    selectPackage("Instant Shoot (1 Hour)", "₹1,499/-", true);
                 };
             }
         }
@@ -2008,7 +2037,7 @@ function selectPackage(name,price,autoAdvance = true){
     const tenOffer = document.getElementById("tenMinuteOffer");
     if (tenOffer) {
         const tenBtn = tenOffer.querySelector(".ten-button");
-        if (name.toLowerCase().includes("10-min")) {
+        if (name.toLowerCase().includes("instant") || name.toLowerCase().includes("10-min")) {
             tenOffer.classList.add("selected");
             if (tenBtn) tenBtn.classList.add("has-red-underline");
         } else {
@@ -2763,7 +2792,7 @@ function showToast(message){
 }
 
 const serviceCopy={
-photographer:{title:"Photography Booking | SweepSage",icon:"\uD83D\uDCF8",heading:'<span>10-Min Photographer</span> \u2014 Just \u20B91,499/-',copy:"Quick professional photography for portraits, couples, birthdays, products and special moments.",pageHeading:'Book your <em>photography experience.</em>',intro:"Choose your photography requirement and package, then share your event details. Our team will confirm availability and the final quotation.",eventDescription:"Choose your photography requirement."},
+photographer:{title:"Photography Booking | SweepSage",icon:"\uD83D\uDCF8",heading:'<span>Instant Photographer</span> \u2014 Starting \u20B91,499/-',copy:"On-demand professional photography for portraits, events, celebrations and special moments.",pageHeading:'Book your <em>photography experience.</em>',intro:"Choose your photography requirement and package, then share your event details. Our team will confirm availability and the final quotation.",eventDescription:"Choose your photography requirement."},
 salon:{title:"Salon at Home Booking | SweepSage",icon:"\uD83D\uDC84",heading:"Salon at Home \u2014 Beauty, delivered to you",copy:"Book bridal, makeup, hair, skin and grooming services from the comfort of your home.",pageHeading:'Book your <em>salon experience.</em>',intro:"Choose the beauty service and package you need, then share your preferred date, time and location. Our team will confirm availability and the final quotation.",eventDescription:"Choose the salon or beauty service you would like at home."},
 travel:{title:"Travel Planning | SweepSage",icon:"\u2708\uFE0F",heading:"Travel, planned for you \u2014 Your trip, your way",copy:"Tell us your travel style and destination. We will help plan a trip around your dates and personal interests.",pageHeading:'Plan your <em>next journey.</em>',intro:"Choose the kind of trip you have in mind, select a travel style and share your dates, destination and preferences. Our team will prepare a tailored quotation.",eventDescription:"Choose the kind of journey you want us to plan."}
 };
