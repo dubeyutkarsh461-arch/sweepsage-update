@@ -1786,22 +1786,69 @@ button { border: 0; cursor: pointer; }
   transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Realistic 3D Elliptical Ground Shadow */
+/* Compact scale for wide commercial food bowl */
+.quick-3d-char-img.quick-3d-bowl-img {
+  height: 195px;
+  filter: drop-shadow(0 14px 22px rgba(15, 23, 42, 0.22)) drop-shadow(0 2px 6px rgba(15, 23, 42, 0.1));
+}
+
+/* Realistic Dual-Layer 3D Contact & Ground Shadow */
 .quick-3d-ground-shadow {
+  position: relative;
   width: 160px;
-  height: 20px;
-  margin-top: -12px;
+  height: 22px;
+  margin-top: -8px;
   border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgba(15, 23, 42, 0.38) 0%, rgba(15, 23, 42, 0.14) 45%, transparent 75%);
-  filter: blur(4px);
+  background: radial-gradient(
+    ellipse 65% 50% at center,
+    rgba(15, 23, 42, 0.48) 0%,
+    rgba(15, 23, 42, 0.22) 40%,
+    rgba(15, 23, 42, 0.05) 68%,
+    transparent 82%
+  );
+  filter: blur(5px);
   animation: floatShadow 3.8s ease-in-out infinite;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, filter 0.4s ease;
   pointer-events: none;
+}
+
+/* Deep, realistic ambient contact occlusion core directly under base */
+.quick-3d-ground-shadow::after {
+  content: "";
+  position: absolute;
+  inset: 4px 18% 4px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(15, 23, 42, 0.45) 45%,
+    transparent 75%
+  );
+  filter: blur(2px);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
 }
 
 .quick-3d-ground-shadow.wide {
   width: 220px;
-  height: 22px;
+  height: 24px;
+}
+
+/* Specific contact shadow for the ceramic bowl base */
+.quick-3d-ground-shadow.bowl-shadow {
+  width: 180px;
+  height: 20px;
+  margin-top: -6px;
+}
+
+.quick-3d-ground-shadow.bowl-shadow::after {
+  inset: 3px 14% 3px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.88) 0%,
+    rgba(15, 23, 42, 0.55) 45%,
+    transparent 72%
+  );
+  filter: blur(1.8px);
 }
 
 /* Stagger floating animations naturally across buttons */
@@ -1896,7 +1943,12 @@ button { border: 0; cursor: pointer; }
   animation-play-state: paused;
   transform: scale(0.82);
   opacity: 0.45;
-  filter: blur(5px);
+  filter: blur(7px);
+}
+
+.quick-service-3d-item:hover .quick-3d-ground-shadow::after {
+  opacity: 0.15;
+  transform: scale(0.55);
 }
 
 .quick-service-3d-item:hover .quick-3d-pill {
@@ -1946,7 +1998,23 @@ html[data-theme="dark"] .quick-services-header h2 {
 
 body.dark-theme .quick-3d-ground-shadow,
 html[data-theme="dark"] .quick-3d-ground-shadow {
-  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.3) 45%, transparent 75%);
+  background: radial-gradient(
+    ellipse 65% 50% at center,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.45) 40%,
+    rgba(0, 0, 0, 0.12) 68%,
+    transparent 82%
+  );
+}
+
+body.dark-theme .quick-3d-ground-shadow::after,
+html[data-theme="dark"] .quick-3d-ground-shadow::after {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.98) 0%,
+    rgba(0, 0, 0, 0.65) 45%,
+    transparent 75%
+  );
 }
 
 body.dark-theme .quick-3d-pill,
@@ -1981,6 +2049,9 @@ html[data-theme="dark"] .quick-service-3d-item:hover .quick-3d-pill {
   .quick-3d-char-img {
     height: 205px;
   }
+  .quick-3d-char-img.quick-3d-bowl-img {
+    height: 155px;
+  }
   .quick-3d-ground-shadow {
     width: 130px;
     height: 16px;
@@ -1989,6 +2060,11 @@ html[data-theme="dark"] .quick-service-3d-item:hover .quick-3d-pill {
   .quick-3d-ground-shadow.wide {
     width: 175px;
     height: 18px;
+  }
+  .quick-3d-ground-shadow.bowl-shadow {
+    width: 145px;
+    height: 16px;
+    margin-top: -5px;
   }
   .quick-3d-pill {
     min-width: 155px;
