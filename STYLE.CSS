@@ -6162,33 +6162,37 @@ body:not(.dark-theme) .settings-modal-footer {
    SWIGGY-STYLE HEADER & HERO ARCHITECTURE
    ============================================================= */
 
-/* Seamless coral navbar on homepage */
+/* Signature Floating Dark Glass Navbar with Brand Coral Accent */
 body.swiggy-page .navbar:not(.scrolled) {
-  background: transparent !important;
-  border-color: transparent !important;
-  box-shadow: none !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
+  background: rgba(9, 9, 9, 0.82) !important;
+  border: 1px solid rgba(252, 94, 104, 0.3) !important;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.28) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
   margin-top: 18px !important;
 }
 body.swiggy-page .navbar.scrolled {
-  background: rgba(236, 95, 42, 0.96) !important;
-  border: 1px solid rgba(255, 255, 255, 0.22) !important;
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.22) !important;
+  background: rgba(9, 9, 9, 0.94) !important;
+  border: 1px solid rgba(252, 94, 104, 0.4) !important;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.38) !important;
   backdrop-filter: blur(24px) !important;
   -webkit-backdrop-filter: blur(24px) !important;
 }
 body.swiggy-page .brand img {
-  filter: brightness(0) invert(1);
+  filter: none !important; /* Original authentic logo color */
+  transition: transform 0.24s ease;
+}
+body.swiggy-page .brand:hover img {
+  transform: scale(1.06);
 }
 body.swiggy-page .brand span {
   color: #ffffff !important;
-  font-size: 20px !important;
+  font-size: 18px !important;
   font-weight: 800 !important;
   letter-spacing: -0.04em !important;
 }
 body.swiggy-page .brand span span {
-  color: rgba(255, 255, 255, 0.72) !important;
+  color: var(--logo-color, #fc5e68) !important; /* Original coral .com */
   font-size: 14px !important;
 }
 
@@ -6307,11 +6311,11 @@ body.swiggy-page .navbar.scrolled .nav-location {
   display: block !important;
 }
 
-/* HERO SECTION */
+/* HERO SECTION (SWEEPSAGE BRAND CORAL THEME) */
 .swiggy-hero {
   position: relative;
   width: 100%;
-  background: linear-gradient(180deg, #ec5f2a 0%, #eb5b25 70%, #e6511b 100%);
+  background: linear-gradient(180deg, #fc5e68 0%, #f94c59 65%, #e03a48 100%);
   padding: clamp(110px, 11vw, 140px) 20px 88px;
   overflow: visible;
   color: #ffffff;
@@ -6532,7 +6536,7 @@ body.swiggy-page .navbar.scrolled .nav-location {
   font-family: 'Manrope', sans-serif;
   font-size: 13px;
   font-weight: 800;
-  color: #ec5f2a;
+  color: #fc5e68;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
@@ -6548,19 +6552,19 @@ body.swiggy-page .navbar.scrolled .nav-location {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: #ec5f2a;
+  background: #fc5e68;
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 18px rgba(236, 95, 42, 0.35);
+  box-shadow: 0 6px 18px rgba(252, 94, 104, 0.38);
   transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
   flex-shrink: 0;
 }
 .swiggy-card:hover .swiggy-card-arrow-btn {
   transform: scale(1.1);
-  background: #ff5200;
-  box-shadow: 0 8px 24px rgba(236, 95, 42, 0.45);
+  background: #e03a48;
+  box-shadow: 0 8px 24px rgba(252, 94, 104, 0.5);
 }
 .swiggy-card-art-box {
   position: absolute;
