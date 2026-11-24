@@ -6156,3 +6156,489 @@ body:not(.dark-theme) .settings-modal-footer {
     justify-content: center;
   }
 }
+
+
+/* =============================================================
+   SWIGGY-STYLE HEADER & HERO ARCHITECTURE
+   ============================================================= */
+
+/* Seamless coral navbar on homepage */
+body.swiggy-page .navbar:not(.scrolled) {
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  margin-top: 18px !important;
+}
+body.swiggy-page .navbar.scrolled {
+  background: rgba(236, 95, 42, 0.96) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.22) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+}
+body.swiggy-page .brand img {
+  filter: brightness(0) invert(1);
+}
+body.swiggy-page .brand span {
+  color: #ffffff !important;
+  font-size: 20px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.04em !important;
+}
+body.swiggy-page .brand span span {
+  color: rgba(255, 255, 255, 0.72) !important;
+  font-size: 14px !important;
+}
+
+/* Nav links in desktop header */
+.nav-swiggy-text-link {
+  color: #ffffff !important;
+  font-family: 'DM Sans', -apple-system, sans-serif !important;
+  font-size: 14.5px !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  padding: 8px 14px !important;
+  border-radius: 999px !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+  opacity: 0.95;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+.nav-swiggy-text-link:hover {
+  opacity: 1 !important;
+  background: rgba(255, 255, 255, 0.16) !important;
+  transform: translateY(-1px);
+}
+@media (max-width: 960px) {
+  .nav-swiggy-text-link {
+    display: none !important;
+  }
+}
+
+/* "Get the App ↗" transparent outline pill */
+.swiggy-app-pill-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  background: transparent !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.75) !important;
+  border-radius: 9999px !important;
+  padding: 8px 18px !important;
+  height: 40px !important;
+  min-width: unset !important;
+  color: #ffffff !important;
+  cursor: pointer !important;
+  font-family: 'DM Sans', -apple-system, sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 13.5px !important;
+  letter-spacing: -0.01em !important;
+  transition: all 0.24s ease !important;
+  box-shadow: none !important;
+}
+.swiggy-app-pill-btn:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-color: #ffffff !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
+}
+.swiggy-app-pill-btn .action-icon {
+  display: none !important;
+}
+.swiggy-app-pill-btn .swiggy-app-pill-text {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  color: #ffffff !important;
+}
+.swiggy-app-pill-btn .nav-arrow-diag {
+  font-size: 14px;
+  font-weight: 800;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+.swiggy-app-pill-btn:hover .nav-arrow-diag {
+  transform: translate(2px, -2px);
+}
+@media (max-width: 640px) {
+  .swiggy-app-pill-btn {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    justify-content: center !important;
+  }
+  .swiggy-app-pill-btn .swiggy-app-pill-text {
+    display: none !important;
+  }
+  .swiggy-app-pill-btn .action-icon {
+    display: inline-flex !important;
+  }
+}
+
+/* User account circle button in Swiggy header */
+body.swiggy-page .nav-login-btn {
+  background: rgba(0, 0, 0, 0.42) !important;
+  border: 1px solid rgba(255, 255, 255, 0.24) !important;
+  color: #ffffff !important;
+  border-radius: 50% !important;
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+body.swiggy-page .nav-login-btn:hover {
+  background: rgba(0, 0, 0, 0.65) !important;
+  border-color: rgba(255, 255, 255, 0.45) !important;
+  transform: translateY(-1px) scale(1.05) !important;
+}
+body.swiggy-page .nav-login-btn .nav-svg-icon {
+  stroke: #ffffff !important;
+}
+
+/* Hide desktop location in nav when at top of homepage */
+body.swiggy-page .navbar:not(.scrolled) .nav-location {
+  display: none !important;
+}
+body.swiggy-page .navbar.scrolled .nav-location {
+  display: block !important;
+}
+
+/* HERO SECTION */
+.swiggy-hero {
+  position: relative;
+  width: 100%;
+  background: linear-gradient(180deg, #ec5f2a 0%, #eb5b25 70%, #e6511b 100%);
+  padding: clamp(110px, 11vw, 140px) 20px 88px;
+  overflow: visible;
+  color: #ffffff;
+}
+
+/* Side decorative framing */
+.swiggy-flank {
+  position: absolute;
+  top: 12%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.9;
+  filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.3));
+  transition: transform 0.5s ease;
+}
+.swiggy-flank-left {
+  left: -24px;
+  width: clamp(150px, 16vw, 250px);
+  transform: rotate(-14deg);
+}
+.swiggy-flank-right {
+  right: -24px;
+  width: clamp(150px, 16vw, 250px);
+  transform: rotate(14deg);
+}
+.swiggy-flank-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+@media (max-width: 1100px) {
+  .swiggy-flank {
+    display: none;
+  }
+}
+
+.swiggy-hero-container {
+  position: relative;
+  z-index: 3;
+  width: min(100%, 1200px);
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Main Hero Title */
+.swiggy-hero-headline {
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  font-size: clamp(28px, 4.2vw, 50px);
+  line-height: 1.22;
+  color: #ffffff;
+  max-width: 880px;
+  margin: 0 auto clamp(26px, 3.8vw, 38px);
+  letter-spacing: -0.03em;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
+}
+.swiggy-hero-headline .swiggy-highlight {
+  color: #ffffff;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* Search Bar Row */
+.swiggy-search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  max-width: 830px;
+  width: 100%;
+  margin: 0 auto clamp(36px, 5.5vw, 60px);
+}
+
+/* Left Location Pill */
+.swiggy-loc-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  min-width: 250px;
+  max-width: 310px;
+  flex-shrink: 0;
+  transition: transform 0.22s var(--ease), box-shadow 0.22s var(--ease);
+  color: #1c1c1c;
+}
+.swiggy-loc-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.14);
+}
+.swiggy-loc-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.swiggy-loc-text {
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #1c1c1c;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  flex: 1;
+}
+.swiggy-loc-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-left: 2px;
+}
+
+/* Right Search Pill */
+.swiggy-search-pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px 22px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  flex: 1;
+  max-width: 530px;
+  cursor: pointer;
+  transition: transform 0.22s var(--ease), box-shadow 0.22s var(--ease);
+}
+.swiggy-search-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.14);
+}
+.swiggy-search-placeholder {
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: #686b78;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  flex: 1;
+  user-select: none;
+}
+.swiggy-search-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* 3 Primary Feature Cards */
+.swiggy-cards-wrapper {
+  position: relative;
+  z-index: 10;
+  margin-top: 14px;
+  margin-bottom: -64px; /* Smooth overlap into the clean section below */
+}
+.swiggy-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.swiggy-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 26px 24px 22px 26px;
+  min-height: 275px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  overflow: hidden;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+  text-align: left;
+}
+.swiggy-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 52px rgba(0, 0, 0, 0.16);
+}
+.swiggy-card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  z-index: 2;
+}
+.swiggy-card-title {
+  font-family: 'Manrope', -apple-system, sans-serif;
+  font-weight: 900;
+  font-size: 23px;
+  color: #1c1c1c;
+  letter-spacing: -0.02em;
+  margin: 0 0 4px;
+  text-transform: uppercase;
+  line-height: 1.15;
+}
+.swiggy-card-subtitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #686b78;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.swiggy-card-badge {
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  color: #ec5f2a;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.swiggy-card-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  position: relative;
+  margin-top: auto;
+  z-index: 2;
+}
+.swiggy-card-arrow-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #ec5f2a;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(236, 95, 42, 0.35);
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+  flex-shrink: 0;
+}
+.swiggy-card:hover .swiggy-card-arrow-btn {
+  transform: scale(1.1);
+  background: #ff5200;
+  box-shadow: 0 8px 24px rgba(236, 95, 42, 0.45);
+}
+.swiggy-card-art-box {
+  position: absolute;
+  right: -8px;
+  bottom: -8px;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  pointer-events: none;
+  z-index: 1;
+}
+.swiggy-card-art-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.12));
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.swiggy-card:hover .swiggy-card-art-img {
+  transform: scale(1.08) translateY(-4px);
+}
+
+/* Adjust the Quick Services Section to accommodate the overlapping cards */
+.quick-services-section {
+  padding-top: clamp(84px, 9.5vw, 116px) !important;
+  background: #ffffff !important;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 900px) {
+  .swiggy-cards-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .swiggy-card {
+    min-height: 240px;
+    padding: 22px 20px 18px;
+  }
+  .swiggy-card-art-box {
+    width: 125px;
+    height: 125px;
+  }
+}
+
+@media (max-width: 680px) {
+  .swiggy-hero {
+    padding: 94px 14px 60px;
+  }
+  .swiggy-search-bar {
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+  .swiggy-loc-pill {
+    max-width: 100%;
+    width: 100%;
+    min-width: 0;
+    padding: 13px 16px;
+  }
+  .swiggy-search-pill {
+    max-width: 100%;
+    width: 100%;
+    padding: 13px 16px;
+  }
+  .swiggy-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .swiggy-cards-wrapper {
+    margin-bottom: -40px;
+  }
+  .swiggy-card {
+    min-height: 210px;
+  }
+  .swiggy-card-art-box {
+    width: 115px;
+    height: 115px;
+  }
+}

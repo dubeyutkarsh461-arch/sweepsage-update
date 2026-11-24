@@ -73,7 +73,7 @@
   </script>
 </head>
 
-<body class="loading">
+<body class="loading swiggy-page">
   <div class="noise"></div>
   <div class="cursor-glow"></div>
   <div class="scroll-progress"></div>
@@ -118,17 +118,20 @@
 
     <!-- Get the App | Login with subparts -->
     <div class="nav-right">
+      <a href="about.html" class="nav-swiggy-text-link">SweepSage Corporate</a>
+      <a href="partner-register.html" class="nav-swiggy-text-link">Partner with us</a>
+
       <button class="nav-icon-btn nav-search-btn" id="openSearchBtn" type="button" aria-label="Search experiences" title="Search experiences (Ctrl+K)" onclick="openSearchModal()">
         <span class="action-icon">
           <svg class="nav-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         </span>
       </button>
 
-      <button class="nav-action-btn nav-icon-btn" id="openGetAppBtn" type="button" onclick="openGetAppModal()" title="Get the App" aria-label="Get the App">
+      <button class="nav-action-btn nav-icon-btn swiggy-app-pill-btn" id="openGetAppBtn" type="button" onclick="openGetAppModal()" title="Get the App" aria-label="Get the App">
+        <span class="swiggy-app-pill-text">Get the App <span class="nav-arrow-diag">↗</span></span>
         <span class="action-icon">
           <svg class="nav-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="3" ry="3"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
         </span>
-        <span class="btn-text">Get the App</span>
       </button>
 
       <!-- 3-Dots More Options Menu (About & Partner) -->
@@ -220,53 +223,100 @@
   </header>
 
   <main>
-    <!-- HERO -->
-    <section class="hero" id="home">
-      <div class="hero-image-wrap">
-        <img class="hero-image" src="first.PNG" alt="SweepSage">
-        <div class="hero-grid"></div>
+    <!-- HERO (SWIGGY ARCHITECTURE) -->
+    <section class="swiggy-hero" id="home">
+      <!-- Decorative flanking assets -->
+      <div class="swiggy-flank swiggy-flank-left" aria-hidden="true">
+        <img src="instant-photographer.png" alt="" class="swiggy-flank-img">
+      </div>
+      <div class="swiggy-flank swiggy-flank-right" aria-hidden="true">
+        <img src="commercial-photography.png" alt="" class="swiggy-flank-img">
       </div>
 
-      <nav class="hero-service-actions" aria-label="Explore our services">
-        <a href="photography.html" class="btn btn-light magnetic">Photographer</a>
-        <a href="salon.html" class="btn btn-light magnetic">Salon</a>
-        <a href="travel.html" class="btn btn-light magnetic">Travel</a>
-      </nav>
-    </section>
+      <div class="swiggy-hero-container">
+        <!-- Main Hero Title -->
+        <h1 class="swiggy-hero-headline">
+          Doorstep Photography. Salon at Home.<br>
+          Luxury Retreats. <span class="swiggy-highlight">SweepSage it!</span>
+        </h1>
 
-    <!-- SERVICE SWITCHER -->
-    <section class="service-switcher" id="services">
-      <div class="service-tabs">
-        <a class="service-tab active" href="photography.html">
-          <span class="tab-number">01</span>
-          <div class="tab-icon">
-            <img src="loader-camera-logo.png" alt="Photography">
+        <!-- Central Search & Location Bar -->
+        <div class="swiggy-search-bar" role="search">
+          <!-- Location Pill -->
+          <button class="swiggy-loc-pill" type="button" aria-label="Select delivery location" onclick="openLocationModal()">
+            <span class="swiggy-loc-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ec5f2a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            </span>
+            <span class="swiggy-loc-text nav-delivery-location-text" id="heroDeliveryLocation">Delhi NCR, India</span>
+            <span class="swiggy-loc-arrow">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#686b78" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </span>
+          </button>
+
+          <!-- Search Pill -->
+          <div class="swiggy-search-pill" onclick="openSearchModal()" role="button" tabindex="0" aria-label="Search experiences">
+            <span class="swiggy-search-placeholder">Search for photographer, salon ritual, or retreat...</span>
+            <span class="swiggy-search-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#686b78" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </span>
           </div>
-          <strong>Photography</strong>
-          <small>Instant Photographer — From <span id="home-instant-price">₹1,499/-</span></small>
-          <span class="tab-arrow">↗</span>
-        </a>
-        <a class="service-tab" href="salon.html">
-          <span class="tab-number">02</span>
-          <div class="tab-icon">
-            <img src="loader-salon-logo.png" alt="Salon at Home">
+        </div>
+
+        <!-- 3 Primary Feature Cards -->
+        <div class="swiggy-cards-wrapper" id="services">
+          <div class="swiggy-cards-grid">
+            <!-- 01: Photography -->
+            <a href="photography.html" class="swiggy-card" aria-label="Explore Photography">
+              <div class="swiggy-card-header">
+                <h2 class="swiggy-card-title">PHOTOGRAPHY</h2>
+                <span class="swiggy-card-subtitle">DOORSTEP &amp; EVENTS</span>
+                <span class="swiggy-card-badge" id="home-instant-price">FROM ₹1,499</span>
+              </div>
+              <div class="swiggy-card-footer">
+                <span class="swiggy-card-arrow-btn" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </span>
+                <div class="swiggy-card-art-box">
+                  <img src="hero-card-photography.png" alt="Photography Shoot" class="swiggy-card-art-img" loading="lazy">
+                </div>
+              </div>
+            </a>
+
+            <!-- 02: Salon at Home -->
+            <a href="salon.html" class="swiggy-card" aria-label="Explore Salon at Home">
+              <div class="swiggy-card-header">
+                <h2 class="swiggy-card-title">SALON AT HOME</h2>
+                <span class="swiggy-card-subtitle">PREMIUM BEAUTY RITUALS</span>
+                <span class="swiggy-card-badge">UPTO 40% OFF</span>
+              </div>
+              <div class="swiggy-card-footer">
+                <span class="swiggy-card-arrow-btn" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </span>
+                <div class="swiggy-card-art-box">
+                  <img src="hero-card-salon.png" alt="Salon at Home" class="swiggy-card-art-img" loading="lazy">
+                </div>
+              </div>
+            </a>
+
+            <!-- 03: Travel Retreats -->
+            <a href="travel.html" class="swiggy-card" aria-label="Explore Travel Retreats">
+              <div class="swiggy-card-header">
+                <h2 class="swiggy-card-title">TRAVEL RETREATS</h2>
+                <span class="swiggy-card-subtitle">CURATED LUXURY STAYS</span>
+                <span class="swiggy-card-badge">ALL INCLUSIVE</span>
+              </div>
+              <div class="swiggy-card-footer">
+                <span class="swiggy-card-arrow-btn" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </span>
+                <div class="swiggy-card-art-box">
+                  <img src="hero-card-travel.png" alt="Travel Retreats" class="swiggy-card-art-img" loading="lazy">
+                </div>
+              </div>
+            </a>
           </div>
-          <div style="display: flex; align-items: center; gap: 6px;">
-            <strong>Salon at Home</strong>
-            <span id="home-salon-badge" style="background: rgba(252,94,104,0.15); color: #fc5e68; border: 1px solid rgba(252,94,104,0.3); font-size: 9px; font-weight: 800; padding: 1px 6px; border-radius: 9999px; text-transform: uppercase;">SOON</span>
-          </div>
-          <small id="home-salon-sub">Launching Soon • VIP Waitlist</small>
-          <span class="tab-arrow">↗</span>
-        </a>
-        <a class="service-tab" href="travel.html">
-          <span class="tab-number">03</span>
-          <div class="tab-icon">
-            <img src="loader-airplane-logo.png" alt="Travel">
-          </div>
-          <strong>Travel</strong>
-          <small>Trips made around you</small>
-          <span class="tab-arrow">↗</span>
-        </a>
+        </div>
       </div>
     </section>
 
