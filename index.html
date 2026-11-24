@@ -285,81 +285,91 @@
         <h2>Book in <span>Seconds.</span></h2>
       </div>
 
-      <div class="quick-services-grid" id="quickServicesGrid">
-        <!-- 01: Instant Photographer -->
-        <a href="PHOTOGRAPHER-BOOKING.HTML?event=instant" class="quick-service-3d-item" aria-label="Book Instant Photographer">
-          <div class="quick-3d-stage">
-            <div class="quick-3d-char-wrap">
-              <img src="instant-photographer.png" alt="Instant Photographer" class="quick-3d-char-img" loading="lazy">
-            </div>
-            <div class="quick-3d-ground-shadow"></div>
-          </div>
-          <div class="quick-3d-pill">
-            <span class="quick-3d-tag">⚡ INSTANT DISPATCH</span>
-            <strong class="quick-3d-title">Instant Photographer</strong>
-            <span class="quick-3d-price" id="quick-service-photo-price">From ₹1,499/- <span class="arrow">↗</span></span>
-          </div>
-        </a>
+      <div class="quick-services-slider-wrap">
+        <button class="quick-slider-btn prev" id="quickSliderPrev" aria-label="Slide Left">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
 
-        <!-- 02: Wedding Photography -->
-        <a href="PHOTOGRAPHER-BOOKING.HTML?event=wedding" class="quick-service-3d-item" aria-label="Book Wedding Photography">
-          <div class="quick-3d-stage">
-            <div class="quick-3d-char-wrap">
-              <img src="wedding-photography.png" alt="Wedding Photography" class="quick-3d-char-img" loading="lazy">
+        <div class="quick-services-grid" id="quickServicesGrid">
+          <!-- 01: Instant Photographer -->
+          <a href="PHOTOGRAPHER-BOOKING.HTML?event=instant" class="quick-service-3d-item" aria-label="Book Instant Photographer">
+            <div class="quick-3d-stage">
+              <div class="quick-3d-char-wrap">
+                <img src="instant-photographer.png" alt="Instant Photographer" class="quick-3d-char-img" loading="lazy">
+              </div>
+              <div class="quick-3d-ground-shadow"></div>
             </div>
-            <div class="quick-3d-ground-shadow wide"></div>
-          </div>
-          <div class="quick-3d-pill">
-            <span class="quick-3d-tag">💍 CINEMATIC &amp; ROYAL</span>
-            <strong class="quick-3d-title">Wedding Photography</strong>
-            <span class="quick-3d-price" id="quick-service-wedding-price">Starting ₹60,000/- <span class="arrow">↗</span></span>
-          </div>
-        </a>
+            <div class="quick-3d-pill">
+              <span class="quick-3d-tag">⚡ INSTANT DISPATCH</span>
+              <strong class="quick-3d-title">Instant Photographer</strong>
+              <span class="quick-3d-price" id="quick-service-photo-price">From ₹1,499/- <span class="arrow">↗</span></span>
+            </div>
+          </a>
 
-        <!-- 03: Event Photography -->
-        <a href="PHOTOGRAPHER-BOOKING.HTML?event=party" class="quick-service-3d-item" aria-label="Book Event Photography">
-          <div class="quick-3d-stage">
-            <div class="quick-3d-char-wrap">
-              <img src="event-photography.png" alt="Event Photography" class="quick-3d-char-img" loading="lazy">
+          <!-- 02: Wedding Photography -->
+          <a href="PHOTOGRAPHER-BOOKING.HTML?event=wedding" class="quick-service-3d-item" aria-label="Book Wedding Photography">
+            <div class="quick-3d-stage">
+              <div class="quick-3d-char-wrap">
+                <img src="wedding-photography.png" alt="Wedding Photography" class="quick-3d-char-img" loading="lazy">
+              </div>
+              <div class="quick-3d-ground-shadow wide"></div>
             </div>
-            <div class="quick-3d-ground-shadow"></div>
-          </div>
-          <div class="quick-3d-pill">
-            <span class="quick-3d-tag">🎉 BIRTHDAYS &amp; EVENTS</span>
-            <strong class="quick-3d-title">Event Photography</strong>
-            <span class="quick-3d-price" id="quick-service-event-price">Starting ₹4,999/- <span class="arrow">↗</span></span>
-          </div>
-        </a>
+            <div class="quick-3d-pill">
+              <span class="quick-3d-tag">💍 CINEMATIC &amp; ROYAL</span>
+              <strong class="quick-3d-title">Wedding Photography</strong>
+              <span class="quick-3d-price" id="quick-service-wedding-price">Starting ₹60,000/- <span class="arrow">↗</span></span>
+            </div>
+          </a>
 
-        <!-- 04: Commercial Photography -->
-        <a href="PHOTOGRAPHER-BOOKING.HTML?event=commercial" class="quick-service-3d-item" aria-label="Book Commercial Photography">
-          <div class="quick-3d-stage">
-            <div class="quick-3d-char-wrap">
-              <img src="commercial-photography.png" alt="Commercial Photography" class="quick-3d-char-img quick-3d-bowl-img" loading="lazy">
+          <!-- 03: Event Photography -->
+          <a href="PHOTOGRAPHER-BOOKING.HTML?event=party" class="quick-service-3d-item" aria-label="Book Event Photography">
+            <div class="quick-3d-stage">
+              <div class="quick-3d-char-wrap">
+                <img src="event-photography.png" alt="Event Photography" class="quick-3d-char-img" loading="lazy">
+              </div>
+              <div class="quick-3d-ground-shadow"></div>
             </div>
-            <div class="quick-3d-ground-shadow bowl-shadow"></div>
-          </div>
-          <div class="quick-3d-pill">
-            <span class="quick-3d-tag">📦 PRODUCT &amp; FOOD</span>
-            <strong class="quick-3d-title">Commercial Photography</strong>
-            <span class="quick-3d-price" id="quick-service-commercial-price">Starting ₹7,499/- <span class="arrow">↗</span></span>
-          </div>
-        </a>
+            <div class="quick-3d-pill">
+              <span class="quick-3d-tag">🎉 BIRTHDAYS &amp; EVENTS</span>
+              <strong class="quick-3d-title">Event Photography</strong>
+              <span class="quick-3d-price" id="quick-service-event-price">Starting ₹4,999/- <span class="arrow">↗</span></span>
+            </div>
+          </a>
 
-        <!-- 05: Portraits & Personal -->
-        <a href="PHOTOGRAPHER-BOOKING.HTML?event=portrait" class="quick-service-3d-item" aria-label="Book Portraits & Personal Photography">
-          <div class="quick-3d-stage">
-            <div class="quick-3d-char-wrap">
-              <img src="portrait-photography.png" alt="Portraits & Personal" class="quick-3d-char-img" loading="lazy">
+          <!-- 04: Portraits & Personal -->
+          <a href="PHOTOGRAPHER-BOOKING.HTML?event=portrait" class="quick-service-3d-item" aria-label="Book Portraits & Personal Photography">
+            <div class="quick-3d-stage">
+              <div class="quick-3d-char-wrap">
+                <img src="portrait-photography.png" alt="Portraits & Personal" class="quick-3d-char-img" loading="lazy">
+              </div>
+              <div class="quick-3d-ground-shadow wide"></div>
             </div>
-            <div class="quick-3d-ground-shadow wide"></div>
-          </div>
-          <div class="quick-3d-pill">
-            <span class="quick-3d-tag">✨ COUPLES &amp; MATERNITY</span>
-            <strong class="quick-3d-title">Portraits &amp; Personal</strong>
-            <span class="quick-3d-price" id="quick-service-portrait-price">Starting ₹2,499/- <span class="arrow">↗</span></span>
-          </div>
-        </a>
+            <div class="quick-3d-pill">
+              <span class="quick-3d-tag">✨ COUPLES &amp; MATERNITY</span>
+              <strong class="quick-3d-title">Portraits &amp; Personal</strong>
+              <span class="quick-3d-price" id="quick-service-portrait-price">Starting ₹2,499/- <span class="arrow">↗</span></span>
+            </div>
+          </a>
+
+          <!-- 05: Commercial Photography (LAST) -->
+          <a href="PHOTOGRAPHER-BOOKING.HTML?event=commercial" class="quick-service-3d-item" aria-label="Book Commercial Photography">
+            <div class="quick-3d-stage">
+              <div class="quick-3d-char-wrap">
+                <img src="commercial-photography.png" alt="Commercial Photography" class="quick-3d-char-img quick-3d-bowl-img" loading="lazy">
+              </div>
+              <div class="quick-3d-ground-shadow bowl-shadow"></div>
+            </div>
+            <div class="quick-3d-pill">
+              <span class="quick-3d-tag">📦 PRODUCT &amp; FOOD</span>
+              <strong class="quick-3d-title">Commercial Photography</strong>
+              <span class="quick-3d-price" id="quick-service-commercial-price">Starting ₹7,499/- <span class="arrow">↗</span></span>
+            </div>
+          </a>
+        </div>
+
+        <button class="quick-slider-btn next" id="quickSliderNext" aria-label="Slide Right">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
       </div>
     </section>
 
@@ -1090,9 +1100,71 @@
 
       renderTrendingPackages();
     }
+
+    function initQuickServicesSlider() {
+      const grid = document.getElementById('quickServicesGrid');
+      const prevBtn = document.getElementById('quickSliderPrev');
+      const nextBtn = document.getElementById('quickSliderNext');
+      if (!grid) return;
+
+      function updateArrows() {
+        if (!prevBtn || !nextBtn) return;
+        const maxScroll = grid.scrollWidth - grid.clientWidth;
+        if (maxScroll <= 10) {
+          prevBtn.style.display = 'none';
+          nextBtn.style.display = 'none';
+          return;
+        }
+        prevBtn.style.display = 'flex';
+        nextBtn.style.display = 'flex';
+        prevBtn.style.opacity = grid.scrollLeft <= 15 ? '0.35' : '1';
+        prevBtn.style.pointerEvents = grid.scrollLeft <= 15 ? 'none' : 'auto';
+        nextBtn.style.opacity = grid.scrollLeft >= maxScroll - 15 ? '0.35' : '1';
+        nextBtn.style.pointerEvents = grid.scrollLeft >= maxScroll - 15 ? 'none' : 'auto';
+      }
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+          grid.scrollBy({ left: -320, behavior: 'smooth' });
+        });
+      }
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+          grid.scrollBy({ left: 320, behavior: 'smooth' });
+        });
+      }
+
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+      grid.addEventListener('mousedown', (e) => {
+        isDown = true;
+        grid.classList.add('is-dragging');
+        startX = e.pageX - grid.offsetLeft;
+        scrollLeft = grid.scrollLeft;
+      });
+      window.addEventListener('mouseup', () => {
+        if (!isDown) return;
+        isDown = false;
+        grid.classList.remove('is-dragging');
+      });
+      grid.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - grid.offsetLeft;
+        const walk = (x - startX) * 1.4;
+        grid.scrollLeft = scrollLeft - walk;
+      });
+
+      grid.addEventListener('scroll', updateArrows, { passive: true });
+      window.addEventListener('resize', updateArrows, { passive: true });
+      setTimeout(updateArrows, 200);
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       syncHomePageCatalog();
       renderTrendingPackages();
+      initQuickServicesSlider();
     });
     window.addEventListener('sweepsage_catalog_updated', () => {
       syncHomePageCatalog();
@@ -1100,6 +1172,7 @@
     });
     syncHomePageCatalog();
     renderTrendingPackages();
+    initQuickServicesSlider();
   </script>
 </body>
 </html>

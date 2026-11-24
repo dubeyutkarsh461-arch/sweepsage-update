@@ -1733,17 +1733,100 @@ button { border: 0; cursor: pointer; }
   -webkit-text-fill-color: transparent;
 }
 
+/* QUICK SERVICE EXPERIENCE SLIDER WRAP */
+.quick-services-slider-wrap {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.quick-slider-btn {
+  position: absolute;
+  top: 42%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0f172a;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(10px);
+}
+
+.quick-slider-btn.prev {
+  left: -14px;
+}
+
+.quick-slider-btn.next {
+  right: -14px;
+}
+
+.quick-slider-btn:hover {
+  background: #fc5e68;
+  color: #ffffff;
+  border-color: #fc5e68;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 10px 28px rgba(252, 94, 104, 0.35);
+}
+
+.quick-slider-btn:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+body.dark-theme .quick-slider-btn,
+html[data-theme="dark"] .quick-slider-btn {
+  background: rgba(30, 41, 59, 0.92);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #f8fafc;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-theme .quick-slider-btn:hover,
+html[data-theme="dark"] .quick-slider-btn:hover {
+  background: #fc5e68;
+  color: #ffffff;
+  border-color: #fc5e68;
+}
+
 .quick-services-grid {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* STRICT SINGLE LINE */
   align-items: flex-end;
-  justify-content: center;
-  gap: clamp(20px, 3.5vw, 48px);
-  padding: 10px 0 20px;
+  justify-content: flex-start;
+  gap: clamp(24px, 3.5vw, 48px);
+  padding: 16px 20px 28px;
+  overflow-x: auto;
+  overflow-y: visible;
+  scroll-snap-type: x proximity;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  width: 100%;
+}
+
+.quick-services-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.quick-services-grid.is-dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
+  scroll-snap-type: none;
 }
 
 /* 3D Character Item - Standalone, completely borderless & box-free */
 .quick-service-3d-item {
+  flex: 0 0 auto; /* Never shrink in slider */
+  scroll-snap-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2051,6 +2134,20 @@ html[data-theme="dark"] .quick-service-3d-item:hover .quick-3d-pill {
 
 /* Responsive adjustments */
 @media (max-width: 640px) {
+  .quick-slider-btn {
+    width: 36px;
+    height: 36px;
+  }
+  .quick-slider-btn.prev {
+    left: -6px;
+  }
+  .quick-slider-btn.next {
+    right: -6px;
+  }
+  .quick-services-grid {
+    padding: 12px 14px 22px;
+    gap: 18px;
+  }
   .quick-3d-char-img {
     height: 205px;
   }
