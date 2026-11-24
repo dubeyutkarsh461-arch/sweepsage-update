@@ -1799,6 +1799,22 @@ button { border: 0; cursor: pointer; }
   pointer-events: none;
 }
 
+.quick-3d-ground-shadow.wide {
+  width: 220px;
+  height: 22px;
+}
+
+/* Stagger floating animations naturally across buttons */
+.quick-service-3d-item:nth-child(2) .quick-3d-char-wrap,
+.quick-service-3d-item:nth-child(2) .quick-3d-ground-shadow {
+  animation-delay: -1.9s;
+}
+
+.quick-service-3d-item:nth-child(3) .quick-3d-char-wrap,
+.quick-service-3d-item:nth-child(3) .quick-3d-ground-shadow {
+  animation-delay: -0.95s;
+}
+
 /* 3D Floating Action Pill */
 .quick-3d-pill {
   margin-top: 14px;
@@ -1964,6 +1980,10 @@ html[data-theme="dark"] .quick-service-3d-item:hover .quick-3d-pill {
     width: 130px;
     height: 16px;
     margin-top: -10px;
+  }
+  .quick-3d-ground-shadow.wide {
+    width: 175px;
+    height: 18px;
   }
   .quick-3d-pill {
     min-width: 155px;
