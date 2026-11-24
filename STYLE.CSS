@@ -6303,17 +6303,17 @@ body.swiggy-page .nav-login-btn .nav-svg-icon {
   stroke: #ffffff !important;
 }
 
-/* HERO SECTION WITH BLURRED ARTWORK BACKGROUND */
+/* HERO SECTION WITH ORIGINAL VISIBLE ARTWORK (first.PNG) */
 .swiggy-hero {
   position: relative;
   width: 100%;
-  background: #0d0e14;
-  padding: clamp(120px, 11.5vw, 150px) 20px 88px;
+  background: #0f1016;
+  padding: clamp(110px, 10vw, 140px) 20px 80px;
   overflow: visible;
   color: #ffffff;
 }
 
-/* Blurred original hero artwork (first.PNG) */
+/* Original hero artwork (first.PNG) - fully visible as originally intended */
 .swiggy-hero-bg-wrap {
   position: absolute;
   inset: 0;
@@ -6328,17 +6328,17 @@ body.swiggy-page .nav-login-btn .nav-svg-icon {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center center;
-  filter: blur(5px) brightness(0.95);
-  transform: scale(1.04); /* Prevents blur bleed on edges */
-  opacity: 0.88;
+  object-position: center top;
+  filter: none !important;
+  transform: none !important;
+  opacity: 1 !important;
   display: block;
 }
 
 .swiggy-hero-bg-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(8, 8, 12, 0.42) 0%, rgba(252, 94, 104, 0.32) 48%, rgba(224, 58, 72, 0.72) 100%);
+  background: linear-gradient(180deg, rgba(15, 16, 22, 0.4) 0%, rgba(15, 16, 22, 0.1) 45%, rgba(15, 16, 22, 0.75) 100%);
   pointer-events: none;
 }
 
