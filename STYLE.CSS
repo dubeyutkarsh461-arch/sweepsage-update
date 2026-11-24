@@ -1551,7 +1551,13 @@ button { border: 0; cursor: pointer; }
 @keyframes bounce { 50% { transform:translateY(5px); } }
 
 /* SERVICE SWITCHER */
-.service-switcher, .cards-section, .destination-section, .contact-section {
+.service-switcher {
+  width: min(100% - 44px, var(--max));
+  margin: auto;
+  padding: clamp(24px, 4vw, 48px) 0 clamp(36px, 5vw, 64px);
+}
+
+.cards-section, .destination-section, .contact-section {
   width:min(100% - 44px, var(--max)); margin:auto; padding:120px 0;
 }
 .section-head { display:flex; justify-content:space-between; align-items:end; gap:40px; margin-bottom:48px; }
@@ -3246,7 +3252,13 @@ html[data-theme="dark"] .quick-service-3d-item:hover .quick-3d-pill {
   }
   .hero-service-actions .btn { min-width:0; flex:1; padding:11px 6px; font-size:11px; }
   .hero-bottom { display:none; }
-  .service-switcher, .cards-section, .destination-section, .contact-section {
+  .service-switcher {
+    width: calc(100% - 36px);
+    margin: auto;
+    padding: clamp(20px, 4vw, 36px) 0 clamp(28px, 6vw, 48px);
+  }
+
+  .cards-section, .destination-section, .contact-section {
     width:calc(100% - 36px);
     padding:clamp(56px, 14vw, 80px) 0;
   }
