@@ -6303,11 +6303,11 @@ body.swiggy-page .nav-login-btn .nav-svg-icon {
   stroke: #ffffff !important;
 }
 
-/* HERO SECTION IN LOGO THEME COLOR WITH BLURRED ARTWORK */
+/* HERO SECTION IN RICH DARK LOGO THEME WITH SUBTLE ARTWORK */
 .swiggy-hero {
   position: relative;
   width: 100%;
-  background: linear-gradient(180deg, #fc5e68 0%, #fa4757 50%, #e03a48 100%);
+  background: linear-gradient(180deg, #7c1620 0%, #540e16 50%, #240509 100%);
   padding: clamp(110px, 10vw, 140px) 20px 80px;
   overflow: visible;
   color: #ffffff;
@@ -6329,9 +6329,9 @@ body.swiggy-page .nav-login-btn .nav-svg-icon {
   height: 100%;
   object-fit: cover;
   object-position: center top;
-  filter: blur(5px) brightness(1.1) contrast(1.15);
-  transform: scale(1.04); /* Prevents blur bleed on edges */
-  opacity: 0.58;
+  filter: blur(7px) brightness(0.9) contrast(1.1);
+  transform: scale(1.05); /* Prevents blur bleed on edges */
+  opacity: 0.32;
   mix-blend-mode: luminosity;
   display: block;
 }
@@ -6339,7 +6339,7 @@ body.swiggy-page .nav-login-btn .nav-svg-icon {
 .swiggy-hero-bg-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(252, 94, 104, 0.45) 0%, rgba(250, 71, 87, 0.2) 48%, rgba(224, 58, 72, 0.75) 100%);
+  background: linear-gradient(180deg, rgba(14, 15, 20, 0.5) 0%, rgba(100, 15, 25, 0.25) 48%, rgba(10, 11, 15, 0.78) 100%);
   pointer-events: none;
 }
 
