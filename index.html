@@ -315,6 +315,21 @@
             <span class="quick-3d-price" id="quick-service-wedding-price">Starting ₹60,000/- <span class="arrow">↗</span></span>
           </div>
         </a>
+
+        <!-- 03: Event Photography -->
+        <a href="PHOTOGRAPHER-BOOKING.HTML?event=party" class="quick-service-3d-item" aria-label="Book Event Photography">
+          <div class="quick-3d-stage">
+            <div class="quick-3d-char-wrap">
+              <img src="event-photography.png" alt="Event Photography" class="quick-3d-char-img" loading="lazy">
+            </div>
+            <div class="quick-3d-ground-shadow"></div>
+          </div>
+          <div class="quick-3d-pill">
+            <span class="quick-3d-tag">🎉 BIRTHDAYS &amp; EVENTS</span>
+            <strong class="quick-3d-title">Event Photography</strong>
+            <span class="quick-3d-price" id="quick-service-event-price">Starting ₹4,999/- <span class="arrow">↗</span></span>
+          </div>
+        </a>
       </div>
     </section>
 
@@ -1015,6 +1030,12 @@
       if (wedService) {
         const qw = document.getElementById('quick-service-wedding-price');
         if (qw) qw.innerHTML = wedService.price + ' <span class="arrow">↗</span>';
+      }
+
+      const evService = services.find(s => s.id === 'birthday') || services.find(s => s.id === 'party');
+      if (evService) {
+        const qe = document.getElementById('quick-service-event-price');
+        if (qe) qe.innerHTML = evService.price + ' <span class="arrow">↗</span>';
       }
 
       const salon = window.SweepSageCatalog.getSalonConfig();
