@@ -1703,6 +1703,149 @@ button { border: 0; cursor: pointer; }
 .destination-card h3 { font:700 37px "Manrope"; letter-spacing:-.06em; margin:6px 0; }
 .destination-card p { font-size:11px; color:#bbb; }
 
+/* QUICK SERVICE EXPERIENCE BUTTONS */
+.quick-services-section {
+  width: min(100% - 36px, 1160px);
+  margin: 0 auto clamp(36px, 6vw, 75px);
+  padding: clamp(10px, 3vw, 25px) 0;
+  position: relative;
+}
+
+.quick-services-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.quick-services-header .eyebrow {
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.quick-services-header h2 {
+  font: 800 clamp(26px, 4vw, 38px)/1.15 "Manrope", sans-serif;
+  letter-spacing: -0.035em;
+  color: #0f172a;
+}
+
+.quick-services-header h2 span {
+  background: var(--logo-gradient, linear-gradient(135deg, #FC5E68 0%, #FF8A73 100%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.quick-services-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+}
+
+.quick-service-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 185px;
+  padding: 18px 14px 20px;
+  background: #ffffff;
+  border: 1.5px solid rgba(0, 0, 0, 0.07);
+  border-radius: 26px;
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: visible;
+  cursor: pointer;
+}
+
+.quick-service-btn:hover {
+  transform: translateY(-6px);
+  border-color: #fc5e68;
+  box-shadow: 0 20px 42px rgba(252, 94, 104, 0.18);
+}
+
+.quick-service-thumb {
+  width: 135px;
+  height: 145px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.quick-service-thumb img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.14));
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.quick-service-btn:hover .quick-service-thumb img {
+  transform: scale(1.08) translateY(-4px);
+}
+
+.quick-service-badge {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #fc5e68;
+  background: rgba(252, 94, 104, 0.1);
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.quick-service-name {
+  font-family: "Manrope", sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.25;
+  margin-bottom: 4px;
+}
+
+.quick-service-price {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.quick-service-price .arrow {
+  color: #fc5e68;
+  font-size: 13px;
+  transition: transform 0.2s ease;
+}
+
+.quick-service-btn:hover .quick-service-price .arrow {
+  transform: translate(2px, -2px);
+}
+
+@media (max-width: 640px) {
+  .quick-service-btn {
+    width: 155px;
+    padding: 14px 10px 16px;
+    border-radius: 20px;
+  }
+  .quick-service-thumb {
+    width: 115px;
+    height: 125px;
+  }
+  .quick-service-name {
+    font-size: 13.5px;
+  }
+}
+
 /* TRENDING PACKAGES SHOWCASE */
 .trending-section {
   width: min(100% - 36px, 1160px);

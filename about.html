@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#ffffff">
   <meta name="color-scheme" content="light">
-  <meta name="description" content="Meet Utkarsh Dubey, Founder of SweepSage. Discover our philosophy: We capture moments, we create experiences, blending creativity, convenience, and genuine care.">
+  <meta name="description"
+    content="Meet Utkarsh Dubey, Founder of SweepSage. Discover our philosophy: We capture moments, we create experiences, blending creativity, convenience, and genuine care.">
   <title>Our Philosophy &amp; Founder — SweepSage</title>
 
   <!-- Browser Tab Favicon / Logo -->
@@ -21,17 +23,20 @@
   <meta property="og:type" content="profile">
   <meta property="og:site_name" content="SweepSage">
   <meta property="og:title" content="Our Philosophy &amp; Founder — SweepSage">
-  <meta property="og:description" content="We capture moments. We create experiences. Read about founder Utkarsh Dubey and the philosophy driving SweepSage.">
+  <meta property="og:description"
+    content="We capture moments. We create experiences. Read about founder Utkarsh Dubey and the philosophy driving SweepSage.">
   <meta property="og:image" content="https://sweepsage.com/founder.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
 
   <link rel="stylesheet" href="STYLE.CSS?v=3.3">
   <script>
-    (function(){
-      try { localStorage.removeItem('sweepsage_theme'); } catch(e){}
+    (function () {
+      try { localStorage.removeItem('sweepsage_theme'); } catch (e) { }
       document.documentElement.setAttribute('data-theme', 'light');
       document.documentElement.classList.remove('dark-theme');
     })();
@@ -53,9 +58,14 @@
 
       <!-- Enter your delivery location -->
       <div class="nav-location">
-        <button class="nav-location-btn" id="openLocationModalBtn" type="button" aria-label="Choose delivery location" onclick="openLocationModal()">
+        <button class="nav-location-btn" id="openLocationModalBtn" type="button" aria-label="Choose delivery location"
+          onclick="openLocationModal()">
           <span class="location-pin-icon">
-            <svg class="nav-svg-icon pin-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <svg class="nav-svg-icon pin-svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
           </span>
           <div class="location-text-wrap">
             <span class="location-title">Deliver to</span>
@@ -68,24 +78,37 @@
 
     <!-- Navigation actions -->
     <div class="nav-right">
-      <button class="nav-icon-btn nav-search-btn" id="openSearchBtn" type="button" aria-label="Search experiences" title="Search experiences (Ctrl+K)" onclick="openSearchModal()">
+      <button class="nav-icon-btn nav-search-btn" id="openSearchBtn" type="button" aria-label="Search experiences"
+        title="Search experiences (Ctrl+K)" onclick="openSearchModal()">
         <span class="action-icon">
-          <svg class="nav-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <svg class="nav-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
         </span>
       </button>
 
-      <button class="nav-action-btn nav-icon-btn" id="openGetAppBtn" type="button" onclick="openGetAppModal()" title="Get the App" aria-label="Get the App">
+      <button class="nav-action-btn nav-icon-btn" id="openGetAppBtn" type="button" onclick="openGetAppModal()"
+        title="Get the App" aria-label="Get the App">
         <span class="action-icon">
-          <svg class="nav-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="3" ry="3"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+          <svg class="nav-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="5" y="2" width="14" height="20" rx="3" ry="3"></rect>
+            <line x1="12" y1="18" x2="12.01" y2="18"></line>
+          </svg>
         </span>
         <span class="btn-text">Get the App</span>
       </button>
 
       <!-- 3-Dots More Options Menu (About & Partner) -->
       <div class="nav-more-dropdown" id="navMoreDropdown">
-        <button class="nav-more-btn nav-icon-btn" id="navMoreTrigger" type="button" aria-label="More options" title="More options" aria-haspopup="true" aria-expanded="false" onclick="this.closest('.nav-more-dropdown')?.classList.toggle('open'); event.stopPropagation();">
+        <button class="nav-more-btn nav-icon-btn" id="navMoreTrigger" type="button" aria-label="More options"
+          title="More options" aria-haspopup="true" aria-expanded="false"
+          onclick="this.closest('.nav-more-dropdown')?.classList.toggle('open'); event.stopPropagation();">
           <span class="action-icon">
-            <svg class="nav-svg-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
+            <svg class="nav-svg-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"
+              aria-hidden="true">
               <circle cx="12" cy="5" r="2.2"></circle>
               <circle cx="12" cy="12" r="2.2"></circle>
               <circle cx="12" cy="19" r="2.2"></circle>
@@ -95,9 +118,15 @@
 
         <div class="nav-more-menu" id="navMoreMenu" role="menu">
           <!-- About Sweepsage & Founder -->
-          <a class="nav-more-item active" href="about.html" role="menuitem" style="background: rgba(255, 255, 255, 0.12);">
+          <a class="nav-more-item active" href="about.html" role="menuitem"
+            style="background: rgba(255, 255, 255, 0.12);">
             <div class="nav-more-item-icon">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 16v-4"></path>
+                <path d="M12 8h.01"></path>
+              </svg>
             </div>
             <div class="nav-more-item-body">
               <span class="nav-more-title">About Us (Current)</span>
@@ -122,9 +151,14 @@
 
       <!-- Login with subparts -->
       <div class="nav-user-dropdown" id="userMenuDropdown">
-        <button class="nav-login-btn nav-icon-btn" id="userMenuTrigger" type="button" aria-haspopup="true" aria-expanded="false" title="Account &amp; Login" aria-label="Account &amp; Login">
+        <button class="nav-login-btn nav-icon-btn" id="userMenuTrigger" type="button" aria-haspopup="true"
+          aria-expanded="false" title="Account &amp; Login" aria-label="Account &amp; Login">
           <span class="user-avatar-circle">
-            <svg class="nav-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <svg class="nav-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
           </span>
           <span id="navLoginBtnText" class="btn-text">Login</span>
         </button>
@@ -137,30 +171,52 @@
           <div class="user-dropdown-divider"></div>
           <a class="user-dropdown-item" href="my-account.html?tab=orders" role="menuitem">
             <span class="item-icon">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
             </span>
             <span class="item-text">Profile</span>
             <span class="item-arrow">→</span>
           </a>
           <a class="user-dropdown-item" href="my-account.html?tab=orders" role="menuitem">
             <span class="item-icon">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                </path>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+              </svg>
             </span>
             <span class="item-text">Orders</span>
             <span class="item-badge" id="dropdownOrderCount">0</span>
           </a>
           <a class="user-dropdown-item" href="my-account.html?tab=favourites" role="menuitem">
             <span class="item-icon">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                </path>
+              </svg>
             </span>
             <span class="item-text">Favourites</span>
             <span class="item-arrow">→</span>
           </a>
 
           <div class="user-dropdown-divider"></div>
-          <a class="user-dropdown-item logout-item" href="javascript:void(0)" onclick="handleUserLogout()" role="menuitem">
+          <a class="user-dropdown-item logout-item" href="javascript:void(0)" onclick="handleUserLogout()"
+            role="menuitem">
             <span class="item-icon">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                <polyline points="16 17 21 12 16 7"></polyline>
+                <line x1="21" y1="12" x2="9" y2="12"></line>
+              </svg>
             </span>
             <span class="item-text">Logout</span>
           </a>
@@ -188,7 +244,8 @@
             <span class="pulse-dot"></span>
             <span>Founder &amp; CEO</span>
           </div>
-          <img src="founder.png?v=4.0" alt="Utkarsh Dubey, Founder of SweepSage" width="440" height="440" loading="eager">
+          <img src="founder.png?v=4.0" alt="Utkarsh Dubey, Founder of SweepSage" width="440" height="440"
+            loading="eager">
         </div>
 
         <!-- Image Ke Quote Box Ke Liye (User Requested) -->
@@ -198,7 +255,8 @@
             <span class="quote-tag">Founder's Vision</span>
           </div>
           <blockquote class="founder-quote-text">
-            "A great brand isn't just built on the services it delivers, but on the experiences it creates. At Sweepsage, we bring creativity, convenience, and care together to make every moment count."
+            "A great brand isn't just built on the services it delivers, but on the experiences it creates. At
+            Sweepsage, we bring creativity, convenience, and care together to make every moment count."
           </blockquote>
           <div class="founder-quote-footer">
             <div class="founder-avatar-mini">
@@ -224,11 +282,14 @@
         </h1>
 
         <p class="philosophy-body-p">
-          At <strong>Sweepsage</strong>, we believe great experiences deserve great people. We're building more than a service brand — we're building a team that values <strong>creativity, trust, speed</strong>, and <strong>genuine care</strong> for every customer.
+          At <strong>Sweepsage</strong>, we believe great experiences deserve great people. We're building more than a
+          service brand — we're building a team that values <strong>creativity, trust, speed</strong>, and
+          <strong>genuine care</strong> for every customer.
         </p>
 
         <p class="philosophy-body-p">
-          From capturing life's most precious moments to bringing everyday services to your doorstep, our mission is simple: <strong>make quality experiences more accessible, personal, and effortless.</strong>
+          From capturing life's most precious moments to bringing everyday services to your doorstep, our mission is
+          simple: <strong>make quality experiences more accessible, personal, and effortless.</strong>
         </p>
 
         <!-- User Requested Highlight Box -->
@@ -257,32 +318,37 @@
       <div class="pillars-header">
         <span class="eyebrow dark">THE PRINCIPLES BEHIND SWEEPSAGE</span>
         <h3>Built on Values, Driven by Experience</h3>
-        <p>Everything we design, deliver, and cultivate is shaped around four uncompromising commitments to our community.</p>
+        <p>Everything we design, deliver, and cultivate is shaped around four uncompromising commitments to our
+          community.</p>
       </div>
 
       <div class="pillars-grid">
         <div class="pillar-card">
           <div class="pillar-icon-box">🎨</div>
           <h4>Creativity &amp; Artistry</h4>
-          <p>Every photograph, hairstyle, or travel itinerary is treated as a personalized work of craft tailored to your individuality.</p>
+          <p>Every photograph, hairstyle, or travel itinerary is treated as a personalized work of craft tailored to
+            your individuality.</p>
         </div>
 
         <div class="pillar-card">
           <div class="pillar-icon-box">⚡</div>
           <h4>Speed &amp; Convenience</h4>
-          <p>Instant photographer dispatch and doorstep salon setups that fit effortlessly into your busy schedule.</p>
+          <p>Instant 10-minute photographer dispatch and doorstep salon setups that fit effortlessly into your busy
+            schedule.</p>
         </div>
 
         <div class="pillar-card">
           <div class="pillar-icon-box">🤝</div>
           <h4>Trust &amp; Verified Safety</h4>
-          <p>100% background-verified professionals, transparent zero-hidden-fee pricing, and strict hygiene protocols.</p>
+          <p>100% background-verified professionals, transparent zero-hidden-fee pricing, and strict hygiene protocols.
+          </p>
         </div>
 
         <div class="pillar-card">
           <div class="pillar-icon-box">❤️</div>
           <h4>Genuine Care</h4>
-          <p>Because beyond technology and speed, the memory of how respected and valued you felt is what truly lasts.</p>
+          <p>Because beyond technology and speed, the memory of how respected and valued you felt is what truly lasts.
+          </p>
         </div>
       </div>
     </section>
@@ -298,44 +364,74 @@
       </div>
 
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
-        <a href="photography.html" style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 24px; padding: 26px; text-decoration: none; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.25s var(--ease), box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 18px 40px rgba(0,0,0,0.08)';" onmouseout="this.style.transform='none'; this.style.boxShadow='none';">
+        <a href="photography.html"
+          style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 24px; padding: 26px; text-decoration: none; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.25s var(--ease), box-shadow 0.25s ease;"
+          onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 18px 40px rgba(0,0,0,0.08)';"
+          onmouseout="this.style.transform='none'; this.style.boxShadow='none';">
           <div>
-            <div style="width: 48px; height: 48px; border-radius: 14px; background: rgba(252,94,104,0.12); display: grid; place-items: center; margin-bottom: 16px;">
+            <div
+              style="width: 48px; height: 48px; border-radius: 14px; background: rgba(252,94,104,0.12); display: grid; place-items: center; margin-bottom: 16px;">
               <img src="loader-camera-logo.png" alt="Photography" width="28" height="28">
             </div>
-            <span style="font-size: 11px; font-weight: 800; color: #fc5e68; letter-spacing: 0.08em; text-transform: uppercase;">01 / PHOTOGRAPHY</span>
-            <h3 style="font-family: 'Manrope', sans-serif; font-size: 20px; font-weight: 800; color: #09090b; margin: 6px 0 10px;">Instant &amp; Event Creators</h3>
-            <p style="font-size: 13.5px; color: #64748b; line-height: 1.6; margin: 0;">Verified photographers dispatched to your location on demand or booked for premium weddings and shoots.</p>
+            <span
+              style="font-size: 11px; font-weight: 800; color: #fc5e68; letter-spacing: 0.08em; text-transform: uppercase;">01
+              / PHOTOGRAPHY</span>
+            <h3
+              style="font-family: 'Manrope', sans-serif; font-size: 20px; font-weight: 800; color: #09090b; margin: 6px 0 10px;">
+              Instant &amp; Event Creators</h3>
+            <p style="font-size: 13.5px; color: #64748b; line-height: 1.6; margin: 0;">Verified photographers dispatched
+              to your location in 10 minutes or booked for premium weddings and shoots.</p>
           </div>
-          <div style="margin-top: 20px; font-size: 13px; font-weight: 700; color: #fc5e68; display: flex; align-items: center; gap: 6px;">
+          <div
+            style="margin-top: 20px; font-size: 13px; font-weight: 700; color: #fc5e68; display: flex; align-items: center; gap: 6px;">
             Explore Photography <span>→</span>
           </div>
         </a>
 
-        <a href="salon.html" style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 24px; padding: 26px; text-decoration: none; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.25s var(--ease), box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 18px 40px rgba(0,0,0,0.08)';" onmouseout="this.style.transform='none'; this.style.boxShadow='none';">
+        <a href="salon.html"
+          style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 24px; padding: 26px; text-decoration: none; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.25s var(--ease), box-shadow 0.25s ease;"
+          onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 18px 40px rgba(0,0,0,0.08)';"
+          onmouseout="this.style.transform='none'; this.style.boxShadow='none';">
           <div>
-            <div style="width: 48px; height: 48px; border-radius: 14px; background: rgba(252,94,104,0.12); display: grid; place-items: center; margin-bottom: 16px;">
+            <div
+              style="width: 48px; height: 48px; border-radius: 14px; background: rgba(252,94,104,0.12); display: grid; place-items: center; margin-bottom: 16px;">
               <img src="loader-salon-logo.png" alt="Salon" width="28" height="28">
             </div>
-            <span style="font-size: 11px; font-weight: 800; color: #fc5e68; letter-spacing: 0.08em; text-transform: uppercase;">02 / SALON AT HOME</span>
-            <h3 style="font-family: 'Manrope', sans-serif; font-size: 20px; font-weight: 800; color: #09090b; margin: 6px 0 10px;">Luxury Beauty &amp; Grooming</h3>
-            <p style="font-size: 13.5px; color: #64748b; line-height: 1.6; margin: 0;">Certified makeup artists and stylists arriving with single-use sterile kits to pamper you in your private sanctuary.</p>
+            <span
+              style="font-size: 11px; font-weight: 800; color: #fc5e68; letter-spacing: 0.08em; text-transform: uppercase;">02
+              / SALON AT HOME</span>
+            <h3
+              style="font-family: 'Manrope', sans-serif; font-size: 20px; font-weight: 800; color: #09090b; margin: 6px 0 10px;">
+              Luxury Beauty &amp; Grooming</h3>
+            <p style="font-size: 13.5px; color: #64748b; line-height: 1.6; margin: 0;">Certified makeup artists and
+              stylists arriving with single-use sterile kits to pamper you in your private sanctuary.</p>
           </div>
-          <div style="margin-top: 20px; font-size: 13px; font-weight: 700; color: #fc5e68; display: flex; align-items: center; gap: 6px;">
+          <div
+            style="margin-top: 20px; font-size: 13px; font-weight: 700; color: #fc5e68; display: flex; align-items: center; gap: 6px;">
             Explore Salon <span>→</span>
           </div>
         </a>
 
-        <a href="travel.html" style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 24px; padding: 26px; text-decoration: none; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.25s var(--ease), box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 18px 40px rgba(0,0,0,0.08)';" onmouseout="this.style.transform='none'; this.style.boxShadow='none';">
+        <a href="travel.html"
+          style="background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 24px; padding: 26px; text-decoration: none; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.25s var(--ease), box-shadow 0.25s ease;"
+          onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 18px 40px rgba(0,0,0,0.08)';"
+          onmouseout="this.style.transform='none'; this.style.boxShadow='none';">
           <div>
-            <div style="width: 48px; height: 48px; border-radius: 14px; background: rgba(252,94,104,0.12); display: grid; place-items: center; margin-bottom: 16px;">
+            <div
+              style="width: 48px; height: 48px; border-radius: 14px; background: rgba(252,94,104,0.12); display: grid; place-items: center; margin-bottom: 16px;">
               <img src="loader-airplane-logo.png" alt="Travel" width="28" height="28">
             </div>
-            <span style="font-size: 11px; font-weight: 800; color: #fc5e68; letter-spacing: 0.08em; text-transform: uppercase;">03 / TRAVEL</span>
-            <h3 style="font-family: 'Manrope', sans-serif; font-size: 20px; font-weight: 800; color: #09090b; margin: 6px 0 10px;">Bespoke Journeys</h3>
-            <p style="font-size: 13.5px; color: #64748b; line-height: 1.6; margin: 0;">Custom-crafted weekend getaways, domestic escapes, and international luxury travels tailored to your story.</p>
+            <span
+              style="font-size: 11px; font-weight: 800; color: #fc5e68; letter-spacing: 0.08em; text-transform: uppercase;">03
+              / TRAVEL</span>
+            <h3
+              style="font-family: 'Manrope', sans-serif; font-size: 20px; font-weight: 800; color: #09090b; margin: 6px 0 10px;">
+              Bespoke Journeys</h3>
+            <p style="font-size: 13.5px; color: #64748b; line-height: 1.6; margin: 0;">Custom-crafted weekend getaways,
+              domestic escapes, and international luxury travels tailored to your story.</p>
           </div>
-          <div style="margin-top: 20px; font-size: 13px; font-weight: 700; color: #fc5e68; display: flex; align-items: center; gap: 6px;">
+          <div
+            style="margin-top: 20px; font-size: 13px; font-weight: 700; color: #fc5e68; display: flex; align-items: center; gap: 6px;">
             Explore Travel <span>→</span>
           </div>
         </a>
@@ -345,7 +441,8 @@
     <!-- DIRECT CONNECT WITH FOUNDER -->
     <section class="founder-connect-box reveal" id="contactFounder">
       <div class="connect-left">
-        <span class="quote-tag" style="color: #ff858e; margin-bottom: 6px; display: inline-block;">FOUNDER'S OFFICE</span>
+        <span class="quote-tag" style="color: #ff858e; margin-bottom: 6px; display: inline-block;">FOUNDER'S
+          OFFICE</span>
         <h3>Have a thought, collaboration, or story to share?</h3>
         <p>Utkarsh and the leadership team are always eager to hear from creators and customers directly.</p>
       </div>
@@ -434,13 +531,17 @@
   <!-- LOCATION MODAL -->
   <div class="custom-modal-backdrop" id="locationModal" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="custom-modal-box">
-      <button type="button" class="modal-close-cross" onclick="closeLocationModal()" aria-label="Close location picker">&times;</button>
+      <button type="button" class="modal-close-cross" onclick="closeLocationModal()"
+        aria-label="Close location picker">&times;</button>
       <div class="modal-head-title">Enter your delivery location</div>
-      <p class="modal-head-desc">Choose your location to check available doorstep photographers, salon artists, and travel curators.</p>
-      
+      <p class="modal-head-desc">Choose your location to check available doorstep photographers, salon artists, and
+        travel curators.</p>
+
       <div class="location-search-box">
         <span>🔍</span>
-        <input type="text" id="locationSearchInput" placeholder="Search city (Delhi, Noida, Ghaziabad, Lucknow, Gorakhpur)..." oninput="filterCities(this.value)" onkeydown="if(event.key==='Enter')handleCitySearchSubmit(this.value)">
+        <input type="text" id="locationSearchInput"
+          placeholder="Search city (Delhi, Noida, Ghaziabad, Lucknow, Gorakhpur)..." oninput="filterCities(this.value)"
+          onkeydown="if(event.key==='Enter')handleCitySearchSubmit(this.value)">
       </div>
 
       <!-- Unavailable City Notice Banner -->
@@ -448,7 +549,9 @@
         <div class="unavail-icon">⚠️</div>
         <div class="unavail-content">
           <strong class="unavail-title">Currently Not Available Here!</strong>
-          <p class="unavail-desc" id="locationUnavailText">SweepSage is currently not available in this location. We are operational only in <strong>Delhi NCR, Noida, Ghaziabad, Lucknow</strong>, and <strong>Gorakhpur</strong>. We are launching in your area soon!</p>
+          <p class="unavail-desc" id="locationUnavailText">SweepSage is currently not available in this location. We are
+            operational only in <strong>Delhi NCR, Noida, Ghaziabad, Lucknow</strong>, and <strong>Gorakhpur</strong>.
+            We are launching in your area soon!</p>
           <div class="unavail-quick-switch">
             <span>Choose from available cities:</span>
             <div class="unavail-pills">
@@ -474,19 +577,26 @@
       <div class="popular-cities-grid" id="availableCitiesGrid">
         <button type="button" class="city-pill-btn available" onclick="selectCity('Delhi NCR')">📍 Delhi NCR</button>
         <button type="button" class="city-pill-btn available" onclick="selectCity('Noida, UP')">📍 Noida</button>
-        <button type="button" class="city-pill-btn available" onclick="selectCity('Ghaziabad, UP')">📍 Ghaziabad</button>
+        <button type="button" class="city-pill-btn available" onclick="selectCity('Ghaziabad, UP')">📍
+          Ghaziabad</button>
         <button type="button" class="city-pill-btn available" onclick="selectCity('Lucknow, UP')">📍 Lucknow</button>
-        <button type="button" class="city-pill-btn available" onclick="selectCity('Gorakhpur, UP')">📍 Gorakhpur</button>
+        <button type="button" class="city-pill-btn available" onclick="selectCity('Gorakhpur, UP')">📍
+          Gorakhpur</button>
       </div>
 
-      <div class="other-cities-label" style="margin-top: 18px; margin-bottom: 10px; font-size: 11px; font-weight: 800; color: #64748b; letter-spacing: 0.08em; text-transform: uppercase;">
+      <div class="other-cities-label"
+        style="margin-top: 18px; margin-bottom: 10px; font-size: 11px; font-weight: 800; color: #64748b; letter-spacing: 0.08em; text-transform: uppercase;">
         OTHER CITIES (LAUNCHING SOON)
       </div>
       <div class="popular-cities-grid other-cities-grid">
-        <button type="button" class="city-pill-btn disabled-city" onclick="handleUnavailableCityClick('Mumbai')">Mumbai <small>Soon</small></button>
-        <button type="button" class="city-pill-btn disabled-city" onclick="handleUnavailableCityClick('Bengaluru')">Bengaluru <small>Soon</small></button>
-        <button type="button" class="city-pill-btn disabled-city" onclick="handleUnavailableCityClick('Pune')">Pune <small>Soon</small></button>
-        <button type="button" class="city-pill-btn disabled-city" onclick="handleUnavailableCityClick('Jaipur')">Jaipur <small>Soon</small></button>
+        <button type="button" class="city-pill-btn disabled-city" onclick="handleUnavailableCityClick('Mumbai')">Mumbai
+          <small>Soon</small></button>
+        <button type="button" class="city-pill-btn disabled-city"
+          onclick="handleUnavailableCityClick('Bengaluru')">Bengaluru <small>Soon</small></button>
+        <button type="button" class="city-pill-btn disabled-city" onclick="handleUnavailableCityClick('Pune')">Pune
+          <small>Soon</small></button>
+        <button type="button" class="city-pill-btn disabled-city" onclick="handleUnavailableCityClick('Jaipur')">Jaipur
+          <small>Soon</small></button>
       </div>
     </div>
   </div>
@@ -496,7 +606,8 @@
     <div class="custom-modal-box">
       <button type="button" class="modal-close-cross" onclick="closeGetAppModal()" aria-label="Close">&times;</button>
       <div class="modal-head-title">Experience SweepSage on Mobile</div>
-      <p class="modal-head-desc">Book instant photographers on demand, get doorstep beauty services, and track your travel itineraries in real time.</p>
+      <p class="modal-head-desc">Book photographers in 10 minutes, get doorstep beauty services, and track your travel
+        itineraries in real time.</p>
 
       <div class="app-modal-grid">
         <div class="app-qr-box">
@@ -504,7 +615,8 @@
         </div>
         <div>
           <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 6px;">Scan to download</h4>
-          <p style="font-size: 12.5px; color: #94a3b8; line-height: 1.4;">Point your camera at the QR code to install the SweepSage iOS or Android application instantly.</p>
+          <p style="font-size: 12.5px; color: #94a3b8; line-height: 1.4;">Point your camera at the QR code to install
+            the SweepSage iOS or Android application instantly.</p>
           <div class="app-store-badges">
             <a href="javascript:void(0)" class="store-badge-btn" onclick="selectCity('Delhi NCR'); closeGetAppModal();">
               <span>🍏</span> App Store
@@ -521,27 +633,35 @@
   <!-- PROFILE MODAL -->
   <div class="custom-modal-backdrop" id="profileModal" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="custom-modal-box">
-      <button type="button" class="modal-close-cross" onclick="closeUserProfileModal()" aria-label="Close profile">&times;</button>
+      <button type="button" class="modal-close-cross" onclick="closeUserProfileModal()"
+        aria-label="Close profile">&times;</button>
       <div class="modal-head-title">My Profile</div>
       <p class="modal-head-desc">Manage your personal details, default delivery address, and active preferences.</p>
 
-      <div style="background: #181925; border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 20px; margin-bottom: 16px;">
+      <div
+        style="background: #181925; border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 20px; margin-bottom: 16px;">
         <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 16px;">
-          <div style="width: 50px; height: 50px; border-radius: 50%; background: #ffffff; color: #09090b; display: grid; place-items: center; font-size: 22px; font-weight: 800;">U</div>
+          <div
+            style="width: 50px; height: 50px; border-radius: 50%; background: #ffffff; color: #09090b; display: grid; place-items: center; font-size: 22px; font-weight: 800;">
+            U</div>
           <div>
             <strong style="font-size: 16px; display: block;">Utkarsh Dubey</strong>
             <small style="color: #94a3b8; font-size: 12.5px;">+91 95558 26615 • sweepsage25@gmail.com</small>
           </div>
         </div>
         <div style="font-size: 13px; color: #cbd5e1; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.08);">
-          <span style="color: #94a3b8; display: block; font-size: 11px; text-transform: uppercase; font-weight: 700; margin-bottom: 4px;">Primary Delivery Address</span>
+          <span
+            style="color: #94a3b8; display: block; font-size: 11px; text-transform: uppercase; font-weight: 700; margin-bottom: 4px;">Primary
+            Delivery Address</span>
           <span>N-52, Delta-3, Greater Noida, Uttar Pradesh, 201308</span>
         </div>
       </div>
 
       <div style="display: flex; gap: 10px;">
-        <button type="button" class="btn btn-gold" style="flex: 1;" onclick="closeUserProfileModal()">Save Changes</button>
-        <button type="button" class="btn btn-outline-light" onclick="handleUserLogout(); closeUserProfileModal();">Logout</button>
+        <button type="button" class="btn btn-gold" style="flex: 1;" onclick="closeUserProfileModal()">Save
+          Changes</button>
+        <button type="button" class="btn btn-outline-light"
+          onclick="handleUserLogout(); closeUserProfileModal();">Logout</button>
       </div>
     </div>
   </div>
@@ -549,7 +669,8 @@
   <!-- ORDERS MODAL -->
   <div class="custom-modal-backdrop" id="ordersModal" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="custom-modal-box">
-      <button type="button" class="modal-close-cross" onclick="closeUserOrdersModal()" aria-label="Close orders">&times;</button>
+      <button type="button" class="modal-close-cross" onclick="closeUserOrdersModal()"
+        aria-label="Close orders">&times;</button>
       <div class="modal-head-title">My Orders</div>
       <p class="modal-head-desc">Track ongoing requests and review past photography, salon, and travel bookings.</p>
 
@@ -559,7 +680,7 @@
           <span class="modal-order-status">Confirmed</span>
         </div>
         <div class="modal-order-details">
-          <span>Date: Today • Instant Dispatch</span><br>
+          <span>Date: Today • 10-Minute Dispatch</span><br>
           <span>Amount: ₹1,499/- • Professional Studio Gear</span>
         </div>
       </div>
@@ -580,14 +701,16 @@
   <!-- FAVOURITES MODAL -->
   <div class="custom-modal-backdrop" id="favouritesModal" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="custom-modal-box">
-      <button type="button" class="modal-close-cross" onclick="closeUserFavouritesModal()" aria-label="Close favourites">&times;</button>
+      <button type="button" class="modal-close-cross" onclick="closeUserFavouritesModal()"
+        aria-label="Close favourites">&times;</button>
       <div class="modal-head-title">My Favourites</div>
       <p class="modal-head-desc">Your saved photographers, verified makeup artists, and dream destinations.</p>
 
       <div id="favouritesListContainer" style="text-align: center; padding: 28px 16px;">
         <div style="font-size: 32px; margin-bottom: 8px;">❤️</div>
         <strong style="display: block; font-size: 15px; margin-bottom: 4px;">No favourites saved yet</strong>
-        <p style="font-size: 13px; color: #888; margin: 0;">Save your favourite creators and services to access them quickly here.</p>
+        <p style="font-size: 13px; color: #888; margin: 0;">Save your favourite creators and services to access them
+          quickly here.</p>
       </div>
     </div>
   </div>
@@ -598,7 +721,8 @@
     <div class="search-modal-dialog">
       <div class="search-input-wrap">
         <span class="search-icon">🔍</span>
-        <input type="text" id="globalSearchInput" placeholder="Search experiences (portrait, bridal makeup, Manali, Ladakh)..." autocomplete="off">
+        <input type="text" id="globalSearchInput"
+          placeholder="Search experiences (portrait, bridal makeup, Manali, Ladakh)..." autocomplete="off">
         <button type="button" class="search-close-cross" id="closeSearchBtn" aria-label="Close search">&times;</button>
       </div>
       <div class="search-results-box" id="searchResultsBox">
@@ -613,4 +737,5 @@
   <script src="supabase.config.js"></script>
   <script src="SCRIPT.JS?v=3.2"></script>
 </body>
+
 </html>

@@ -278,29 +278,23 @@
       </div>
     </section>
 
-    <!-- TRENDING PACKAGES SHOWCASE -->
-    <section class="trending-section" id="trending-packages">
-      <div class="trending-header-wrap reveal">
-        <div class="trending-intro">
-          <span class="eyebrow dark">MOST BOOKED &amp; CURATED</span>
-          <h2>Trending <span>Packages.</span></h2>
-        </div>
-        <p class="trending-subtext">
-          Handpicked client favourites across doorstep photography, luxury travel retreats, and salon at home — transparent pricing with instant booking.
-        </p>
+    <!-- QUICK SERVICE EXPERIENCE BUTTONS -->
+    <section class="quick-services-section reveal" id="quick-services">
+      <div class="quick-services-header">
+        <span class="eyebrow dark">INSTANT EXPERIENCES</span>
+        <h2>Book in <span>Seconds.</span></h2>
       </div>
 
-      <!-- Category Filter Pills -->
-      <div class="trending-filter-bar reveal">
-        <button type="button" class="trending-filter-btn active" onclick="filterTrendingPackages('all')">All Trending</button>
-        <button type="button" class="trending-filter-btn" onclick="filterTrendingPackages('photography')">📸 Photography</button>
-        <button type="button" class="trending-filter-btn" onclick="filterTrendingPackages('travel')">✈️ Travel Retreats</button>
-        <button type="button" class="trending-filter-btn" onclick="filterTrendingPackages('salon')">💄 Salon at Home</button>
-      </div>
-
-      <!-- Dynamic Cards Grid -->
-      <div class="trending-cards-grid" id="trendingPackagesGrid">
-        <!-- Loaded dynamically from SweepSageCatalog -->
+      <div class="quick-services-grid" id="quickServicesGrid">
+        <!-- 01: Instant Photographer -->
+        <a href="PHOTOGRAPHER-BOOKING.HTML?event=instant" class="quick-service-btn" aria-label="Book Instant Photographer">
+          <div class="quick-service-thumb">
+            <img src="instant-photographer.png" alt="Instant Photographer" loading="lazy">
+          </div>
+          <span class="quick-service-badge">⚡ INSTANT DISPATCH</span>
+          <strong class="quick-service-name">Instant Photographer</strong>
+          <span class="quick-service-price" id="quick-service-photo-price">From ₹1,499/- <span class="arrow">↗</span></span>
+        </a>
       </div>
     </section>
 
@@ -993,6 +987,8 @@
         if (homeInst) homeInst.textContent = inst.price;
         const modalP = document.getElementById('home-modal-price');
         if (modalP) modalP.textContent = inst.price;
+        const qp = document.getElementById('quick-service-photo-price');
+        if (qp) qp.innerHTML = 'From ' + inst.price + ' <span class="arrow">↗</span>';
       }
 
       const salon = window.SweepSageCatalog.getSalonConfig();

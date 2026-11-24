@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#ffffff">
   <meta name="color-scheme" content="light">
-  <meta name="description" content="SweepSage — My Account, Order Tracking and Profile Management. Track ongoing photography, salon, and travel bookings in real time.">
+  <meta name="description"
+    content="SweepSage — My Account, Order Tracking and Profile Management. Track ongoing photography, salon, and travel bookings in real time.">
   <title>My Account &amp; Orders | SweepSage</title>
 
   <!-- Favicons -->
@@ -16,14 +18,16 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
 
   <!-- Core Styles -->
   <link rel="stylesheet" href="STYLE.CSS?v=3.2">
   <link rel="stylesheet" href="MY-ACCOUNT.CSS?v=1.1">
   <script>
-    (function(){
-      try { localStorage.removeItem('sweepsage_theme'); } catch(e){}
+    (function () {
+      try { localStorage.removeItem('sweepsage_theme'); } catch (e) { }
       document.documentElement.setAttribute('data-theme', 'light');
       document.documentElement.classList.remove('dark-theme');
     })();
@@ -42,9 +46,14 @@
 
       <!-- Current Delivery Location indicator -->
       <div class="nav-location">
-        <button class="nav-location-btn" type="button" aria-label="Current delivery location" onclick="window.location.href='index.html'">
+        <button class="nav-location-btn" type="button" aria-label="Current delivery location"
+          onclick="window.location.href='index.html'">
           <span class="location-pin-icon">
-            <svg class="nav-svg-icon pin-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <svg class="nav-svg-icon pin-svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
           </span>
           <div class="location-text-wrap">
             <span class="location-title">Deliver to</span>
@@ -57,15 +66,22 @@
     <div class="nav-right">
       <a class="nav-action-btn nav-icon-btn" href="index.html" title="Back to Home" aria-label="Back to Home">
         <span class="action-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
         </span>
       </a>
 
       <!-- 3-Dots More Options Menu (About & Partner) -->
       <div class="nav-more-dropdown" id="navMoreDropdown">
-        <button class="nav-more-btn nav-icon-btn" id="navMoreTrigger" type="button" aria-label="More options" title="More options" aria-haspopup="true" aria-expanded="false" onclick="this.closest('.nav-more-dropdown')?.classList.toggle('open'); event.stopPropagation();">
+        <button class="nav-more-btn nav-icon-btn" id="navMoreTrigger" type="button" aria-label="More options"
+          title="More options" aria-haspopup="true" aria-expanded="false"
+          onclick="this.closest('.nav-more-dropdown')?.classList.toggle('open'); event.stopPropagation();">
           <span class="action-icon">
-            <svg class="nav-svg-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
+            <svg class="nav-svg-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"
+              aria-hidden="true">
               <circle cx="12" cy="5" r="2.2"></circle>
               <circle cx="12" cy="12" r="2.2"></circle>
               <circle cx="12" cy="19" r="2.2"></circle>
@@ -77,7 +93,12 @@
           <!-- About Sweepsage & Founder -->
           <a class="nav-more-item" href="about.html" role="menuitem">
             <div class="nav-more-item-icon">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 16v-4"></path>
+                <path d="M12 8h.01"></path>
+              </svg>
             </div>
             <div class="nav-more-item-body">
               <span class="nav-more-title">About</span>
@@ -101,7 +122,11 @@
       </div>
       <a class="nav-login-btn nav-icon-btn" href="my-account.html" title="Utkarsh Dubey" aria-label="Utkarsh Dubey">
         <span class="user-avatar-circle">
-          <svg class="nav-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          <svg class="nav-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
         </span>
         <span class="btn-text" style="font-weight: 700;">Utkarsh...</span>
       </a>
@@ -140,7 +165,14 @@
       <aside class="account-sidebar" aria-label="Account Tabs">
         <button type="button" class="sidebar-tab-btn active" data-tab-target="orders">
           <span class="tab-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path
+                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+              </path>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+              <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
           </span>
           <span>Orders</span>
           <span class="tab-badge" id="sidebarOrderCount">3</span>
@@ -148,35 +180,59 @@
 
         <button type="button" class="sidebar-tab-btn" data-tab-target="club">
           <span class="tab-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polygon
+                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+              </polygon>
+            </svg>
           </span>
           <span>SweepSage One</span>
         </button>
 
         <button type="button" class="sidebar-tab-btn" data-tab-target="favourites">
           <span class="tab-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path
+                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+              </path>
+            </svg>
           </span>
           <span>Favourites</span>
         </button>
 
         <button type="button" class="sidebar-tab-btn" data-tab-target="payments">
           <span class="tab-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+              <line x1="1" y1="10" x2="23" y2="10"></line>
+            </svg>
           </span>
           <span>Payments</span>
         </button>
 
         <button type="button" class="sidebar-tab-btn" data-tab-target="addresses">
           <span class="tab-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
           </span>
           <span>Addresses</span>
         </button>
 
         <button type="button" class="sidebar-tab-btn" data-tab-target="settings">
           <span class="tab-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path
+                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+              </path>
+            </svg>
           </span>
           <span>Settings</span>
         </button>
@@ -193,7 +249,8 @@
             <div class="order-filter-chips">
               <button type="button" class="order-filter-btn active" onclick="filterOrders('all', this)">All (3)</button>
               <button type="button" class="order-filter-btn" onclick="filterOrders('active', this)">Active (1)</button>
-              <button type="button" class="order-filter-btn" onclick="filterOrders('completed', this)">Completed (2)</button>
+              <button type="button" class="order-filter-btn" onclick="filterOrders('completed', this)">Completed
+                (2)</button>
             </div>
           </div>
 
@@ -212,7 +269,7 @@
 
                 <div class="tracker-stepper">
                   <div class="tracker-stepper-progress"></div>
-                  
+
                   <div class="tracker-step-item done">
                     <span class="step-node-dot">✓</span>
                     <span class="step-node-text">Confirmed</span>
@@ -239,7 +296,8 @@
                   <h3 class="order-service-title">Instant Doorstep Photographer</h3>
                   <div class="order-service-location">N-52, Delta-3, Greater Noida, Uttar Pradesh, 201308</div>
                   <div class="order-service-id-date">ORDER #SS-98214 | Today, Oct 29, 2026, 3:30 PM</div>
-                  <a href="javascript:void(0)" class="order-service-view-details" onclick="openOrderReceipt('SS-98214')">VIEW DETAILS</a>
+                  <a href="javascript:void(0)" class="order-service-view-details"
+                    onclick="openOrderReceipt('SS-98214')">VIEW DETAILS</a>
                 </div>
                 <div class="order-status-badge-wrap">
                   <span class="order-status-text" style="color: var(--account-coral);">
@@ -252,7 +310,7 @@
               <!-- Summary Bottom Row -->
               <div class="order-summary-row">
                 <div class="order-items-summary">
-                  Instant Shoot (1 Hour) • Pro Gear Kit • 4K Color Graded Gallery Delivery
+                  10-Min Doorstep Portrait Session • Pro Gear Kit • 4K Color Graded Gallery Delivery
                 </div>
                 <div class="order-total-price">
                   Total Paid: ₹1,499
@@ -264,10 +322,12 @@
                 <a href="PHOTOGRAPHER-BOOKING.HTML?event=instant" class="btn-order-rebook">
                   REORDER
                 </a>
-                <button type="button" class="btn-order-outline" onclick="openHelpSupportModal('SS-98214', 'Instant Doorstep Photographer')">
+                <button type="button" class="btn-order-outline"
+                  onclick="openHelpSupportModal('SS-98214', 'Instant Doorstep Photographer')">
                   HELP
                 </button>
-                <a href="tel:+919555826615" class="btn-order-download" style="display: inline-flex; align-items: center; gap: 6px;">
+                <a href="tel:+919555826615" class="btn-order-download"
+                  style="display: inline-flex; align-items: center; gap: 6px;">
                   <span>📞 Call Creator</span>
                 </a>
               </div>
@@ -281,7 +341,8 @@
                   <h3 class="order-service-title">Pre-Wedding &amp; Cinematic Storytelling</h3>
                   <div class="order-service-location">Lodhi Garden &amp; Sunder Nursery, Delhi NCR</div>
                   <div class="order-service-id-date">ORDER #SS-84192 | Sun, Oct 18, 2026, 11:30 AM</div>
-                  <a href="javascript:void(0)" class="order-service-view-details" onclick="openOrderReceipt('SS-84192')">VIEW DETAILS</a>
+                  <a href="javascript:void(0)" class="order-service-view-details"
+                    onclick="openOrderReceipt('SS-84192')">VIEW DETAILS</a>
                 </div>
                 <div class="order-status-badge-wrap">
                   <span class="order-status-text delivered">
@@ -304,7 +365,8 @@
                 <a href="PHOTOGRAPHER-BOOKING.HTML?event=prewedding" class="btn-order-rebook">
                   REORDER
                 </a>
-                <button type="button" class="btn-order-outline" onclick="openHelpSupportModal('SS-84192', 'Pre-Wedding & Cinematic Storytelling')">
+                <button type="button" class="btn-order-outline"
+                  onclick="openHelpSupportModal('SS-84192', 'Pre-Wedding & Cinematic Storytelling')">
                   HELP
                 </button>
                 <button type="button" class="btn-order-download" onclick="openCloudAlbumModal('SS-84192')">
@@ -324,7 +386,8 @@
                   <h3 class="order-service-title">Salon at Home — Glow Facial &amp; Hair Spa</h3>
                   <div class="order-service-location">N-52, Delta-3, Greater Noida, Uttar Pradesh, 201308</div>
                   <div class="order-service-id-date">ORDER #SS-76210 | Sat, Sep 12, 2026, 2:15 PM</div>
-                  <a href="javascript:void(0)" class="order-service-view-details" onclick="openOrderReceipt('SS-76210')">VIEW DETAILS</a>
+                  <a href="javascript:void(0)" class="order-service-view-details"
+                    onclick="openOrderReceipt('SS-76210')">VIEW DETAILS</a>
                 </div>
                 <div class="order-status-badge-wrap">
                   <span class="order-status-text delivered">
@@ -347,7 +410,8 @@
                 <a href="salon.html" class="btn-order-rebook">
                   REORDER
                 </a>
-                <button type="button" class="btn-order-outline" onclick="openHelpSupportModal('SS-76210', 'Salon at Home')">
+                <button type="button" class="btn-order-outline"
+                  onclick="openHelpSupportModal('SS-76210', 'Salon at Home')">
                   HELP
                 </button>
                 <button type="button" class="btn-order-download" onclick="openInvoiceModal('SS-76210')">
@@ -370,7 +434,8 @@
             <div class="perks-hero-left">
               <span class="eyebrow" style="color: #ff858e; margin-bottom: 6px;">EXCLUSIVE MEMBERSHIP</span>
               <h3>You are an Active VIP Patron</h3>
-              <p>Enjoy prioritized instant doorstep dispatch, complimentary color-grading, and zero platform convenience fees on all bookings.</p>
+              <p>Enjoy prioritized 10-minute doorstep dispatch, complimentary color-grading, and zero platform
+                convenience fees on all bookings.</p>
             </div>
             <div class="perks-vip-badge">
               ★ Active Tier One
@@ -411,10 +476,12 @@
                 <div class="order-service-meta">
                   <h3 class="order-service-title">Aman Sharma — Master Portrait Creator</h3>
                   <div class="order-service-location">Greater Noida &amp; South Delhi • 4.9 ★ (140+ shoots)</div>
-                  <div class="order-service-id-date">Specializes in: Executive Headshots, Street Portraits, Candid Moments</div>
+                  <div class="order-service-id-date">Specializes in: Executive Headshots, Street Portraits, Candid
+                    Moments</div>
                 </div>
                 <div class="order-status-badge-wrap">
-                  <a href="PHOTOGRAPHER-BOOKING.HTML?event=portrait" class="btn-order-rebook" style="padding: 8px 18px;">Book Pro ↗</a>
+                  <a href="PHOTOGRAPHER-BOOKING.HTML?event=portrait" class="btn-order-rebook"
+                    style="padding: 8px 18px;">Book Pro ↗</a>
                 </div>
               </div>
             </div>
@@ -454,7 +521,8 @@
                 <span>Linked to State Bank of India • Verified for Instant Bookings</span>
               </div>
               <div class="address-actions">
-                <button type="button" class="address-action-btn" onclick="showToast('Primary UPI is active and verified.')">Active</button>
+                <button type="button" class="address-action-btn"
+                  onclick="showToast('Primary UPI is active and verified.')">Active</button>
               </div>
             </div>
 
@@ -467,15 +535,19 @@
                 <span>Expires 08/29 • Utkarsh Dubey</span>
               </div>
               <div class="address-actions">
-                <button type="button" class="address-action-btn" onclick="showToast('Card details updated.')">Manage</button>
+                <button type="button" class="address-action-btn"
+                  onclick="showToast('Card details updated.')">Manage</button>
               </div>
             </div>
           </div>
 
-          <div style="background: #f8fafc; border: 1px solid var(--account-border); border-radius: 12px; padding: 18px;">
+          <div
+            style="background: #f8fafc; border: 1px solid var(--account-border); border-radius: 12px; padding: 18px;">
             <strong style="display: block; font-size: 14px; margin-bottom: 4px;">Official Business GST Invoices</strong>
-            <p style="font-size: 12.5px; color: #64748b; margin: 0 0 10px 0;">All bookings automatically generate official tax invoices with full 18% GST credit breakdown.</p>
-            <button type="button" class="btn-order-outline" style="padding: 6px 14px; font-size: 12px;" onclick="openInvoiceModal('SS-98214')">View Latest Tax Invoice</button>
+            <p style="font-size: 12.5px; color: #64748b; margin: 0 0 10px 0;">All bookings automatically generate
+              official tax invoices with full 18% GST credit breakdown.</p>
+            <button type="button" class="btn-order-outline" style="padding: 6px 14px; font-size: 12px;"
+              onclick="openInvoiceModal('SS-98214')">View Latest Tax Invoice</button>
           </div>
         </div>
 
@@ -485,7 +557,8 @@
         <div class="tab-view" id="tab-addresses">
           <div class="content-heading-row">
             <h2 class="content-heading-title">Saved Delivery Addresses</h2>
-            <button type="button" class="btn-order-rebook" style="padding: 7px 16px; font-size: 12px;" onclick="openAddAddressModal()">
+            <button type="button" class="btn-order-rebook" style="padding: 7px 16px; font-size: 12px;"
+              onclick="openAddAddressModal()">
               + Add New Address
             </button>
           </div>
@@ -503,30 +576,38 @@
             <h2 class="content-heading-title">Account Preferences</h2>
           </div>
 
-          <div style="background: #ffffff; border: 1px solid var(--account-border); border-radius: 14px; padding: 24px; margin-bottom: 20px;">
-            <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 14px; color: #0f172a;">Communication &amp; Updates</h4>
+          <div
+            style="background: #ffffff; border: 1px solid var(--account-border); border-radius: 14px; padding: 24px; margin-bottom: 20px;">
+            <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 14px; color: #0f172a;">Communication &amp;
+              Updates</h4>
             <div style="display: flex; flex-direction: column; gap: 14px; font-size: 13.5px; color: #475569;">
               <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
-                <input type="checkbox" id="prefWhatsapp" checked onchange="savePreferences()" style="accent-color: var(--account-coral); width: 16px; height: 16px;">
+                <input type="checkbox" id="prefWhatsapp" checked onchange="savePreferences()"
+                  style="accent-color: var(--account-coral); width: 16px; height: 16px;">
                 <span>WhatsApp status alerts for creator arrival and live tracking link</span>
               </label>
               <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
-                <input type="checkbox" id="prefEmail" checked onchange="savePreferences()" style="accent-color: var(--account-coral); width: 16px; height: 16px;">
+                <input type="checkbox" id="prefEmail" checked onchange="savePreferences()"
+                  style="accent-color: var(--account-coral); width: 16px; height: 16px;">
                 <span>Email high-resolution 4K album delivery links</span>
               </label>
               <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
-                <input type="checkbox" id="prefPromos" onchange="savePreferences()" style="accent-color: var(--account-coral); width: 16px; height: 16px;">
+                <input type="checkbox" id="prefPromos" onchange="savePreferences()"
+                  style="accent-color: var(--account-coral); width: 16px; height: 16px;">
                 <span>Promotional invitations for exclusive pre-wedding and salon popups</span>
               </label>
             </div>
           </div>
 
-          <div style="background: #ffffff; border: 1px solid var(--account-border); border-radius: 14px; padding: 24px; display: flex; align-items: center; justify-content: space-between;">
+          <div
+            style="background: #ffffff; border: 1px solid var(--account-border); border-radius: 14px; padding: 24px; display: flex; align-items: center; justify-content: space-between;">
             <div>
               <strong style="color: #0f172a; font-size: 14px; display: block;">Log Out of SweepSage</strong>
-              <small style="color: #64748b; font-size: 12px;">You can log back in at any time with your verified mobile number.</small>
+              <small style="color: #64748b; font-size: 12px;">You can log back in at any time with your verified mobile
+                number.</small>
             </div>
-            <button type="button" class="btn-order-outline" style="color: #ef4444; border-color: rgba(239, 68, 68, 0.3);" onclick="openLogoutModal()">
+            <button type="button" class="btn-order-outline"
+              style="color: #ef4444; border-color: rgba(239, 68, 68, 0.3);" onclick="openLogoutModal()">
               Log Out
             </button>
           </div>
@@ -543,7 +624,9 @@
       <button type="button" class="modal-close-btn" onclick="closeModal('receiptModal')">&times;</button>
       <div class="receipt-id-strip">
         <div>
-          <span style="font-size: 11px; color: #64748b; display: block; text-transform: uppercase; font-weight: 700;">Order Receipt</span>
+          <span
+            style="font-size: 11px; color: #64748b; display: block; text-transform: uppercase; font-weight: 700;">Order
+            Receipt</span>
           <strong id="receiptOrderId">#SS-98214</strong>
         </div>
         <span class="receipt-status-pill active" id="receiptStatusBadge">In Transit</span>
@@ -551,8 +634,10 @@
 
       <div class="receipt-section-block">
         <span class="receipt-section-title">Service Details</span>
-        <h4 id="receiptServiceTitle" style="font-size: 16px; font-weight: 800; color: #0f172a; margin-bottom: 4px;">Instant Doorstep Photographer</h4>
-        <p id="receiptServiceAddress" style="font-size: 13px; color: #64748b; margin: 0 0 10px 0;">N-52, Delta-3, Greater Noida, Uttar Pradesh, 201308</p>
+        <h4 id="receiptServiceTitle" style="font-size: 16px; font-weight: 800; color: #0f172a; margin-bottom: 4px;">
+          Instant Doorstep Photographer</h4>
+        <p id="receiptServiceAddress" style="font-size: 13px; color: #64748b; margin: 0 0 10px 0;">N-52, Delta-3,
+          Greater Noida, Uttar Pradesh, 201308</p>
       </div>
 
       <div class="receipt-section-block">
@@ -590,7 +675,8 @@
       <p class="modal-subtitle" id="helpModalSubtitle">Need assistance with your booking? We are here to help 24/7.</p>
 
       <div class="support-channels-grid">
-        <a id="helpWhatsappBtn" href="https://wa.me/919555826615" target="_blank" rel="noopener" class="support-channel-card">
+        <a id="helpWhatsappBtn" href="https://wa.me/919555826615" target="_blank" rel="noopener"
+          class="support-channel-card">
           <div class="support-channel-icon" style="color: #25D366;">💬</div>
           <div class="support-channel-texts">
             <strong>WhatsApp Concierge</strong>
@@ -608,11 +694,14 @@
       </div>
 
       <div style="border-top: 1px solid #e2e8f0; padding-top: 20px;">
-        <h4 style="font-size: 14px; font-weight: 800; color: #0f172a; margin-bottom: 12px;">Or Submit a Quick Ticket</h4>
+        <h4 style="font-size: 14px; font-weight: 800; color: #0f172a; margin-bottom: 12px;">Or Submit a Quick Ticket
+        </h4>
         <form onsubmit="handleSupportTicketSubmit(event)">
           <div class="profile-form-group">
             <label>Select Issue Type</label>
-            <select id="supportIssueType" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 13.5px;" required>
+            <select id="supportIssueType"
+              style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 13.5px;"
+              required>
               <option value="Creator arrival ETA inquiry">Creator arrival ETA inquiry</option>
               <option value="Reschedule shoot date / slot">Reschedule shoot date / slot</option>
               <option value="Photo editing & 4K delivery request">Photo editing & 4K delivery request</option>
@@ -622,9 +711,12 @@
           </div>
           <div class="profile-form-group">
             <label>Details / Message</label>
-            <textarea id="supportMessage" rows="3" placeholder="Tell us how we can help you..." style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 13.5px;" required></textarea>
+            <textarea id="supportMessage" rows="3" placeholder="Tell us how we can help you..."
+              style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 13.5px;"
+              required></textarea>
           </div>
-          <button type="submit" class="btn-order-rebook" style="width: 100%; text-align: center;">Submit Ticket ↗</button>
+          <button type="submit" class="btn-order-rebook" style="width: 100%; text-align: center;">Submit Ticket
+            ↗</button>
         </form>
       </div>
     </div>
@@ -646,24 +738,29 @@
 
       <div class="album-share-box">
         <span>🔗</span>
-        <input type="text" class="album-share-input" id="albumShareUrl" value="https://sweepsage.com/gallery/SS-84192" readonly>
+        <input type="text" class="album-share-input" id="albumShareUrl" value="https://sweepsage.com/gallery/SS-84192"
+          readonly>
         <button type="button" class="album-copy-btn" onclick="copyAlbumLink()">Copy Link</button>
       </div>
 
       <div class="album-grid-preview">
         <div class="album-photo-item">
-          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="Shoot Frame 1">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80"
+            alt="Shoot Frame 1">
         </div>
         <div class="album-photo-item">
-          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80" alt="Shoot Frame 2">
+          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80"
+            alt="Shoot Frame 2">
         </div>
         <div class="album-photo-item">
-          <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80" alt="Shoot Frame 3">
+          <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80"
+            alt="Shoot Frame 3">
         </div>
       </div>
 
       <div style="display: flex; gap: 10px;">
-        <button type="button" class="btn-order-rebook" style="flex: 1; text-align: center;" onclick="downloadAlbumZip()">
+        <button type="button" class="btn-order-rebook" style="flex: 1; text-align: center;"
+          onclick="downloadAlbumZip()">
           ☁️ Download Full High-Res ZIP (3.4 GB)
         </button>
         <button type="button" class="btn-order-outline" onclick="closeModal('cloudAlbumModal')">
@@ -679,7 +776,7 @@
   <div class="account-modal-backdrop" id="invoiceModal" aria-hidden="true" role="dialog">
     <div class="account-modal-box" style="width: min(680px, 94vw);">
       <button type="button" class="modal-close-btn" onclick="closeModal('invoiceModal')">&times;</button>
-      
+
       <div class="invoice-sheet-box" id="printableInvoiceArea">
         <div class="invoice-meta-head">
           <div>
@@ -696,13 +793,17 @@
 
         <div class="invoice-details-grid">
           <div>
-            <span style="font-size: 11px; text-transform: uppercase; font-weight: 800; color: #94a3b8; display: block;">Billed To:</span>
+            <span
+              style="font-size: 11px; text-transform: uppercase; font-weight: 800; color: #94a3b8; display: block;">Billed
+              To:</span>
             <strong id="invoiceCustomerName">Utkarsh Dubey</strong><br>
             <span>+91 95558 26615</span><br>
             <span>N-52, Delta-3, Greater Noida, 201308</span>
           </div>
           <div>
-            <span style="font-size: 11px; text-transform: uppercase; font-weight: 800; color: #94a3b8; display: block;">Payment Status:</span>
+            <span
+              style="font-size: 11px; text-transform: uppercase; font-weight: 800; color: #94a3b8; display: block;">Payment
+              Status:</span>
             <strong style="color: #10b981;">PAID IN FULL (UPI)</strong><br>
             <span>Transaction Ref: UPI/AXIS/9821049281</span><br>
             <span>Place of Supply: Uttar Pradesh (09)</span>
@@ -711,7 +812,8 @@
 
         <table class="receipt-bill-table" style="margin-top: 10px;">
           <thead>
-            <tr style="border-bottom: 2px solid #e2e8f0; font-weight: 800; font-size: 11px; text-transform: uppercase; color: #94a3b8;">
+            <tr
+              style="border-bottom: 2px solid #e2e8f0; font-weight: 800; font-size: 11px; text-transform: uppercase; color: #94a3b8;">
               <th style="text-align: left; padding-bottom: 8px;">Description</th>
               <th style="text-align: center; padding-bottom: 8px;">SAC Code</th>
               <th style="text-align: right; padding-bottom: 8px;">Amount</th>
@@ -746,7 +848,8 @@
       <form onsubmit="handleSaveNewAddress(event)">
         <div class="profile-form-group">
           <label>Address Label / Type</label>
-          <select id="addrType" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid #cbd5e1;" required>
+          <select id="addrType" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid #cbd5e1;"
+            required>
             <option value="Home">Home</option>
             <option value="Studio / Office">Studio / Office</option>
             <option value="Event Venue">Event Venue / Resort</option>
@@ -829,8 +932,10 @@
       <p class="modal-subtitle">You can log back in at any time with your verified mobile number.</p>
 
       <div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
-        <button type="button" class="btn-order-rebook" style="background: #ef4444; border-color: #ef4444;" onclick="executeLogout()">Yes, Log Out</button>
-        <button type="button" class="btn-order-outline" onclick="closeModal('logoutConfirmModal')">Stay Logged In</button>
+        <button type="button" class="btn-order-rebook" style="background: #ef4444; border-color: #ef4444;"
+          onclick="executeLogout()">Yes, Log Out</button>
+        <button type="button" class="btn-order-outline" onclick="closeModal('logoutConfirmModal')">Stay Logged
+          In</button>
       </div>
     </div>
   </div>
@@ -1113,7 +1218,7 @@
     // 2. HELP & SUPPORT MODAL
     function openHelpSupportModal(orderId, serviceName) {
       document.getElementById("helpModalSubtitle").textContent = `Assistance for Order #${orderId} (${serviceName})`;
-      
+
       const whatsappBtn = document.getElementById("helpWhatsappBtn");
       whatsappBtn.href = `https://wa.me/919555826615?text=${encodeURIComponent('Hello SweepSage Concierge, I need assistance with my Booking #' + orderId + ' (' + serviceName + ').')}`;
 
@@ -1185,7 +1290,7 @@
       let saved = [];
       try {
         saved = JSON.parse(localStorage.getItem("ss_saved_addresses"));
-      } catch(e){}
+      } catch (e) { }
 
       if (!saved || saved.length === 0) {
         saved = DEFAULT_ADDRESSES;
@@ -1238,7 +1343,7 @@
       let addresses = [];
       try {
         addresses = JSON.parse(localStorage.getItem("ss_saved_addresses")) || [];
-      } catch(e){}
+      } catch (e) { }
 
       const newAddr = {
         id: "addr-" + Date.now(),
@@ -1262,7 +1367,7 @@
       let addresses = [];
       try {
         addresses = JSON.parse(localStorage.getItem("ss_saved_addresses")) || [];
-      } catch(e){}
+      } catch (e) { }
 
       addresses.forEach(a => {
         a.isDefault = (a.id === addrId);
@@ -1277,7 +1382,7 @@
       let addresses = [];
       try {
         addresses = JSON.parse(localStorage.getItem("ss_saved_addresses")) || [];
-      } catch(e){}
+      } catch (e) { }
 
       addresses = addresses.filter(a => a.id !== addrId);
       if (addresses.length > 0 && !addresses.some(a => a.isDefault)) {
@@ -1338,4 +1443,5 @@
     }
   </script>
 </body>
+
 </html>
