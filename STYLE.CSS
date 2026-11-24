@@ -1867,6 +1867,11 @@ button { border: 0; cursor: pointer; }
   animation-delay: -2.85s;
 }
 
+.quick-service-3d-item:nth-child(5) .quick-3d-char-wrap,
+.quick-service-3d-item:nth-child(5) .quick-3d-ground-shadow {
+  animation-delay: -1.4s;
+}
+
 /* 3D Floating Action Pill */
 .quick-3d-pill {
   margin-top: 14px;

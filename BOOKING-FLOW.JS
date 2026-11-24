@@ -83,6 +83,13 @@ const events = {
         },
 
         {
+            id:"portrait",
+            icon:"📸",
+            name:"Portrait & Personal",
+            description:"Portraits, couple shoots, maternity and personal branding sessions."
+        },
+
+        {
             id:"custom",
             icon:"✨",
             name:"Custom Requirement",
@@ -652,6 +659,41 @@ commercial:[
             "Video content",
             "Reels",
             "Multiple deliverables"
+        ]
+    }
+
+],
+
+
+portrait:[
+
+    {
+        name:"Personal & Couple Portrait",
+        price:"₹2,499/-",
+        tag:"POPULAR",
+        image:"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
+        description:"1-hour session for portraits, maternity, couples or personal branding.",
+        features:[
+            "1 Hour doorstep session",
+            "15 Retouched portraits",
+            "Professional lighting equipment",
+            "Couples, maternity or individual",
+            "Digital cloud delivery"
+        ]
+    },
+
+    {
+        name:"Signature Story & Maternity",
+        price:"₹4,999/-",
+        tag:"PREMIUM",
+        image:"https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80",
+        description:"Comprehensive 2-hour lifestyle and maternity creative shoot.",
+        features:[
+            "2 Hours dedicated shoot",
+            "35 Color-graded high-res photos",
+            "Multiple outfit / scene changes",
+            "Cinematic short reel",
+            "Expedited 48-hr delivery"
         ]
     }
 

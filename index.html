@@ -345,6 +345,21 @@
             <span class="quick-3d-price" id="quick-service-commercial-price">Starting ₹7,499/- <span class="arrow">↗</span></span>
           </div>
         </a>
+
+        <!-- 05: Portraits & Personal -->
+        <a href="PHOTOGRAPHER-BOOKING.HTML?event=portrait" class="quick-service-3d-item" aria-label="Book Portraits & Personal Photography">
+          <div class="quick-3d-stage">
+            <div class="quick-3d-char-wrap">
+              <img src="portrait-photography.png" alt="Portraits & Personal" class="quick-3d-char-img" loading="lazy">
+            </div>
+            <div class="quick-3d-ground-shadow wide"></div>
+          </div>
+          <div class="quick-3d-pill">
+            <span class="quick-3d-tag">✨ COUPLES &amp; MATERNITY</span>
+            <strong class="quick-3d-title">Portraits &amp; Personal</strong>
+            <span class="quick-3d-price" id="quick-service-portrait-price">Starting ₹2,499/- <span class="arrow">↗</span></span>
+          </div>
+        </a>
       </div>
     </section>
 
@@ -1057,6 +1072,12 @@
       if (commService) {
         const qc = document.getElementById('quick-service-commercial-price');
         if (qc) qc.innerHTML = commService.price + ' <span class="arrow">↗</span>';
+      }
+
+      const portService = services.find(s => s.id === 'portrait');
+      if (portService) {
+        const qp = document.getElementById('quick-service-portrait-price');
+        if (qp) qp.innerHTML = portService.price + ' <span class="arrow">↗</span>';
       }
 
       const salon = window.SweepSageCatalog.getSalonConfig();
