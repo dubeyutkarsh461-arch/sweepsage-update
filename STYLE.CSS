@@ -6328,18 +6328,17 @@ body.swiggy-page .nav-login-btn .nav-svg-icon {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 30%;
-  filter: blur(14px) brightness(0.85);
-  transform: scale(1.08); /* Prevents blur bleed on edges */
-  opacity: 0.55;
+  object-position: center center;
+  filter: blur(5px) brightness(0.95);
+  transform: scale(1.04); /* Prevents blur bleed on edges */
+  opacity: 0.88;
   display: block;
 }
 
 .swiggy-hero-bg-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(252, 94, 104, 0.65) 0%, rgba(249, 76, 89, 0.75) 55%, rgba(224, 58, 72, 0.92) 100%);
-  mix-blend-mode: multiply;
+  background: linear-gradient(180deg, rgba(8, 8, 12, 0.42) 0%, rgba(252, 94, 104, 0.32) 48%, rgba(224, 58, 72, 0.72) 100%);
   pointer-events: none;
 }
 
