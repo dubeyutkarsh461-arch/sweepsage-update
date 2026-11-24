@@ -1738,7 +1738,7 @@ button { border: 0; cursor: pointer; }
   flex-wrap: wrap;
   align-items: flex-end;
   justify-content: center;
-  gap: clamp(28px, 5vw, 56px);
+  gap: clamp(20px, 3.5vw, 48px);
   padding: 10px 0 20px;
 }
 
@@ -1813,6 +1813,11 @@ button { border: 0; cursor: pointer; }
 .quick-service-3d-item:nth-child(3) .quick-3d-char-wrap,
 .quick-service-3d-item:nth-child(3) .quick-3d-ground-shadow {
   animation-delay: -0.95s;
+}
+
+.quick-service-3d-item:nth-child(4) .quick-3d-char-wrap,
+.quick-service-3d-item:nth-child(4) .quick-3d-ground-shadow {
+  animation-delay: -2.85s;
 }
 
 /* 3D Floating Action Pill */
