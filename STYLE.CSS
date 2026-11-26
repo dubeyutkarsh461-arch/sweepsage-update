@@ -4701,23 +4701,24 @@ html[data-theme="dark"] .curated-price-val {
 .final-cta {
   position: relative;
   overflow: hidden;
-  min-height: 380px;
-  padding: 64px 24px;
+  min-height: auto;
+  padding: 44px clamp(20px, 4vw, 60px);
   background: #090909;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
 }
 
 .cta-glow {
   position: absolute;
-  width: 450px;
-  height: 450px;
+  width: 480px;
+  height: 480px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 102, 110, .18), transparent 65%);
-  filter: blur(10px);
+  background: radial-gradient(circle, rgba(255, 102, 110, .14), transparent 65%);
+  filter: blur(12px);
   animation: breathe 5s ease-in-out infinite;
   pointer-events: none;
 }
@@ -4732,34 +4733,57 @@ html[data-theme="dark"] .curated-price-val {
 .cta-content {
   position: relative;
   z-index: 2;
-  max-width: 640px;
+  width: 100%;
+  max-width: 1240px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(24px, 4vw, 48px);
 }
 
-.cta-content .eyebrow {
-  justify-content: center;
+.cta-text {
+  flex: 1;
+  text-align: left;
+}
+
+.cta-text .eyebrow {
+  justify-content: flex-start;
   font-size: 11px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
+  margin-bottom: 6px;
 }
 
 .final-cta h2 {
-  font: 800 clamp(32px, 4.5vw, 54px)/1.08 "Manrope";
-  letter-spacing: -.04em;
-  margin: 14px 0 10px;
+  font: 800 clamp(24px, 2.5vw, 36px)/1.2 "Manrope";
+  letter-spacing: -.03em;
+  margin: 6px 0;
+  color: #fff;
 }
 
 .final-cta p {
   color: #999;
-  font-size: 15px;
+  font-size: 14.5px;
   line-height: 1.5;
-  margin: 0 auto;
+  margin: 4px 0 0;
+}
+
+.cta-actions {
+  flex-shrink: 0;
 }
 
 .cta-buttons {
   display: flex;
-  justify-content: center;
+  align-items: center;
   gap: 12px;
   flex-wrap: wrap;
-  margin-top: 24px;
+  margin-top: 0;
+}
+
+.cta-buttons .btn {
+  min-height: 46px;
+  padding: 0 22px;
+  font-size: 13px;
+  white-space: nowrap;
 }
 
 /* CONTACT */
@@ -5478,13 +5502,27 @@ html[data-theme="dark"] .curated-price-val {
   }
 
   .final-cta {
-    min-height: 320px;
-    padding: 48px 18px;
+    min-height: auto;
+    padding: 36px 18px;
+  }
+
+  .cta-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .cta-text {
+    text-align: center;
+  }
+
+  .cta-text .eyebrow {
+    justify-content: center;
   }
 
   .cta-glow {
-    width: min(360px, 72vw);
-    height: min(360px, 72vw);
+    width: min(320px, 72vw);
+    height: min(320px, 72vw);
     animation: none;
   }
 
