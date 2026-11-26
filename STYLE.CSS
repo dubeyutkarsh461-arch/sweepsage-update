@@ -4701,27 +4701,30 @@ html[data-theme="dark"] .curated-price-val {
 .final-cta {
   position: relative;
   overflow: hidden;
-  min-height: 650px;
+  min-height: 380px;
+  padding: 64px 24px;
   background: #090909;
   color: #fff;
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
 }
 
 .cta-glow {
   position: absolute;
-  width: 600px;
-  height: 600px;
+  width: 450px;
+  height: 450px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(255, 102, 110, .18), transparent 65%);
   filter: blur(10px);
   animation: breathe 5s ease-in-out infinite;
+  pointer-events: none;
 }
 
 @keyframes breathe {
   50% {
-    transform: scale(1.2);
+    transform: scale(1.15);
     opacity: .65;
   }
 }
@@ -4729,29 +4732,34 @@ html[data-theme="dark"] .curated-price-val {
 .cta-content {
   position: relative;
   z-index: 2;
+  max-width: 640px;
 }
 
 .cta-content .eyebrow {
   justify-content: center;
+  font-size: 11px;
+  letter-spacing: 0.12em;
 }
 
 .final-cta h2 {
-  font: 800 clamp(55px, 8vw, 105px)/.9 "Manrope";
-  letter-spacing: -.08em;
-  margin: 22px 0;
+  font: 800 clamp(32px, 4.5vw, 54px)/1.08 "Manrope";
+  letter-spacing: -.04em;
+  margin: 14px 0 10px;
 }
 
 .final-cta p {
-  color: #888;
-  font-size: 14px;
+  color: #999;
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 0 auto;
 }
 
 .cta-buttons {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
   flex-wrap: wrap;
-  margin-top: 32px;
+  margin-top: 24px;
 }
 
 /* CONTACT */
@@ -5470,13 +5478,13 @@ html[data-theme="dark"] .curated-price-val {
   }
 
   .final-cta {
-    min-height: 560px;
-    padding: 72px 18px;
+    min-height: 320px;
+    padding: 48px 18px;
   }
 
   .cta-glow {
-    width: min(600px, 72vw);
-    height: min(600px, 72vw);
+    width: min(360px, 72vw);
+    height: min(360px, 72vw);
     animation: none;
   }
 
@@ -6920,7 +6928,8 @@ main>section,
   }
 
   .final-cta h2 {
-    font-size: clamp(38px, 11vw, 64px);
+    font-size: clamp(26px, 7vw, 38px);
+    margin: 12px 0 8px;
   }
 
   .service-card {
