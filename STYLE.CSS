@@ -7149,3 +7149,155 @@ body.swiggy-page .nav-login-btn .nav-svg-icon {
     height: 115px;
   }
 }
+
+/* =========================================================
+   HERO STATS & TRUST BANNER (MATCHING HERO THEME)
+========================================================= */
+.hero-stats-banner {
+  width: min(100% - 36px, 1160px);
+  margin: clamp(72px, 8vw, 95px) auto clamp(40px, 5vw, 65px);
+  position: relative;
+  z-index: 10;
+}
+
+.hero-stats-container {
+  background: linear-gradient(135deg, #3d0910 0%, #200407 60%, #150204 100%);
+  border: 1.5px solid rgba(252, 94, 104, 0.28);
+  border-radius: 26px;
+  padding: clamp(24px, 3.5vw, 34px) clamp(20px, 4vw, 42px);
+  box-shadow: 
+    0 24px 50px -12px rgba(24, 3, 6, 0.45),
+    0 0 35px rgba(252, 94, 104, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle glowing accent background glow */
+.hero-stats-container::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: 20%;
+  width: 60%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(252, 94, 104, 0.15) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-stat-card {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 6px 12px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-stat-card:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: -12px;
+  top: 15%;
+  height: 70%;
+  width: 1px;
+  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.12) 30%, rgba(255, 255, 255, 0.12) 70%, transparent 100%);
+}
+
+.hero-stat-card:hover {
+  transform: translateY(-3px);
+}
+
+.hero-stat-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: rgba(252, 94, 104, 0.14);
+  border: 1px solid rgba(252, 94, 104, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fc5e68;
+  flex-shrink: 0;
+  box-shadow: 0 8px 20px rgba(252, 94, 104, 0.18);
+  transition: all 0.3s ease;
+}
+
+.hero-stat-card:hover .hero-stat-icon-wrap {
+  background: #fc5e68;
+  color: #ffffff;
+  transform: scale(1.08) rotate(3deg);
+  box-shadow: 0 10px 25px rgba(252, 94, 104, 0.35);
+}
+
+.hero-stat-details {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.hero-stat-tag {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fc5e68;
+  margin-bottom: 2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.hero-stat-number {
+  font-family: 'Manrope', -apple-system, sans-serif;
+  font-size: clamp(32px, 3.8vw, 44px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  background: linear-gradient(135deg, #ffffff 20%, #ffe3e5 60%, #fc5e68 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 2px;
+}
+
+.hero-stat-number span {
+  color: #fc5e68;
+  -webkit-text-fill-color: #fc5e68;
+}
+
+.hero-stat-label {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #f1f5f9;
+  line-height: 1.3;
+}
+
+.hero-stat-sub {
+  font-size: 12px;
+  font-weight: 500;
+  color: #94a3b8;
+  margin-top: 1px;
+}
+
+@media (max-width: 960px) {
+  .hero-stats-container {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 22px 20px;
+  }
+  .hero-stat-card:not(:last-child)::after {
+    display: none;
+  }
+  .hero-stat-card:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 16px;
+  }
+  .hero-stats-banner {
+    margin-top: clamp(65px, 8vw, 85px);
+  }
+}
