@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#ffffff">
   <meta name="color-scheme" content="light">
-  <meta name="description" content="SweepSage — photography, salon and travel services in one place. Book a photographer in minutes, salon at home, or your next journey.">
+  <meta name="description"
+    content="SweepSage — photography, salon and travel services in one place. Book a photographer in minutes, salon at home, or your next journey.">
   <title>SweepSage — Photography. Salon. Travel.</title>
 
   <!-- Browser Tab Favicon / Logo (Google Search & Multi-device compliant) -->
@@ -22,7 +24,8 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="SweepSage">
   <meta property="og:title" content="SweepSage — Photography. Salon. Travel.">
-  <meta property="og:description" content="SweepSage — photography, salon and travel services in one place. Book a photographer in minutes, salon at home, or your next journey.">
+  <meta property="og:description"
+    content="SweepSage — photography, salon and travel services in one place. Book a photographer in minutes, salon at home, or your next journey.">
   <meta property="og:url" content="https://sweepsage.com/">
   <meta property="og:image" content="https://sweepsage.com/logo.png">
   <meta name="twitter:card" content="summary">
@@ -58,15 +61,17 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
 
   <link rel="stylesheet" href="STYLE.CSS?v=3.2">
   <link rel="preload" as="image" href="loader-camera-logo.png">
   <link rel="preload" as="image" href="loader-salon-logo.png">
   <link rel="preload" as="image" href="loader-airplane-logo.png">
   <script>
-    (function(){
-      try { localStorage.removeItem('sweepsage_theme'); } catch(e){}
+    (function () {
+      try { localStorage.removeItem('sweepsage_theme'); } catch (e) { }
       document.documentElement.setAttribute('data-theme', 'light');
       document.documentElement.classList.remove('dark-theme');
     })();
@@ -81,15 +86,15 @@
   <!-- LOADING / PRODUCT ANIMATION -->
   <div class="intro-screen" id="introScreen" role="status" aria-label="Loading">
     <div class="stage" aria-hidden="true">
-        <div class="icon camera">
-          <img src="loader-camera-logo.png" alt="Photography" width="52" height="52">
-        </div>
-        <div class="icon salon lipstick">
-          <img src="loader-salon-logo.png" alt="Salon & Beauty" width="52" height="52">
-        </div>
-        <div class="icon airplane">
-          <img src="loader-airplane-logo.png" alt="Travel" width="52" height="52">
-        </div>
+      <div class="icon camera">
+        <img src="loader-camera-logo.png" alt="Photography" width="52" height="52">
+      </div>
+      <div class="icon salon lipstick">
+        <img src="loader-salon-logo.png" alt="Salon & Beauty" width="52" height="52">
+      </div>
+      <div class="icon airplane">
+        <img src="loader-airplane-logo.png" alt="Travel" width="52" height="52">
+      </div>
     </div>
   </div>
 
@@ -103,9 +108,14 @@
 
       <!-- Enter your delivery location -->
       <div class="nav-location">
-        <button class="nav-location-btn" id="openLocationModalBtn" type="button" aria-label="Choose delivery location" onclick="openLocationModal()">
+        <button class="nav-location-btn" id="openLocationModalBtn" type="button" aria-label="Choose delivery location"
+          onclick="openLocationModal()">
           <span class="location-pin-icon">
-            <svg class="nav-svg-icon pin-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <svg class="nav-svg-icon pin-svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
           </span>
           <div class="location-text-wrap">
             <span class="location-title">Deliver to</span>
@@ -121,24 +131,37 @@
       <a href="about.html" class="nav-swiggy-text-link">SweepSage Corporate</a>
       <a href="partner-register.html" class="nav-swiggy-text-link">Partner with us</a>
 
-      <button class="nav-icon-btn nav-search-btn" id="openSearchBtn" type="button" aria-label="Search experiences" title="Search experiences (Ctrl+K)" onclick="openSearchModal()">
+      <button class="nav-icon-btn nav-search-btn" id="openSearchBtn" type="button" aria-label="Search experiences"
+        title="Search experiences (Ctrl+K)" onclick="openSearchModal()">
         <span class="action-icon">
-          <svg class="nav-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <svg class="nav-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
         </span>
       </button>
 
-      <button class="nav-action-btn nav-icon-btn swiggy-app-pill-btn" id="openGetAppBtn" type="button" onclick="openGetAppModal()" title="Get the App" aria-label="Get the App">
+      <button class="nav-action-btn nav-icon-btn swiggy-app-pill-btn" id="openGetAppBtn" type="button"
+        onclick="openGetAppModal()" title="Get the App" aria-label="Get the App">
         <span class="swiggy-app-pill-text">Get the App <span class="nav-arrow-diag">↗</span></span>
         <span class="action-icon">
-          <svg class="nav-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="3" ry="3"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+          <svg class="nav-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="5" y="2" width="14" height="20" rx="3" ry="3"></rect>
+            <line x1="12" y1="18" x2="12.01" y2="18"></line>
+          </svg>
         </span>
       </button>
 
       <!-- 3-Dots More Options Menu (About & Partner) -->
       <div class="nav-more-dropdown" id="navMoreDropdown">
-        <button class="nav-more-btn nav-icon-btn" id="navMoreTrigger" type="button" aria-label="More options" title="More options" aria-haspopup="true" aria-expanded="false" onclick="this.closest('.nav-more-dropdown')?.classList.toggle('open'); event.stopPropagation();">
+        <button class="nav-more-btn nav-icon-btn" id="navMoreTrigger" type="button" aria-label="More options"
+          title="More options" aria-haspopup="true" aria-expanded="false"
+          onclick="this.closest('.nav-more-dropdown')?.classList.toggle('open'); event.stopPropagation();">
           <span class="action-icon">
-            <svg class="nav-svg-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
+            <svg class="nav-svg-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"
+              aria-hidden="true">
               <circle cx="12" cy="5" r="2.2"></circle>
               <circle cx="12" cy="12" r="2.2"></circle>
               <circle cx="12" cy="19" r="2.2"></circle>
@@ -150,7 +173,12 @@
           <!-- About Sweepsage & Founder -->
           <a class="nav-more-item" href="about.html" role="menuitem">
             <div class="nav-more-item-icon">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 16v-4"></path>
+                <path d="M12 8h.01"></path>
+              </svg>
             </div>
             <div class="nav-more-item-body">
               <span class="nav-more-title">About</span>
@@ -175,9 +203,15 @@
 
       <!-- Login with subparts: [Profile][Orders][Favourites]Logout -->
       <div class="nav-user-dropdown" id="userMenuDropdown">
-        <a class="nav-login-btn nav-icon-btn" id="userMenuTrigger" href="my-account.html" title="My Account &amp; Orders" aria-label="My Account &amp; Orders" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-login-btn nav-icon-btn" id="userMenuTrigger" href="my-account.html"
+          title="My Account &amp; Orders" aria-label="My Account &amp; Orders" aria-haspopup="true"
+          aria-expanded="false">
           <span class="user-avatar-circle">
-            <svg class="nav-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <svg class="nav-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
           </span>
           <span id="navLoginBtnText" class="btn-text">Account</span>
         </a>
@@ -190,30 +224,52 @@
           <div class="user-dropdown-divider"></div>
           <a class="user-dropdown-item" href="my-account.html?tab=orders" role="menuitem">
             <span class="item-icon">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
             </span>
             <span class="item-text">Profile &amp; Account</span>
             <span class="item-arrow">→</span>
           </a>
           <a class="user-dropdown-item" href="my-account.html?tab=orders" role="menuitem">
             <span class="item-icon">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path
+                  d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                </path>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+              </svg>
             </span>
             <span class="item-text">Orders &amp; Tracking</span>
             <span class="item-badge" id="dropdownOrderCount">3</span>
           </a>
           <a class="user-dropdown-item" href="my-account.html?tab=favourites" role="menuitem">
             <span class="item-icon">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path
+                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                </path>
+              </svg>
             </span>
             <span class="item-text">Favourites</span>
             <span class="item-arrow">→</span>
           </a>
 
           <div class="user-dropdown-divider"></div>
-          <a class="user-dropdown-item logout-item" href="javascript:void(0)" onclick="handleUserLogout()" role="menuitem">
+          <a class="user-dropdown-item logout-item" href="javascript:void(0)" onclick="handleUserLogout()"
+            role="menuitem">
             <span class="item-icon">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                <polyline points="16 17 21 12 16 7"></polyline>
+                <line x1="21" y1="12" x2="9" y2="12"></line>
+              </svg>
             </span>
             <span class="item-text">Logout</span>
           </a>
@@ -250,10 +306,15 @@
               </div>
               <div class="swiggy-card-footer">
                 <span class="swiggy-card-arrow-btn" aria-hidden="true">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
                 </span>
                 <div class="swiggy-card-art-box">
-                  <img src="hero-card-photography.png" alt="Photography Shoot" class="swiggy-card-art-img" loading="lazy">
+                  <img src="hero-card-photography.png" alt="Photography Shoot" class="swiggy-card-art-img"
+                    loading="lazy">
                 </div>
               </div>
             </a>
@@ -267,7 +328,11 @@
               </div>
               <div class="swiggy-card-footer">
                 <span class="swiggy-card-arrow-btn" aria-hidden="true">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
                 </span>
                 <div class="swiggy-card-art-box">
                   <img src="hero-card-salon.png" alt="Salon at Home" class="swiggy-card-art-img" loading="lazy">
@@ -284,7 +349,11 @@
               </div>
               <div class="swiggy-card-footer">
                 <span class="swiggy-card-arrow-btn" aria-hidden="true">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
                 </span>
                 <div class="swiggy-card-art-box">
                   <img src="hero-card-travel.png" alt="Travel Retreats" class="swiggy-card-art-img" loading="lazy">
@@ -302,7 +371,13 @@
         <!-- Stat 01: Professionals (700+) -->
         <div class="hero-stat-card">
           <div class="hero-stat-icon-wrap" aria-hidden="true">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
           </div>
           <div class="hero-stat-details">
             <span class="hero-stat-tag">Verified Creators</span>
@@ -315,7 +390,11 @@
         <!-- Stat 02: Bookings Completed (80k+) -->
         <div class="hero-stat-card">
           <div class="hero-stat-icon-wrap" aria-hidden="true">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
           </div>
           <div class="hero-stat-details">
             <span class="hero-stat-tag">Delighted Clients</span>
@@ -328,7 +407,11 @@
         <!-- Stat 03: Cities in India (5+) -->
         <div class="hero-stat-card">
           <div class="hero-stat-icon-wrap" aria-hidden="true">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
           </div>
           <div class="hero-stat-details">
             <span class="hero-stat-tag">Pan-India Reach</span>
@@ -349,12 +432,16 @@
 
       <div class="quick-services-slider-wrap">
         <button class="quick-slider-btn prev" id="quickSliderPrev" aria-label="Slide Left">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
         </button>
 
         <div class="quick-services-grid" id="quickServicesGrid">
           <!-- 01: Instant Photographer -->
-          <a href="PHOTOGRAPHER-BOOKING.HTML?event=instant" class="quick-service-3d-item" aria-label="Book Instant Photographer">
+          <a href="PHOTOGRAPHER-BOOKING.HTML?event=instant" class="quick-service-3d-item"
+            aria-label="Book Instant Photographer">
             <div class="quick-3d-stage">
               <div class="quick-3d-char-wrap">
                 <img src="instant-photographer.png" alt="Instant Photographer" class="quick-3d-char-img" loading="lazy">
@@ -364,12 +451,14 @@
             <div class="quick-3d-pill">
               <span class="quick-3d-tag">⚡ INSTANT DISPATCH</span>
               <strong class="quick-3d-title">Instant Photographer</strong>
-              <span class="quick-3d-price" id="quick-service-photo-price">From ₹1,499/- <span class="arrow">↗</span></span>
+              <span class="quick-3d-price" id="quick-service-photo-price">From ₹1,499/- <span
+                  class="arrow">↗</span></span>
             </div>
           </a>
 
           <!-- 02: Wedding Photography -->
-          <a href="PHOTOGRAPHER-BOOKING.HTML?event=wedding" class="quick-service-3d-item" aria-label="Book Wedding Photography">
+          <a href="PHOTOGRAPHER-BOOKING.HTML?event=wedding" class="quick-service-3d-item"
+            aria-label="Book Wedding Photography">
             <div class="quick-3d-stage">
               <div class="quick-3d-char-wrap">
                 <img src="wedding-photography.png" alt="Wedding Photography" class="quick-3d-char-img" loading="lazy">
@@ -379,12 +468,14 @@
             <div class="quick-3d-pill">
               <span class="quick-3d-tag">💍 CINEMATIC &amp; ROYAL</span>
               <strong class="quick-3d-title">Wedding Photography</strong>
-              <span class="quick-3d-price" id="quick-service-wedding-price">Starting ₹60,000/- <span class="arrow">↗</span></span>
+              <span class="quick-3d-price" id="quick-service-wedding-price">Starting ₹60,000/- <span
+                  class="arrow">↗</span></span>
             </div>
           </a>
 
           <!-- 03: Event Photography -->
-          <a href="PHOTOGRAPHER-BOOKING.HTML?event=party" class="quick-service-3d-item" aria-label="Book Event Photography">
+          <a href="PHOTOGRAPHER-BOOKING.HTML?event=party" class="quick-service-3d-item"
+            aria-label="Book Event Photography">
             <div class="quick-3d-stage">
               <div class="quick-3d-char-wrap">
                 <img src="event-photography.png" alt="Event Photography" class="quick-3d-char-img" loading="lazy">
@@ -394,12 +485,14 @@
             <div class="quick-3d-pill">
               <span class="quick-3d-tag">🎉 BIRTHDAYS &amp; EVENTS</span>
               <strong class="quick-3d-title">Event Photography</strong>
-              <span class="quick-3d-price" id="quick-service-event-price">Starting ₹4,999/- <span class="arrow">↗</span></span>
+              <span class="quick-3d-price" id="quick-service-event-price">Starting ₹4,999/- <span
+                  class="arrow">↗</span></span>
             </div>
           </a>
 
           <!-- 04: Portraits & Personal -->
-          <a href="PHOTOGRAPHER-BOOKING.HTML?event=portrait" class="quick-service-3d-item" aria-label="Book Portraits & Personal Photography">
+          <a href="PHOTOGRAPHER-BOOKING.HTML?event=portrait" class="quick-service-3d-item"
+            aria-label="Book Portraits & Personal Photography">
             <div class="quick-3d-stage">
               <div class="quick-3d-char-wrap">
                 <img src="portrait-photography.png" alt="Portraits & Personal" class="quick-3d-char-img" loading="lazy">
@@ -409,28 +502,35 @@
             <div class="quick-3d-pill">
               <span class="quick-3d-tag">✨ COUPLES &amp; MATERNITY</span>
               <strong class="quick-3d-title">Portraits &amp; Personal</strong>
-              <span class="quick-3d-price" id="quick-service-portrait-price">Starting ₹2,499/- <span class="arrow">↗</span></span>
+              <span class="quick-3d-price" id="quick-service-portrait-price">Starting ₹2,499/- <span
+                  class="arrow">↗</span></span>
             </div>
           </a>
 
           <!-- 05: Commercial Photography (LAST) -->
-          <a href="PHOTOGRAPHER-BOOKING.HTML?event=commercial" class="quick-service-3d-item" aria-label="Book Commercial Photography">
+          <a href="PHOTOGRAPHER-BOOKING.HTML?event=commercial" class="quick-service-3d-item"
+            aria-label="Book Commercial Photography">
             <div class="quick-3d-stage">
               <div class="quick-3d-char-wrap">
-                <img src="commercial-photography.png" alt="Commercial Photography" class="quick-3d-char-img quick-3d-bowl-img" loading="lazy">
+                <img src="commercial-photography.png" alt="Commercial Photography"
+                  class="quick-3d-char-img quick-3d-bowl-img" loading="lazy">
               </div>
               <div class="quick-3d-ground-shadow bowl-shadow"></div>
             </div>
             <div class="quick-3d-pill">
               <span class="quick-3d-tag">📦 PRODUCT &amp; FOOD</span>
               <strong class="quick-3d-title">Commercial Photography</strong>
-              <span class="quick-3d-price" id="quick-service-commercial-price">Starting ₹7,499/- <span class="arrow">↗</span></span>
+              <span class="quick-3d-price" id="quick-service-commercial-price">Starting ₹7,499/- <span
+                  class="arrow">↗</span></span>
             </div>
           </a>
         </div>
 
         <button class="quick-slider-btn next" id="quickSliderNext" aria-label="Slide Right">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
         </button>
       </div>
     </section>
@@ -442,17 +542,24 @@
       <div class="curated-packages-header">
         <span class="eyebrow">EXPLORE PACKAGES</span>
         <h2>Curated Packages with <span>Transparent Pricing</span></h2>
-        <p>From 60-minute instant doorstep shoots to heirloom cinematic weddings. Handcrafted packages with verified creators, premium retouching &amp; prompt delivery.</p>
+        <p>From 60-minute instant doorstep shoots to heirloom cinematic weddings. Handcrafted packages with verified
+          creators, premium retouching &amp; prompt delivery.</p>
       </div>
 
       <!-- Filter Tabs -->
       <div class="curated-filter-tabs" role="tablist" aria-label="Package category filter">
-        <button type="button" class="curated-tab-btn active" data-cat="all" onclick="filterCuratedPackages('all')">All Packages</button>
-        <button type="button" class="curated-tab-btn" data-cat="instant" onclick="filterCuratedPackages('instant')">⚡ Instant Shoot</button>
-        <button type="button" class="curated-tab-btn" data-cat="wedding" onclick="filterCuratedPackages('wedding')">💍 Wedding &amp; Royal</button>
-        <button type="button" class="curated-tab-btn" data-cat="portrait" onclick="filterCuratedPackages('portrait')">✨ Portraits &amp; Maternity</button>
-        <button type="button" class="curated-tab-btn" data-cat="birthday" onclick="filterCuratedPackages('birthday')">🎉 Birthdays &amp; Events</button>
-        <button type="button" class="curated-tab-btn" data-cat="commercial" onclick="filterCuratedPackages('commercial')">📦 Commercial &amp; Food</button>
+        <button type="button" class="curated-tab-btn active" data-cat="all" onclick="filterCuratedPackages('all')">All
+          Packages</button>
+        <button type="button" class="curated-tab-btn" data-cat="instant" onclick="filterCuratedPackages('instant')">⚡
+          Instant Shoot</button>
+        <button type="button" class="curated-tab-btn" data-cat="wedding" onclick="filterCuratedPackages('wedding')">💍
+          Wedding &amp; Royal</button>
+        <button type="button" class="curated-tab-btn" data-cat="portrait" onclick="filterCuratedPackages('portrait')">✨
+          Portraits &amp; Maternity</button>
+        <button type="button" class="curated-tab-btn" data-cat="birthday" onclick="filterCuratedPackages('birthday')">🎉
+          Birthdays &amp; Events</button>
+        <button type="button" class="curated-tab-btn" data-cat="commercial"
+          onclick="filterCuratedPackages('commercial')">📦 Commercial &amp; Food</button>
       </div>
 
       <!-- Packages Grid -->
@@ -461,7 +568,8 @@
         <!-- Package 1: Instant Doorstep Shoot -->
         <article class="curated-package-card" data-category="instant">
           <div class="curated-card-media">
-            <img src="package-instant-shoot.jpg" alt="Instant Doorstep Photography Shoot" class="curated-card-img" loading="lazy">
+            <img src="package-instant-shoot.jpg" alt="Instant Doorstep Photography Shoot" class="curated-card-img"
+              loading="lazy">
             <div class="curated-card-badge-top">
               <span class="curated-badge-pill highlight">⚡ INSTANT DISPATCH</span>
               <span class="curated-badge-pill tag-white">24H DELIVERY</span>
@@ -470,10 +578,12 @@
           </div>
           <div class="curated-card-body">
             <h3 class="curated-card-title">Instant Doorstep Shoot</h3>
-            <p class="curated-card-desc">1 verified professional photographer arrives at your home or location within 60 minutes with pro lighting gear.</p>
+            <p class="curated-card-desc">1 verified professional photographer arrives at your home or location within 60
+              minutes with pro lighting gear.</p>
             <ul class="curated-card-features">
               <li><span class="check-icon">✓</span><span><strong>1 Hour</strong> dedicated on-demand session</span></li>
-              <li><span class="check-icon">✓</span><span><strong>20+ Color-graded</strong> high-resolution photos</span></li>
+              <li><span class="check-icon">✓</span><span><strong>20+ Color-graded</strong> high-resolution photos</span>
+              </li>
               <li><span class="check-icon">✓</span><span>Private digital cloud gallery in 24 hours</span></li>
               <li><span class="check-icon">✓</span><span>Professional portable studio lighting kit</span></li>
             </ul>
@@ -482,7 +592,8 @@
                 <span class="curated-price-label">Starting from</span>
                 <span class="curated-price-val" id="curated-instant-price">₹1,499/-</span>
               </div>
-              <a href="PHOTOGRAPHER-BOOKING.HTML?event=instant" class="curated-card-btn" aria-label="Book Instant Shoot">
+              <a href="PHOTOGRAPHER-BOOKING.HTML?event=instant" class="curated-card-btn"
+                aria-label="Book Instant Shoot">
                 <span>Book Shoot</span>
                 <span>↗</span>
               </a>
@@ -493,7 +604,8 @@
         <!-- Package 2: Signature Cinematic Wedding -->
         <article class="curated-package-card" data-category="wedding">
           <div class="curated-card-media">
-            <img src="package-wedding-rings.jpg" alt="Signature Cinematic Wedding Shoot" class="curated-card-img" loading="lazy">
+            <img src="package-wedding-rings.jpg" alt="Signature Cinematic Wedding Shoot" class="curated-card-img"
+              loading="lazy">
             <div class="curated-card-badge-top">
               <span class="curated-badge-pill highlight">💍 POPULAR CHOICE</span>
               <span class="curated-badge-pill tag-white">LUXURY ALBUM</span>
@@ -502,11 +614,15 @@
           </div>
           <div class="curated-card-body">
             <h3 class="curated-card-title">Signature Cinematic Wedding</h3>
-            <p class="curated-card-desc">Complete multi-day wedding storytelling with candid cinematography, ritual coverage, and heirloom luxury albums.</p>
+            <p class="curated-card-desc">Complete multi-day wedding storytelling with candid cinematography, ritual
+              coverage, and heirloom luxury albums.</p>
             <ul class="curated-card-features">
-              <li><span class="check-icon">✓</span><span><strong>Dual crew</strong>: Candid &amp; traditional photo + 4K video</span></li>
-              <li><span class="check-icon">✓</span><span><strong>4K Cinematic teaser</strong> + full highlight wedding film</span></li>
-              <li><span class="check-icon">✓</span><span><strong>25-Sheet premium</strong> 12x36 heirloom album</span></li>
+              <li><span class="check-icon">✓</span><span><strong>Dual crew</strong>: Candid &amp; traditional photo + 4K
+                  video</span></li>
+              <li><span class="check-icon">✓</span><span><strong>4K Cinematic teaser</strong> + full highlight wedding
+                  film</span></li>
+              <li><span class="check-icon">✓</span><span><strong>25-Sheet premium</strong> 12x36 heirloom album</span>
+              </li>
               <li><span class="check-icon">✓</span><span>Complimentary drone aerial cinematography</span></li>
             </ul>
             <div class="curated-card-footer">
@@ -514,7 +630,8 @@
                 <span class="curated-price-label">Starting from</span>
                 <span class="curated-price-val" id="curated-wedding-price">₹60,000/-</span>
               </div>
-              <a href="PHOTOGRAPHER-BOOKING.HTML?event=wedding" class="curated-card-btn" aria-label="Book Wedding Photography">
+              <a href="PHOTOGRAPHER-BOOKING.HTML?event=wedding" class="curated-card-btn"
+                aria-label="Book Wedding Photography">
                 <span>Book Wedding</span>
                 <span>↗</span>
               </a>
@@ -525,7 +642,8 @@
         <!-- Package 3: Royal Bridal & Heritage Portrait -->
         <article class="curated-package-card" data-category="wedding portrait">
           <div class="curated-card-media">
-            <img src="package-bridal-heritage.jpg" alt="Royal Bridal and Heritage Portrait Shoot" class="curated-card-img" loading="lazy">
+            <img src="package-bridal-heritage.jpg" alt="Royal Bridal and Heritage Portrait Shoot"
+              class="curated-card-img" loading="lazy">
             <div class="curated-card-badge-top">
               <span class="curated-badge-pill highlight">👑 ROYAL HERITAGE</span>
               <span class="curated-badge-pill tag-white">WALL FRAME</span>
@@ -534,12 +652,16 @@
           </div>
           <div class="curated-card-body">
             <h3 class="curated-card-title">Royal Bridal &amp; Heritage Session</h3>
-            <p class="curated-card-desc">Fine-art solo bridal and heirloom royal portraiture captured during magical golden hour light with magazine-grade finishing.</p>
+            <p class="curated-card-desc">Fine-art solo bridal and heirloom royal portraiture captured during magical
+              golden hour light with magazine-grade finishing.</p>
             <ul class="curated-card-features">
-              <li><span class="check-icon">✓</span><span><strong>3-4 Hours</strong> dedicated luxury creative session</span></li>
-              <li><span class="check-icon">✓</span><span><strong>30 Fine-art retouched</strong> magazine-quality portraits</span></li>
+              <li><span class="check-icon">✓</span><span><strong>3-4 Hours</strong> dedicated luxury creative
+                  session</span></li>
+              <li><span class="check-icon">✓</span><span><strong>30 Fine-art retouched</strong> magazine-quality
+                  portraits</span></li>
               <li><span class="check-icon">✓</span><span>Multiple outfit, jewelry &amp; styling angles</span></li>
-              <li><span class="check-icon">✓</span><span><strong>16x24 Premium</strong> archival couple/bridal wall frame</span></li>
+              <li><span class="check-icon">✓</span><span><strong>16x24 Premium</strong> archival couple/bridal wall
+                  frame</span></li>
             </ul>
             <div class="curated-card-footer">
               <div class="curated-price-block">
@@ -557,7 +679,8 @@
         <!-- Package 4: Couples & Maternity Story -->
         <article class="curated-package-card" data-category="portrait">
           <div class="curated-card-media">
-            <img src="package-couples-portrait.jpg" alt="Couples and Maternity Portrait Shoot" class="curated-card-img" loading="lazy">
+            <img src="package-couples-portrait.jpg" alt="Couples and Maternity Portrait Shoot" class="curated-card-img"
+              loading="lazy">
             <div class="curated-card-badge-top">
               <span class="curated-badge-pill highlight">✨ PURE EMOTIONS</span>
               <span class="curated-badge-pill tag-white">RETOUCHED</span>
@@ -566,10 +689,13 @@
           </div>
           <div class="curated-card-body">
             <h3 class="curated-card-title">Couples &amp; Maternity Portraits</h3>
-            <p class="curated-card-desc">Intimate session crafted to celebrate tender connections, baby bump journeys, and timeless couple romance.</p>
+            <p class="curated-card-desc">Intimate session crafted to celebrate tender connections, baby bump journeys,
+              and timeless couple romance.</p>
             <ul class="curated-card-features">
-              <li><span class="check-icon">✓</span><span><strong>1-2 Hours</strong> relaxed natural-light or in-home shoot</span></li>
-              <li><span class="check-icon">✓</span><span><strong>15 Magazine-retouched</strong> editorial frames</span></li>
+              <li><span class="check-icon">✓</span><span><strong>1-2 Hours</strong> relaxed natural-light or in-home
+                  shoot</span></li>
+              <li><span class="check-icon">✓</span><span><strong>15 Magazine-retouched</strong> editorial frames</span>
+              </li>
               <li><span class="check-icon">✓</span><span>Gentle creative posing direction by senior creator</span></li>
               <li><span class="check-icon">✓</span><span>Private high-res cloud gallery with full download</span></li>
             </ul>
@@ -578,7 +704,8 @@
                 <span class="curated-price-label">Starting from</span>
                 <span class="curated-price-val" id="curated-portrait-price">₹2,499/-</span>
               </div>
-              <a href="PHOTOGRAPHER-BOOKING.HTML?event=portrait" class="curated-card-btn" aria-label="Book Portraits & Personal Shoot">
+              <a href="PHOTOGRAPHER-BOOKING.HTML?event=portrait" class="curated-card-btn"
+                aria-label="Book Portraits & Personal Shoot">
                 <span>Book Portraits</span>
                 <span>↗</span>
               </a>
@@ -589,7 +716,8 @@
         <!-- Package 5: Birthday & Milestone Celebration -->
         <article class="curated-package-card" data-category="birthday">
           <div class="curated-card-media">
-            <img src="package-birthday-event.jpg" alt="Birthday and Milestone Event Photography" class="curated-card-img" loading="lazy">
+            <img src="package-birthday-event.jpg" alt="Birthday and Milestone Event Photography"
+              class="curated-card-img" loading="lazy">
             <div class="curated-card-badge-top">
               <span class="curated-badge-pill highlight">🎉 CAKE &amp; SMILES</span>
               <span class="curated-badge-pill tag-white">REEL INCLUDED</span>
@@ -598,11 +726,15 @@
           </div>
           <div class="curated-card-body">
             <h3 class="curated-card-title">Birthday &amp; Milestone Celebration</h3>
-            <p class="curated-card-desc">High-energy candid and stage coverage capturing every cheer, cake-cutting, surprise, and dance floor moment.</p>
+            <p class="curated-card-desc">High-energy candid and stage coverage capturing every cheer, cake-cutting,
+              surprise, and dance floor moment.</p>
             <ul class="curated-card-features">
-              <li><span class="check-icon">✓</span><span><strong>2-3 Hours</strong> continuous celebration coverage</span></li>
-              <li><span class="check-icon">✓</span><span><strong>50+ Color-corrected</strong> high-resolution photos</span></li>
-              <li><span class="check-icon">✓</span><span><strong>1 Trending Instagram Reel</strong> teaser ready in 48h</span></li>
+              <li><span class="check-icon">✓</span><span><strong>2-3 Hours</strong> continuous celebration
+                  coverage</span></li>
+              <li><span class="check-icon">✓</span><span><strong>50+ Color-corrected</strong> high-resolution
+                  photos</span></li>
+              <li><span class="check-icon">✓</span><span><strong>1 Trending Instagram Reel</strong> teaser ready in
+                  48h</span></li>
               <li><span class="check-icon">✓</span><span>Family group portraits &amp; candid party action</span></li>
             </ul>
             <div class="curated-card-footer">
@@ -610,7 +742,8 @@
                 <span class="curated-price-label">Starting from</span>
                 <span class="curated-price-val" id="curated-event-price">₹4,999/-</span>
               </div>
-              <a href="PHOTOGRAPHER-BOOKING.HTML?event=birthday" class="curated-card-btn" aria-label="Book Event Photography">
+              <a href="PHOTOGRAPHER-BOOKING.HTML?event=birthday" class="curated-card-btn"
+                aria-label="Book Event Photography">
                 <span>Book Event</span>
                 <span>↗</span>
               </a>
@@ -621,7 +754,8 @@
         <!-- Package 6: Commercial, Food & Catalog -->
         <article class="curated-package-card" data-category="commercial">
           <div class="curated-card-media">
-            <img src="package-commercial-food.jpg" alt="Commercial Food and Product Photography" class="curated-card-img" loading="lazy">
+            <img src="package-commercial-food.jpg" alt="Commercial Food and Product Photography"
+              class="curated-card-img" loading="lazy">
             <div class="curated-card-badge-top">
               <span class="curated-badge-pill highlight">📦 HIGH CONVERSION</span>
               <span class="curated-badge-pill tag-white">COMMERCIAL LICENSE</span>
@@ -630,19 +764,23 @@
           </div>
           <div class="curated-card-body">
             <h3 class="curated-card-title">Commercial, Food &amp; Catalog</h3>
-            <p class="curated-card-desc">Studio-grade product and culinary styling tailored for Swiggy, Zomato, Amazon, menus, and high-impact digital ads.</p>
+            <p class="curated-card-desc">Studio-grade product and culinary styling tailored for Swiggy, Zomato, Amazon,
+              menus, and high-impact digital ads.</p>
             <ul class="curated-card-features">
-              <li><span class="check-icon">✓</span><span><strong>Up to 15 styled dishes</strong> or tabletop products</span></li>
+              <li><span class="check-icon">✓</span><span><strong>Up to 15 styled dishes</strong> or tabletop
+                  products</span></li>
               <li><span class="check-icon">✓</span><span>Macro textures, steam &amp; overhead flat-lay shots</span></li>
               <li><span class="check-icon">✓</span><span>Color-accurate exports for menus, print &amp; web</span></li>
-              <li><span class="check-icon">✓</span><span><strong>Full commercial licensing</strong> &amp; usage rights</span></li>
+              <li><span class="check-icon">✓</span><span><strong>Full commercial licensing</strong> &amp; usage
+                  rights</span></li>
             </ul>
             <div class="curated-card-footer">
               <div class="curated-price-block">
                 <span class="curated-price-label">Starting from</span>
                 <span class="curated-price-val" id="curated-commercial-price">₹7,499/-</span>
               </div>
-              <a href="PHOTOGRAPHER-BOOKING.HTML?event=commercial" class="curated-card-btn" aria-label="Book Commercial Photography">
+              <a href="PHOTOGRAPHER-BOOKING.HTML?event=commercial" class="curated-card-btn"
+                aria-label="Book Commercial Photography">
                 <span>Book Commercial</span>
                 <span>↗</span>
               </a>
@@ -659,10 +797,14 @@
         <div class="about-logo-stage">
           <div class="about-aura-glow" aria-hidden="true"></div>
           <div class="about-orbital-ring outer" aria-hidden="true">
-            <div class="orbit-satellite-pod" title="Photography • Salon • Travel">
-              <img src="loader-camera-logo.png" alt="Photography" class="orbit-icon icon-camera" loading="eager">
-              <img src="loader-salon-logo.png" alt="Salon &amp; Beauty" class="orbit-icon icon-salon" loading="eager">
-              <img src="loader-airplane-logo.png" alt="Travel Retreats" class="orbit-icon icon-plane" loading="eager">
+            <div class="orbit-satellite-pod pod-camera" title="Doorstep Photography">
+              <img src="loader-camera-logo.png" alt="Photography" class="orbit-icon" loading="eager">
+            </div>
+            <div class="orbit-satellite-pod pod-salon" title="Salon &amp; Beauty at Home">
+              <img src="loader-salon-logo.png" alt="Salon &amp; Beauty" class="orbit-icon" loading="eager">
+            </div>
+            <div class="orbit-satellite-pod pod-plane" title="Luxury Travel Retreats">
+              <img src="loader-airplane-logo.png" alt="Travel Retreats" class="orbit-icon" loading="eager">
             </div>
           </div>
           <div class="about-orbital-ring inner" aria-hidden="true"></div>
@@ -698,7 +840,8 @@
         </div>
 
         <div style="margin-top: 24px;">
-          <a href="about.html" class="btn btn-gold magnetic" style="display: inline-flex; align-items: center; gap: 8px;">
+          <a href="about.html" class="btn btn-gold magnetic"
+            style="display: inline-flex; align-items: center; gap: 8px;">
             <span>Meet Founder &amp; Our Philosophy</span>
             <span>→</span>
           </a>
@@ -714,9 +857,12 @@
         <h2>What are you<br><em>planning next?</em></h2>
         <p>Photography, salon or travel — start with one tap.</p>
         <div class="cta-buttons">
-          <button class="btn btn-gold magnetic" data-open-booking="instant" type="button">Book Photographer <span>↗</span></button>
-          <button class="btn btn-light magnetic" data-open-booking="salon" type="button">Book Salon <span>↗</span></button>
-          <button class="btn btn-outline-light magnetic" data-open-booking="travel" type="button">Plan a Trip <span>↗</span></button>
+          <button class="btn btn-gold magnetic" data-open-booking="instant" type="button">Book Photographer
+            <span>↗</span></button>
+          <button class="btn btn-light magnetic" data-open-booking="salon" type="button">Book Salon
+            <span>↗</span></button>
+          <button class="btn btn-outline-light magnetic" data-open-booking="travel" type="button">Plan a Trip
+            <span>↗</span></button>
         </div>
       </div>
     </section>
@@ -728,7 +874,12 @@
     <div class="footer-contact-strip">
       <a href="tel:+919555826615" class="footer-contact-card">
         <div class="footer-contact-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+            </path>
+          </svg>
         </div>
         <div class="footer-contact-content">
           <span class="footer-contact-badge">CALL US</span>
@@ -739,7 +890,11 @@
 
       <a href="mailto:sweepsage25@gmail.com" class="footer-contact-card">
         <div class="footer-contact-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
         </div>
         <div class="footer-contact-content">
           <span class="footer-contact-badge">EMAIL US</span>
@@ -750,7 +905,11 @@
 
       <div class="footer-contact-card">
         <div class="footer-contact-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
         </div>
         <div class="footer-contact-content">
           <span class="footer-contact-badge">VISIT US</span>
@@ -849,7 +1008,8 @@
   </div>
 
   <!-- SETTINGS MODAL -->
-  <div class="settings-modal" id="settingsModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="settingsModalTitle">
+  <div class="settings-modal" id="settingsModal" aria-hidden="true" role="dialog" aria-modal="true"
+    aria-labelledby="settingsModalTitle">
     <div class="settings-modal-backdrop" id="settingsModalBackdrop" data-close-settings></div>
     <div class="settings-modal-dialog">
       <div class="settings-modal-header">
@@ -857,21 +1017,26 @@
           <span class="settings-eyebrow">PREFERENCES</span>
           <h3 id="settingsModalTitle">Settings</h3>
         </div>
-        <button type="button" class="settings-close-btn" id="closeSettingsModalBtn" aria-label="Close settings" data-close-settings>&times;</button>
+        <button type="button" class="settings-close-btn" id="closeSettingsModalBtn" aria-label="Close settings"
+          data-close-settings>&times;</button>
       </div>
 
       <div class="settings-modal-body">
         <div class="settings-section">
           <span class="settings-section-title">Appearance &amp; Experience</span>
-          <p class="settings-section-desc">SweepSage runs in official signature Light White Mode with sleek luxury black accents.</p>
+          <p class="settings-section-desc">SweepSage runs in official signature Light White Mode with sleek luxury black
+            accents.</p>
 
-          <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 18px; display: flex; align-items: center; gap: 14px;">
+          <div
+            style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 18px; display: flex; align-items: center; gap: 14px;">
             <span style="font-size: 26px;">☀️</span>
             <div>
               <strong style="color: #ffffff; font-size: 15px; display: block;">Standard Edition (Light)</strong>
-              <p style="color: #94a3b8; font-size: 12.5px; margin: 0;">Pristine, bright modern aesthetic active across all services.</p>
+              <p style="color: #94a3b8; font-size: 12.5px; margin: 0;">Pristine, bright modern aesthetic active across
+                all services.</p>
             </div>
-            <span style="margin-left: auto; font-size: 11px; font-weight: 700; background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); padding: 3px 8px; border-radius: 999px;">Active</span>
+            <span
+              style="margin-left: auto; font-size: 11px; font-weight: 700; background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); padding: 3px 8px; border-radius: 999px;">Active</span>
           </div>
         </div>
       </div>
@@ -911,13 +1076,17 @@
   <!-- LOCATION MODAL -->
   <div class="custom-modal-backdrop" id="locationModal" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="custom-modal-box">
-      <button type="button" class="modal-close-cross" onclick="closeLocationModal()" aria-label="Close location picker">&times;</button>
+      <button type="button" class="modal-close-cross" onclick="closeLocationModal()"
+        aria-label="Close location picker">&times;</button>
       <div class="modal-head-title">Enter your delivery location</div>
-      <p class="modal-head-desc">Choose your location to check available doorstep photographers, salon artists, and travel curators.</p>
-      
+      <p class="modal-head-desc">Choose your location to check available doorstep photographers, salon artists, and
+        travel curators.</p>
+
       <div class="location-search-box">
         <span>🔍</span>
-        <input type="text" id="locationSearchInput" placeholder="Search city (Delhi, Noida, Ghaziabad, Lucknow, Gorakhpur)..." oninput="filterCities(this.value)" onkeydown="if(event.key==='Enter')handleCitySearchSubmit(this.value)">
+        <input type="text" id="locationSearchInput"
+          placeholder="Search city (Delhi, Noida, Ghaziabad, Lucknow, Gorakhpur)..." oninput="filterCities(this.value)"
+          onkeydown="if(event.key==='Enter')handleCitySearchSubmit(this.value)">
       </div>
 
       <!-- Unavailable City Notice Banner (Shown when non-operational location is searched/entered) -->
@@ -925,7 +1094,9 @@
         <div class="unavail-icon">⚠️</div>
         <div class="unavail-content">
           <strong class="unavail-title">Currently Not Available Here!</strong>
-          <p class="unavail-desc" id="locationUnavailText">SweepSage is currently not available in this location. We are operational only in <strong>Delhi NCR, Noida, Ghaziabad, Lucknow</strong>, and <strong>Gorakhpur</strong>. We are launching in your area soon!</p>
+          <p class="unavail-desc" id="locationUnavailText">SweepSage is currently not available in this location. We are
+            operational only in <strong>Delhi NCR, Noida, Ghaziabad, Lucknow</strong>, and <strong>Gorakhpur</strong>.
+            We are launching in your area soon!</p>
           <div class="unavail-quick-switch">
             <span>Choose from available cities:</span>
             <div class="unavail-pills">
@@ -951,19 +1122,26 @@
       <div class="popular-cities-grid" id="availableCitiesGrid">
         <button type="button" class="city-pill-btn available" onclick="selectCity('Delhi NCR')">📍 Delhi NCR</button>
         <button type="button" class="city-pill-btn available" onclick="selectCity('Noida, UP')">📍 Noida</button>
-        <button type="button" class="city-pill-btn available" onclick="selectCity('Ghaziabad, UP')">📍 Ghaziabad</button>
+        <button type="button" class="city-pill-btn available" onclick="selectCity('Ghaziabad, UP')">📍
+          Ghaziabad</button>
         <button type="button" class="city-pill-btn available" onclick="selectCity('Lucknow, UP')">📍 Lucknow</button>
-        <button type="button" class="city-pill-btn available" onclick="selectCity('Gorakhpur, UP')">📍 Gorakhpur</button>
+        <button type="button" class="city-pill-btn available" onclick="selectCity('Gorakhpur, UP')">📍
+          Gorakhpur</button>
       </div>
 
-      <div class="other-cities-label" style="margin-top: 18px; margin-bottom: 10px; font-size: 11px; font-weight: 800; color: #64748b; letter-spacing: 0.08em; text-transform: uppercase;">
+      <div class="other-cities-label"
+        style="margin-top: 18px; margin-bottom: 10px; font-size: 11px; font-weight: 800; color: #64748b; letter-spacing: 0.08em; text-transform: uppercase;">
         OTHER CITIES (LAUNCHING SOON)
       </div>
       <div class="popular-cities-grid other-cities-grid">
-        <button type="button" class="city-pill-btn disabled-city" onclick="handleUnavailableCityClick('Mumbai')">Mumbai <small>Soon</small></button>
-        <button type="button" class="city-pill-btn disabled-city" onclick="handleUnavailableCityClick('Bengaluru')">Bengaluru <small>Soon</small></button>
-        <button type="button" class="city-pill-btn disabled-city" onclick="handleUnavailableCityClick('Pune')">Pune <small>Soon</small></button>
-        <button type="button" class="city-pill-btn disabled-city" onclick="handleUnavailableCityClick('Jaipur')">Jaipur <small>Soon</small></button>
+        <button type="button" class="city-pill-btn disabled-city" onclick="handleUnavailableCityClick('Mumbai')">Mumbai
+          <small>Soon</small></button>
+        <button type="button" class="city-pill-btn disabled-city"
+          onclick="handleUnavailableCityClick('Bengaluru')">Bengaluru <small>Soon</small></button>
+        <button type="button" class="city-pill-btn disabled-city" onclick="handleUnavailableCityClick('Pune')">Pune
+          <small>Soon</small></button>
+        <button type="button" class="city-pill-btn disabled-city" onclick="handleUnavailableCityClick('Jaipur')">Jaipur
+          <small>Soon</small></button>
       </div>
     </div>
   </div>
@@ -973,7 +1151,8 @@
     <div class="custom-modal-box">
       <button type="button" class="modal-close-cross" onclick="closeGetAppModal()" aria-label="Close">&times;</button>
       <div class="modal-head-title">Experience SweepSage on Mobile</div>
-      <p class="modal-head-desc">Book instant photographers on demand, get doorstep beauty services, and track your travel itineraries in real time.</p>
+      <p class="modal-head-desc">Book instant photographers on demand, get doorstep beauty services, and track your
+        travel itineraries in real time.</p>
 
       <div class="app-modal-grid">
         <div class="app-qr-box">
@@ -981,7 +1160,8 @@
         </div>
         <div>
           <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 6px;">Scan to download</h4>
-          <p style="font-size: 12.5px; color: #94a3b8; line-height: 1.4;">Point your camera at the QR code to install the SweepSage iOS or Android application instantly.</p>
+          <p style="font-size: 12.5px; color: #94a3b8; line-height: 1.4;">Point your camera at the QR code to install
+            the SweepSage iOS or Android application instantly.</p>
           <div class="app-store-badges">
             <a href="javascript:void(0)" class="store-badge-btn" onclick="selectCity('Delhi NCR'); closeGetAppModal();">
               <span>🍏</span> App Store
@@ -998,27 +1178,35 @@
   <!-- PROFILE MODAL -->
   <div class="custom-modal-backdrop" id="profileModal" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="custom-modal-box">
-      <button type="button" class="modal-close-cross" onclick="closeUserProfileModal()" aria-label="Close profile">&times;</button>
+      <button type="button" class="modal-close-cross" onclick="closeUserProfileModal()"
+        aria-label="Close profile">&times;</button>
       <div class="modal-head-title">My Profile</div>
       <p class="modal-head-desc">Manage your personal details, default delivery address, and active preferences.</p>
 
-      <div style="background: #181925; border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 20px; margin-bottom: 16px;">
+      <div
+        style="background: #181925; border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 20px; margin-bottom: 16px;">
         <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 16px;">
-          <div style="width: 50px; height: 50px; border-radius: 50%; background: #ffffff; color: #09090b; display: grid; place-items: center; font-size: 22px; font-weight: 800;">U</div>
+          <div
+            style="width: 50px; height: 50px; border-radius: 50%; background: #ffffff; color: #09090b; display: grid; place-items: center; font-size: 22px; font-weight: 800;">
+            U</div>
           <div>
             <strong style="font-size: 16px; display: block;">Utkarsh Dubey</strong>
             <small style="color: #94a3b8; font-size: 12.5px;">+91 95558 26615 • sweepsage25@gmail.com</small>
           </div>
         </div>
         <div style="font-size: 13px; color: #cbd5e1; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.08);">
-          <span style="color: #94a3b8; display: block; font-size: 11px; text-transform: uppercase; font-weight: 700; margin-bottom: 4px;">Primary Delivery Address</span>
+          <span
+            style="color: #94a3b8; display: block; font-size: 11px; text-transform: uppercase; font-weight: 700; margin-bottom: 4px;">Primary
+            Delivery Address</span>
           <span>N-52, Delta-3, Greater Noida, Uttar Pradesh, 201308</span>
         </div>
       </div>
 
       <div style="display: flex; gap: 10px;">
-        <button type="button" class="btn btn-gold" style="flex: 1;" onclick="closeUserProfileModal()">Save Changes</button>
-        <button type="button" class="btn btn-outline-light" onclick="handleUserLogout(); closeUserProfileModal();">Logout</button>
+        <button type="button" class="btn btn-gold" style="flex: 1;" onclick="closeUserProfileModal()">Save
+          Changes</button>
+        <button type="button" class="btn btn-outline-light"
+          onclick="handleUserLogout(); closeUserProfileModal();">Logout</button>
       </div>
     </div>
   </div>
@@ -1026,7 +1214,8 @@
   <!-- ORDERS MODAL -->
   <div class="custom-modal-backdrop" id="ordersModal" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="custom-modal-box">
-      <button type="button" class="modal-close-cross" onclick="closeUserOrdersModal()" aria-label="Close orders">&times;</button>
+      <button type="button" class="modal-close-cross" onclick="closeUserOrdersModal()"
+        aria-label="Close orders">&times;</button>
       <div class="modal-head-title">My Orders</div>
       <p class="modal-head-desc">Track ongoing requests and review past photography, salon, and travel bookings.</p>
 
@@ -1058,14 +1247,16 @@
   <!-- FAVOURITES MODAL -->
   <div class="custom-modal-backdrop" id="favouritesModal" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="custom-modal-box">
-      <button type="button" class="modal-close-cross" onclick="closeUserFavouritesModal()" aria-label="Close favourites">&times;</button>
+      <button type="button" class="modal-close-cross" onclick="closeUserFavouritesModal()"
+        aria-label="Close favourites">&times;</button>
       <div class="modal-head-title">My Favourites</div>
       <p class="modal-head-desc">Your saved photographers, verified makeup artists, and dream destinations.</p>
 
       <div id="favouritesListContainer" style="text-align: center; padding: 28px 16px;">
         <div style="font-size: 32px; margin-bottom: 8px;">❤️</div>
         <strong style="display: block; font-size: 15px; margin-bottom: 4px;">No favourites saved yet</strong>
-        <p style="font-size: 13px; color: #888; margin: 0;">Save your favourite creators and services to access them quickly here.</p>
+        <p style="font-size: 13px; color: #888; margin: 0;">Save your favourite creators and services to access them
+          quickly here.</p>
       </div>
     </div>
   </div>
@@ -1510,4 +1701,5 @@
     initQuickServicesSlider();
   </script>
 </body>
+
 </html>
