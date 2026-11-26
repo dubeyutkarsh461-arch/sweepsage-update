@@ -791,6 +791,208 @@
       </div>
     </section>
 
+    <!-- =========================================================
+         REVIEWS / CLIENT STORIES SECTION (Professional & Unique)
+    ========================================================= -->
+    <section class="reviews-section reveal" id="client-reviews">
+      <div class="reviews-header-wrap">
+        <div class="reviews-header-left">
+          <div class="reviews-badge-top">
+            <span class="eyebrow dark">VERIFIED CLIENT STORIES</span>
+            <span class="reviews-rating-pill">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="#fc5e68" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <strong>4.98 / 5.0</strong>
+              <small>(12,400+ Bookings)</small>
+            </span>
+          </div>
+          <h2>Stories that inspire.<br><span>Moments that stay forever.</span></h2>
+          <p>Real experiences shared by clients who booked doorstep photography, salon at home, and luxury travel getaways with SweepSage.</p>
+        </div>
+
+        <div class="reviews-nav-controls">
+          <button class="reviews-nav-btn prev" onclick="scrollReviews('left')" aria-label="Previous reviews">←</button>
+          <button class="reviews-nav-btn next" onclick="scrollReviews('right')" aria-label="Next reviews">→</button>
+        </div>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="reviews-filter-bar">
+        <div class="reviews-filter-tabs" role="tablist">
+          <button type="button" class="reviews-tab-btn active" data-cat="all" onclick="filterReviews('all')">✨ All Reviews (12k+)</button>
+          <button type="button" class="reviews-tab-btn" data-cat="photo" onclick="filterReviews('photo')">📷 Photography (8.4k+)</button>
+          <button type="button" class="reviews-tab-btn" data-cat="salon" onclick="filterReviews('salon')">💄 Salon at Home (3.1k+)</button>
+          <button type="button" class="reviews-tab-btn" data-cat="travel" onclick="filterReviews('travel')">✈️ Luxury Travel (1.2k+)</button>
+        </div>
+      </div>
+
+      <!-- Reviews Carousel Track -->
+      <div class="reviews-carousel-track" id="reviewsTrack">
+        <!-- Review Card 1: Photography Wedding -->
+        <article class="review-card" data-category="photo">
+          <div class="review-card-top">
+            <div class="review-stars" aria-label="5 out of 5 stars">
+              ★★★★★
+            </div>
+            <span class="review-verified-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Verified Booking
+            </span>
+          </div>
+          <span class="review-service-pill">📷 Wedding Heritage Shoot • Greater Noida</span>
+          <p class="review-text">
+            “Our photographer Ayush arrived 20 minutes before time at our venue. He guided us through every royal pose naturally without awkwardness. We received our 350+ retouched frames in high-res cloud within 48 hours. Absolute perfection!”
+          </p>
+          <div class="review-author">
+            <div class="review-avatar" style="background: linear-gradient(135deg, #fc5e68, #ff8f97);">AV</div>
+            <div class="review-author-info">
+              <h4>Ananya &amp; Rohan Verma</h4>
+              <span>Greater Noida, UP • Wedding Celebration</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Review Card 2: Salon at Home Bridal -->
+        <article class="review-card" data-category="salon">
+          <div class="review-card-top">
+            <div class="review-stars" aria-label="5 out of 5 stars">
+              ★★★★★
+            </div>
+            <span class="review-verified-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Verified Booking
+            </span>
+          </div>
+          <span class="review-service-pill">💄 Salon at Home • South Delhi</span>
+          <p class="review-text">
+            “The salon artist brought sanitized mono-dose kits, warm wax gear, and her own salon mat. No mess, salon-grade hydra-facial, and zero rush. Having luxury parlour care at home is pure bliss.”
+          </p>
+          <div class="review-author">
+            <div class="review-avatar" style="background: linear-gradient(135deg, #a855f7, #ec4899);">PM</div>
+            <div class="review-author-info">
+              <h4>Priyanshi Mehta</h4>
+              <span>Vasant Kunj, New Delhi • Home Salon</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Review Card 3: Luxury Travel Retreat -->
+        <article class="review-card" data-category="travel">
+          <div class="review-card-top">
+            <div class="review-stars" aria-label="5 out of 5 stars">
+              ★★★★★
+            </div>
+            <span class="review-verified-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Verified Booking
+            </span>
+          </div>
+          <span class="review-service-pill">✈️ Luxury Retreat • Manali Apple Valley</span>
+          <p class="review-text">
+            “SweepSage curated an unforgettable 4-day private chalet itinerary. From riverside bonfire dinners to airport chauffeur, every detail was seamless. It felt like having a personal luxury concierge.”
+          </p>
+          <div class="review-author">
+            <div class="review-avatar" style="background: linear-gradient(135deg, #0284c7, #06b6d4);">VM</div>
+            <div class="review-author-info">
+              <h4>Dr. Vikram &amp; Shalini Malhotra</h4>
+              <span>Bandra West, Mumbai • Private Retreat</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Review Card 4: Instant Photography -->
+        <article class="review-card" data-category="photo">
+          <div class="review-card-top">
+            <div class="review-stars" aria-label="5 out of 5 stars">
+              ★★★★★
+            </div>
+            <span class="review-verified-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Verified Booking
+            </span>
+          </div>
+          <span class="review-service-pill">⚡ Instant Dispatch (60 Min) • Bengaluru</span>
+          <p class="review-text">
+            “Booked an instant photographer for my daughter's 1st birthday just 2 hours prior! The creator showed up with professional Sony mirrorless gear and captured every candid laugh and cake smash effortlessly.”
+          </p>
+          <div class="review-author">
+            <div class="review-avatar" style="background: linear-gradient(135deg, #10b981, #059669);">KN</div>
+            <div class="review-author-info">
+              <h4>Karthik Nair</h4>
+              <span>Indiranagar, Bengaluru • Birthday Milestone</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Review Card 5: Salon Hair Spa -->
+        <article class="review-card" data-category="salon">
+          <div class="review-card-top">
+            <div class="review-stars" aria-label="5 out of 5 stars">
+              ★★★★★
+            </div>
+            <span class="review-verified-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Verified Booking
+            </span>
+          </div>
+          <span class="review-service-pill">💄 Hair Spa &amp; Keratin • Gurugram</span>
+          <p class="review-text">
+            “Best hair spa and blowout I have had in years, right in my living room while I was attending work calls. She even cleaned up every drop of water after finishing. 10/10 recommended!”
+          </p>
+          <div class="review-author">
+            <div class="review-avatar" style="background: linear-gradient(135deg, #f59e0b, #d97706);">RS</div>
+            <div class="review-author-info">
+              <h4>Rhea Sengupta</h4>
+              <span>DLF Phase 5, Gurugram • Hair Glow</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Review Card 6: Travel Couple Getaway -->
+        <article class="review-card" data-category="travel">
+          <div class="review-card-top">
+            <div class="review-stars" aria-label="5 out of 5 stars">
+              ★★★★★
+            </div>
+            <span class="review-verified-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Verified Booking
+            </span>
+          </div>
+          <span class="review-service-pill">✈️ Goa Beachside Haven • North Goa</span>
+          <p class="review-text">
+            “Everything from private pool villa booking to sunset yacht ride was arranged by SweepSage. Zero stress, authentic local dining tips, and 24/7 concierge support throughout our trip.”
+          </p>
+          <div class="review-author">
+            <div class="review-avatar" style="background: linear-gradient(135deg, #ef4444, #f97316);">SR</div>
+            <div class="review-author-info">
+              <h4>Sneha &amp; Aakash Roy</h4>
+              <span>Noida, UP • Anniversary Holiday</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Trust Metrics Strip -->
+      <div class="reviews-trust-strip">
+        <div class="review-trust-item">
+          <strong>4.98 ★</strong>
+          <span>Average Service Rating</span>
+        </div>
+        <div class="review-trust-item">
+          <strong>99.4%</strong>
+          <span>On-Time Arrival Guarantee</span>
+        </div>
+        <div class="review-trust-item">
+          <strong>100%</strong>
+          <span>Verified &amp; Screened Pros</span>
+        </div>
+        <div class="review-trust-item">
+          <strong>48 Hours</strong>
+          <span>High-Res Cloud Gallery</span>
+        </div>
+      </div>
+    </section>
+
     <!-- ABOUT -->
     <section class="about-section" id="about">
       <div class="about-visual reveal-left">
@@ -1629,6 +1831,37 @@
           card.style.display = 'none';
         }
       });
+    }
+
+    /* Interactive Reviews Carousel and Category Filter */
+    function filterReviews(cat) {
+      const cards = document.querySelectorAll('.review-card');
+      const tabs = document.querySelectorAll('.reviews-tab-btn');
+      tabs.forEach(tab => {
+        tab.classList.toggle('active', tab.getAttribute('data-cat') === cat);
+      });
+      cards.forEach(card => {
+        const cardCat = card.getAttribute('data-category') || '';
+        if (cat === 'all' || cardCat === cat) {
+          card.style.display = 'flex';
+          card.style.opacity = '1';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      const track = document.getElementById('reviewsTrack');
+      if (track) track.scrollTo({ left: 0, behavior: 'smooth' });
+    }
+
+    function scrollReviews(direction) {
+      const track = document.getElementById('reviewsTrack');
+      if (!track) return;
+      const scrollAmount = 380;
+      if (direction === 'left') {
+        track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      } else {
+        track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      }
     }
 
     function initQuickServicesSlider() {
