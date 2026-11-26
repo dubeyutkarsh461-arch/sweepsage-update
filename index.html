@@ -391,6 +391,224 @@
       </div>
     </section>
 
+    <!-- =========================================================
+         CURATED PACKAGES SECTION (CLOSEUP SHOT IMAGES)
+    ========================================================= -->
+    <section class="curated-packages-section reveal" id="featured-packages">
+      <div class="curated-packages-header">
+        <span class="eyebrow">EXPLORE PACKAGES</span>
+        <h2>Curated Packages with <span>Transparent Pricing</span></h2>
+        <p>From 60-minute instant doorstep shoots to heirloom cinematic weddings. Handcrafted packages with verified creators, premium retouching &amp; prompt delivery.</p>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="curated-filter-tabs" role="tablist" aria-label="Package category filter">
+        <button type="button" class="curated-tab-btn active" data-cat="all" onclick="filterCuratedPackages('all')">All Packages</button>
+        <button type="button" class="curated-tab-btn" data-cat="instant" onclick="filterCuratedPackages('instant')">⚡ Instant Shoot</button>
+        <button type="button" class="curated-tab-btn" data-cat="wedding" onclick="filterCuratedPackages('wedding')">💍 Wedding &amp; Royal</button>
+        <button type="button" class="curated-tab-btn" data-cat="portrait" onclick="filterCuratedPackages('portrait')">✨ Portraits &amp; Maternity</button>
+        <button type="button" class="curated-tab-btn" data-cat="birthday" onclick="filterCuratedPackages('birthday')">🎉 Birthdays &amp; Events</button>
+        <button type="button" class="curated-tab-btn" data-cat="commercial" onclick="filterCuratedPackages('commercial')">📦 Commercial &amp; Food</button>
+      </div>
+
+      <!-- Packages Grid -->
+      <div class="curated-packages-grid" id="curatedPackagesGrid">
+
+        <!-- Package 1: Instant Doorstep Shoot -->
+        <article class="curated-package-card" data-category="instant">
+          <div class="curated-card-media">
+            <img src="package-instant-shoot.jpg" alt="Instant Doorstep Photography Shoot" class="curated-card-img" loading="lazy">
+            <div class="curated-card-badge-top">
+              <span class="curated-badge-pill highlight">⚡ INSTANT DISPATCH</span>
+              <span class="curated-badge-pill tag-white">24H DELIVERY</span>
+            </div>
+            <span class="curated-card-category">⚡ Doorstep Photography</span>
+          </div>
+          <div class="curated-card-body">
+            <h3 class="curated-card-title">Instant Doorstep Shoot</h3>
+            <p class="curated-card-desc">1 verified professional photographer arrives at your home or location within 60 minutes with pro lighting gear.</p>
+            <ul class="curated-card-features">
+              <li><span class="check-icon">✓</span><span><strong>1 Hour</strong> dedicated on-demand session</span></li>
+              <li><span class="check-icon">✓</span><span><strong>20+ Color-graded</strong> high-resolution photos</span></li>
+              <li><span class="check-icon">✓</span><span>Private digital cloud gallery in 24 hours</span></li>
+              <li><span class="check-icon">✓</span><span>Professional portable studio lighting kit</span></li>
+            </ul>
+            <div class="curated-card-footer">
+              <div class="curated-price-block">
+                <span class="curated-price-label">Starting from</span>
+                <span class="curated-price-val" id="curated-instant-price">₹1,499/-</span>
+              </div>
+              <a href="PHOTOGRAPHER-BOOKING.HTML?event=instant" class="curated-card-btn" aria-label="Book Instant Shoot">
+                <span>Book Shoot</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Package 2: Signature Cinematic Wedding -->
+        <article class="curated-package-card" data-category="wedding">
+          <div class="curated-card-media">
+            <img src="package-wedding-rings.jpg" alt="Signature Cinematic Wedding Shoot" class="curated-card-img" loading="lazy">
+            <div class="curated-card-badge-top">
+              <span class="curated-badge-pill highlight">💍 POPULAR CHOICE</span>
+              <span class="curated-badge-pill tag-white">LUXURY ALBUM</span>
+            </div>
+            <span class="curated-card-category">💍 Wedding Photography</span>
+          </div>
+          <div class="curated-card-body">
+            <h3 class="curated-card-title">Signature Cinematic Wedding</h3>
+            <p class="curated-card-desc">Complete multi-day wedding storytelling with candid cinematography, ritual coverage, and heirloom luxury albums.</p>
+            <ul class="curated-card-features">
+              <li><span class="check-icon">✓</span><span><strong>Dual crew</strong>: Candid &amp; traditional photo + 4K video</span></li>
+              <li><span class="check-icon">✓</span><span><strong>4K Cinematic teaser</strong> + full highlight wedding film</span></li>
+              <li><span class="check-icon">✓</span><span><strong>25-Sheet premium</strong> 12x36 heirloom album</span></li>
+              <li><span class="check-icon">✓</span><span>Complimentary drone aerial cinematography</span></li>
+            </ul>
+            <div class="curated-card-footer">
+              <div class="curated-price-block">
+                <span class="curated-price-label">Starting from</span>
+                <span class="curated-price-val" id="curated-wedding-price">₹60,000/-</span>
+              </div>
+              <a href="PHOTOGRAPHER-BOOKING.HTML?event=wedding" class="curated-card-btn" aria-label="Book Wedding Photography">
+                <span>Book Wedding</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Package 3: Royal Bridal & Heritage Portrait -->
+        <article class="curated-package-card" data-category="wedding portrait">
+          <div class="curated-card-media">
+            <img src="package-bridal-heritage.jpg" alt="Royal Bridal and Heritage Portrait Shoot" class="curated-card-img" loading="lazy">
+            <div class="curated-card-badge-top">
+              <span class="curated-badge-pill highlight">👑 ROYAL HERITAGE</span>
+              <span class="curated-badge-pill tag-white">WALL FRAME</span>
+            </div>
+            <span class="curated-card-category">👑 Bridal &amp; Heritage</span>
+          </div>
+          <div class="curated-card-body">
+            <h3 class="curated-card-title">Royal Bridal &amp; Heritage Session</h3>
+            <p class="curated-card-desc">Fine-art solo bridal and heirloom royal portraiture captured during magical golden hour light with magazine-grade finishing.</p>
+            <ul class="curated-card-features">
+              <li><span class="check-icon">✓</span><span><strong>3-4 Hours</strong> dedicated luxury creative session</span></li>
+              <li><span class="check-icon">✓</span><span><strong>30 Fine-art retouched</strong> magazine-quality portraits</span></li>
+              <li><span class="check-icon">✓</span><span>Multiple outfit, jewelry &amp; styling angles</span></li>
+              <li><span class="check-icon">✓</span><span><strong>16x24 Premium</strong> archival couple/bridal wall frame</span></li>
+            </ul>
+            <div class="curated-card-footer">
+              <div class="curated-price-block">
+                <span class="curated-price-label">Starting from</span>
+                <span class="curated-price-val" id="curated-bridal-price">₹25,000/-</span>
+              </div>
+              <a href="PHOTOGRAPHER-BOOKING.HTML?event=wedding" class="curated-card-btn" aria-label="Book Bridal Shoot">
+                <span>Book Bridal</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Package 4: Couples & Maternity Story -->
+        <article class="curated-package-card" data-category="portrait">
+          <div class="curated-card-media">
+            <img src="package-couples-portrait.jpg" alt="Couples and Maternity Portrait Shoot" class="curated-card-img" loading="lazy">
+            <div class="curated-card-badge-top">
+              <span class="curated-badge-pill highlight">✨ PURE EMOTIONS</span>
+              <span class="curated-badge-pill tag-white">RETOUCHED</span>
+            </div>
+            <span class="curated-card-category">✨ Portraits &amp; Maternity</span>
+          </div>
+          <div class="curated-card-body">
+            <h3 class="curated-card-title">Couples &amp; Maternity Portraits</h3>
+            <p class="curated-card-desc">Intimate session crafted to celebrate tender connections, baby bump journeys, and timeless couple romance.</p>
+            <ul class="curated-card-features">
+              <li><span class="check-icon">✓</span><span><strong>1-2 Hours</strong> relaxed natural-light or in-home shoot</span></li>
+              <li><span class="check-icon">✓</span><span><strong>15 Magazine-retouched</strong> editorial frames</span></li>
+              <li><span class="check-icon">✓</span><span>Gentle creative posing direction by senior creator</span></li>
+              <li><span class="check-icon">✓</span><span>Private high-res cloud gallery with full download</span></li>
+            </ul>
+            <div class="curated-card-footer">
+              <div class="curated-price-block">
+                <span class="curated-price-label">Starting from</span>
+                <span class="curated-price-val" id="curated-portrait-price">₹2,499/-</span>
+              </div>
+              <a href="PHOTOGRAPHER-BOOKING.HTML?event=portrait" class="curated-card-btn" aria-label="Book Portraits & Personal Shoot">
+                <span>Book Portraits</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Package 5: Birthday & Milestone Celebration -->
+        <article class="curated-package-card" data-category="birthday">
+          <div class="curated-card-media">
+            <img src="package-birthday-event.jpg" alt="Birthday and Milestone Event Photography" class="curated-card-img" loading="lazy">
+            <div class="curated-card-badge-top">
+              <span class="curated-badge-pill highlight">🎉 CAKE &amp; SMILES</span>
+              <span class="curated-badge-pill tag-white">REEL INCLUDED</span>
+            </div>
+            <span class="curated-card-category">🎉 Birthdays &amp; Events</span>
+          </div>
+          <div class="curated-card-body">
+            <h3 class="curated-card-title">Birthday &amp; Milestone Celebration</h3>
+            <p class="curated-card-desc">High-energy candid and stage coverage capturing every cheer, cake-cutting, surprise, and dance floor moment.</p>
+            <ul class="curated-card-features">
+              <li><span class="check-icon">✓</span><span><strong>2-3 Hours</strong> continuous celebration coverage</span></li>
+              <li><span class="check-icon">✓</span><span><strong>50+ Color-corrected</strong> high-resolution photos</span></li>
+              <li><span class="check-icon">✓</span><span><strong>1 Trending Instagram Reel</strong> teaser ready in 48h</span></li>
+              <li><span class="check-icon">✓</span><span>Family group portraits &amp; candid party action</span></li>
+            </ul>
+            <div class="curated-card-footer">
+              <div class="curated-price-block">
+                <span class="curated-price-label">Starting from</span>
+                <span class="curated-price-val" id="curated-event-price">₹4,999/-</span>
+              </div>
+              <a href="PHOTOGRAPHER-BOOKING.HTML?event=birthday" class="curated-card-btn" aria-label="Book Event Photography">
+                <span>Book Event</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Package 6: Commercial, Food & Catalog -->
+        <article class="curated-package-card" data-category="commercial">
+          <div class="curated-card-media">
+            <img src="package-commercial-food.jpg" alt="Commercial Food and Product Photography" class="curated-card-img" loading="lazy">
+            <div class="curated-card-badge-top">
+              <span class="curated-badge-pill highlight">📦 HIGH CONVERSION</span>
+              <span class="curated-badge-pill tag-white">COMMERCIAL LICENSE</span>
+            </div>
+            <span class="curated-card-category">📦 Commercial &amp; Food</span>
+          </div>
+          <div class="curated-card-body">
+            <h3 class="curated-card-title">Commercial, Food &amp; Catalog</h3>
+            <p class="curated-card-desc">Studio-grade product and culinary styling tailored for Swiggy, Zomato, Amazon, menus, and high-impact digital ads.</p>
+            <ul class="curated-card-features">
+              <li><span class="check-icon">✓</span><span><strong>Up to 15 styled dishes</strong> or tabletop products</span></li>
+              <li><span class="check-icon">✓</span><span>Macro textures, steam &amp; overhead flat-lay shots</span></li>
+              <li><span class="check-icon">✓</span><span>Color-accurate exports for menus, print &amp; web</span></li>
+              <li><span class="check-icon">✓</span><span><strong>Full commercial licensing</strong> &amp; usage rights</span></li>
+            </ul>
+            <div class="curated-card-footer">
+              <div class="curated-price-block">
+                <span class="curated-price-label">Starting from</span>
+                <span class="curated-price-val" id="curated-commercial-price">₹7,499/-</span>
+              </div>
+              <a href="PHOTOGRAPHER-BOOKING.HTML?event=commercial" class="curated-card-btn" aria-label="Book Commercial Photography">
+                <span>Book Commercial</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
     <!-- ABOUT -->
     <section class="about-section" id="about">
       <div class="about-visual reveal-left">
@@ -1071,6 +1289,9 @@
 
     function syncHomePageCatalog() {
       if (!window.SweepSageCatalog) return;
+      function cleanPriceVal(p) {
+        return (p || '').replace(/^From\s*/i, '').replace(/^Starting\s*/i, '').trim();
+      }
       const services = window.SweepSageCatalog.getPhotographyServices();
       const inst = services.find(s => s.id === 'instant');
       if (inst) {
@@ -1082,30 +1303,40 @@
         if (modalP) modalP.textContent = inst.price;
         const qp = document.getElementById('quick-service-photo-price');
         if (qp) qp.innerHTML = 'From ' + inst.price + ' <span class="arrow">↗</span>';
+        const curInst = document.getElementById('curated-instant-price');
+        if (curInst) curInst.textContent = cleanPriceVal(inst.price);
       }
 
       const wedService = services.find(s => s.id === 'wedding');
       if (wedService) {
         const qw = document.getElementById('quick-service-wedding-price');
         if (qw) qw.innerHTML = wedService.price + ' <span class="arrow">↗</span>';
+        const curWed = document.getElementById('curated-wedding-price');
+        if (curWed) curWed.textContent = cleanPriceVal(wedService.price);
       }
 
       const evService = services.find(s => s.id === 'birthday') || services.find(s => s.id === 'party');
       if (evService) {
         const qe = document.getElementById('quick-service-event-price');
         if (qe) qe.innerHTML = evService.price + ' <span class="arrow">↗</span>';
+        const curEv = document.getElementById('curated-event-price');
+        if (curEv) curEv.textContent = cleanPriceVal(evService.price);
       }
 
       const commService = services.find(s => s.id === 'commercial');
       if (commService) {
         const qc = document.getElementById('quick-service-commercial-price');
         if (qc) qc.innerHTML = commService.price + ' <span class="arrow">↗</span>';
+        const curComm = document.getElementById('curated-commercial-price');
+        if (curComm) curComm.textContent = cleanPriceVal(commService.price);
       }
 
       const portService = services.find(s => s.id === 'portrait');
       if (portService) {
         const qp = document.getElementById('quick-service-portrait-price');
         if (qp) qp.innerHTML = portService.price + ' <span class="arrow">↗</span>';
+        const curPort = document.getElementById('curated-portrait-price');
+        if (curPort) curPort.textContent = cleanPriceVal(portService.price);
       }
 
       const salon = window.SweepSageCatalog.getSalonConfig();
@@ -1117,6 +1348,24 @@
       }
 
       renderTrendingPackages();
+    }
+
+    /* Interactive Curated Packages Filtering */
+    function filterCuratedPackages(cat) {
+      const cards = document.querySelectorAll('.curated-package-card');
+      const tabs = document.querySelectorAll('.curated-tab-btn');
+      tabs.forEach(tab => {
+        tab.classList.toggle('active', tab.getAttribute('data-cat') === cat);
+      });
+      cards.forEach(card => {
+        const cats = (card.getAttribute('data-category') || '').split(' ');
+        if (cat === 'all' || cats.includes(cat)) {
+          card.style.display = 'flex';
+          card.style.opacity = '1';
+        } else {
+          card.style.display = 'none';
+        }
+      });
     }
 
     function initQuickServicesSlider() {
