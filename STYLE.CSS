@@ -4365,10 +4365,10 @@ html[data-theme="dark"] .curated-price-val {
 
 /* ABOUT */
 .about-section {
-  padding: 140px max(22px, calc((100vw - var(--max))/2));
+  padding: 64px max(22px, calc((100vw - var(--max))/2));
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10vw;
+  gap: clamp(32px, 5vw, 64px);
   align-items: center;
   background: #fff;
 }
@@ -4376,14 +4376,14 @@ html[data-theme="dark"] .curated-price-val {
 .about-visual {
   display: grid;
   place-items: center;
-  min-height: 500px;
+  min-height: 380px;
   position: relative;
 }
 
 /* Animated Logo Stage & Concentric Orbitals */
 .about-logo-stage {
   position: relative;
-  width: min(420px, 80vw);
+  width: min(340px, 75vw);
   aspect-ratio: 1;
   display: grid;
   place-items: center;
@@ -4435,15 +4435,15 @@ html[data-theme="dark"] .curated-price-val {
 /* 3 Separate Revolving Satellite Pods (Photography, Salon, Travel) */
 .orbit-satellite-pod {
   position: absolute;
-  width: 46px;
-  height: 46px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, #30060b 0%, #170204 70%, #080102 100%);
   border: 2px solid #fc5e68;
   box-shadow:
-    0 0 18px rgba(252, 94, 104, 0.8),
-    0 0 35px rgba(252, 94, 104, 0.35),
-    inset 0 0 10px rgba(252, 94, 104, 0.35);
+    0 0 14px rgba(252, 94, 104, 0.8),
+    0 0 28px rgba(252, 94, 104, 0.35),
+    inset 0 0 8px rgba(252, 94, 104, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -4473,9 +4473,9 @@ html[data-theme="dark"] .curated-price-val {
 
 .orbit-satellite-pod:hover {
   box-shadow:
-    0 0 28px rgba(252, 94, 104, 1),
-    0 0 50px rgba(252, 94, 104, 0.6),
-    inset 0 0 15px rgba(252, 94, 104, 0.5);
+    0 0 24px rgba(252, 94, 104, 1),
+    0 0 42px rgba(252, 94, 104, 0.6),
+    inset 0 0 12px rgba(252, 94, 104, 0.5);
 }
 
 @keyframes keepSatelliteUpright {
@@ -4490,8 +4490,8 @@ html[data-theme="dark"] .curated-price-val {
 
 /* Permanently visible icons in each pod */
 .orbit-satellite-pod .orbit-icon {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   object-fit: contain;
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6));
   pointer-events: none;
@@ -4534,19 +4534,19 @@ html[data-theme="dark"] .curated-price-val {
   }
 
   .orbit-satellite-pod {
-    width: 40px;
-    height: 40px;
+    width: 34px;
+    height: 34px;
   }
 
   .orbit-satellite-pod .orbit-icon {
-    width: 20px;
-    height: 20px;
+    width: 17px;
+    height: 17px;
   }
 }
 
 /* Main Dark Logo Disk with 3D Float */
 .about-logo-ring {
-  width: min(370px, 72vw);
+  width: min(290px, 64vw);
   aspect-ratio: 1;
   border-radius: 50%;
   background: radial-gradient(circle at 40% 35%, #1c0508 0%, #0d0204 65%, #050102 100%);
@@ -4556,10 +4556,10 @@ html[data-theme="dark"] .curated-price-val {
   position: relative;
   z-index: 3;
   box-shadow:
-    0 35px 80px rgba(0, 0, 0, 0.45),
-    0 0 45px rgba(252, 94, 104, 0.18),
+    0 25px 60px rgba(0, 0, 0, 0.45),
+    0 0 35px rgba(252, 94, 104, 0.18),
     inset 0 1px 0 rgba(255, 255, 255, 0.12),
-    inset 0 -10px 30px rgba(0, 0, 0, 0.7);
+    inset 0 -8px 24px rgba(0, 0, 0, 0.7);
   animation: floatDisk 6s ease-in-out infinite;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease;
   cursor: pointer;
@@ -4573,15 +4573,15 @@ html[data-theme="dark"] .curated-price-val {
   }
 
   50% {
-    transform: translateY(-10px) rotate(1deg);
+    transform: translateY(-8px) rotate(1deg);
   }
 }
 
 .about-logo-ring:hover {
-  transform: translateY(-14px) scale(1.03);
+  transform: translateY(-10px) scale(1.02);
   box-shadow:
-    0 45px 100px rgba(0, 0, 0, 0.55),
-    0 0 65px rgba(252, 94, 104, 0.35),
+    0 35px 80px rgba(0, 0, 0, 0.55),
+    0 0 50px rgba(252, 94, 104, 0.35),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
   border-color: rgba(252, 94, 104, 0.55);
 }
@@ -4590,7 +4590,7 @@ html[data-theme="dark"] .curated-price-val {
 .about-logo-ring::before {
   content: "";
   position: absolute;
-  inset: 16px;
+  inset: 14px;
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.08);
   pointer-events: none;
@@ -4604,10 +4604,10 @@ html[data-theme="dark"] .curated-price-val {
 /* Center Logo Breathing Pulse */
 .about-logo-ring img,
 .about-logo-img {
-  width: clamp(115px, 22vw, 135px);
+  width: clamp(90px, 18vw, 108px);
   position: relative;
   z-index: 4;
-  filter: drop-shadow(0 10px 24px rgba(252, 94, 104, 0.42));
+  filter: drop-shadow(0 8px 20px rgba(252, 94, 104, 0.42));
   animation: logoPulse 4s ease-in-out infinite;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
 }
@@ -4617,30 +4617,30 @@ html[data-theme="dark"] .curated-price-val {
   0%,
   100% {
     transform: scale(1);
-    filter: drop-shadow(0 8px 20px rgba(252, 94, 104, 0.35)) drop-shadow(0 0 12px rgba(252, 94, 104, 0.25));
+    filter: drop-shadow(0 6px 16px rgba(252, 94, 104, 0.35)) drop-shadow(0 0 10px rgba(252, 94, 104, 0.25));
   }
 
   50% {
-    transform: scale(1.055);
-    filter: drop-shadow(0 14px 32px rgba(252, 94, 104, 0.65)) drop-shadow(0 0 24px rgba(252, 94, 104, 0.45));
+    transform: scale(1.05);
+    filter: drop-shadow(0 12px 26px rgba(252, 94, 104, 0.65)) drop-shadow(0 0 20px rgba(252, 94, 104, 0.45));
   }
 }
 
 .about-logo-ring:hover img,
 .about-logo-ring:hover .about-logo-img {
-  transform: scale(1.08);
-  filter: drop-shadow(0 18px 40px rgba(252, 94, 104, 0.8)) drop-shadow(0 0 30px rgba(252, 94, 104, 0.6));
+  transform: scale(1.06);
+  filter: drop-shadow(0 14px 32px rgba(252, 94, 104, 0.8)) drop-shadow(0 0 24px rgba(252, 94, 104, 0.6));
 }
 
 /* Subtle Shimmering Brand Label */
 .about-logo-ring span {
   position: absolute;
-  bottom: clamp(48px, 10vw, 58px);
+  bottom: clamp(32px, 7vw, 40px);
   color: #fc5e68;
   font-family: 'Manrope', sans-serif;
-  font-size: 10px;
+  font-size: 8.5px;
   font-weight: 800;
-  letter-spacing: 0.35em;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
   z-index: 4;
   opacity: 0.9;
@@ -4651,44 +4651,44 @@ html[data-theme="dark"] .curated-price-val {
 @keyframes textShimmer {
   0% {
     opacity: 0.75;
-    letter-spacing: 0.34em;
+    letter-spacing: 0.32em;
   }
 
   100% {
     opacity: 1;
-    letter-spacing: 0.38em;
-    text-shadow: 0 0 16px rgba(252, 94, 104, 0.8);
+    letter-spacing: 0.36em;
+    text-shadow: 0 0 14px rgba(252, 94, 104, 0.8);
   }
 }
 
 .about-copy h2 {
-  font: 800 clamp(46px, 6vw, 78px)/.94 "Manrope";
-  letter-spacing: -.07em;
-  margin: 18px 0 30px;
+  font: 800 clamp(32px, 3.8vw, 48px)/1.08 "Manrope";
+  letter-spacing: -.04em;
+  margin: 10px 0 16px;
 }
 
 .about-copy p {
-  color: #777;
-  font-size: 15px;
-  line-height: 1.8;
-  max-width: 570px;
-  margin: 0 0 14px;
+  color: #666;
+  font-size: 14.5px;
+  line-height: 1.65;
+  max-width: 530px;
+  margin: 0 0 10px;
 }
 
 .about-stats {
   display: flex;
-  gap: 10px;
-  margin-top: 38px;
+  gap: 12px;
+  margin-top: 22px;
 }
 
 .about-stats div {
-  border-top: 1px solid #ccc;
-  padding: 15px 25px 0 0;
-  min-width: 120px;
+  border-top: 1px solid #dcdad5;
+  padding: 10px 18px 0 0;
+  min-width: 100px;
 }
 
 .about-stats strong {
-  font: 700 28px "Manrope";
+  font: 700 24px "Manrope";
   display: block;
 }
 
@@ -5432,9 +5432,13 @@ html[data-theme="dark"] .curated-price-val {
     min-height: clamp(320px, 100vw, 420px);
   }
 
-  .how-section,
-  .about-section {
+  .how-section {
     padding: clamp(60px, 16vw, 90px) 18px;
+  }
+
+  .about-section {
+    padding: clamp(40px, 10vw, 60px) 18px;
+    gap: 28px;
   }
 
   .step {
@@ -5444,11 +5448,15 @@ html[data-theme="dark"] .curated-price-val {
 
   .about-visual {
     min-height: 0;
-    padding: 12px 0 24px;
+    padding: 10px 0 16px;
+  }
+
+  .about-logo-stage {
+    width: min(280px, 72vw);
   }
 
   .about-logo-ring {
-    width: min(300px, 72vw);
+    width: min(240px, 62vw);
   }
 
   .about-logo-ring::after {
