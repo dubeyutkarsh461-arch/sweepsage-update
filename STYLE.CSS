@@ -3535,37 +3535,134 @@ html[data-theme="dark"] .curated-price-val {
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
-  z-index: 2;
+  z-index: 5;
 }
 
 .about-orbital-ring.outer {
-  inset: -22px;
-  border: 1.5px dashed rgba(252, 94, 104, 0.32);
-  animation: spinRingClockwise 28s linear infinite;
+  inset: -28px;
+  border: 1.5px dashed rgba(252, 94, 104, 0.38);
+  animation: spinRingClockwise 20s linear infinite;
 }
 
-/* Glowing Orbiting Star/Node */
-.about-orbital-ring.outer .orbit-node {
+/* Revolving Satellite Pod carrying changing images */
+.orbit-satellite-pod {
   position: absolute;
-  top: -6px;
+  top: 0;
   left: 50%;
-  transform: translateX(-50%);
-  width: 12px;
-  height: 12px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  background: #ffffff;
+  background: radial-gradient(circle at 35% 30%, #30060b 0%, #170204 70%, #080102 100%);
+  border: 2px solid #fc5e68;
   box-shadow: 
-    0 0 14px 3px #fc5e68,
-    0 0 25px 6px rgba(252, 94, 104, 0.6);
+    0 0 22px rgba(252, 94, 104, 0.85),
+    0 0 40px rgba(252, 94, 104, 0.4),
+    inset 0 0 12px rgba(252, 94, 104, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Counter-rotate so icons stay upright */
+  animation: keepSatelliteUpright 20s linear infinite;
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 6;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.orbit-satellite-pod:hover {
+  box-shadow: 
+    0 0 30px rgba(252, 94, 104, 1),
+    0 0 55px rgba(252, 94, 104, 0.6),
+    inset 0 0 15px rgba(252, 94, 104, 0.5);
+}
+
+@keyframes keepSatelliteUpright {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}
+
+/* Changing Icons inside the Orbit Pod */
+.orbit-satellite-pod .orbit-icon {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  opacity: 0;
+  transform: scale(0.75);
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6));
+  pointer-events: none;
+}
+
+/* Image Changing Animation Cycle: 9s total (3s Camera, 3s Salon, 3s Travel) */
+.orbit-satellite-pod .orbit-icon.icon-camera {
+  animation: cycleIconCamera 9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.orbit-satellite-pod .orbit-icon.icon-salon {
+  animation: cycleIconSalon 9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.orbit-satellite-pod .orbit-icon.icon-plane {
+  animation: cycleIconPlane 9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes cycleIconCamera {
+  0% {
+    opacity: 0;
+    transform: scale(0.72) translateY(4px);
+  }
+  4%, 28% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  33%, 100% {
+    opacity: 0;
+    transform: scale(0.85) translateY(-4px);
+  }
+}
+
+@keyframes cycleIconSalon {
+  0%, 30% {
+    opacity: 0;
+    transform: scale(0.72) translateY(4px);
+  }
+  37%, 61% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  66%, 100% {
+    opacity: 0;
+    transform: scale(0.85) translateY(-4px);
+  }
+}
+
+@keyframes cycleIconPlane {
+  0%, 63% {
+    opacity: 0;
+    transform: scale(0.72) translateY(4px);
+  }
+  70%, 94% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  98%, 100% {
+    opacity: 0;
+    transform: scale(0.85) translateY(-4px);
+  }
 }
 
 /* Secondary Inner Counter-Rotating Ring */
 .about-orbital-ring.inner {
-  inset: -7px;
+  inset: -8px;
   border: 1px solid transparent;
   border-top-color: rgba(252, 94, 104, 0.65);
   border-bottom-color: rgba(255, 255, 255, 0.25);
   animation: spinRingCounter 16s linear infinite;
+  z-index: 2;
 }
 
 @keyframes spinRingClockwise {
@@ -3576,6 +3673,20 @@ html[data-theme="dark"] .curated-price-val {
 @keyframes spinRingCounter {
   from { transform: rotate(0deg); }
   to { transform: rotate(-360deg); }
+}
+
+@media (max-width: 640px) {
+  .about-orbital-ring.outer {
+    inset: -18px;
+  }
+  .orbit-satellite-pod {
+    width: 40px;
+    height: 40px;
+  }
+  .orbit-satellite-pod .orbit-icon {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 /* Main Dark Logo Disk with 3D Float */
