@@ -331,14 +331,14 @@ button {
   -webkit-backdrop-filter: blur(24px);
   color: #fff;
   box-shadow: 0 14px 38px rgba(0, 0, 0, 0.45), 0 0 20px rgba(252, 94, 104, 0.08);
-  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .navbar.scrolled {
   background: rgba(10, 2, 4, 0.95);
   border-color: rgba(252, 94, 104, 0.38);
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.6), 0 0 25px rgba(252, 94, 104, 0.14);
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(-2px);
 }
 
 .nav-left {
@@ -1300,7 +1300,7 @@ button {
 .service-dock-btn:hover {
   background: rgba(252, 94, 104, 0.16);
   color: #ffffff;
-  transform: none;
+  transform: translateY(-2px);
 }
 
 .service-dock-btn.active {
@@ -3130,7 +3130,7 @@ button {
               display: flex;
               align-items: flex-end;
               justify-content: center;
-              animation: none;
+              animation: floatChar 3.8s ease-in-out infinite;
               transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
               will-change: transform;
             }
@@ -3164,7 +3164,7 @@ button {
                   rgba(15, 23, 42, 0.05) 68%,
                   transparent 82%);
               filter: blur(5px);
-              animation: none;
+              animation: floatShadow 3.8s ease-in-out infinite;
               transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, filter 0.4s ease;
               pointer-events: none;
             }
@@ -6529,9 +6529,11 @@ button {
             .nav-cta:hover {
               color: #fff;
               background: var(--logo-gradient);
-              transform: none;
+              transform: translateY(-2px) scale(1.02);
               box-shadow: 0 10px 30px rgba(255, 116, 120, .25);
-              animation: none;
+              animation:
+                buttonBounce .65s ease-in-out infinite alternate,
+                buttonGlow .8s ease-in-out infinite alternate;
             }
 
             .nav-cta span {
@@ -6582,8 +6584,10 @@ button {
             }
 
             .btn:hover {
-              transform: none;
-              animation: none;
+              transform: translateY(-6px) scale(1.04);
+              animation:
+                buttonBounce .65s ease-in-out infinite alternate,
+                buttonGlow .8s ease-in-out infinite alternate;
             }
 
             .btn:active {
@@ -9928,153 +9932,3 @@ button {
                 margin-top: clamp(65px, 8vw, 85px);
               }
             }
-
-/* =========================================================
-   DISABLE ALL ANIMATIONS & TRANSITIONS ON NAVBAR & BOTTOM BUTTONS (USER REQUEST)
-========================================================= */
-#navbar,
-#navbar *,
-.navbar,
-.navbar *,
-.nav-left,
-.nav-left *,
-.nav-right,
-.nav-right *,
-.nav-center-links,
-.nav-center-links *,
-.nav-drawer-user-section,
-.nav-drawer-user-section *,
-.nav-location,
-.nav-location *,
-.nav-location-btn,
-.nav-location-btn *,
-.nav-item-link,
-.nav-item-link *,
-.nav-partner-pill-btn,
-.nav-partner-pill-btn *,
-.nav-login-pill-btn,
-.nav-login-pill-btn *,
-.nav-mobile-toggle-btn,
-.nav-mobile-toggle-btn *,
-.three-dots-icon,
-.three-dots-icon *,
-.nav-icon-btn,
-.nav-icon-btn *,
-.nav-action-btn,
-.nav-action-btn *,
-.nav-search-toggle-btn,
-.nav-search-btn,
-.nav-about-btn,
-.nav-cta,
-.nav-cta *,
-.persistent-service-dock,
-.persistent-service-dock *,
-.service-dock-inner,
-.service-dock-inner *,
-.service-dock-btn,
-.service-dock-btn *,
-.dock-icon-wrap,
-.dock-icon-wrap *,
-.quick-3d-char-wrap,
-.quick-3d-ground-shadow,
-.quick-3d-pill,
-.quick-service-3d-item,
-.quick-service-3d-item *,
-.swiggy-card,
-.swiggy-card *,
-.swiggy-card-arrow-btn,
-.btn,
-.btn *,
-.intro-screen .icon,
-.camera,
-.salon,
-.airplane {
-  animation: none !important;
-  animation-duration: 0s !important;
-  animation-delay: 0s !important;
-  transition: none !important;
-  transition-duration: 0s !important;
-  transition-delay: 0s !important;
-  -webkit-animation: none !important;
-  -webkit-transition: none !important;
-}
-
-#navbar:hover,
-#navbar *:hover,
-.navbar:hover,
-.navbar *:hover,
-.nav-location-btn:hover,
-.nav-item-link:hover,
-.nav-partner-pill-btn:hover,
-.nav-partner-pill-btn:hover *,
-.nav-login-pill-btn:hover,
-.nav-mobile-toggle-btn:hover,
-.nav-mobile-toggle-btn *,
-.nav-icon-btn:hover,
-.nav-icon-btn:active,
-.nav-action-btn:hover,
-.nav-action-btn:active,
-.nav-search-toggle-btn:hover,
-.nav-search-toggle-btn:active,
-.nav-search-btn:hover,
-.nav-search-btn:active,
-.nav-center-links:hover,
-.nav-center-links *:hover,
-.brand:hover img,
-.nav-cta:hover,
-.nav-cta:active,
-.nav-cta:hover span,
-.persistent-service-dock:hover,
-.persistent-service-dock *:hover,
-.service-dock-inner:hover,
-.service-dock-inner *:hover,
-.service-dock-btn:hover,
-.service-dock-btn:active,
-.service-dock-btn *:hover,
-.quick-service-3d-item:hover,
-.quick-service-3d-item:hover *,
-.swiggy-card:hover,
-.swiggy-card:hover *,
-.swiggy-loc-pill:hover,
-.swiggy-search-pill:hover,
-.btn:hover,
-.btn:active {
-  transform: none !important;
-  -webkit-transform: none !important;
-  animation: none !important;
-  transition: none !important;
-}
-
-/* Maintain proper horizontal centering for fixed bars */
-.navbar {
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-}
-
-.navbar.scrolled {
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  top: 14px !important;
-}
-
-.persistent-service-dock {
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-}
-
-/* Open drawer instantly without transform/transition slide */
-.nav-center-links {
-  transform: none !important;
-  opacity: 1 !important;
-}
-
-.nav-center-links.mobile-open {
-  transform: none !important;
-  opacity: 1 !important;
-}
-
-.btn::before,
-.nav-cta::before {
-  display: none !important;
-}
-
