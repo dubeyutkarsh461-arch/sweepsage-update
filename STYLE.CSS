@@ -29,7 +29,7 @@
   --coral-accent: #fc5e68;
   --emerald: #10b981;
   --emerald-gradient: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-  --max: 1380px;
+  --max: min(95vw, 1780px);
   --ease: cubic-bezier(.16, 1, .3, 1);
 }
 
@@ -316,7 +316,7 @@ button {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: min(100% - 48px, 1380px);
+  width: min(100% - 48px, var(--max));
   height: 64px;
   z-index: 1000;
   display: flex;
@@ -2736,7 +2736,7 @@ button {
 
 /* QUICK SERVICE EXPERIENCE BUTTONS (3D BORDERLESS MASCOTS) */
 .quick-services-section {
-  width: min(100% - 48px, 1380px);
+  width: min(100% - 48px, var(--max));
   margin: 0 auto clamp(36px, 6vw, 75px);
   padding: clamp(10px, 3vw, 25px) 0;
   position: relative;
@@ -3226,7 +3226,7 @@ html[data-theme="dark"] .quick-service-3d-item:hover .quick-3d-pill {
    CURATED PACKAGES SECTION (CLOSEUP SHOT SHOWCASE)
 ========================================================= */
 .curated-packages-section {
-  width: min(100% - 48px, 1380px);
+  width: min(100% - 48px, var(--max));
   margin: 0 auto clamp(40px, 6vw, 85px);
   position: relative;
 }
@@ -3309,7 +3309,7 @@ html[data-theme="dark"] .quick-service-3d-item:hover .quick-3d-pill {
 /* Packages Grid */
 .curated-packages-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 28px;
 }
 
@@ -3726,7 +3726,7 @@ html[data-theme="dark"] .curated-price-val {
 
 /* TRENDING PACKAGES SHOWCASE */
 .trending-section {
-  width: min(100% - 48px, 1380px);
+  width: min(100% - 48px, var(--max));
   margin: 0 auto clamp(40px, 7vw, 85px);
   padding: clamp(20px, 4vw, 50px) 0;
   position: relative;
@@ -5241,7 +5241,7 @@ html[data-theme="dark"] .curated-price-val {
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: var(--max, 1380px);
+  max-width: var(--max);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -8630,7 +8630,7 @@ body:not(.dark-theme) .settings-modal-footer {
 .founder-page-wrap {
   min-height: calc(100vh - 80px);
   padding: 100px 20px 80px;
-  max-width: var(--max, 1380px);
+  max-width: var(--max);
   margin: 0 auto;
 }
 
@@ -9197,7 +9197,7 @@ body:not(.dark-theme) .settings-modal-footer {
 .swiggy-hero-container {
   position: relative;
   z-index: 3;
-  width: min(100% - 48px, 1380px);
+  width: min(100% - 48px, var(--max));
   margin: 0 auto;
   text-align: center;
 }
@@ -9523,7 +9523,7 @@ body:not(.dark-theme) .settings-modal-footer {
    HERO STATS & TRUST BANNER (MATCHING HERO THEME)
 ========================================================= */
 .hero-stats-banner {
-  width: min(100% - 48px, 1380px);
+  width: min(100% - 48px, var(--max));
   margin: clamp(72px, 8vw, 95px) auto clamp(40px, 5vw, 65px);
   position: relative;
   z-index: 10;
@@ -9881,4 +9881,12 @@ body:not(.dark-theme) .settings-modal-footer {
 .nav-cta:hover {
   animation: none !important;
 }
+
+/* Wide & 4K Displays: fluid expansive desktop */
+@media (min-width: 1921px) {
+  :root {
+    --max: min(94vw, 2200px);
+  }
+}
+
 
