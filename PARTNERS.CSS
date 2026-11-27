@@ -22,7 +22,7 @@
 .auth-shell,
 .dashboard-shell {
   width: calc(100% - 32px);
-  max-width: 1240px;
+  max-width: var(--max, calc(100vw - 64px));
   margin: 0 auto;
 }
 
@@ -147,7 +147,7 @@
 }
 
 .service-partners-section {
-  width: min(100% - 44px, var(--max, 1240px));
+  width: min(100% - 44px, var(--max, calc(100vw - 64px)));
   margin: 0 auto;
   padding: 0 0 110px;
 }
@@ -155,7 +155,7 @@
 .service-partners-section.dark-section {
   width: 100%;
   max-width: none;
-  padding: 20px max(22px, calc((100vw - var(--max, 1240px))/2)) 120px;
+  padding: 20px max(22px, calc((100vw - var(--max, calc(100vw - 64px)))/2)) 120px;
   background: #0b0b0b;
   color: #fff;
 }

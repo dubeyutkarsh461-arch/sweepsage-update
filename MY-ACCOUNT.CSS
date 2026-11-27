@@ -42,7 +42,7 @@
 
 /* Top Back Row */
 .account-top-bar {
-  width: min(100% - 32px, 1140px);
+  width: min(100% - 32px, var(--max, calc(100vw - 64px)));
   margin: 0 auto 12px;
   display: flex;
   align-items: center;
@@ -71,7 +71,7 @@
 
 /* Top User Banner (Matches Reference Image) */
 .account-banner {
-  width: min(100% - 32px, 1140px);
+  width: min(100% - 32px, var(--max, calc(100vw - 64px)));
   margin: 0 auto;
   background: var(--account-banner-bg);
   padding: 32px 0 36px;
@@ -136,7 +136,7 @@
 
 /* Main Account Container */
 .account-container {
-  width: min(100% - 32px, 1140px);
+  width: min(100% - 32px, var(--max, calc(100vw - 64px)));
   margin: 0 auto;
   background: #ffffff;
   border-radius: 4px;
