@@ -9711,7 +9711,7 @@ body:not(.dark-theme) .settings-modal-footer {
   }
 }
 
-/* Tablet Portrait Range (681px to 900px) - 3 CARDS SIDE BY SIDE & SLEEK HEADER */
+/* Tablet Portrait Range (681px to 900px) - 3 HERO CARDS SIDE BY SIDE */
 @media (min-width: 681px) and (max-width: 900px) {
   .swiggy-cards-grid {
     grid-template-columns: repeat(3, 1fr) !important;
@@ -9738,7 +9738,11 @@ body:not(.dark-theme) .settings-modal-footer {
   .hero-stats-container {
     grid-template-columns: repeat(3, 1fr) !important;
   }
+}
 
+/* Phone & Tablet (max-width: 900px) - 100% ROCK SOLID STABLE CAPSULE (NO SHAKING, NO JITTER) */
+@media (max-width: 900px) {
+  /* Brand text removed on phone & tab, only logo icon remains */
   .brand span {
     display: none !important;
   }
@@ -9747,18 +9751,109 @@ body:not(.dark-theme) .settings-modal-footer {
     height: 32px;
   }
 
+  /* Stable, locked top navbar - ZERO ANIMATION, ZERO JITTER */
+  .navbar,
+  .navbar.scrolled,
+  .navbar.menu-open {
+    position: fixed !important;
+    top: 10px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: calc(100% - 24px) !important;
+    height: 60px !important;
+    margin: 0 !important;
+    padding: 0 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .nav-left {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+
+  .nav-location {
+    display: block !important;
+  }
+
+  .nav-location-btn,
+  .nav-location-btn:hover,
+  .nav-location-btn:active {
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+    padding: 6px 10px !important;
+  }
+
+  /* Right Side: BOTH search bar button and 3-dots button are VISIBLE & ROCK SOLID */
+  .nav-right {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+  }
+
+  .nav-partner-pill-btn,
+  .nav-user-dropdown {
+    display: none !important;
+  }
+
+  .nav-search-btn,
+  #openSearchBtn,
+  .nav-mobile-toggle-btn,
+  #mobileMenuToggleBtn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    color: #ffffff !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .nav-search-btn:hover,
+  .nav-search-btn:active,
+  #openSearchBtn:hover,
+  #openSearchBtn:active,
+  .nav-mobile-toggle-btn:hover,
+  .nav-mobile-toggle-btn:active,
+  #mobileMenuToggleBtn:hover,
+  #mobileMenuToggleBtn:active {
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+  }
+
+  .nav-search-btn .nav-svg-icon,
+  .nav-icon-btn:hover .nav-svg-icon,
+  .three-dots-icon {
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+
+  /* Sleek 3-dots drawer */
   .nav-center-links {
     display: none;
     position: fixed;
     top: 74px;
-    left: 20px;
-    right: 20px;
+    left: 12px;
+    right: 12px;
     background: rgba(14, 4, 7, 0.97);
     backdrop-filter: blur(28px);
     -webkit-backdrop-filter: blur(28px);
     border: 1px solid rgba(252, 94, 104, 0.35);
     border-radius: 24px;
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(252, 94, 104, 0.15);
     padding: 16px 14px;
     flex-direction: column;
     gap: 6px;
@@ -9770,6 +9865,7 @@ body:not(.dark-theme) .settings-modal-footer {
     display: flex !important;
   }
 
+  /* User profile card inside 3-dots drawer */
   .nav-drawer-user-section {
     display: block !important;
     background: linear-gradient(135deg, rgba(252, 94, 104, 0.18), rgba(124, 22, 32, 0.3));
@@ -9843,94 +9939,6 @@ body:not(.dark-theme) .settings-modal-footer {
     background: linear-gradient(135deg, rgba(252, 94, 104, 0.28), rgba(124, 22, 32, 0.45));
     border: 1px solid rgba(252, 94, 104, 0.5);
     color: #ffffff;
-  }
-
-  .nav-partner-pill-btn,
-  .nav-user-dropdown {
-    display: none !important;
-  }
-  .nav-mobile-toggle-btn {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-  }
-
-  .persistent-service-dock {
-    display: block !important;
-    position: fixed !important;
-    bottom: 14px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    z-index: 990;
-  }
-  .persistent-service-dock:hover {
-    transform: translateX(-50%) !important;
-  }
-}
-
-/* Phone View (max-width: 680px) - 100% ROCK SOLID STABLE (NO ANIMATION, SEARCH & 3-DOTS HIDDEN) */
-@media (max-width: 680px) {
-  /* User requested: Turn off / hide search bar and 3-dots on phone */
-  .nav-search-btn,
-  #openSearchBtn,
-  .nav-mobile-toggle-btn,
-  #mobileMenuToggleBtn,
-  .nav-right,
-  .nav-center-links,
-  .nav-partner-pill-btn,
-  .nav-user-dropdown {
-    display: none !important;
-  }
-
-  /* User requested: sweepsage text removed on phone, only logo icon remains */
-  .brand span {
-    display: none !important;
-  }
-  .brand img {
-    width: 32px;
-    height: 32px;
-  }
-
-  /* Rock-solid, non-animating, perfectly stable top capsule */
-  .navbar,
-  .navbar.scrolled,
-  .navbar.menu-open {
-    position: fixed !important;
-    top: 10px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    width: calc(100% - 24px) !important;
-    max-width: 480px !important;
-    height: 60px !important;
-    margin: 0 !important;
-    padding: 0 14px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    transition: none !important;
-    animation: none !important;
-  }
-
-  .nav-left {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    width: 100% !important;
-  }
-
-  .nav-location {
-    margin-left: auto !important;
-  }
-
-  .nav-location-btn,
-  .nav-location-btn:hover,
-  .nav-location-btn:active {
-    transform: none !important;
-    transition: none !important;
-    animation: none !important;
   }
 
   /* Rock-solid, pinned, non-animating bottom dock */
