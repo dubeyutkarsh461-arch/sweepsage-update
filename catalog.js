@@ -110,7 +110,7 @@
         name: "Instant Shoot (1 Hour)",
         price: "₹1,499/-",
         tag: "1 HOUR • POPULAR",
-        image: "https://images.unsplash.com/photo-1554080353-a576cf803bda?auto=format&fit=crop&w=600&q=80",
+        image: "pkg_instant_shoot.jpg",
         description: "1 hour dedicated professional photography session for portraits, couples, birthdays or special moments at your doorstep.",
         features: [
           "1 Hour dedicated professional shoot",
@@ -126,7 +126,7 @@
         name: "Instant Shoot (4 Hours)",
         price: "₹3,599/-",
         tag: "4 HOURS • BEST VALUE",
-        image: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80",
+        image: "pkg_instant_shoot.jpg",
         description: "4 hours continuous half-day coverage for parties, ceremonies, family gatherings and corporate events.",
         features: [
           "4 Hours continuous professional coverage",
@@ -142,7 +142,7 @@
         name: "Instant Shoot (10 Hours)",
         price: "₹9,999/-",
         tag: "10 HOURS • FULL DAY PRO",
-        image: "https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=600&q=80",
+        image: "pkg_instant_shoot.jpg",
         description: "10 hours comprehensive full-day coverage for full-scale events, day-long functions, weddings and productions.",
         features: [
           "10 Hours full-day comprehensive coverage",
@@ -160,7 +160,7 @@
         name: "Essential Wedding",
         price: "₹60,000/-",
         tag: "STARTER",
-        image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=600&q=80",
+        image: "pkg_wedding_celebration.jpg",
         description: "Budget-friendly wedding coverage for smaller functions.",
         features: [
           "Traditional Photos & Traditional Videos",
@@ -177,7 +177,7 @@
         name: "Signature Wedding",
         price: "₹85,000/-",
         tag: "MOST POPULAR",
-        image: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80",
+        image: "pkg_wedding_celebration.jpg",
         description: "Balanced wedding coverage for couples wanting complete candid storytelling.",
         features: [
           "Candid Photographer + Traditional Team",
@@ -193,7 +193,7 @@
         name: "Royal Cinema Production",
         price: "₹1,40,000/-",
         tag: "LUXURY",
-        image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80",
+        image: "pkg_bridal_portrait.jpg",
         description: "Full multi-day luxury wedding production with cinematic 4K video.",
         features: [
           "2 Candid + 2 Traditional + 1 Drone Master",
@@ -211,7 +211,7 @@
         name: "Classic Pre-Wedding",
         price: "₹18,000/-",
         tag: "STARTER",
-        image: "https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=600&q=80",
+        image: "pkg_couples_portraits.jpg",
         description: "1-day local outdoor location shoot with stylized frames.",
         features: [
           "1 Pro Candid Photographer",
@@ -226,7 +226,7 @@
         name: "Cinematic Pre-Wedding Film",
         price: "₹35,000/-",
         tag: "POPULAR",
-        image: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80",
+        image: "pkg_couples_portraits.jpg",
         description: "Photo + 4K Cinema video for your romantic love story.",
         features: [
           "1 Photographer + 1 Cinematographer",
@@ -243,7 +243,7 @@
         name: "Roka & Ring Ceremony",
         price: "₹15,000/-",
         tag: "STANDARD",
-        image: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=600&q=80",
+        image: "pkg_wedding_celebration.jpg",
         description: "Complete ceremony photo coverage with family portraits.",
         features: [
           "1 Candid + 1 Traditional Photographer",
@@ -260,7 +260,7 @@
         name: "Birthday Party Special",
         price: "₹4,999/-",
         tag: "POPULAR",
-        image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=600&q=80",
+        image: "pkg_birthday_parties.jpg",
         description: "2 hours coverage for birthday celebration and cake cutting.",
         features: [
           "1 Professional Event Photographer",
@@ -277,7 +277,7 @@
         name: "Corporate Headshots & Team",
         price: "₹9,999/-",
         tag: "BUSINESS",
-        image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80",
+        image: "pkg_instant_shoot.jpg",
         description: "High-impact headshots and office ambiance shoot.",
         features: [
           "Mobile studio flash setup at your office",
@@ -294,7 +294,7 @@
         name: "Product & E-Commerce",
         price: "₹7,499/-",
         tag: "COMMERCIAL",
-        image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80",
+        image: "pkg_food_catalogue.jpg",
         description: "Clean white background & lifestyle product photography.",
         features: [
           "Up to 15 product items",
@@ -311,7 +311,7 @@
         name: "Personal Branding Portrait",
         price: "₹2,499/-",
         tag: "INDIVIDUAL",
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
+        image: "pkg_couples_portraits.jpg",
         description: "1-hour portrait session for LinkedIn, portfolios, or maternity.",
         features: [
           "1-hour doorstep session",
@@ -447,11 +447,9 @@
           Object.keys(DEFAULT_PHOTOGRAPHY_PACKAGES).forEach(sKey => {
             if (photoPkgs[sKey]) {
               photoPkgs[sKey].forEach(p => {
-                if (!p.image) {
-                  const def = DEFAULT_PHOTOGRAPHY_PACKAGES[sKey]?.find(dp => dp.id === p.id || dp.name === p.name);
-                  if (def && def.image) {
-                    p.image = def.image;
-                  }
+                const def = DEFAULT_PHOTOGRAPHY_PACKAGES[sKey]?.find(dp => dp.id === p.id || dp.name === p.name);
+                if ((!p.image || p.image.includes('images.unsplash.com')) && def && def.image) {
+                  p.image = def.image;
                 }
               });
             }

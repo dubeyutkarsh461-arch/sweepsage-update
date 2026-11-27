@@ -1,587 +1,627 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#ffffff">
-  <meta name="color-scheme" content="light">
-<meta name="description" content="Book Salon at Home with SweepSage. Select a requirement and package to send an enquiry.">
-<title>Salon at Home Booking | SweepSage</title>
-<link rel="icon" type="image/png" href="logo.png">
-<link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="BOOKING-FLOW.CSS?v=3.2">
-<script src="catalog.js"></script>
-<script src="api.js?v=3.2" defer></script>
-<script src="SCRIPT.JS?v=3.2" defer></script>
-<script src="BOOKING-FLOW.JS?v=3.2" defer></script>
-  <script>
-    (function(){
-      try { localStorage.removeItem('sweepsage_theme'); } catch(e){}
-      document.documentElement.setAttribute('data-theme', 'light');
-      if (document.documentElement.classList) {
-        document.documentElement.classList.remove('dark-theme');
-      }
-    })();
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="color-scheme" content="light">
+    <meta name="description"
+        content="Book Salon at Home with SweepSage. Select a requirement and package to send an enquiry.">
+    <title>Salon at Home Booking | SweepSage</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="BOOKING-FLOW.CSS?v=3.2">
+    <script src="catalog.js"></script>
+    <script src="api.js?v=3.2" defer></script>
+    <script src="SCRIPT.JS?v=3.2" defer></script>
+    <script src="BOOKING-FLOW.JS?v=3.2" defer></script>
+    <script>
+        (function () {
+            try { localStorage.removeItem('sweepsage_theme'); } catch (e) { }
+            document.documentElement.setAttribute('data-theme', 'light');
+            if (document.documentElement.classList) {
+                document.documentElement.classList.remove('dark-theme');
+            }
+        })();
+    </script>
 </head>
+
 <body data-service="salon">
-<!-- ======================================================
+    <!-- ======================================================
      HEADER & NAVBAR
 ====================================================== -->
 
-<header class="navbar" id="navbar">
-    <a href="index.html#home" class="brand"><img src="logo.png" alt="SweepSage"><span>sweepsage</span></a>
+    <header class="navbar" id="navbar">
+        <a href="index.html#home" class="brand"><img src="logo.png" alt="SweepSage"><span>sweepsage</span></a>
 
-    <nav class="nav-links" id="mainNav" aria-label="Main navigation">
-        <a href="PHOTOGRAPHER-BOOKING.HTML">Photography</a>
-        <a href="SALON-BOOKING.HTML">Salon</a>
-        <a href="TRAVEL-BOOKING.HTML">Travel</a>
-    </nav>
+        <nav class="nav-links" id="mainNav" aria-label="Main navigation">
+            <a href="PHOTOGRAPHER-BOOKING.HTML">Photography</a>
+            <a href="SALON-BOOKING.HTML">Salon</a>
+            <a href="TRAVEL-BOOKING.HTML">Travel</a>
+        </nav>
 
-    <div style="display: flex; align-items: center; gap: 8px;">
-        <button class="nav-icon-btn nav-search-btn" type="button" aria-label="Search experiences" title="Search experiences (Ctrl+K)" onclick="openSearchModal()">
-            <span class="action-icon">
-                <svg class="nav-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            </span>
-        </button>
-
-        <!-- 3-Dots More Options Menu (About & Partner) -->
-        <div class="nav-more-dropdown" id="navMoreDropdown">
-            <button class="nav-more-btn nav-icon-btn" id="navMoreTrigger" type="button" aria-label="More options" title="More options" aria-haspopup="true" aria-expanded="false" onclick="this.closest('.nav-more-dropdown')?.classList.toggle('open'); event.stopPropagation();">
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <button class="nav-icon-btn nav-search-btn" type="button" aria-label="Search experiences"
+                title="Search experiences (Ctrl+K)" onclick="openSearchModal()">
                 <span class="action-icon">
-                    <svg class="nav-svg-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
-                        <circle cx="12" cy="5" r="2.2"></circle>
-                        <circle cx="12" cy="12" r="2.2"></circle>
-                        <circle cx="12" cy="19" r="2.2"></circle>
+                    <svg class="nav-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
                 </span>
             </button>
 
-            <div class="nav-more-menu" id="navMoreMenu" role="menu">
-                <!-- About Sweepsage & Founder -->
-                <a class="nav-more-item" href="about.html" role="menuitem">
-                    <div class="nav-more-item-icon">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
-                    </div>
-                    <div class="nav-more-item-body">
-                        <span class="nav-more-title">About</span>
-                        <p class="nav-more-desc">About SweepSage &amp; Founder</p>
-                    </div>
-                    <span class="nav-more-arrow">→</span>
-                </a>
+            <!-- 3-Dots More Options Menu (About & Partner) -->
+            <div class="nav-more-dropdown" id="navMoreDropdown">
+                <button class="nav-more-btn nav-icon-btn" id="navMoreTrigger" type="button" aria-label="More options"
+                    title="More options" aria-haspopup="true" aria-expanded="false"
+                    onclick="this.closest('.nav-more-dropdown')?.classList.toggle('open'); event.stopPropagation();">
+                    <span class="action-icon">
+                        <svg class="nav-svg-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"
+                            stroke="none" aria-hidden="true">
+                            <circle cx="12" cy="5" r="2.2"></circle>
+                            <circle cx="12" cy="12" r="2.2"></circle>
+                            <circle cx="12" cy="19" r="2.2"></circle>
+                        </svg>
+                    </span>
+                </button>
 
-                <div class="nav-more-divider"></div>
+                <div class="nav-more-menu" id="navMoreMenu" role="menu">
+                    <!-- About Sweepsage & Founder -->
+                    <a class="nav-more-item" href="about.html" role="menuitem">
+                        <div class="nav-more-item-icon">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M12 16v-4"></path>
+                                <path d="M12 8h.01"></path>
+                            </svg>
+                        </div>
+                        <div class="nav-more-item-body">
+                            <span class="nav-more-title">About</span>
+                            <p class="nav-more-desc">About SweepSage &amp; Founder</p>
+                        </div>
+                        <span class="nav-more-arrow">→</span>
+                    </a>
 
-                <!-- Register as Partner -->
-                <a class="nav-more-item" href="partner-register.html" role="menuitem">
-                    <div class="nav-more-item-icon">🤝</div>
-                    <div class="nav-more-item-body">
-                        <span class="nav-more-title">Join as Partner</span>
-                        <p class="nav-more-desc">Register as verified professional</p>
-                    </div>
-                    <span class="nav-more-arrow">→</span>
-                </a>
-            </div>
-        </div>
-            <span class="action-icon">
-                <svg class="nav-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            </span>
-        </button>
-        <!-- Account corner with user dropdown & direct my-account link -->
-        <div class="nav-user-dropdown" id="userMenuDropdown">
-            <a href="my-account.html" class="nav-icon-btn nav-login-btn" id="userMenuTrigger" title="My Account &amp; Orders" aria-label="My Account &amp; Orders" aria-haspopup="true" aria-expanded="false">
-                <span class="action-icon">
-                    <svg class="nav-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                </span>
-            </a>
+                    <div class="nav-more-divider"></div>
 
-            <div class="user-dropdown-menu" id="userDropdownMenu" role="menu">
-                <div class="user-dropdown-head">
-                    <strong id="dropdownUserName">Utkarsh Dubey</strong>
-                    <small id="dropdownUserSub">Manage your account &amp; perks</small>
+                    <!-- Register as Partner -->
+                    <a class="nav-more-item" href="partner-register.html" role="menuitem">
+                        <div class="nav-more-item-icon">🤝</div>
+                        <div class="nav-more-item-body">
+                            <span class="nav-more-title">Join as Partner</span>
+                            <p class="nav-more-desc">Register as verified professional</p>
+                        </div>
+                        <span class="nav-more-arrow">→</span>
+                    </a>
                 </div>
-                <div class="user-dropdown-divider"></div>
-                <a class="user-dropdown-item" href="my-account.html?tab=orders" role="menuitem">
-                    <span class="item-icon">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            </div>
+            <span class="action-icon">
+                <svg class="nav-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </span>
+            </button>
+            <!-- Account corner with user dropdown & direct my-account link -->
+            <div class="nav-user-dropdown" id="userMenuDropdown">
+                <a href="my-account.html" class="nav-icon-btn nav-login-btn" id="userMenuTrigger"
+                    title="My Account &amp; Orders" aria-label="My Account &amp; Orders" aria-haspopup="true"
+                    aria-expanded="false">
+                    <span class="action-icon">
+                        <svg class="nav-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
                     </span>
-                    <span class="item-text">Profile &amp; Account</span>
-                    <span class="item-arrow">→</span>
                 </a>
-                <a class="user-dropdown-item" href="my-account.html?tab=orders" role="menuitem">
-                    <span class="item-icon">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-                    </span>
-                    <span class="item-text">Orders &amp; Tracking</span>
-                    <span class="item-badge" id="dropdownOrderCount">3</span>
-                </a>
-                <a class="user-dropdown-item" href="my-account.html?tab=favourites" role="menuitem">
-                    <span class="item-icon">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                    </span>
-                    <span class="item-text">Favourites</span>
-                    <span class="item-arrow">→</span>
-                </a>
-                <div class="user-dropdown-divider"></div>
-                <a class="user-dropdown-item logout-item" href="javascript:void(0)" onclick="handleUserLogout()" role="menuitem">
-                    <span class="item-icon">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
-                    </span>
-                    <span class="item-text">Logout</span>
-                </a>
+
+                <div class="user-dropdown-menu" id="userDropdownMenu" role="menu">
+                    <div class="user-dropdown-head">
+                        <strong id="dropdownUserName">Utkarsh Dubey</strong>
+                        <small id="dropdownUserSub">Manage your account &amp; perks</small>
+                    </div>
+                    <div class="user-dropdown-divider"></div>
+                    <a class="user-dropdown-item" href="my-account.html?tab=orders" role="menuitem">
+                        <span class="item-icon">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </span>
+                        <span class="item-text">Profile &amp; Account</span>
+                        <span class="item-arrow">→</span>
+                    </a>
+                    <a class="user-dropdown-item" href="my-account.html?tab=orders" role="menuitem">
+                        <span class="item-icon">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path
+                                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                                </path>
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                            </svg>
+                        </span>
+                        <span class="item-text">Orders &amp; Tracking</span>
+                        <span class="item-badge" id="dropdownOrderCount">3</span>
+                    </a>
+                    <a class="user-dropdown-item" href="my-account.html?tab=favourites" role="menuitem">
+                        <span class="item-icon">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                                </path>
+                            </svg>
+                        </span>
+                        <span class="item-text">Favourites</span>
+                        <span class="item-arrow">→</span>
+                    </a>
+                    <div class="user-dropdown-divider"></div>
+                    <a class="user-dropdown-item logout-item" href="javascript:void(0)" onclick="handleUserLogout()"
+                        role="menuitem">
+                        <span class="item-icon">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                <polyline points="16 17 21 12 16 7"></polyline>
+                                <line x1="21" y1="12" x2="9" y2="12"></line>
+                            </svg>
+                        </span>
+                        <span class="item-text">Logout</span>
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-    <button class="menu-btn" id="menuBtn" type="button" aria-label="Open navigation menu" aria-controls="mainNav" aria-expanded="false"><span></span><span></span><span></span></button>
-</header>
-<button class="menu-backdrop" id="menuBackdrop" type="button" aria-label="Close navigation menu" tabindex="-1"></button>
+        <button class="menu-btn" id="menuBtn" type="button" aria-label="Open navigation menu" aria-controls="mainNav"
+            aria-expanded="false"><span></span><span></span><span></span></button>
+    </header>
+    <button class="menu-backdrop" id="menuBackdrop" type="button" aria-label="Close navigation menu"
+        tabindex="-1"></button>
 
 
-<!-- ======================================================
+    <!-- ======================================================
      MAIN USP
 ====================================================== -->
 
-<section class="usp">
+    <section class="usp">
 
-    <div class="container usp-inner">
+        <div class="container usp-inner">
 
-        <div class="usp-left">
+            <div class="usp-left">
 
-            <div class="usp-icon" id="serviceIcon">
-                ⚡
+                <div class="usp-icon" id="serviceIcon">
+                    ⚡
+                </div>
+
+                <div class="usp-text">
+
+                    <small>SWEEPSAGE SIGNATURE EXPERIENCE</small>
+
+                    <h2 id="uspHeading">
+                        <span>Instant Photographer</span>
+                        — Starting ₹1,499/-
+                    </h2>
+
+                    <p id="uspCopy">On-demand professional photography for portraits, events, celebrations and special
+                        moments.</p>
+
+                </div>
+
             </div>
 
-            <div class="usp-text">
+            <div class="usp-price" id="uspPrice">
 
-                <small>SWEEPSAGE SIGNATURE EXPERIENCE</small>
+                <strong>₹1,499/-</strong>
 
-                <h2 id="uspHeading">
-                    <span>Instant Photographer</span>
-                    — Starting ₹1,499/-
-                </h2>
-
-                <p id="uspCopy">On-demand professional photography for portraits, events, celebrations and special moments.</p>
+                <span>
+                    1 hour shoot
+                </span>
 
             </div>
-
-        </div>
-
-        <div class="usp-price" id="uspPrice">
-
-            <strong>₹1,499/-</strong>
-
-            <span>
-                1 hour shoot
-            </span>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ======================================================
-     PAGE
-====================================================== -->
-
-<main class="page">
-
-<div class="container">
-
-    <!-- SALON COMING SOON CARD -->
-    <div class="salon-coming-soon-card" style="background: linear-gradient(135deg, #18181b 0%, #27272a 100%); border: 1px solid #3f3f46; border-radius: 18px; padding: 24px; margin-bottom: 24px; color: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
-      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
-        <span style="background: rgba(252,94,104,0.2); color: #fc5e68; border: 1px solid rgba(252,94,104,0.4); font-size: 11px; font-weight: 800; padding: 4px 12px; border-radius: 9999px; letter-spacing: 0.06em; text-transform: uppercase;">
-          LAUNCHING SOON IN BENGALURU &amp; DELHI NCR
-        </span>
-        <span style="font-size: 12px; color: #a1a1aa;">Estimated: Early 2027</span>
-      </div>
-      <h2 style="font-size: 20px; font-weight: 700; color: #fff; margin: 0 0 8px;">Salon at Home is Launching Soon!</h2>
-      <p style="font-size: 13px; color: #d4d4d8; line-height: 1.5; margin: 0 0 16px;">
-        We are currently certifying senior stylists and assembling sealed single-use sterile kits. Join our VIP Early Access waitlist below to get first priority and an exclusive <strong>flat 50% discount voucher</strong>.
-      </p>
-      <form onsubmit="handleSalonBookingWaitlist(event)" style="display: flex; gap: 10px; flex-wrap: wrap;">
-        <input type="text" id="sb-waitlist-name" required placeholder="Your Name" style="flex: 1; min-width: 140px; padding: 10px 14px; background: #27272a; border: 1px solid #52525b; border-radius: 10px; color: #fff; font-size: 13px; outline: none;">
-        <input type="tel" id="sb-waitlist-phone" required placeholder="WhatsApp Number" style="flex: 1; min-width: 140px; padding: 10px 14px; background: #27272a; border: 1px solid #52525b; border-radius: 10px; color: #fff; font-size: 13px; outline: none;">
-        <button type="submit" style="padding: 10px 20px; background: #fc5e68; color: #fff; font-weight: 700; font-size: 13px; border: none; border-radius: 10px; cursor: pointer;">
-          Join VIP Waitlist (50% Off) ⚡
-        </button>
-      </form>
-      <div id="sb-waitlist-success" style="display: none; margin-top: 12px; font-size: 13px; color: #34d399; font-weight: 600;">
-        ✓ You are registered! Your 50% discount code has been locked in.
-      </div>
-    </div>
-    <script>
-      function handleSalonBookingWaitlist(e) {
-        e.preventDefault();
-        const name = document.getElementById('sb-waitlist-name').value.trim();
-        const phone = document.getElementById('sb-waitlist-phone').value.trim();
-        if (window.SweepSageCatalog) {
-          window.SweepSageCatalog.addSalonWaitlist({
-            name: name,
-            phone: phone,
-            serviceInterest: 'Salon at Home Booking Page',
-            city: 'Bengaluru / Delhi NCR'
-          });
-        }
-        document.getElementById('sb-waitlist-success').style.display = 'block';
-        e.target.reset();
-      }
-    </script>
-
-    <!-- ==================================================
-         STEP 1 — SERVICE
-    ================================================== -->
-
-    <!-- ==================================================
-         STEP 2 — EVENT
-    ================================================== -->
-
-    <section class="booking-section active" id="step2">
-
-        <div class="section-head">
-
-            <span class="eyebrow">
-                STEP 02
-            </span>
-
-            <h2 id="eventHeading">
-                What are you planning?
-            </h2>
-
-            <p id="eventDescription">
-                Select the type of requirement.
-            </p>
-
-        </div>
-
-        <div class="event-grid" id="eventGrid"></div>
-
-        <div class="actions">
-
-            <button class="btn btn-back" type="button" onclick="smartGoBack()">← Back</button>
 
         </div>
 
     </section>
 
 
-    <!-- ==================================================
+    <!-- ======================================================
+     PAGE
+====================================================== -->
+
+    <main class="page">
+
+        <div class="container">
+
+            <!-- SALON COMING SOON CARD -->
+            <div class="salon-coming-soon-card"
+                style="background: linear-gradient(135deg, #18181b 0%, #27272a 100%); border: 1px solid #3f3f46; border-radius: 18px; padding: 24px; margin-bottom: 24px; color: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+                <div
+                    style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
+                    <span
+                        style="background: rgba(252,94,104,0.2); color: #fc5e68; border: 1px solid rgba(252,94,104,0.4); font-size: 11px; font-weight: 800; padding: 4px 12px; border-radius: 9999px; letter-spacing: 0.06em; text-transform: uppercase;">
+                        LAUNCHING SOON IN BENGALURU &amp; DELHI NCR
+                    </span>
+                    <span style="font-size: 12px; color: #a1a1aa;">Estimated: Early 2027</span>
+                </div>
+                <h2 style="font-size: 20px; font-weight: 700; color: #fff; margin: 0 0 8px;">Salon at Home is Launching
+                    Soon!</h2>
+                <p style="font-size: 13px; color: #d4d4d8; line-height: 1.5; margin: 0 0 16px;">
+                    We are currently certifying senior stylists and assembling sealed single-use sterile kits. Join our
+                    VIP Early Access waitlist below to get first priority and an exclusive <strong>flat 50% discount
+                        voucher</strong>.
+                </p>
+                <form onsubmit="handleSalonBookingWaitlist(event)" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <input type="text" id="sb-waitlist-name" required placeholder="Your Name"
+                        style="flex: 1; min-width: 140px; padding: 10px 14px; background: #27272a; border: 1px solid #52525b; border-radius: 10px; color: #fff; font-size: 13px; outline: none;">
+                    <input type="tel" id="sb-waitlist-phone" required placeholder="WhatsApp Number"
+                        style="flex: 1; min-width: 140px; padding: 10px 14px; background: #27272a; border: 1px solid #52525b; border-radius: 10px; color: #fff; font-size: 13px; outline: none;">
+                    <button type="submit"
+                        style="padding: 10px 20px; background: #fc5e68; color: #fff; font-weight: 700; font-size: 13px; border: none; border-radius: 10px; cursor: pointer;">
+                        Join VIP Waitlist (50% Off) ⚡
+                    </button>
+                </form>
+                <div id="sb-waitlist-success"
+                    style="display: none; margin-top: 12px; font-size: 13px; color: #34d399; font-weight: 600;">
+                    ✓ You are registered! Your 50% discount code has been locked in.
+                </div>
+            </div>
+            <script>
+                function handleSalonBookingWaitlist(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('sb-waitlist-name').value.trim();
+                    const phone = document.getElementById('sb-waitlist-phone').value.trim();
+                    if (window.SweepSageCatalog) {
+                        window.SweepSageCatalog.addSalonWaitlist({
+                            name: name,
+                            phone: phone,
+                            serviceInterest: 'Salon at Home Booking Page',
+                            city: 'Bengaluru / Delhi NCR'
+                        });
+                    }
+                    document.getElementById('sb-waitlist-success').style.display = 'block';
+                    e.target.reset();
+                }
+            </script>
+
+            <!-- ==================================================
+         STEP 1 — SERVICE
+    ================================================== -->
+
+            <!-- ==================================================
+         STEP 2 — EVENT
+    ================================================== -->
+
+            <section class="booking-section active" id="step2">
+
+                <div class="section-head">
+
+                    <span class="eyebrow">
+                        STEP 02
+                    </span>
+
+                    <h2 id="eventHeading">
+                        What are you planning?
+                    </h2>
+
+                    <p id="eventDescription">
+                        Select the type of requirement.
+                    </p>
+
+                </div>
+
+                <div class="event-grid" id="eventGrid"></div>
+
+                <div class="actions">
+
+                    <button class="btn btn-back" type="button" onclick="smartGoBack()">← Back</button>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
          STEP 3 — PACKAGES
     ================================================== -->
 
-    <section class="booking-section" id="step3">
+            <section class="booking-section" id="step3">
 
-        <div class="section-head">
+                <div class="section-head">
 
-            <span class="eyebrow">
-                STEP 03
-            </span>
+                    <span class="eyebrow">
+                        STEP 03
+                    </span>
 
-            <h2 id="packageHeading">
-                Choose your package.
-            </h2>
+                    <h2 id="packageHeading">
+                        Choose your package.
+                    </h2>
 
-            <p id="packageDescription">
-                Select what fits your requirement and budget.
-            </p>
+                    <p id="packageDescription">
+                        Select what fits your requirement and budget.
+                    </p>
 
-        </div>
+                </div>
 
 
-        <!-- 10 MIN USP -->
+                <!-- 10 MIN USP -->
 
-        <div class="ten-minute" id="tenMinuteOffer">
+                <div class="ten-minute" id="tenMinuteOffer">
 
-            <div class="ten-content">
+                    <div class="ten-content">
 
-                <span class="ten-label">
-                    ⭐ SWEEPSAGE MAIN USP
-                </span>
-
-                <div class="ten-flex">
-
-                    <div>
-
-                        <h3>
-                            Instant Photographer
-                        </h3>
-
-                        <p>
-                            Professional photographer at your doorstep.
-                            Choose from 1 Hour (₹1,499/-), 4 Hours (₹3,599/-),
-                            or 10 Hours (₹9,999/-) coverage for portraits,
-                            events, birthdays and celebrations.
-                        </p>
-
-                    </div>
-
-                    <div class="ten-price">
-
-                        <strong>
-                            ₹1,499/-
-                        </strong>
-
-                        <span>
-                            Starting 1 hour
+                        <span class="ten-label">
+                            ⭐ SWEEPSAGE MAIN USP
                         </span>
+
+                        <div class="ten-flex">
+
+                            <div>
+
+                                <h3>
+                                    Instant Photographer
+                                </h3>
+
+                                <p>
+                                    Professional photographer at your doorstep.
+                                    Choose from 1 Hour (₹1,499/-), 4 Hours (₹3,599/-),
+                                    or 10 Hours (₹9,999/-) coverage for portraits,
+                                    events, birthdays and celebrations.
+                                </p>
+
+                            </div>
+
+                            <div class="ten-price">
+
+                                <strong>
+                                    ₹1,499/-
+                                </strong>
+
+                                <span>
+                                    Starting 1 hour
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <button class="ten-button" onclick="selectPackage('Instant Shoot (1 Hour)','₹1,499/-')"
+                            type="button">
+
+                            Choose Instant Photographer →
+
+                        </button>
 
                     </div>
 
                 </div>
 
-                <button
-                    class="ten-button"
-                    onclick="selectPackage('Instant Shoot (1 Hour)','₹1,499/-')"
-                    type="button">
 
-                    Choose Instant Photographer →
+                <div class="custom-quote" id="travelQuote" style="display:none;">
 
-                </button>
+                    <h3>
+                        ✈️ Travel is customised — no fake fixed pricing.
+                    </h3>
 
-            </div>
+                    <p>
+                        Travel cost depends on destination, number of
+                        travellers, travel dates, hotel category,
+                        transport, activities and season.
+                        <strong>
+                            Tell us your requirement and we'll prepare
+                            a personalised quotation.
+                        </strong>
+                    </p>
 
-        </div>
-
-
-        <div
-            class="custom-quote"
-            id="travelQuote"
-            style="display:none;">
-
-            <h3>
-                ✈️ Travel is customised — no fake fixed pricing.
-            </h3>
-
-            <p>
-                Travel cost depends on destination, number of
-                travellers, travel dates, hotel category,
-                transport, activities and season.
-                <strong>
-                    Tell us your requirement and we'll prepare
-                    a personalised quotation.
-                </strong>
-            </p>
-
-        </div>
+                </div>
 
 
-        <div
-            class="package-grid"
-            id="packageGrid">
-        </div>
+                <div class="package-grid" id="packageGrid">
+                </div>
 
 
-        <div class="actions">
+                <div class="actions">
 
-            <button
-                class="btn btn-back"
-                onclick="goStep(2)"
-                type="button">
-                ← Back
-            </button>
+                    <button class="btn btn-back" onclick="goStep(2)" type="button">
+                        ← Back
+                    </button>
 
-        </div>
+                </div>
 
-    </section>
+            </section>
 
 
-    <!-- ==================================================
+            <!-- ==================================================
          STEP 4 — DETAILS
     ================================================== -->
 
-    <section class="booking-section" id="step4">
+            <section class="booking-section" id="step4">
 
-        <div class="section-head">
+                <div class="section-head">
 
-            <span class="eyebrow">
-                STEP 04
-            </span>
+                    <span class="eyebrow">
+                        STEP 04
+                    </span>
 
-            <h2>
-                Tell us the <em>details.</em>
-            </h2>
+                    <h2>
+                        Tell us the <em>details.</em>
+                    </h2>
 
-            <p>
-                The more information you provide,
-                the more accurate your quotation will be.
-            </p>
+                    <p>
+                        The more information you provide,
+                        the more accurate your quotation will be.
+                    </p>
 
-        </div>
-
-
-        <form
-            class="form-card"
-            id="detailsForm"
-            onsubmit="reviewRequest(event)">
-
-            <div
-                class="form-grid"
-                id="formFields">
-            </div>
+                </div>
 
 
-            <div class="actions">
+                <form class="form-card" id="detailsForm" onsubmit="reviewRequest(event)">
 
-                <button
-                    class="btn btn-back"
-                    onclick="goStep(3)"
-                    type="button">
-
-                    ← Back
-
-                </button>
-
-                <button
-                    class="btn btn-primary"
-                    type="submit">
-
-                    Review Request →
-
-                </button>
-
-            </div>
-
-        </form>
-
-    </section>
+                    <div class="form-grid" id="formFields">
+                    </div>
 
 
-    <!-- ==================================================
+                    <div class="actions">
+
+                        <button class="btn btn-back" onclick="goStep(3)" type="button">
+
+                            ← Back
+
+                        </button>
+
+                        <button class="btn btn-primary" type="submit">
+
+                            Review Request →
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+            <!-- ==================================================
          STEP 5 — REVIEW
     ================================================== -->
 
-    <section class="booking-section" id="step5">
+            <section class="booking-section" id="step5">
 
-        <div class="section-head">
+                <div class="section-head">
 
-            <span class="eyebrow">
-                STEP 05
-            </span>
+                    <span class="eyebrow">
+                        STEP 05
+                    </span>
 
-            <h2>
-                Review your <em>request.</em>
-            </h2>
+                    <h2>
+                        Review your <em>request.</em>
+                    </h2>
 
-            <p>
-                Check your details before sending the enquiry.
-            </p>
+                    <p>
+                        Check your details before sending the enquiry.
+                    </p>
 
-        </div>
-
-
-        <div class="review" id="reviewArea">
-        </div>
+                </div>
 
 
-        <div class="actions">
-
-            <button
-                class="btn btn-back"
-                onclick="goStep(4)"
-                type="button">
-
-                ← Edit Details
-
-            </button>
-
-            <button
-                class="btn btn-whatsapp"
-                onclick="sendWhatsApp()"
-                type="button">
-
-                WhatsApp Enquiry ↗
-
-            </button>
-
-        </div>
+                <div class="review" id="reviewArea">
+                </div>
 
 
-        <div class="notice">
+                <div class="actions">
 
-            🔒 Your information is used only to respond to
-            your SweepSage booking enquiry.
-            Final pricing may vary depending on date,
-            location, availability, travel distance,
-            requirements and selected customisations.
+                    <button class="btn btn-back" onclick="goStep(4)" type="button">
+
+                        ← Edit Details
+
+                    </button>
+
+                    <button class="btn btn-whatsapp" onclick="sendWhatsApp()" type="button">
+
+                        WhatsApp Enquiry ↗
+
+                    </button>
+
+                </div>
+
+
+                <div class="notice">
+
+                    🔒 Your information is used only to respond to
+                    your SweepSage booking enquiry.
+                    Final pricing may vary depending on date,
+                    location, availability, travel distance,
+                    requirements and selected customisations.
+
+                </div>
+
+            </section>
 
         </div>
 
-    </section>
-
-</div>
-
-</main>
+    </main>
 
 
-<!-- ======================================================
+    <!-- ======================================================
      FOOTER
 ====================================================== -->
 
-<footer class="footer">
-    <div class="footer-top">
-        <div class="footer-brand">
-            <img src="logo.png" alt="SweepSage">
-            <h3>sweepsage<span>.com</span></h3>
-            <p>Photography • Salon at Home • Travel<br>Made for moments that matter.</p>
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <img src="logo.png" alt="SweepSage">
+                <h3>sweepsage<span>.com</span></h3>
+                <p>Photography • Salon at Home • Travel<br>Made for moments that matter.</p>
+            </div>
+            <div class="footer-column">
+                <span>Company</span>
+                <a href="index.html#about">About Us</a>
+                <a href="index.html#contact">Contact Us</a>
+            </div>
+            <div class="footer-column">
+                <span>Services</span>
+                <a href="photography.html">Photography</a>
+                <a href="salon.html">Salon at Home</a>
+                <a href="travel.html">Travel</a>
+            </div>
+            <div class="footer-column">
+                <span>Connect</span>
+                <a href="https://www.instagram.com/sweepsage_/" target="_blank" rel="noopener">Instagram ↗</a>
+                <a href="tel:+919555826615">Call Us ↗</a>
+                <a href="mailto:sweepsage25@gmail.com">Email Us ↗</a>
+            </div>
         </div>
-        <div class="footer-column">
-            <span>Company</span>
-            <a href="index.html#about">About Us</a>
-            <a href="index.html#contact">Contact Us</a>
+        <div class="footer-bottom">
+            <span>© 2026 SweepSage. All rights reserved.</span>
+            <span>Made for moments that matter.</span>
         </div>
-        <div class="footer-column">
-            <span>Services</span>
-            <a href="photography.html">Photography</a>
-            <a href="salon.html">Salon at Home</a>
-            <a href="travel.html">Travel</a>
-        </div>
-        <div class="footer-column">
-            <span>Connect</span>
-            <a href="https://www.instagram.com/sweepsage_/" target="_blank" rel="noopener">Instagram ↗</a>
-            <a href="tel:+919555826615">Call Us ↗</a>
-            <a href="mailto:sweepsage25@gmail.com">Email Us ↗</a>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <span>© 2026 SweepSage. All rights reserved.</span>
-        <span>Made for moments that matter.</span>
-    </div>
-</footer>
+    </footer>
 
-<!-- PERSISTENT FOOTER SERVICE DOCK (Available Every Time) -->
-<nav class="persistent-service-dock" aria-label="Persistent Services Dock">
-  <div class="service-dock-inner">
-    <a href="photography.html" class="service-dock-btn" data-dock="photography" title="Photography on demand">
-      <div class="dock-icon-wrap">
-        <img src="loader-camera-logo.png" alt="Photography" width="22" height="22">
-      </div>
-      <span>Photography</span>
-    </a>
-    <div class="dock-divider"></div>
-    <a href="salon.html" class="service-dock-btn active" data-dock="salon" title="Salon & Beauty at Home">
-      <div class="dock-icon-wrap">
-        <img src="loader-salon-logo.png" alt="Salon" width="22" height="22">
-      </div>
-      <span>Salon</span>
-    </a>
-    <div class="dock-divider"></div>
-    <a href="travel.html" class="service-dock-btn" data-dock="travel" title="Curated Travel">
-      <div class="dock-icon-wrap">
-        <img src="loader-airplane-logo.png" alt="Travel" width="22" height="22">
-      </div>
-      <span>Travel</span>
-    </a>
-  </div>
-</nav>
+    <!-- PERSISTENT FOOTER SERVICE DOCK (Available Every Time) -->
+    <nav class="persistent-service-dock" aria-label="Persistent Services Dock">
+        <div class="service-dock-inner">
+            <a href="photography.html" class="service-dock-btn" data-dock="photography" title="Photography on demand">
+                <div class="dock-icon-wrap">
+                    <img src="loader-camera-logo.png" alt="Photography" width="22" height="22">
+                </div>
+                <span>Photography</span>
+            </a>
+            <div class="dock-divider"></div>
+            <a href="salon.html" class="service-dock-btn active" data-dock="salon" title="Salon & Beauty at Home">
+                <div class="dock-icon-wrap">
+                    <img src="loader-salon-logo.png" alt="Salon" width="22" height="22">
+                </div>
+                <span>Salon</span>
+            </a>
+            <div class="dock-divider"></div>
+            <a href="travel.html" class="service-dock-btn" data-dock="travel" title="Curated Travel">
+                <div class="dock-icon-wrap">
+                    <img src="loader-airplane-logo.png" alt="Travel" width="22" height="22">
+                </div>
+                <span>Travel</span>
+            </a>
+        </div>
+    </nav>
 
-<div class="toast" id="toast">
-    Package selected
-</div>
+    <div class="toast" id="toast">
+        Package selected
+    </div>
 </body>
+
 </html>

@@ -267,7 +267,7 @@ instant:[
         name:"Instant Shoot (1 Hour)",
         price:"₹1,499/-",
         tag:"1 HOUR • POPULAR",
-        image:"https://images.unsplash.com/photo-1554080353-a576cf803bda?auto=format&fit=crop&w=600&q=80",
+        image:"pkg_instant_shoot.jpg",
         description:"1 hour dedicated professional photography session for portraits, couples, birthdays or special moments at your doorstep.",
         features:[
             "1 Hour dedicated professional shoot",
@@ -282,7 +282,7 @@ instant:[
         name:"Instant Shoot (4 Hours)",
         price:"₹3,599/-",
         tag:"4 HOURS • BEST VALUE",
-        image:"https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80",
+        image:"pkg_instant_shoot.jpg",
         description:"4 hours continuous half-day coverage for parties, ceremonies, family gatherings and corporate events.",
         features:[
             "4 Hours continuous professional coverage",
@@ -297,7 +297,7 @@ instant:[
         name:"Instant Shoot (10 Hours)",
         price:"₹9,999/-",
         tag:"10 HOURS • FULL DAY PRO",
-        image:"https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=600&q=80",
+        image:"pkg_instant_shoot.jpg",
         description:"10 hours comprehensive full-day coverage for full-scale events, day-long functions, weddings and productions.",
         features:[
             "10 Hours full-day comprehensive coverage",
@@ -317,7 +317,7 @@ wedding:[
         name:"Essential Wedding",
         price:"₹60,000/-",
         tag:"STARTER",
-        image:"https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=600&q=80",
+        image:"pkg_wedding_celebration.jpg",
         description:"Budget-friendly wedding coverage for smaller functions.",
         features:[
             "Traditional Photos", 
@@ -335,7 +335,7 @@ wedding:[
         name:"Signature Wedding",
         price:"₹85,000/-",
         tag:"POPULAR",
-        image:"https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80",
+        image:"pkg_wedding_celebration.jpg",
         description:"Balanced wedding coverage for couples wanting more complete storytelling.",
         features:[
             "Traditional Photos", 
@@ -353,7 +353,7 @@ wedding:[
         name:"Premium Wedding",
         price:"₹1,40,000/-",
         tag:"PREMIUM",
-        image:"https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80",
+        image:"pkg_bridal_portrait.jpg",
         description:"More complete photo + video coverage.",
         features:[
             "Traditional Photos", 
@@ -373,7 +373,7 @@ wedding:[
         name:"Luxury Custom",
         price:"Custom Quote",
         tag:"BESPOKE",
-        image:"https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80",
+        image:"pkg_bridal_portrait.jpg",
         description:"For multi-day weddings and larger production requirements.",
         features:[
             "Multiple photographers",
@@ -396,7 +396,7 @@ prewedding:[
         name:"Essential",
         price:"₹140,999/-",
         tag:"STARTER",
-        image:"https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=600&q=80",
+        image:"pkg_couples_portraits.jpg",
         description:" Cinematic pre-wedding experience.",
         features:[
             "Traditional Photos Traditional Videos",
@@ -420,7 +420,7 @@ engagement:[
         name:"Basic",
         price:"₹25,000/-",
         tag:"STARTER",
-        image:"https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=600&q=80",
+        image:"pkg_wedding_celebration.jpg",
         description:"Clean coverage for engagement or roka.",
         features:[
             "Candid photos + videos",
@@ -434,7 +434,7 @@ engagement:[
         name:"Signature",
         price:"₹35,000/-",
         tag:"POPULAR",
-        image:"https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=600&q=80",
+        image:"pkg_wedding_celebration.jpg",
         description:"Photo + cinematic storytelling.",
         features:[
             "Candid photos + videos",
@@ -450,7 +450,7 @@ engagement:[
         name:"Premium",
         price:"₹45,000/-",
         tag:"PREMIUM",
-        image:"https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=600&q=80",
+        image:"pkg_wedding_celebration.jpg",
         description:"Complete engagement coverage.",
         features:[
             "Candid + traditional",
@@ -471,7 +471,7 @@ birthday:[
         name:"Quick Celebration",
         price:"₹4,999/-",
         tag:"BUDGET",
-        image:"https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=600&q=80",
+        image:"pkg_birthday_parties.jpg",
         description:"Short birthday coverage.",
         features:[
             "2 hours shoot",
@@ -485,7 +485,7 @@ birthday:[
         name:"Birthday Signature",
         price:"₹7,999/-",
         tag:"POPULAR",
-        image:"https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=600&q=80",
+        image:"pkg_birthday_parties.jpg",
         description:"Complete birthday photography.",
         features:[
             "3 hours coverage",
@@ -501,7 +501,7 @@ birthday:[
         name:"Birthday Premium",
         price:"₹12,999/-",
         tag:"PREMIUM",
-        image:"https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80",
+        image:"pkg_birthday_parties.jpg",
         description:"Photo + video birthday coverage.",
         features:[
             "4–5 hours",
@@ -522,7 +522,7 @@ party:[
         name:"Basic Event",
         price:"₹5,999/-",
         tag:"STARTER",
-        image:"https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=600&q=80",
+        image:"pkg_birthday_parties.jpg",
         description:"Ideal for smaller private events.",
         features:[
             "2 hours photography",
@@ -536,7 +536,7 @@ party:[
         name:"Signature Event",
         price:"₹9,999/-",
         tag:"POPULAR",
-        image:"https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80",
+        image:"pkg_birthday_parties.jpg",
         description:"Complete photo coverage.",
         features:[
             "4 hours",
@@ -551,7 +551,7 @@ party:[
         name:"Premium Event",
         price:"₹14,999/-",
         tag:"PREMIUM",
-        image:"https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=600&q=80",
+        image:"pkg_birthday_parties.jpg",
         description:"Photo + video event coverage.",
         features:[
             "5–6 hours",
@@ -572,7 +572,7 @@ corporate:[
         name:"Half Day",
         price:"₹12,000/-",
         tag:"STARTER",
-        image:"https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80",
+        image:"pkg_instant_shoot.jpg",
         description:"Professional corporate event coverage.",
         features:[
             "Up to 4 hours",
@@ -586,7 +586,7 @@ corporate:[
         name:"Full Day",
         price:"₹20,000/-",
         tag:"POPULAR",
-        image:"https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=600&q=80",
+        image:"pkg_instant_shoot.jpg",
         description:"Full corporate event documentation.",
         features:[
             "Up to 8 hours",
@@ -601,7 +601,7 @@ corporate:[
         name:"Corporate Plus",
         price:"₹35,000/-",
         tag:"PREMIUM",
-        image:"https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=600&q=80",
+        image:"pkg_instant_shoot.jpg",
         description:"Photo + video + social content.",
         features:[
             "Photo + video",
@@ -621,7 +621,7 @@ commercial:[
         name:"Starter Product",
         price:"₹7,500/-",
         tag:"STARTER",
-        image:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80",
+        image:"pkg_food_catalogue.jpg",
         description:"Simple product photography.",
         features:[
             "Up to 10 products",
@@ -635,7 +635,7 @@ commercial:[
         name:"Brand Content",
         price:"₹15,000/-",
         tag:"POPULAR",
-        image:"https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=600&q=80",
+        image:"pkg_food_catalogue.jpg",
         description:"Product + lifestyle content.",
         features:[
             "Up to 20 products",
@@ -650,7 +650,7 @@ commercial:[
         name:"Campaign",
         price:"₹30,000/-",
         tag:"PREMIUM",
-        image:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80",
+        image:"pkg_food_catalogue.jpg",
         description:"Complete commercial content production.",
         features:[
             "Creative direction",
@@ -671,7 +671,7 @@ portrait:[
         name:"Personal & Couple Portrait",
         price:"₹2,499/-",
         tag:"POPULAR",
-        image:"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
+        image:"pkg_couples_portraits.jpg",
         description:"1-hour session for portraits, maternity, couples or personal branding.",
         features:[
             "1 Hour doorstep session",
@@ -686,7 +686,7 @@ portrait:[
         name:"Signature Story & Maternity",
         price:"₹4,999/-",
         tag:"PREMIUM",
-        image:"https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80",
+        image:"pkg_couples_portraits.jpg",
         description:"Comprehensive 2-hour lifestyle and maternity creative shoot.",
         features:[
             "2 Hours dedicated shoot",
@@ -1870,7 +1870,7 @@ function renderPackages(){
                             tag: cp.tag || "EXCLUSIVE CMS",
                             name: cp.name,
                             price: cp.price,
-                            image: cp.image || "https://images.unsplash.com/photo-1554080353-a576cf803bda?auto=format&fit=crop&w=600&q=80",
+                            image: cp.image || "pkg_instant_shoot.jpg",
                             description: cp.description || "Curated photography package configured via dashboard.",
                             features: (Array.isArray(cp.features) && cp.features.length) ? cp.features : ["1 Verified Professional Photographer", "Digital delivery within 24 hours", "Color-graded high-resolution photos"]
                         });
@@ -1888,7 +1888,16 @@ function renderPackages(){
         travel ? "block" : "none";
 
     const serviceFallbackImages = {
-        photographer: "https://images.unsplash.com/photo-1554080353-a576cf803bda?auto=format&fit=crop&w=600&q=80",
+        photographer: "pkg_instant_shoot.jpg",
+        instant: "pkg_instant_shoot.jpg",
+        wedding: "pkg_wedding_celebration.jpg",
+        prewedding: "pkg_couples_portraits.jpg",
+        engagement: "pkg_wedding_celebration.jpg",
+        birthday: "pkg_birthday_parties.jpg",
+        party: "pkg_birthday_parties.jpg",
+        corporate: "pkg_instant_shoot.jpg",
+        commercial: "pkg_food_catalogue.jpg",
+        portrait: "pkg_couples_portraits.jpg",
         salon: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80",
         travel: "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=600&q=80"
     };
