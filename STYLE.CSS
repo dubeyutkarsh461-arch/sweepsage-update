@@ -316,7 +316,7 @@ button {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: min(100% - 32px, 1280px);
+  width: min(100% - 32px, 1360px);
   height: 64px;
   z-index: 1000;
   display: flex;
@@ -575,14 +575,20 @@ button {
   border-color: rgba(255, 255, 255, 0.3);
 }
 
-.nav-mobile-toggle-btn .three-dots-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.nav-mobile-toggle-btn .hamburger-bar {
+  width: 16px;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
-.nav-mobile-toggle-btn .hamburger-bar {
-  display: none;
+.nav-mobile-toggle-btn.open .hamburger-bar:nth-child(1) {
+  transform: translateY(3.5px) rotate(45deg);
+}
+
+.nav-mobile-toggle-btn.open .hamburger-bar:nth-child(2) {
+  transform: translateY(-3.5px) rotate(-45deg);
 }
 
 .mobile-nav-backdrop {
@@ -9673,209 +9679,3 @@ body:not(.dark-theme) .settings-modal-footer {
     margin-top: clamp(65px, 8vw, 85px);
   }
 }
-
-/* =========================================================
-   CLEAN RESPONSIVE ARCHITECTURE (PC DESKTOP VS PHONE/TABLET)
-========================================================= */
-
-/* Desktop & Laptop Screens (901px and above) - ALWAYS FULL WEBSITE VIEW */
-@media (min-width: 901px) {
-  .nav-mobile-toggle-btn {
-    display: none !important;
-  }
-  .nav-center-links {
-    display: flex !important;
-    position: static !important;
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    padding: 0 !important;
-    flex-direction: row !important;
-    max-height: none !important;
-    overflow: visible !important;
-    transform: none !important;
-    opacity: 1 !important;
-  }
-  .nav-drawer-user-section,
-  .nav-mobile-partner-link {
-    display: none !important;
-  }
-  .brand span {
-    display: inline !important;
-  }
-  .nav-partner-pill-btn {
-    display: inline-flex !important;
-  }
-  .nav-user-dropdown {
-    display: block !important;
-  }
-  /* Mobile bottom dock hidden on PC desktop view */
-  .persistent-service-dock {
-    display: none !important;
-  }
-}
-
-/* Tablet Portrait Range (681px to 900px) - 3 CARDS SIDE BY SIDE */
-@media (min-width: 681px) and (max-width: 900px) {
-  .swiggy-cards-grid {
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 12px !important;
-  }
-  .swiggy-card {
-    min-height: 220px !important;
-    padding: 18px 14px 14px !important;
-  }
-  .swiggy-card-title {
-    font-size: 15px !important;
-  }
-  .swiggy-card-subtitle {
-    font-size: 11px !important;
-  }
-  .swiggy-card-badge {
-    font-size: 10px !important;
-    padding: 3px 8px !important;
-  }
-  .swiggy-card-art-box {
-    width: 105px !important;
-    height: 105px !important;
-  }
-  .hero-stats-container {
-    grid-template-columns: repeat(3, 1fr) !important;
-  }
-}
-
-/* Phone & Tablet (max-width: 900px) - CLEAN MINIMAL CAPSULE & 3-DOTS DRAWER */
-@media (max-width: 900px) {
-  /* User requested: sweepsage text removed on phone & tab, only logo icon remains */
-  .brand span {
-    display: none !important;
-  }
-  .brand img {
-    width: 32px;
-    height: 32px;
-  }
-
-  /* Center links collapse into sleek 3-dots drawer */
-  .nav-center-links {
-    display: none;
-    position: fixed;
-    top: 74px;
-    left: 12px;
-    right: 12px;
-    background: rgba(14, 4, 7, 0.97);
-    backdrop-filter: blur(28px);
-    -webkit-backdrop-filter: blur(28px);
-    border: 1px solid rgba(252, 94, 104, 0.35);
-    border-radius: 24px;
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(252, 94, 104, 0.15);
-    padding: 16px 14px;
-    flex-direction: column;
-    gap: 6px;
-    z-index: 1001;
-    max-height: calc(100vh - 90px);
-    overflow-y: auto;
-  }
-  .nav-center-links.mobile-open {
-    display: flex !important;
-  }
-
-  /* User profile card inside 3-dots drawer */
-  .nav-drawer-user-section {
-    display: block !important;
-    background: linear-gradient(135deg, rgba(252, 94, 104, 0.18), rgba(124, 22, 32, 0.3));
-    border: 1px solid rgba(252, 94, 104, 0.35);
-    border-radius: 16px;
-    padding: 12px 14px;
-    margin-bottom: 8px;
-  }
-  .drawer-user-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 8px;
-  }
-  .drawer-user-avatar {
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    background: #fc5e68;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    font-weight: 700;
-  }
-  .drawer-user-info strong {
-    font-size: 14px;
-    color: #ffffff;
-    display: block;
-  }
-  .drawer-user-info small {
-    font-size: 11px;
-    color: #cbd5e1;
-  }
-  .drawer-user-quick-links {
-    display: flex;
-    gap: 8px;
-    margin-top: 6px;
-  }
-  .drawer-user-link {
-    flex: 1;
-    text-align: center;
-    padding: 6px 10px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    border-radius: 8px;
-    color: #f1f5f9;
-    font-size: 12px;
-    font-weight: 600;
-    text-decoration: none;
-  }
-
-  .nav-center-links .nav-item-link {
-    font-size: 14.5px;
-    font-weight: 700;
-    color: #f1f5f9;
-    padding: 11px 16px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    box-sizing: border-box;
-    background: rgba(255, 255, 255, 0.035);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-  }
-  .nav-center-links .nav-item-link.nav-mobile-partner-link {
-    display: flex !important;
-    margin-top: 6px;
-    background: linear-gradient(135deg, rgba(252, 94, 104, 0.28), rgba(124, 22, 32, 0.45));
-    border: 1px solid rgba(252, 94, 104, 0.5);
-    color: #ffffff;
-  }
-
-  /* Right side of navbar on phone & tab: ONLY search button and 3-dots button */
-  .nav-partner-pill-btn,
-  .nav-user-dropdown {
-    display: none !important;
-  }
-  .nav-mobile-toggle-btn {
-    display: flex !important;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-  }
-
-  /* Bottom dock on phone & tab */
-  .persistent-service-dock {
-    display: block !important;
-    bottom: 14px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-}
-
-
-
-
