@@ -49,11 +49,14 @@ video {
   max-width: 100%;
 }
 
+html,
 body {
   font-family: "DM Sans", sans-serif;
   background: var(--soft);
   color: var(--ink);
-  overflow-x: hidden;
+  overflow-x: hidden !important;
+  max-width: 100vw;
+  width: 100%;
 }
 
 body.locked {
@@ -4650,6 +4653,8 @@ html[data-theme="dark"] .curated-price-val {
   margin-bottom: 24px;
   overflow-x: auto;
   scrollbar-width: none;
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
 }
 
 .reviews-filter-bar::-webkit-scrollbar {
@@ -4660,6 +4665,7 @@ html[data-theme="dark"] .curated-price-val {
   display: inline-flex;
   gap: 8px;
   padding: 2px 0;
+  max-width: 100%;
 }
 
 .reviews-tab-btn {
@@ -9740,18 +9746,20 @@ body:not(.dark-theme) .settings-modal-footer {
   }
 }
 
-/* Phone & Tablet (max-width: 900px) - 100% ROCK SOLID STABLE CAPSULE (NO SHAKING, NO JITTER) */
+/* Phone & Tablet (max-width: 900px) - 100% ROCK SOLID STABLE CAPSULE (NO OVERFLOW, NO JITTER) */
 @media (max-width: 900px) {
   /* Brand text removed on phone & tab, only logo icon remains */
   .brand span {
     display: none !important;
   }
   .brand img {
-    width: 32px;
-    height: 32px;
+    width: 30px !important;
+    height: 30px !important;
+    flex-shrink: 0 !important;
+    object-fit: contain !important;
   }
 
-  /* Stable, locked top navbar - ZERO ANIMATION, ZERO JITTER */
+  /* Stable, locked top navbar - ZERO ANIMATION, ZERO JITTER, ZERO OVERFLOW */
   .navbar,
   .navbar.scrolled,
   .navbar.menu-open {
@@ -9759,41 +9767,105 @@ body:not(.dark-theme) .settings-modal-footer {
     top: 10px !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
-    width: calc(100% - 24px) !important;
-    height: 60px !important;
+    width: calc(100% - 20px) !important;
+    max-width: 600px !important;
+    height: 56px !important;
     margin: 0 !important;
-    padding: 0 12px !important;
+    padding: 0 10px !important;
+    box-sizing: border-box !important;
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
     transition: none !important;
     animation: none !important;
+    overflow: visible !important;
+    z-index: 1000 !important;
   }
 
+  /* Left Side: Brand Logo + Location Selector (Cleanly flex-shrinking to prevent right overflow) */
   .nav-left {
     display: flex !important;
     align-items: center !important;
-    gap: 8px !important;
+    gap: 6px !important;
+    min-width: 0 !important;
+    flex: 1 !important;
+    overflow: hidden !important;
   }
 
   .nav-location {
-    display: block !important;
+    display: flex !important;
+    align-items: center !important;
+    min-width: 0 !important;
+    flex-shrink: 1 !important;
+    overflow: hidden !important;
   }
 
-  .nav-location-btn,
+  .nav-location-btn {
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    padding: 4px 8px !important;
+    height: 32px !important;
+    max-width: 135px !important;
+    min-width: 0 !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    color: #ffffff !important;
+    box-sizing: border-box !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+
   .nav-location-btn:hover,
   .nav-location-btn:active {
     transform: none !important;
     transition: none !important;
     animation: none !important;
-    padding: 6px 10px !important;
   }
 
-  /* Right Side: BOTH search bar button and 3-dots button are VISIBLE & ROCK SOLID */
+  .nav-location-btn .location-pin-icon svg {
+    width: 12px !important;
+    height: 12px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .nav-location-btn .location-text-wrap {
+    min-width: 0 !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    text-align: left !important;
+  }
+
+  .nav-location-btn .location-title {
+    display: none !important; /* Hide label to save horizontal space on mobile */
+  }
+
+  .nav-location-btn .location-current {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    max-width: 82px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    color: #ffffff !important;
+    line-height: 1.2 !important;
+  }
+
+  .nav-location-btn .location-chevron {
+    font-size: 8px !important;
+    flex-shrink: 0 !important;
+    margin-left: 2px !important;
+  }
+
+  /* Right Side: BOTH search bar button and menu toggle button are firmly anchored */
   .nav-right {
     display: flex !important;
     align-items: center !important;
     gap: 6px !important;
+    flex-shrink: 0 !important;
   }
 
   .nav-partner-pill-btn,
@@ -9808,12 +9880,13 @@ body:not(.dark-theme) .settings-modal-footer {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    width: 36px !important;
-    height: 36px !important;
+    width: 34px !important;
+    height: 34px !important;
     border-radius: 50% !important;
     background: rgba(255, 255, 255, 0.08) !important;
     border: 1px solid rgba(255, 255, 255, 0.16) !important;
     color: #ffffff !important;
+    flex-shrink: 0 !important;
     transform: none !important;
     transition: none !important;
     animation: none !important;
@@ -9841,13 +9914,16 @@ body:not(.dark-theme) .settings-modal-footer {
     animation: none !important;
   }
 
-  /* Sleek 3-dots drawer */
+  /* Sleek mobile drawer - guaranteed within screen width */
   .nav-center-links {
     display: none;
     position: fixed;
-    top: 74px;
-    left: 12px;
-    right: 12px;
+    top: 70px;
+    left: 10px;
+    right: 10px;
+    width: auto !important;
+    max-width: calc(100vw - 20px) !important;
+    box-sizing: border-box !important;
     background: rgba(14, 4, 7, 0.97);
     backdrop-filter: blur(28px);
     -webkit-backdrop-filter: blur(28px);
@@ -9858,14 +9934,14 @@ body:not(.dark-theme) .settings-modal-footer {
     flex-direction: column;
     gap: 6px;
     z-index: 1001;
-    max-height: calc(100vh - 90px);
+    max-height: calc(100vh - 85px);
     overflow-y: auto;
   }
   .nav-center-links.mobile-open {
     display: flex !important;
   }
 
-  /* User profile card inside 3-dots drawer */
+  /* User profile card inside drawer */
   .nav-drawer-user-section {
     display: block !important;
     background: linear-gradient(135deg, rgba(252, 94, 104, 0.18), rgba(124, 22, 32, 0.3));
@@ -9941,7 +10017,53 @@ body:not(.dark-theme) .settings-modal-footer {
     color: #ffffff;
   }
 
-  /* Rock-solid, pinned, non-animating bottom dock */
+  /* Quick Service Experience 3 Buttons Below Main Section - STOP UP-AND-DOWN BOBBING & ALIGN */
+  .quick-3d-char-wrap,
+  .quick-3d-ground-shadow {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .quick-services-grid {
+    align-items: flex-end !important;
+  }
+
+  .quick-service-3d-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+  }
+
+  .quick-3d-stage {
+    height: 180px !important;
+    display: flex !important;
+    align-items: flex-end !important;
+    justify-content: center !important;
+  }
+
+  .quick-3d-char-img {
+    max-height: 160px !important;
+    width: auto !important;
+    object-fit: contain !important;
+  }
+
+  .quick-3d-char-img.quick-3d-bowl-img {
+    max-height: 135px !important;
+  }
+
+  .quick-3d-pill {
+    height: 64px !important;
+    min-height: 64px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-top: 12px !important;
+  }
+
+  /* Rock-solid, pinned, non-animating bottom dock - Perfectly aligned 3 buttons */
   .persistent-service-dock,
   .persistent-service-dock:hover {
     display: block !important;
@@ -9949,16 +10071,43 @@ body:not(.dark-theme) .settings-modal-footer {
     bottom: 14px !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
+    width: calc(100% - 24px) !important;
+    max-width: 360px !important;
+    box-sizing: border-box !important;
     transition: none !important;
     animation: none !important;
     z-index: 990 !important;
+    pointer-events: none !important;
   }
 
   .service-dock-inner,
-  .service-dock-inner:hover,
+  .service-dock-inner:hover {
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 5px 8px !important;
+    box-sizing: border-box !important;
+    pointer-events: auto !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+
   .service-dock-btn,
   .service-dock-btn:hover,
   .service-dock-btn:active {
+    flex: 1 !important;
+    height: 38px !important;
+    min-height: 38px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 6px 6px !important;
+    gap: 6px !important;
+    font-size: 11.5px !important;
+    box-sizing: border-box !important;
+    white-space: nowrap !important;
     transform: none !important;
     transition: none !important;
     animation: none !important;
