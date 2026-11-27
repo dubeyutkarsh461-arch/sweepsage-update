@@ -331,14 +331,14 @@ button {
   -webkit-backdrop-filter: blur(24px);
   color: #fff;
   box-shadow: 0 14px 38px rgba(0, 0, 0, 0.45), 0 0 20px rgba(252, 94, 104, 0.08);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .navbar.scrolled {
   background: rgba(10, 2, 4, 0.95);
   border-color: rgba(252, 94, 104, 0.38);
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.6), 0 0 25px rgba(252, 94, 104, 0.14);
-  transform: translateX(-50%) translateY(-2px);
+  transform: translateX(-50%);
 }
 
 .nav-left {
@@ -5691,9 +5691,8 @@ html[data-theme="dark"] .curated-price-val {
 
   .navbar.menu-open {
     z-index: 1003;
-    left: auto;
-    right: 12px;
-    transform: none;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
   }
 
   .nav-links.open {
@@ -6284,11 +6283,9 @@ html[data-theme="dark"] .curated-price-val {
 .nav-cta:hover {
   color: #fff;
   background: var(--logo-gradient);
-  transform: translateY(-2px) scale(1.02);
+  transform: translateY(-2px);
   box-shadow: 0 10px 30px rgba(255, 116, 120, .25);
-  animation:
-    buttonBounce .65s ease-in-out infinite alternate,
-    buttonGlow .8s ease-in-out infinite alternate;
+  animation: none !important;
 }
 
 .nav-cta span {
@@ -6339,10 +6336,8 @@ html[data-theme="dark"] .curated-price-val {
 }
 
 .btn:hover {
-  transform: translateY(-6px) scale(1.04);
-  animation:
-    buttonBounce .65s ease-in-out infinite alternate,
-    buttonGlow .8s ease-in-out infinite alternate;
+  transform: translateY(-2px);
+  animation: none !important;
 }
 
 .btn:active {
@@ -9716,7 +9711,7 @@ body:not(.dark-theme) .settings-modal-footer {
   }
 }
 
-/* Tablet Portrait Range (681px to 900px) - 3 CARDS SIDE BY SIDE */
+/* Tablet Portrait Range (681px to 900px) - 3 CARDS SIDE BY SIDE & SLEEK HEADER */
 @media (min-width: 681px) and (max-width: 900px) {
   .swiggy-cards-grid {
     grid-template-columns: repeat(3, 1fr) !important;
@@ -9743,11 +9738,7 @@ body:not(.dark-theme) .settings-modal-footer {
   .hero-stats-container {
     grid-template-columns: repeat(3, 1fr) !important;
   }
-}
 
-/* Phone & Tablet (max-width: 900px) - CLEAN MINIMAL CAPSULE & 3-DOTS DRAWER */
-@media (max-width: 900px) {
-  /* User requested: sweepsage text removed on phone & tab, only logo icon remains */
   .brand span {
     display: none !important;
   }
@@ -9756,19 +9747,18 @@ body:not(.dark-theme) .settings-modal-footer {
     height: 32px;
   }
 
-  /* Center links collapse into sleek 3-dots drawer */
   .nav-center-links {
     display: none;
     position: fixed;
     top: 74px;
-    left: 12px;
-    right: 12px;
+    left: 20px;
+    right: 20px;
     background: rgba(14, 4, 7, 0.97);
     backdrop-filter: blur(28px);
     -webkit-backdrop-filter: blur(28px);
     border: 1px solid rgba(252, 94, 104, 0.35);
     border-radius: 24px;
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(252, 94, 104, 0.15);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
     padding: 16px 14px;
     flex-direction: column;
     gap: 6px;
@@ -9780,7 +9770,6 @@ body:not(.dark-theme) .settings-modal-footer {
     display: flex !important;
   }
 
-  /* User profile card inside 3-dots drawer */
   .nav-drawer-user-section {
     display: block !important;
     background: linear-gradient(135deg, rgba(252, 94, 104, 0.18), rgba(124, 22, 32, 0.3));
@@ -9856,7 +9845,6 @@ body:not(.dark-theme) .settings-modal-footer {
     color: #ffffff;
   }
 
-  /* Right side of navbar on phone & tab: ONLY search button and 3-dots button */
   .nav-partner-pill-btn,
   .nav-user-dropdown {
     display: none !important;
@@ -9870,7 +9858,6 @@ body:not(.dark-theme) .settings-modal-footer {
     border-radius: 50%;
   }
 
-  /* Bottom dock on phone & tab: PINNED & ROCK-SOLID (NO SHAKING) */
   .persistent-service-dock {
     display: block !important;
     position: fixed !important;
@@ -9881,6 +9868,111 @@ body:not(.dark-theme) .settings-modal-footer {
   }
   .persistent-service-dock:hover {
     transform: translateX(-50%) !important;
+  }
+}
+
+/* Phone View (max-width: 680px) - 100% ROCK SOLID STABLE (NO ANIMATION, SEARCH & 3-DOTS HIDDEN) */
+@media (max-width: 680px) {
+  /* User requested: Turn off / hide search bar and 3-dots on phone */
+  .nav-search-btn,
+  #openSearchBtn,
+  .nav-mobile-toggle-btn,
+  #mobileMenuToggleBtn,
+  .nav-right,
+  .nav-center-links,
+  .nav-partner-pill-btn,
+  .nav-user-dropdown {
+    display: none !important;
+  }
+
+  /* User requested: sweepsage text removed on phone, only logo icon remains */
+  .brand span {
+    display: none !important;
+  }
+  .brand img {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* Rock-solid, non-animating, perfectly stable top capsule */
+  .navbar,
+  .navbar.scrolled,
+  .navbar.menu-open {
+    position: fixed !important;
+    top: 10px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: calc(100% - 24px) !important;
+    max-width: 480px !important;
+    height: 60px !important;
+    margin: 0 !important;
+    padding: 0 14px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .nav-left {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+  }
+
+  .nav-location {
+    margin-left: auto !important;
+  }
+
+  .nav-location-btn,
+  .nav-location-btn:hover,
+  .nav-location-btn:active {
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+
+  /* Rock-solid, pinned, non-animating bottom dock */
+  .persistent-service-dock,
+  .persistent-service-dock:hover {
+    display: block !important;
+    position: fixed !important;
+    bottom: 14px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    transition: none !important;
+    animation: none !important;
+    z-index: 990 !important;
+  }
+
+  .service-dock-inner,
+  .service-dock-inner:hover,
+  .service-dock-btn,
+  .service-dock-btn:hover,
+  .service-dock-btn:active {
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Touch Device Universal Stabilization: completely prevent button jitter */
+@media (hover: none) {
+  .btn:hover,
+  .btn:active,
+  .nav-cta:hover,
+  .nav-cta:active,
+  .service-dock-btn:hover,
+  .service-dock-btn:active,
+  .nav-location-btn:hover,
+  .nav-location-btn:active,
+  .nav-icon-btn:hover,
+  .nav-icon-btn:active,
+  .nav-mobile-toggle-btn:hover,
+  .nav-mobile-toggle-btn:active {
+    transform: none !important;
+    animation: none !important;
   }
 }
 
