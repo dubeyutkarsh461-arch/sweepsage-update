@@ -126,14 +126,36 @@
       </div>
     </div>
 
-    <!-- Center Navigation Links -->
+    <!-- Center Navigation Links (Desktop horizontal dock + Mobile Drawer) -->
     <nav class="nav-center-links" id="navCenterLinks" aria-label="Main Navigation">
-      <a href="photography.html" class="nav-item-link">Photography</a>
-      <a href="salon.html" class="nav-item-link">Salon at Home</a>
-      <a href="travel.html" class="nav-item-link">Travel</a>
-      <a href="#featured-packages" class="nav-item-link">Packages</a>
-      <a href="#client-reviews" class="nav-item-link">Reviews</a>
-      <a href="about.html" class="nav-item-link">About</a>
+      <a href="photography.html" class="nav-item-link">
+        <span class="nav-link-title"><span class="mobile-nav-icon">📷</span>Photography</span>
+        <span class="nav-link-arrow">→</span>
+      </a>
+      <a href="salon.html" class="nav-item-link">
+        <span class="nav-link-title"><span class="mobile-nav-icon">💄</span>Salon at Home</span>
+        <span class="nav-link-arrow">→</span>
+      </a>
+      <a href="travel.html" class="nav-item-link">
+        <span class="nav-link-title"><span class="mobile-nav-icon">✈️</span>Travel</span>
+        <span class="nav-link-arrow">→</span>
+      </a>
+      <a href="#featured-packages" class="nav-item-link">
+        <span class="nav-link-title"><span class="mobile-nav-icon">✨</span>Packages</span>
+        <span class="nav-link-arrow">→</span>
+      </a>
+      <a href="#client-reviews" class="nav-item-link">
+        <span class="nav-link-title"><span class="mobile-nav-icon">⭐</span>Reviews</span>
+        <span class="nav-link-arrow">→</span>
+      </a>
+      <a href="about.html" class="nav-item-link">
+        <span class="nav-link-title"><span class="mobile-nav-icon">🏛️</span>About</span>
+        <span class="nav-link-arrow">→</span>
+      </a>
+      <a href="partner-register.html" class="nav-item-link nav-mobile-partner-link">
+        <span class="nav-link-title"><span class="mobile-nav-icon">🤝</span>Partner with us</span>
+        <span class="nav-link-arrow">↗</span>
+      </a>
     </nav>
 
     <!-- Nav Right Actions -->
@@ -1823,6 +1845,15 @@
       if (toggleBtn) toggleBtn.classList.toggle('open', isOpen);
       document.body.classList.toggle('nav-drawer-open', isOpen);
     }
+
+    document.querySelectorAll('#navCenterLinks .nav-item-link').forEach(link => {
+      link.addEventListener('click', () => {
+        const navLinks = document.getElementById('navCenterLinks');
+        if (navLinks && navLinks.classList.contains('mobile-open')) {
+          toggleMobileNav();
+        }
+      });
+    });
 
     function initQuickServicesSlider() {
       const grid = document.getElementById('quickServicesGrid');
