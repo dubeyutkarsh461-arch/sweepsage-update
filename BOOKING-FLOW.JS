@@ -264,6 +264,7 @@ photographer:{
 instant:[
 
     {
+        id:"pkg_inst_1",
         name:"Instant Shoot (1 Hour)",
         price:"₹1,499/-",
         tag:"1 HOUR • POPULAR",
@@ -279,10 +280,11 @@ instant:[
     },
 
     {
+        id:"pkg_inst_2",
         name:"Instant Shoot (4 Hours)",
         price:"₹3,599/-",
         tag:"4 HOURS • BEST VALUE",
-        image:"pkg_instant_shoot.jpg",
+        image:"pkg_inst_4hr.jpg",
         description:"4 hours continuous half-day coverage for parties, ceremonies, family gatherings and corporate events.",
         features:[
             "4 Hours continuous professional coverage",
@@ -294,10 +296,11 @@ instant:[
     },
 
     {
+        id:"pkg_inst_3",
         name:"Instant Shoot (10 Hours)",
         price:"₹9,999/-",
         tag:"10 HOURS • FULL DAY PRO",
-        image:"pkg_instant_shoot.jpg",
+        image:"pkg_inst_10hr.jpg",
         description:"10 hours comprehensive full-day coverage for full-scale events, day-long functions, weddings and productions.",
         features:[
             "10 Hours full-day comprehensive coverage",
@@ -314,76 +317,67 @@ instant:[
 wedding:[
 
     {
+        id:"pkg_wed_1",
         name:"Essential Wedding",
         price:"₹60,000/-",
         tag:"STARTER",
         image:"pkg_wedding_celebration.jpg",
         description:"Budget-friendly wedding coverage for smaller functions.",
         features:[
-            "Traditional Photos", 
-            "Traditional Videos",
-            "E- Invitation",
-            "1 main function",
+            "Traditional Photos & Traditional Videos",
+            "E-Invitation Card",
+            "1 main function coverage",
             "25 sheets Album (12x36)",
-            "1- Traditional Highlight",
-            "Couple Photo Frame",
-            
+            "1 Traditional Highlight Video",
+            "Couple Photo Frame"
         ]
     },
 
     {
+        id:"pkg_wed_2",
         name:"Signature Wedding",
         price:"₹85,000/-",
-        tag:"POPULAR",
-        image:"pkg_wedding_celebration.jpg",
-        description:"Balanced wedding coverage for couples wanting more complete storytelling.",
+        tag:"MOST POPULAR",
+        image:"pkg_wedding_varmala.jpg",
+        description:"Balanced wedding coverage for couples wanting complete candid storytelling.",
         features:[
-            "Traditional Photos", 
-            "Traditional Videos",
-            "Candid photos",
-            "Haldi & Mehendi",
-            "E- Invitation",
-            "16x24 Photo Frame",
-            "25 sheets Album (12x36)",
-            "1- Traditional Highlight"
+            "Candid Photographer + Traditional Team",
+            "Teaser Video + Full Traditional Video",
+            "35 sheets Premium Leatherette Album",
+            "Drone Aerial Coverage included",
+            "Same-day preview highlights"
         ]
     },
 
     {
-        name:"Premium Wedding",
+        id:"pkg_wed_3",
+        name:"Royal Cinema Production",
         price:"₹1,40,000/-",
-        tag:"PREMIUM",
+        tag:"LUXURY",
         image:"pkg_bridal_portrait.jpg",
-        description:"More complete photo + video coverage.",
+        description:"Full multi-day luxury wedding production with cinematic 4K video.",
         features:[
-            "Traditional Photos", 
-            "Traditional Videos",
-            "Cinematic video",
-            "Candid photos",
-            "Multiple functions",
-            "E- Invitation",
-            "Instagram Reels",
-            "16x24 Photo Frame",
-            "25 sheets Album (12x36)",
-            "Cinematic Highlights & Teaser"
+            "2 Candid + 2 Traditional + 1 Drone Master",
+            "Pre-wedding shoot included",
+            "Cinematic 4K Wedding Film (3-5 mins)",
+            "Full 60-90 min documentary edit",
+            "2 Ultra-HD Velvet Albums + Parent Minis"
         ]
     },
 
     {
+        id:"pkg_wed_4",
         name:"Luxury Custom",
         price:"Custom Quote",
         tag:"BESPOKE",
-        image:"pkg_bridal_portrait.jpg",
-        description:"For multi-day weddings and larger production requirements.",
+        image:"pkg_wedding_night.jpg",
+        description:"For multi-day weddings and larger bespoke production requirements.",
         features:[
-            "Multiple photographers",
-            "Multiple cinematographers",
-            "Drone",
-            "Cinematic films",
-            "Albums",
-            "Reels",
-            "Pre-wedding",
-            "Destination wedding support"
+            "Multiple photographers & cinematographers",
+            "Drone & crane aerials",
+            "Cinematic teaser & feature documentary film",
+            "Luxury heirloom albums",
+            "Dedicated wedding production director"
         ]
     }
 
@@ -393,72 +387,67 @@ wedding:[
 prewedding:[
 
     {
-        name:"Essential",
-        price:"₹140,999/-",
+        id:"pkg_pre_1",
+        name:"Classic Pre-Wedding",
+        price:"₹18,000/-",
         tag:"STARTER",
         image:"pkg_couples_portraits.jpg",
-        description:" Cinematic pre-wedding experience.",
+        description:"1-day local outdoor location shoot with stylized frames.",
         features:[
-            "Traditional Photos Traditional Videos",
-            "Cinematic video",
-            "Candid photos",
-            "E- Invitation",
-            "Instagram Reels",
-            "16x24 Photo Frame",
-            "25 sheets Album (12x36)",
-            "Cinematic Highlights & Teaser",
+            "1 Pro Candid Photographer",
+            "20 retouched high-res photos",
+            "3 outfit changes allowed",
+            "Props and location guidance"
         ]
     },
 
- 
+    {
+        id:"pkg_pre_2",
+        name:"Cinematic Pre-Wedding Film",
+        price:"₹35,000/-",
+        tag:"POPULAR",
+        image:"pkg_prewed_sunset.jpg",
+        description:"Photo + 4K Cinema video for your romantic love story.",
+        features:[
+            "1 Photographer + 1 Cinematographer",
+            "2-minute cinematic music video",
+            "Drone scenic landscapes",
+            "40 edited high-res images"
+        ]
+    }
+
 ],
 
 
 engagement:[
 
     {
-        name:"Basic",
-        price:"₹25,000/-",
-        tag:"STARTER",
-        image:"pkg_wedding_celebration.jpg",
-        description:"Clean coverage for engagement or roka.",
+        id:"pkg_eng_1",
+        name:"Roka & Ring Ceremony",
+        price:"₹15,000/-",
+        tag:"STANDARD",
+        image:"pkg_engagement_ring.jpg",
+        description:"Complete ceremony photo coverage with family portraits.",
         features:[
-            "Candid photos + videos",
-            "Traditional coverage",
-            "Edited photos + videos",
-            "Digital delivery"
+            "1 Candid + 1 Traditional Photographer",
+            "Ring ceremony & rituals capture",
+            "High-res gallery within 48 hours",
+            "50 edited photos"
         ]
     },
 
     {
-        name:"Signature",
+        id:"pkg_eng_2",
+        name:"Signature Engagement & Sangeet",
         price:"₹35,000/-",
         tag:"POPULAR",
-        image:"pkg_wedding_celebration.jpg",
-        description:"Photo + cinematic storytelling.",
+        image:"pkg_wedding_varmala.jpg",
+        description:"Photo + cinematic storytelling with stage celebrations.",
         features:[
-            "Candid photos + videos",
-            "Traditional coverage",
-            "Cinematic video",
-            "Highlight teaser",
-            "Edited photos + videos",
-            "Digital delivery"
-        ]
-    },
-
-    {
-        name:"Premium",
-        price:"₹45,000/-",
-        tag:"PREMIUM",
-        image:"pkg_wedding_celebration.jpg",
-        description:"Complete engagement coverage.",
-        features:[
-            "Candid + traditional",
-            "Cinematic video",
-            "Reels",
-            "Premium editing",
-            "Highlight film",
-            "Online gallery"
+            "Candid photos + traditional videos",
+            "Cinematic highlight teaser",
+            "Drone venue aerials",
+            "Digital gallery & prints"
         ]
     }
 
@@ -468,48 +457,32 @@ engagement:[
 birthday:[
 
     {
-        name:"Quick Celebration",
+        id:"pkg_bday_1",
+        name:"Birthday Party Special",
         price:"₹4,999/-",
-        tag:"BUDGET",
-        image:"pkg_birthday_parties.jpg",
-        description:"Short birthday coverage.",
+        tag:"POPULAR",
+        image:"pkg_birthday_cake.jpg",
+        description:"2 hours coverage for birthday celebration and cake cutting.",
         features:[
-            "2 hours shoot",
-            "1 photographer",
-            "premium coverage",
-            "Digital delivery"
+            "1 Professional Event Photographer",
+            "2 hours of party coverage",
+            "All RAW images delivered",
+            "30 edited photos included"
         ]
     },
 
     {
-        name:"Birthday Signature",
+        id:"pkg_bday_2",
+        name:"Signature Celebration & DJ Party",
         price:"₹7,999/-",
         tag:"POPULAR",
         image:"pkg_birthday_parties.jpg",
-        description:"Complete birthday photography.",
+        description:"3 hours coverage for milestone parties and dance celebration.",
         features:[
             "3 hours coverage",
-            "cinematic",
-            "Candid photography",
-            "Traditional photography",
-            "Edited photos",
-            "Short reel"
-        ]
-    },
-
-    {
-        name:"Birthday Premium",
-        price:"₹12,999/-",
-        tag:"PREMIUM",
-        image:"pkg_birthday_parties.jpg",
-        description:"Photo + video birthday coverage.",
-        features:[
-            "4–5 hours",
-            "Photo + video",
-            "Candid coverage",
-            "Reels",
-            "Highlight video",
-            "Online gallery"
+            "Candid photography + short reel",
+            "Cake cutting and stage moments",
+            "Edited photos in 48 hours"
         ]
     }
 
@@ -519,6 +492,7 @@ birthday:[
 party:[
 
     {
+        id:"pkg_party_1",
         name:"Basic Event",
         price:"₹5,999/-",
         tag:"STARTER",
@@ -533,25 +507,11 @@ party:[
     },
 
     {
-        name:"Signature Event",
-        price:"₹9,999/-",
-        tag:"POPULAR",
-        image:"pkg_birthday_parties.jpg",
-        description:"Complete photo coverage.",
-        features:[
-            "4 hours",
-            "Candid photography",
-            "Traditional photography",
-            "Short reel",
-            "Edited photos"
-        ]
-    },
-
-    {
-        name:"Premium Event",
+        id:"pkg_party_2",
+        name:"Grand Gala Evening",
         price:"₹14,999/-",
         tag:"PREMIUM",
-        image:"pkg_birthday_parties.jpg",
+        image:"pkg_wedding_night.jpg",
         description:"Photo + video event coverage.",
         features:[
             "5–6 hours",
@@ -569,46 +529,32 @@ party:[
 corporate:[
 
     {
-        name:"Half Day",
-        price:"₹12,000/-",
-        tag:"STARTER",
-        image:"pkg_instant_shoot.jpg",
-        description:"Professional corporate event coverage.",
+        id:"pkg_corp_1",
+        name:"Corporate Headshots & Team",
+        price:"₹9,999/-",
+        tag:"BUSINESS",
+        image:"pkg_corporate_headshot.jpg",
+        description:"High-impact headshots and office ambiance shoot.",
         features:[
-            "Up to 4 hours",
-            "1 photographer",
-            "Edited photos",
-            "Corporate group photos"
+            "Mobile studio flash setup at your office",
+            "Up to 10 executive portraits",
+            "Skin retouched & LinkedIn formatted",
+            "Commercial usage rights"
         ]
     },
 
     {
-        name:"Full Day",
+        id:"pkg_corp_2",
+        name:"Corporate Event & Full Day",
         price:"₹20,000/-",
         tag:"POPULAR",
-        image:"pkg_instant_shoot.jpg",
-        description:"Full corporate event documentation.",
+        image:"pkg_inst_10hr.jpg",
+        description:"Full day conference, seminar and brand production coverage.",
         features:[
-            "Up to 8 hours",
-            "Photography",
-            "Event documentation",
-            "Edited photos",
-            "Online delivery"
-        ]
-    },
-
-    {
-        name:"Corporate Plus",
-        price:"₹35,000/-",
-        tag:"PREMIUM",
-        image:"pkg_instant_shoot.jpg",
-        description:"Photo + video + social content.",
-        features:[
-            "Photo + video",
-            "Event coverage",
-            "Social media reels",
-            "Highlight video",
-            "Fast delivery"
+            "Up to 8 hours documentation",
+            "Keynote, audience and stage coverage",
+            "Social media highlights reel",
+            "Fast digital delivery"
         ]
     }
 
@@ -618,47 +564,32 @@ corporate:[
 commercial:[
 
     {
-        name:"Starter Product",
-        price:"₹7,500/-",
-        tag:"STARTER",
-        image:"pkg_food_catalogue.jpg",
-        description:"Simple product photography.",
+        id:"pkg_comm_1",
+        name:"Product & E-Commerce",
+        price:"₹7,499/-",
+        tag:"COMMERCIAL",
+        image:"pkg_product_ecommerce.jpg",
+        description:"Clean white background & lifestyle product photography.",
         features:[
-            "Up to 10 products",
-            "Basic setup",
-            "Edited images",
-            "White/background shots"
+            "Up to 15 product items",
+            "Clean cutout & lifestyle framing",
+            "Optimized for Amazon/Flipkart/Web",
+            "Color accurate retouching"
         ]
     },
 
     {
-        name:"Brand Content",
+        id:"pkg_comm_2",
+        name:"Food, Culinary & Brand",
         price:"₹15,000/-",
         tag:"POPULAR",
         image:"pkg_food_catalogue.jpg",
-        description:"Product + lifestyle content.",
+        description:"Stylized gourmet food and high-conversion restaurant menus.",
         features:[
-            "Up to 20 products",
-            "Lifestyle photos",
-            "Creative setup",
-            "Edited photos",
-            "Social media assets"
-        ]
-    },
-
-    {
-        name:"Campaign",
-        price:"₹30,000/-",
-        tag:"PREMIUM",
-        image:"pkg_food_catalogue.jpg",
-        description:"Complete commercial content production.",
-        features:[
-            "Creative direction",
-            "Product photography",
-            "Lifestyle photography",
-            "Video content",
-            "Reels",
-            "Multiple deliverables"
+            "Up to 20 styled dishes or products",
+            "Macro textures & overhead flat-lays",
+            "Commercial licensing included",
+            "Print and web ready"
         ]
     }
 
@@ -668,32 +599,32 @@ commercial:[
 portrait:[
 
     {
+        id:"pkg_port_1",
         name:"Personal & Couple Portrait",
         price:"₹2,499/-",
-        tag:"POPULAR",
+        tag:"INDIVIDUAL",
         image:"pkg_couples_portraits.jpg",
-        description:"1-hour session for portraits, maternity, couples or personal branding.",
+        description:"1-hour session for portraits, couples or personal branding.",
         features:[
-            "1 Hour doorstep session",
-            "15 Retouched portraits",
-            "Professional lighting equipment",
-            "Couples, maternity or individual",
-            "Digital cloud delivery"
+            "1-hour doorstep session",
+            "15 retouched portraits",
+            "Lighting equipment included",
+            "Digital cloud album"
         ]
     },
 
     {
+        id:"pkg_port_2",
         name:"Signature Story & Maternity",
         price:"₹4,999/-",
         tag:"PREMIUM",
-        image:"pkg_couples_portraits.jpg",
-        description:"Comprehensive 2-hour lifestyle and maternity creative shoot.",
+        image:"pkg_maternity_portrait.jpg",
+        description:"Fine-art maternity and lifestyle portrait storytelling.",
         features:[
-            "2 Hours dedicated shoot",
+            "2 Hours dedicated session",
             "35 Color-graded high-res photos",
-            "Multiple outfit / scene changes",
-            "Cinematic short reel",
-            "Expedited 48-hr delivery"
+            "Outfit and styling guidance",
+            "Expedited delivery"
         ]
     }
 
@@ -1891,13 +1822,13 @@ function renderPackages(){
         photographer: "pkg_instant_shoot.jpg",
         instant: "pkg_instant_shoot.jpg",
         wedding: "pkg_wedding_celebration.jpg",
-        prewedding: "pkg_couples_portraits.jpg",
-        engagement: "pkg_wedding_celebration.jpg",
-        birthday: "pkg_birthday_parties.jpg",
+        prewedding: "pkg_prewed_sunset.jpg",
+        engagement: "pkg_engagement_ring.jpg",
+        birthday: "pkg_birthday_cake.jpg",
         party: "pkg_birthday_parties.jpg",
-        corporate: "pkg_instant_shoot.jpg",
-        commercial: "pkg_food_catalogue.jpg",
-        portrait: "pkg_couples_portraits.jpg",
+        corporate: "pkg_corporate_headshot.jpg",
+        commercial: "pkg_product_ecommerce.jpg",
+        portrait: "pkg_maternity_portrait.jpg",
         salon: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80",
         travel: "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=600&q=80"
     };
@@ -1915,7 +1846,7 @@ function renderPackages(){
         card.setAttribute("role", "button");
         card.setAttribute("tabindex", "0");
 
-        const photoUrl = item.image || serviceFallbackImages[booking.service] || serviceFallbackImages.photographer;
+        const photoUrl = item.image || serviceFallbackImages[booking.event] || serviceFallbackImages[booking.service] || serviceFallbackImages.photographer;
 
         card.innerHTML = `
 
