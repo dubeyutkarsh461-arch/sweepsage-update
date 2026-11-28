@@ -1913,10 +1913,50 @@
       setTimeout(updateArrows, 200);
     }
 
+    function initHeroCard3DTilt() {
+      if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        const cards = document.querySelectorAll('.swiggy-card');
+        cards.forEach(card => {
+          const art = card.querySelector('.swiggy-card-art-img');
+          let rafId = null;
+
+          card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const rotateX = ((y - centerY) / centerY) * -6.5;
+            const rotateY = ((x - centerX) / centerX) * 6.5;
+            const artX = ((x - centerX) / centerX) * 10;
+            const artY = ((y - centerY) / centerY) * 10;
+
+            if (rafId) cancelAnimationFrame(rafId);
+            rafId = requestAnimationFrame(() => {
+              card.style.transform = `perspective(1200px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-8px)`;
+              if (art) {
+                art.style.transform = `translate3d(${artX.toFixed(2)}px, ${artY.toFixed(2)}px, 30px) scale(1.1) rotate(${(rotateY * 0.35).toFixed(1)}deg)`;
+              }
+            });
+          });
+
+          card.addEventListener('mouseleave', () => {
+            if (rafId) cancelAnimationFrame(rafId);
+            card.style.transform = '';
+            if (art) {
+              art.style.transform = '';
+            }
+          });
+        });
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       syncHomePageCatalog();
       renderTrendingPackages();
       initQuickServicesSlider();
+      initHeroCard3DTilt();
     });
     window.addEventListener('sweepsage_catalog_updated', () => {
       syncHomePageCatalog();
@@ -1925,6 +1965,7 @@
     syncHomePageCatalog();
     renderTrendingPackages();
     initQuickServicesSlider();
+    initHeroCard3DTilt();
   </script>
 </body>
 
