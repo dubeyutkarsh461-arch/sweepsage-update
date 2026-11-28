@@ -1,8 +1,7 @@
-from fastapi import FastAPI
-from fastapi.responses import JSONResponse
+"""
+SweepSage Root Application Entry Point
+Exposes the complete FastAPI application from backend/app.py.
+"""
+from backend.app import app
 
-app = FastAPI(title="SweepSage")
-
-@app.get("/api/health")
-def health():
-    return JSONResponse({"status": "ok", "app": "SweepSage"})
+__all__ = ["app"]

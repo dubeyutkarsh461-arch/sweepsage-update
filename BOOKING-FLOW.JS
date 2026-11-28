@@ -2697,6 +2697,20 @@ async function sendWhatsApp() {
             const result = await window.SweepSageAPI.createBooking(payload);
             if (result && result.reference) {
                 refCode = result.reference;
+                const area = document.getElementById("reviewArea");
+                if (area) {
+                    const confEl = document.createElement("div");
+                    confEl.className = "booking-confirmed-card";
+                    confEl.style.cssText = "background: #f0fdf4; border: 1.5px solid #22c55e; border-radius: 14px; padding: 16px; margin-bottom: 20px; text-align: center;";
+                    confEl.innerHTML = `
+                        <div style="font-weight: 800; color: #15803d; font-size: 16px; margin-bottom: 6px;">✓ Booking Recorded in Database</div>
+                        <div style="font-size: 13.5px; color: #166534; margin-bottom: 10px;">Booking Reference: <strong>#${refCode}</strong></div>
+                        <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+                            <a href="my-account.html?ref=${refCode}" style="display: inline-block; background: #16a34a; color: white; padding: 8px 16px; border-radius: 999px; text-decoration: none; font-size: 12.5px; font-weight: 700;">Track Order in My Account →</a>
+                        </div>
+                    `;
+                    area.insertBefore(confEl, area.firstChild);
+                }
             }
         } catch (err) {
             console.error("Failed to save booking to backend:", err);

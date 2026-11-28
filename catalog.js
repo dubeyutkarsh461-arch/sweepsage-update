@@ -489,11 +489,12 @@
 
     // Background sync to backend SQLite / Vercel API
     if (typeof window !== "undefined" && window.fetch) {
-      fetch('/api/catalog', {
+      const baseUrl = window.SweepSageAPI ? window.SweepSageAPI.getBaseUrl() : "";
+      fetch(baseUrl + '/api/catalog', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(state)
-      }).catch(() => { });
+      }).catch((e) => { console.warn("[SweepSage Catalog] Sync to backend failed:", e); });
     }
 
     // Sync to Supabase Cloud Database (Multi-Device Persistent Engine)
@@ -710,6 +711,14 @@
         list.push(clean);
         localStorage.setItem(CRM_EMAILS_KEY, JSON.stringify(list));
       }
+      if (typeof window !== "undefined" && window.fetch) {
+        const baseUrl = window.SweepSageAPI ? window.SweepSageAPI.getBaseUrl() : "";
+        fetch(baseUrl + '/api/crm/coordinators', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: clean, role: 'Coordinator' })
+        }).catch(() => { });
+      }
       return true;
     },
 
@@ -718,6 +727,10 @@
       let list = this.getRegisteredCRMEmails();
       list = list.filter(e => e.toLowerCase() !== clean);
       localStorage.setItem(CRM_EMAILS_KEY, JSON.stringify(list));
+      if (typeof window !== "undefined" && window.fetch) {
+        const baseUrl = window.SweepSageAPI ? window.SweepSageAPI.getBaseUrl() : "";
+        fetch(baseUrl + '/api/crm/coordinators/' + encodeURIComponent(clean), { method: 'DELETE' }).catch(() => { });
+      }
       return list;
     },
 
@@ -792,7 +805,8 @@
 
       // Background sync to SQLite Backend (if server active)
       if (typeof window !== "undefined" && window.fetch) {
-        fetch('/api/crm/invoices', {
+        const baseUrl = window.SweepSageAPI ? window.SweepSageAPI.getBaseUrl() : "";
+        fetch(baseUrl + '/api/crm/invoices', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(invoice)
@@ -826,7 +840,8 @@
 
       // Sync delete with SQLite Backend
       if (typeof window !== "undefined" && window.fetch) {
-        fetch(`/api/crm/invoices/${encodeURIComponent(invoiceId)}`, { method: 'DELETE' }).catch(() => { });
+        const baseUrl = window.SweepSageAPI ? window.SweepSageAPI.getBaseUrl() : "";
+        fetch(`${baseUrl}/api/crm/invoices/${encodeURIComponent(invoiceId)}`, { method: 'DELETE' }).catch(() => { });
       }
 
       // Sync delete from Supabase Cloud Database
@@ -897,6 +912,9 @@
       const state = loadState();
       saveState(state);
       return state;
+    },
+    syncWithServer: function () {
+      return syncCatalogWithBackend();
     }
   };
 
@@ -956,21 +974,48 @@
   // Initialize DB immediately
   initIndexedDB();
 
-  // Attempt background sync from server if available
-  if (typeof window !== "undefined" && window.fetch) {
-    fetch('/api/catalog')
+  // Real-time synchronization with FastAPI & SQLite database
+  function getCatalogBaseUrl() {
+    if (typeof window !== "undefined") {
+      if (window.SweepSageAPI && typeof window.SweepSageAPI.getBaseUrl === "function") {
+        return window.SweepSageAPI.getBaseUrl();
+      }
+      if (window.location && window.location.protocol === "file:") {
+        return "http://127.0.0.1:8000";
+      }
+    }
+    return "";
+  }
+
+  function syncCatalogWithBackend() {
+    if (typeof window === "undefined" || !window.fetch) return Promise.resolve(null);
+    const baseUrl = getCatalogBaseUrl();
+    return fetch(baseUrl + '/api/catalog')
       .then(res => res.ok ? res.json() : null)
       .then(remoteState => {
         if (remoteState && (remoteState.photographyServices || remoteState.travelDestinations)) {
-          const raw = localStorage.getItem(STORAGE_KEY);
-          if (!raw) {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(remoteState));
-            window.dispatchEvent(new CustomEvent("sweepsage_catalog_updated", { detail: remoteState }));
-          }
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(remoteState));
+          window.dispatchEvent(new CustomEvent("sweepsage_catalog_updated", { detail: remoteState }));
+          return remoteState;
+        } else {
+          // If server database is empty, seed it with the current default state
+          const current = loadState();
+          fetch(baseUrl + '/api/catalog', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(current)
+          }).catch(() => { });
+          return current;
         }
       })
-      .catch(() => { });
+      .catch((err) => {
+        console.warn("[SweepSage Catalog] Server catalog sync notice:", err);
+        return null;
+      });
   }
+
+  // Attempt sync immediately on load
+  syncCatalogWithBackend();
 
   // =========================================================
   // SUPABASE CLOUD DATABASE SYNC ENGINE (REALTIME MULTI-DEVICE)

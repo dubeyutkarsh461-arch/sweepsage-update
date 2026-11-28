@@ -2213,8 +2213,8 @@
   <!-- LOAD CATALOG & SCRIPTS -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase.config.js"></script>
-  <script src="catalog.js"></script>
   <script src="api.js"></script>
+  <script src="catalog.js"></script>
 
   <!-- JAVASCRIPT LOGIC -->
   <script>
@@ -2450,29 +2450,35 @@
       }
     });
 
-    function initData() {
+    function mapBookingToOrder(b) {
+      const ref = b.reference ? (b.reference.startsWith('#') ? b.reference : '#' + b.reference) : '#SS-' + String(b.id).slice(-4);
+      const st = (b.status || 'CONFIRMED').toUpperCase();
+      return {
+        id: b.reference || String(b.id),
+        ref: ref,
+        service: (b.service || 'general').toLowerCase(),
+        serviceName: b.event_name || (b.service === 'photographer' ? 'Instant Photographer' : b.service === 'salon' ? 'Doorstep Salon' : 'Travel Booking'),
+        package: b.package_name || 'Standard Package',
+        customer: b.customer_name || 'Customer',
+        phone: b.customer_phone || '-',
+        creator: b.creator || 'Aman Sharma (★ 4.9)',
+        creatorImg: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=80&q=80',
+        location: b.location || 'Greater Noida / Delhi NCR',
+        status: st,
+        statusText: st === 'CONFIRMED' ? 'Confirmed' : st === 'COMPLETED' ? 'Delivered & Paid' : st === 'ON_WAY' ? 'On Way • 6 mins' : st === 'IN_PROGRESS' ? 'In Progress' : 'Pending',
+        price: b.price || '₹1,499',
+        numericPrice: parseInt(String(b.price || '1499').replace(/[^0-9]/g, '')) || 1499,
+        createdTime: b.created_at ? new Date(b.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Recent',
+        notes: b.notes || ''
+      };
+    }
+
+    async function initData() {
+      // 1. Initial fast render from local cache or default dispatch orders
       try {
         const stored = JSON.parse(localStorage.getItem('sweepsageOfflineBookings') || '[]');
         if (stored.length > 0) {
-          const mapped = stored.map(b => ({
-            id: b.reference || String(b.id),
-            ref: b.reference ? (b.reference.startsWith('#') ? b.reference : '#' + b.reference) : '#SS-' + String(b.id).slice(-4),
-            service: (b.service || 'general').toLowerCase(),
-            serviceName: b.event_name || (b.service === 'photographer' ? 'Instant Photographer' : b.service === 'salon' ? 'Doorstep Salon' : 'Travel Booking'),
-            package: b.package_name || 'Standard Package',
-            customer: b.customer_name || 'Customer',
-            phone: b.customer_phone || '-',
-            creator: b.creator || 'Aman Sharma (★ 4.9)',
-            creatorImg: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=80&q=80',
-            location: b.location || 'Greater Noida / Delhi NCR',
-            status: b.status || 'CONFIRMED',
-            statusText: b.status === 'CONFIRMED' ? 'Confirmed' : b.status === 'COMPLETED' ? 'Delivered & Paid' : b.status === 'ON_WAY' ? 'On Way • 6 mins' : b.status === 'IN_PROGRESS' ? 'In Progress' : 'Pending',
-            price: b.price || '₹1,499',
-            numericPrice: parseInt(String(b.price || '1499').replace(/[^0-9]/g, '')) || 1499,
-            createdTime: b.created_at ? new Date(b.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Recent',
-            notes: b.notes || ''
-          }));
-
+          const mapped = stored.map(b => mapBookingToOrder(b));
           const existingIds = new Set(mapped.map(m => m.id));
           const leftovers = DEFAULT_DISPATCH_ORDERS.filter(d => !existingIds.has(d.id));
           allOrdersList = [...mapped, ...leftovers];
@@ -2482,6 +2488,7 @@
       } catch (e) {
         allOrdersList = [...DEFAULT_DISPATCH_ORDERS];
       }
+      window.allOrdersList = allOrdersList;
 
       renderDispatchTable();
       renderAllOrdersTable();
@@ -2495,6 +2502,29 @@
       renderSalonCMS();
       renderTravelCMS();
       initCRM();
+
+      // 2. Fetch live data from SQLite Database via FastAPI
+      if (window.SweepSageAPI) {
+        try {
+          const res = await window.SweepSageAPI.getBookings({ limit: 500 });
+          if (res && res.bookings && res.bookings.length > 0) {
+            const mapped = res.bookings.map(b => mapBookingToOrder(b));
+            const existingIds = new Set(mapped.map(m => m.id));
+            const leftovers = DEFAULT_DISPATCH_ORDERS.filter(d => !existingIds.has(d.id));
+            allOrdersList = [...mapped, ...leftovers];
+            window.allOrdersList = allOrdersList;
+
+            renderDispatchTable();
+            renderAllOrdersTable();
+            renderCreators();
+            renderVip();
+            renderPayouts();
+            updateKPICards();
+          }
+        } catch (err) {
+          console.warn("[Dashboard] SQLite live bookings fetch notice:", err);
+        }
+      }
     }
 
     // -------------------------------------------------------------

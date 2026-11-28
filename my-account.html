@@ -946,6 +946,7 @@
     <span id="toastMessage">Action completed successfully</span>
   </div>
 
+  <script src="api.js?v=4.0"></script>
   <!-- =========================================================
        COMPLETE PRODUCTION JAVASCRIPT
   ========================================================== -->
@@ -1052,11 +1053,137 @@
       }
     ];
 
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", async function () {
       initProfile();
       initAddresses();
       initTabs();
+      await loadLiveOrders();
     });
+
+    async function loadLiveOrders() {
+      if (!window.SweepSageAPI) return;
+      try {
+        const res = await window.SweepSageAPI.getBookings({ limit: 100 });
+        const bookings = res.bookings || [];
+        if (!bookings.length) return;
+
+        const container = document.querySelector(".orders-list");
+        if (!container) return;
+
+        // Populate ORDERS_DATA dictionary for all live bookings
+        bookings.forEach(b => {
+          const ref = b.reference || String(b.id);
+          const isAct = b.status === "CONFIRMED" || b.status === "ON_WAY" || b.status === "IN_PROGRESS" || b.status === "PENDING";
+          const numericPrice = parseInt(String(b.price || "1499").replace(/[^0-9]/g, "")) || 1499;
+
+          ORDERS_DATA[ref] = {
+            id: ref,
+            service: b.event_name || (b.service === "photographer" ? "Instant Doorstep Photographer" : b.service === "salon" ? "Salon at Home" : "Travel Retreat Booking"),
+            date: b.booking_date ? `${b.booking_date}${b.booking_time ? ' at ' + b.booking_time : ''}` : "Recent Booking",
+            status: b.status === "COMPLETED" ? "Delivered & Completed" : b.status === "ON_WAY" ? "Pro Dispatched • In Transit" : b.status === "IN_PROGRESS" ? "Shoot In Progress" : "Booking Confirmed",
+            badge: b.status === "COMPLETED" ? "Completed" : b.status === "ON_WAY" ? "In Transit" : b.status === "IN_PROGRESS" ? "In Progress" : "Confirmed",
+            isActive: isAct,
+            address: b.location || "N-52, Delta-3, Greater Noida, UP",
+            proName: b.creator || "Aman Sharma (★ 4.9 Verified Creator)",
+            proPhone: "+91 95558 26615",
+            proGear: "Sony A7 IV + Godox AD200 Pro + 35mm f/1.4",
+            timeline: [
+              { title: "Booking Placed & Recorded", time: b.booking_time || "03:30 PM", done: true },
+              { title: "SweepSage Pro Creator Assigned", time: "Confirmed", done: true },
+              { title: "Equipment Check & Dispatch", time: b.status === "ON_WAY" ? "In Transit" : "Ready", active: b.status === "ON_WAY", done: b.status === "COMPLETED" || b.status === "IN_PROGRESS" },
+              { title: "Doorstep Execution", time: b.status === "COMPLETED" ? "Executed" : "Scheduled", done: b.status === "COMPLETED" },
+              { title: "High-Res Cloud Album Delivery", time: "Within 24 Hours", done: b.status === "COMPLETED" }
+            ],
+            items: [
+              { name: b.package_name || "Standard Shoot Package", sac: "998381", price: numericPrice }
+            ],
+            taxes: 0.00,
+            total: numericPrice
+          };
+        });
+
+        // Prepend new bookings that don't have static DOM cards
+        bookings.forEach(b => {
+          const ref = b.reference || String(b.id);
+          const existingCard = document.getElementById(`order-card-${ref}`);
+          if (!existingCard) {
+            const isAct = b.status === "CONFIRMED" || b.status === "ON_WAY" || b.status === "IN_PROGRESS" || b.status === "PENDING";
+            const serviceIcon = b.service === "salon" ? "loader-salon-logo.png" : b.service === "travel" ? "loader-airplane-logo.png" : "loader-camera-logo.png";
+            const serviceTitle = b.event_name || (b.service === "photographer" ? "Doorstep Photographer" : b.service === "salon" ? "Salon at Home" : "Travel Retreat");
+
+            const card = document.createElement("article");
+            card.className = `order-card ${isAct ? 'order-item-active' : 'order-item-completed'}`;
+            card.setAttribute("data-status", isAct ? "active" : "completed");
+            card.id = `order-card-${ref}`;
+            card.innerHTML = `
+              ${isAct ? `
+              <div class="live-tracking-box">
+                <div class="live-tracking-header">
+                  <div class="live-indicator">
+                    <span class="live-pulse-ring"></span>
+                    <span>${b.status === 'ON_WAY' ? 'Pro Dispatched &amp; On The Way' : 'Booking Confirmed in Database'}</span>
+                  </div>
+                  <span class="live-eta-badge">${b.booking_date || 'Scheduled'} ${b.booking_time || ''}</span>
+                </div>
+                <div class="tracker-stepper">
+                  <div class="tracker-stepper-progress" style="width: ${b.status === 'ON_WAY' ? '66%' : b.status === 'IN_PROGRESS' ? '85%' : '33%'}"></div>
+                  <div class="tracker-step-item done"><span class="step-node-dot">✓</span><span class="step-node-text">Confirmed</span></div>
+                  <div class="tracker-step-item done"><span class="step-node-dot">✓</span><span class="step-node-text">Pro Assigned</span></div>
+                  <div class="tracker-step-item ${b.status === 'ON_WAY' ? 'active' : ''}"><span class="step-node-dot">⚡</span><span class="step-node-text">On The Way</span></div>
+                  <div class="tracker-step-item"><span class="step-node-dot">📸</span><span class="step-node-text">Execution</span></div>
+                </div>
+              </div>` : ''}
+              <div class="order-main-row">
+                <img class="order-service-thumb" src="${serviceIcon}" alt="${b.service}">
+                <div class="order-service-meta">
+                  <h3 class="order-service-title">${serviceTitle}</h3>
+                  <div class="order-service-location">${b.location || 'Doorstep Location'}</div>
+                  <div class="order-service-id-date">ORDER #${ref} | ${b.booking_date || 'Today'} ${b.booking_time ? 'at ' + b.booking_time : ''}</div>
+                  <a href="javascript:void(0)" class="order-service-view-details" onclick="openOrderReceipt('${ref}')">VIEW DETAILS</a>
+                </div>
+                <div class="order-status-badge-wrap">
+                  <span class="order-status-text" style="color: ${isAct ? 'var(--account-coral)' : '#10b981'};">
+                    ${isAct ? `<span class="live-pulse-ring" style="width: 7px; height: 7px;"></span>` : `<span class="status-check-circle">✓</span>`}
+                    <span>${b.status === 'COMPLETED' ? 'Delivered &amp; Paid' : b.status === 'ON_WAY' ? 'In Transit • ' + (b.creator || 'Assigned Pro') : (b.status || 'Confirmed')}</span>
+                  </span>
+                </div>
+              </div>
+              <div class="order-summary-row">
+                <div class="order-items-summary">${b.package_name || 'Service Package'} • ${b.notes || 'Verified SweepSage Creator Assigned'}</div>
+                <div class="order-total-price">Total: ${b.price || '₹1,499'}</div>
+              </div>
+              <div class="order-actions-row">
+                <a href="${b.service === 'salon' ? 'SALON-BOOKING.HTML' : b.service === 'travel' ? 'TRAVEL-BOOKING.HTML' : 'PHOTOGRAPHER-BOOKING.HTML'}" class="btn-order-rebook">REORDER</a>
+                <button type="button" class="btn-order-outline" onclick="openOrderReceipt('${ref}')">RECEIPT</button>
+                <a href="tel:+919555826615" class="btn-order-download" style="display: inline-flex; align-items: center; gap: 6px;">
+                  <span>📞 Call Concierge</span>
+                </a>
+              </div>
+            `;
+            container.insertBefore(card, container.firstChild);
+          }
+        });
+
+        // Update counts in filter buttons
+        const allCards = document.querySelectorAll(".orders-list .order-card");
+        const activeCards = document.querySelectorAll(".orders-list .order-card[data-status='active']");
+        const completedCards = document.querySelectorAll(".orders-list .order-card[data-status='completed']");
+
+        const filterBtns = document.querySelectorAll(".order-filter-btn");
+        if (filterBtns[0]) filterBtns[0].textContent = `All (${allCards.length})`;
+        if (filterBtns[1]) filterBtns[1].textContent = `Active (${activeCards.length})`;
+        if (filterBtns[2]) filterBtns[2].textContent = `Completed (${completedCards.length})`;
+
+        // Check URL parameter for ref tracking (e.g. ?ref=SS-98214)
+        const urlParams = new URLSearchParams(window.location.search);
+        const refParam = urlParams.get("ref");
+        if (refParam && ORDERS_DATA[refParam]) {
+          openOrderReceipt(refParam);
+        }
+      } catch (err) {
+        console.warn("[MyAccount] Error loading live orders:", err);
+      }
+    }
 
     // Profile Init
     function initProfile() {
