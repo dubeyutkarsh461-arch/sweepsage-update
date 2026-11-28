@@ -2351,7 +2351,7 @@ button {
 }
 
 .travel-card {
-  background-image: linear-gradient(0deg, rgba(0, 0, 0, .75), transparent 65%), url("https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1400&q=85");
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, .75), transparent 65%), url("travel_hero_retreat.jpg");
 }
 
 .floating-label {
@@ -2725,7 +2725,7 @@ button {
 }
 
 .d1 {
-  background-image: url("https://images.unsplash.com/photo-1598091383021-15ddea10925d?auto=format&fit=crop&w=1200&q=85");
+  background-image: url("travel_kashmir_shikara.jpg");
 }
 
 .d2 {

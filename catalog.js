@@ -341,7 +341,7 @@
       price: "₹18,999/- per person",
       numericPrice: 18999,
       imageClass: "d1",
-      image: "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=800&q=80",
+      image: "travel_kashmir_shikara.jpg",
       overview: "Mountains, lakes, slow days, and shikara rides on Dal Lake with snowfall in Gulmarg.",
       itinerary: [
         { day: 1, title: "Arrival in Srinagar & Dal Lake Sunset", desc: "Airport pickup, check-in to luxury houseboat, evening Shikara ride with authentic Kashmiri kahwa." },
