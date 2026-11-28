@@ -724,7 +724,7 @@
                 <span class="curated-price-label">Starting from</span>
                 <span class="curated-price-val" id="curated-instant-price">₹1,499/-</span>
               </div>
-              <a href="PHOTOGRAPHER-BOOKING.HTML?event=instant" class="curated-card-btn"
+              <a href="PHOTOGRAPHER-BOOKING.HTML?event=instant&pkg=Instant+Shoot" class="curated-card-btn"
                 aria-label="Book Instant Shoot">
                 <span>Book Shoot</span>
                 <span>↗</span>
@@ -762,7 +762,7 @@
                 <span class="curated-price-label">Starting from</span>
                 <span class="curated-price-val" id="curated-wedding-price">₹60,000/-</span>
               </div>
-              <a href="PHOTOGRAPHER-BOOKING.HTML?event=wedding" class="curated-card-btn"
+              <a href="PHOTOGRAPHER-BOOKING.HTML?event=wedding&pkg=Signature+Wedding" class="curated-card-btn"
                 aria-label="Book Wedding Photography">
                 <span>Book Wedding</span>
                 <span>↗</span>
@@ -800,7 +800,7 @@
                 <span class="curated-price-label">Starting from</span>
                 <span class="curated-price-val" id="curated-bridal-price">₹25,000/-</span>
               </div>
-              <a href="PHOTOGRAPHER-BOOKING.HTML?event=wedding" class="curated-card-btn" aria-label="Book Bridal Shoot">
+              <a href="PHOTOGRAPHER-BOOKING.HTML?event=wedding&pkg=Premium+Wedding" class="curated-card-btn" aria-label="Book Bridal Shoot">
                 <span>Book Bridal</span>
                 <span>↗</span>
               </a>
@@ -836,7 +836,7 @@
                 <span class="curated-price-label">Starting from</span>
                 <span class="curated-price-val" id="curated-portrait-price">₹2,499/-</span>
               </div>
-              <a href="PHOTOGRAPHER-BOOKING.HTML?event=portrait" class="curated-card-btn"
+              <a href="PHOTOGRAPHER-BOOKING.HTML?event=portrait&pkg=Personal+%26+Couple+Portrait" class="curated-card-btn"
                 aria-label="Book Portraits & Personal Shoot">
                 <span>Book Portraits</span>
                 <span>↗</span>
@@ -874,7 +874,7 @@
                 <span class="curated-price-label">Starting from</span>
                 <span class="curated-price-val" id="curated-event-price">₹4,999/-</span>
               </div>
-              <a href="PHOTOGRAPHER-BOOKING.HTML?event=birthday" class="curated-card-btn"
+              <a href="PHOTOGRAPHER-BOOKING.HTML?event=birthday&pkg=Quick+Celebration" class="curated-card-btn"
                 aria-label="Book Event Photography">
                 <span>Book Event</span>
                 <span>↗</span>
@@ -911,7 +911,7 @@
                 <span class="curated-price-label">Starting from</span>
                 <span class="curated-price-val" id="curated-commercial-price">₹7,499/-</span>
               </div>
-              <a href="PHOTOGRAPHER-BOOKING.HTML?event=commercial" class="curated-card-btn"
+              <a href="PHOTOGRAPHER-BOOKING.HTML?event=commercial&pkg=Starter+Product" class="curated-card-btn"
                 aria-label="Book Commercial Photography">
                 <span>Book Commercial</span>
                 <span>↗</span>
@@ -1339,8 +1339,8 @@
           <textarea name="message" rows="4" placeholder="What are you planning?"></textarea>
         </label>
 
-        <button class="btn btn-dark full-btn" type="submit">Send Enquiry <span>↗</span></button>
-        <p class="form-note">This demo form opens WhatsApp with your enquiry.</p>
+        <button class="btn btn-dark full-btn" type="submit">Confirm &amp; Submit Booking <span>↗</span></button>
+        <p class="form-note">🔒 Recorded securely in SweepSage database. Instant dispatch queue.</p>
       </form>
     </div>
   </div>
@@ -1647,7 +1647,7 @@
             'Portraits, birthdays & special moments'
           ],
           ctaText: 'Book 1 Hr (₹1,499/-) ↗',
-          ctaLink: 'PHOTOGRAPHER-BOOKING.HTML?event=instant',
+          ctaLink: 'PHOTOGRAPHER-BOOKING.HTML?event=instant&pkg=Instant+Shoot+(1+Hour)',
           featured: true
         },
         {
@@ -1666,7 +1666,7 @@
             'All color-graded high-res photos'
           ],
           ctaText: 'Book 4 Hrs (₹3,599/-) ↗',
-          ctaLink: 'PHOTOGRAPHER-BOOKING.HTML?event=instant',
+          ctaLink: 'PHOTOGRAPHER-BOOKING.HTML?event=instant&pkg=Instant+Shoot+(4+Hours)',
           featured: false
         },
         {
@@ -1685,7 +1685,7 @@
             'Unlimited captures & full digital gallery'
           ],
           ctaText: 'Book 10 Hrs (₹9,999/-) ↗',
-          ctaLink: 'PHOTOGRAPHER-BOOKING.HTML?event=instant',
+          ctaLink: 'PHOTOGRAPHER-BOOKING.HTML?event=instant&pkg=Instant+Shoot+(10+Hours)',
           featured: false
         },
         {
@@ -1704,7 +1704,7 @@
             '60-Sec cinematic Instagram Reel included'
           ],
           ctaText: 'Explore Pre-Wedding ↗',
-          ctaLink: 'PHOTOGRAPHER-BOOKING.HTML?event=prewedding',
+          ctaLink: 'PHOTOGRAPHER-BOOKING.HTML?event=prewedding&pkg=Signature+Cinematic+Pre-Wedding',
           featured: false
         },
         {
@@ -1723,7 +1723,7 @@
             'Cinematic highlight teaser video'
           ],
           ctaText: 'Book Wedding ↗',
-          ctaLink: 'PHOTOGRAPHER-BOOKING.HTML?event=wedding',
+          ctaLink: 'PHOTOGRAPHER-BOOKING.HTML?event=wedding&pkg=Essential+Wedding',
           featured: false
         }
       ];
@@ -1744,7 +1744,7 @@
               description: p.description || 'Exclusive curated photography experience.',
               features: (p.features && p.features.length) ? p.features.slice(0, 3) : ['Verified professional creator', '24-Hour digital delivery'],
               ctaText: 'Select Package ↗',
-              ctaLink: `PHOTOGRAPHER-BOOKING.HTML?event=${encodeURIComponent(p.serviceId || 'instant')}`,
+              ctaLink: `PHOTOGRAPHER-BOOKING.HTML?event=${encodeURIComponent(p.serviceId || 'instant')}&pkg=${encodeURIComponent(p.name || '')}`,
               featured: false
             });
           }

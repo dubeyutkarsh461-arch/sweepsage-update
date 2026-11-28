@@ -6,6 +6,7 @@ Compatible with Vercel Serverless, Local Python, and production deployments.
 from fastapi import FastAPI, HTTPException, Request, Depends, status
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 import sqlite3
 import json
 import os
@@ -929,6 +930,13 @@ async def admin_login(request: Request):
         })
 
     raise HTTPException(status_code=401, detail="Unauthorized: invalid email or access not granted")
+
+
+# -------------------------------------------------------------
+# STATIC FILE SERVING FOR FRONTEND PAGES & ASSETS
+# -------------------------------------------------------------
+if BASE_DIR.exists():
+    app.mount("/", StaticFiles(directory=str(BASE_DIR), html=True), name="static")
 
 
 # -------------------------------------------------------------

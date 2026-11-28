@@ -918,50 +918,21 @@ document.addEventListener("DOMContentLoaded", () => {
           "919555826615";
 
 
-        const whatsappURL =
-          `https://wa.me/${whatsappNumber}?text=${
-            encodeURIComponent(message)
-          }`;
-
-
         closeModal();
 
-
         if (toast) {
-
           toast.textContent =
-            refCode ? `Enquiry #${refCode} saved! Opening WhatsApp…` : "Opening WhatsApp…";
-
-          toast.classList.add(
-            "show"
-          );
-
+            refCode ? `✓ Booking #${refCode} confirmed & saved in database!` : "✓ Booking enquiry saved successfully!";
+          toast.classList.add("show");
         }
 
+        form.reset();
 
-        setTimeout(
-          () => {
-
-            window.open(
-              whatsappURL,
-              "_blank"
-            );
-
-
-            if (toast) {
-
-              toast.classList.remove(
-                "show"
-              );
-
-            }
-
-
-            form.reset();
-
-          },
-          450
-        );
+        setTimeout(() => {
+          if (toast) {
+            toast.classList.remove("show");
+          }
+        }, 4000);
 
       }
     );

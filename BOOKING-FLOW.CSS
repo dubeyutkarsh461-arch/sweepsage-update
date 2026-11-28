@@ -1338,16 +1338,20 @@ textarea.form-control {
   box-shadow: none;
 }
 
-.btn-whatsapp {
-  background: var(--emerald-gradient);
-  color: #ffffff;
-  font-weight: 800;
-  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.32);
+.btn-whatsapp,
+.btn-submit-booking {
+  background: linear-gradient(135deg, #fc5e68 0%, #ff8c6b 100%) !important;
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  border: none !important;
+  box-shadow: 0 4px 20px rgba(252, 94, 104, 0.4) !important;
+  cursor: pointer;
 }
 
-.btn-whatsapp:hover {
+.btn-whatsapp:hover,
+.btn-submit-booking:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(37, 211, 102, 0.48);
+  box-shadow: 0 8px 30px rgba(252, 94, 104, 0.55) !important;
   filter: brightness(1.06);
 }
 

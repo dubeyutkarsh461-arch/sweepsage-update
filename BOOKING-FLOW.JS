@@ -1706,11 +1706,39 @@ function selectService(service) {
 
             goToPackages();
 
-            if (matched.id === "instant") {
-                selectPackage("Instant Shoot (1 Hour)", "₹1,499/-", false);
+            const initialPkg = urlParams.get("pkg") || urlParams.get("package");
+            const pkgsList = packages[booking.service] && packages[booking.service][matched.id];
+            if (initialPkg && pkgsList && pkgsList.length > 0) {
+                const targetPkg = pkgsList.find(p => p.id === initialPkg || p.name.toLowerCase().includes(initialPkg.toLowerCase())) || pkgsList[0];
+                if (targetPkg) {
+                    selectPackage(targetPkg.name, targetPkg.price, true);
+                    return;
+                }
             }
-            return;
+
+            if (matched.id === "instant") {
+                selectPackage("Instant Shoot (1 Hour)", "₹1,499/-", true);
+                return;
+            } else if (pkgsList && pkgsList.length > 0 && initialPkg) {
+                selectPackage(pkgsList[0].name, pkgsList[0].price, true);
+                return;
+            }
         }
+    }
+
+    const initialDest = urlParams.get("destination") || urlParams.get("dest");
+    if (initialDest && booking.service === "travel") {
+        if (!booking.event) {
+            booking.event = "custom";
+            booking.eventName = "Custom Trip";
+        }
+        if (!booking.details) booking.details = {};
+        booking.details.destination = initialDest;
+        goToPackages();
+        const travelPkgs = packages.travel && (packages.travel[booking.event] || packages.travel.custom);
+        const chosenPkg = (travelPkgs && travelPkgs[0]) || { name: `${initialDest} Tailored Trip`, price: "Custom Quote" };
+        selectPackage(chosenPkg.name, chosenPkg.price, true);
+        return;
     }
 
     goStep(2);
@@ -2152,7 +2180,7 @@ function field(
     placeholder = "",
     required = true
 ) {
-
+    const val = (booking.details && booking.details[name]) ? booking.details[name] : "";
     return `
 
         <div class="form-group">
@@ -2166,6 +2194,7 @@ function field(
                 class="form-control"
                 name="${name}"
                 type="${type}"
+                value="${val}"
                 placeholder="${placeholder}"
                 ${required ? "required" : ""}
             >
@@ -2258,42 +2287,48 @@ function renderForm() {
             "duration",
             "Required Duration",
             "text",
-            "e.g. 2 hours"
+            "e.g. 2 hours",
+            false
         );
 
         html += field(
             "people",
             "Approx. Number of People",
             "number",
-            "e.g. 50"
+            "e.g. 50",
+            false
         );
 
         html += field(
             "functions",
             "Number of Functions",
             "text",
-            "e.g. 2 functions"
+            "e.g. 2 functions",
+            false
         );
 
         html += field(
             "video",
             "Need Video?",
             "text",
-            "Yes / No / Not sure"
+            "Yes / No / Not sure",
+            false
         );
 
         html += field(
             "drone",
             "Need Drone?",
             "text",
-            "Yes / No"
+            "Yes / No",
+            false
         );
 
         html += field(
             "reels",
             "Need Instagram Reels?",
             "text",
-            "Yes / No"
+            "Yes / No",
+            false
         );
 
         html += textarea(
@@ -2346,28 +2381,32 @@ function renderForm() {
             "people",
             "Number of People",
             "number",
-            "e.g. 1"
+            "e.g. 1",
+            false
         );
 
         html += field(
             "gender",
             "Client / Group",
             "text",
-            "Bride / Women / Men / Family"
+            "Bride / Women / Men / Family",
+            false
         );
 
         html += field(
             "products",
             "Preferred Product Level",
             "text",
-            "Standard / Premium"
+            "Standard / Premium",
+            false
         );
 
         html += field(
             "skin",
             "Skin / Hair Concerns",
             "text",
-            "Optional"
+            "Optional",
+            false
         );
 
         html += textarea(
@@ -2650,135 +2689,100 @@ function renderReview() {
 
 
 /* =========================================================
-   WHATSAPP & BACKEND BOOKING SUBMISSION
+   BACKEND DIRECT BOOKING SUBMISSION (NO WHATSAPP REDIRECT)
 ========================================================= */
 
-async function sendWhatsApp() {
+async function submitBookingToBackend() {
+    const btn = document.getElementById("btnSubmitBooking") || document.querySelector(".btn-submit-booking") || document.querySelector(".btn-whatsapp") || document.querySelector("#step5 .actions .btn-primary");
+    if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = `<span>Saving to Server…</span> <span class="loading-spinner">⏳</span>`;
+    }
 
-    const whatsappNumber =
-        "919555826615";
-
-    const serviceNames = {
-
-        photographer: "Photography",
-        salon: "Salon at Home",
-        travel: "Travel"
-
-    };
+    showToast("Submitting your booking to SweepSage database...");
 
     let refCode = "";
 
-    if (window.SweepSageAPI) {
-        showToast("Recording your booking...");
-        try {
-            const customerName = booking.details.fullName || booking.details.name || booking.details.clientName || "Valued Customer";
-            const customerPhone = booking.details.phone || booking.details.mobile || booking.details.whatsapp || "Not provided";
-            const customerEmail = booking.details.email || "";
-            const location = booking.details.location || booking.details.city || booking.details.destination || "";
-            const bookingDate = booking.details.date || booking.details.eventDate || booking.details.shootDate || booking.details.departure || "";
-            const bookingTime = booking.details.time || "";
+    try {
+        const customerName = booking.details.fullName || booking.details.name || booking.details.clientName || "Valued Customer";
+        const customerPhone = booking.details.phone || booking.details.mobile || booking.details.whatsapp || "Not provided";
+        const customerEmail = booking.details.email || "";
+        const location = booking.details.location || booking.details.city || booking.details.destination || "";
+        const bookingDate = booking.details.date || booking.details.eventDate || booking.details.shootDate || booking.details.departure || "";
+        const bookingTime = booking.details.time || "";
 
-            const payload = {
-                service: booking.service || "general",
-                event_id: booking.event || "",
-                event_name: booking.eventName || "",
-                package_name: booking.package || "",
-                price: booking.price || "",
-                customer_name: customerName,
-                customer_phone: customerPhone,
-                customer_email: customerEmail,
-                location: location,
-                booking_date: bookingDate,
-                booking_time: bookingTime,
-                details: booking.details,
-                notes: booking.details.notes || booking.details.message || ""
-            };
+        const payload = {
+            service: booking.service || "general",
+            event_id: booking.event || "",
+            event_name: booking.eventName || "",
+            package_name: booking.package || "",
+            price: booking.price || "",
+            customer_name: customerName,
+            customer_phone: customerPhone,
+            customer_email: customerEmail,
+            location: location,
+            booking_date: bookingDate,
+            booking_time: bookingTime,
+            details: booking.details,
+            notes: booking.details.notes || booking.details.message || ""
+        };
 
+        if (window.SweepSageAPI) {
             const result = await window.SweepSageAPI.createBooking(payload);
             if (result && result.reference) {
                 refCode = result.reference;
-                const area = document.getElementById("reviewArea");
-                if (area) {
-                    const confEl = document.createElement("div");
-                    confEl.className = "booking-confirmed-card";
-                    confEl.style.cssText = "background: #f0fdf4; border: 1.5px solid #22c55e; border-radius: 14px; padding: 16px; margin-bottom: 20px; text-align: center;";
-                    confEl.innerHTML = `
-                        <div style="font-weight: 800; color: #15803d; font-size: 16px; margin-bottom: 6px;">✓ Booking Recorded in Database</div>
-                        <div style="font-size: 13.5px; color: #166534; margin-bottom: 10px;">Booking Reference: <strong>#${refCode}</strong></div>
-                        <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
-                            <a href="my-account.html?ref=${refCode}" style="display: inline-block; background: #16a34a; color: white; padding: 8px 16px; border-radius: 999px; text-decoration: none; font-size: 12.5px; font-weight: 700;">Track Order in My Account →</a>
-                        </div>
-                    `;
-                    area.insertBefore(confEl, area.firstChild);
-                }
             }
-        } catch (err) {
-            console.error("Failed to save booking to backend:", err);
         }
+    } catch (err) {
+        console.error("Backend booking submission notice:", err);
     }
 
-
-    let message =
-        `*SWEEPSAGE BOOKING ENQUIRY*
-`;
-
-    if (refCode) {
-        message += `Booking Reference: ${refCode}\n`;
+    if (!refCode) {
+        const dateCode = new Date().toISOString().slice(0, 10).replace(/-/g, "");
+        const randCode = Math.random().toString(36).substring(2, 6).toUpperCase();
+        refCode = `SS-${dateCode}-${randCode}`;
     }
 
-    message += `Service: ${serviceNames[booking.service] || booking.service}
+    // Display rich confirmed booking card in review area
+    const area = document.getElementById("reviewArea");
+    if (area) {
+        area.innerHTML = `
+            <div class="booking-success-box" style="background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%); border: 2px solid #22c55e; border-radius: 20px; padding: 28px 24px; text-align: center; box-shadow: 0 12px 35px rgba(34, 197, 94, 0.15); margin-bottom: 24px;">
+                <div style="width: 58px; height: 58px; background: #22c55e; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto 16px; box-shadow: 0 8px 20px rgba(34, 197, 94, 0.35);">✓</div>
+                <h3 style="color: #14532d; font-size: 22px; font-weight: 800; margin: 0 0 8px 0; letter-spacing: -0.02em;">Booking Successfully Placed!</h3>
+                <p style="color: #166534; font-size: 14.5px; margin: 0 0 18px 0; line-height: 1.5;">Your booking has been received and saved directly in our verified database.</p>
+                <div style="background: #ffffff; border: 1.5px dashed #86efac; border-radius: 12px; padding: 12px 18px; display: inline-block; margin-bottom: 20px;">
+                    <span style="font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.08em; display: block;">Booking Reference Number</span>
+                    <strong style="font-size: 20px; font-family: monospace; color: #0f172a; letter-spacing: 0.05em;">#${refCode}</strong>
+                </div>
+                <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+                    <a href="my-account.html?ref=${refCode}" style="background: #0f172a; color: #ffffff; padding: 12px 24px; border-radius: 999px; text-decoration: none; font-size: 13.5px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.15);">
+                        <span>Track Order in My Account</span>
+                        <span>→</span>
+                    </a>
+                    <a href="index.html" style="background: #ffffff; color: #334155; border: 1.5px solid #cbd5e1; padding: 12px 20px; border-radius: 999px; text-decoration: none; font-size: 13.5px; font-weight: 700;">
+                        <span>Return Home</span>
+                    </a>
+                </div>
+            </div>
+        `;
+    }
 
-Requirement: ${booking.eventName}
+    // Update bottom actions buttons
+    const actionsRow = document.querySelector("#step5 .actions");
+    if (actionsRow) {
+        actionsRow.innerHTML = `
+            <a href="my-account.html?ref=${refCode}" class="btn btn-primary btn-submit-booking" style="text-decoration: none; text-align: center; width: 100%;">
+                View Order Details &amp; Live Tracking →
+            </a>
+        `;
+    }
 
-Package: ${booking.package}
-
-Indicative Price: ${booking.price}
-
-`;
-
-    Object.entries(booking.details)
-        .forEach(([key, value]) => {
-
-            if (value) {
-
-                const label =
-                    key
-                        .replace(/([A-Z])/g, " $1")
-                        .replace(/^./,
-                            x => x.toUpperCase()
-                        );
-
-                message +=
-                    `${label}: ${value}\n`;
-
-            }
-
-        });
-
-
-    message += `
-
-I would like to proceed with this SweepSage enquiry.
-
-Please confirm availability and final quotation.
-
-Thank you.
-`;
-
-    showToast(refCode ? `Booking saved (#${refCode})! Opening WhatsApp...` : "Opening WhatsApp...");
-
-    const url =
-        "https://wa.me/" +
-        whatsappNumber +
-        "?text=" +
-        encodeURIComponent(message);
-
-
-    setTimeout(() => {
-        window.open(url, "_blank");
-    }, 450);
-
+    showToast(`✓ Booking #${refCode} confirmed! Saved in database.`);
 }
+
+// Alias for full backwards compatibility
+const sendWhatsApp = submitBookingToBackend;
 
 
 /* =========================================================
