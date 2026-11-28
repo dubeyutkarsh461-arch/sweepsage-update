@@ -202,22 +202,6 @@
           "Full 60-90 min documentary edit",
           "2 Ultra-HD Velvet Albums + Parent Minis"
         ]
-      },
-      {
-        id: "pkg_wed_4",
-        serviceId: "wedding",
-        name: "Luxury Custom",
-        price: "Custom Quote",
-        tag: "BESPOKE",
-        image: "pkg_wedding_night.jpg",
-        description: "For multi-day weddings and larger bespoke production requirements.",
-        features: [
-          "Multiple photographers & cinematographers",
-          "Drone & crane aerials",
-          "Cinematic teaser & feature documentary film",
-          "Luxury heirloom albums",
-          "Dedicated wedding production director"
-        ]
       }
     ],
     prewedding: [
@@ -267,21 +251,6 @@
           "High-res gallery within 48 hours",
           "50 edited photos"
         ]
-      },
-      {
-        id: "pkg_eng_2",
-        serviceId: "engagement",
-        name: "Signature Engagement & Sangeet",
-        price: "₹35,000/-",
-        tag: "POPULAR",
-        image: "pkg_wedding_varmala.jpg",
-        description: "Photo + cinematic storytelling with stage celebrations.",
-        features: [
-          "Candid photos + traditional videos",
-          "Cinematic highlight teaser",
-          "Drone venue aerials",
-          "Digital gallery & prints"
-        ]
       }
     ],
     birthday: [
@@ -298,21 +267,6 @@
           "2 hours of party coverage",
           "All RAW images delivered",
           "30 edited photos included"
-        ]
-      },
-      {
-        id: "pkg_bday_2",
-        serviceId: "birthday",
-        name: "Signature Celebration & DJ Party",
-        price: "₹7,999/-",
-        tag: "POPULAR",
-        image: "pkg_birthday_parties.jpg",
-        description: "3 hours coverage for milestone parties and dance celebration.",
-        features: [
-          "3 hours coverage",
-          "Candid photography + short reel",
-          "Cake cutting and stage moments",
-          "Edited photos in 48 hours"
         ]
       }
     ],
@@ -331,21 +285,6 @@
           "Skin retouched & LinkedIn formatted",
           "Commercial usage rights"
         ]
-      },
-      {
-        id: "pkg_corp_2",
-        serviceId: "corporate",
-        name: "Corporate Event & Full Day",
-        price: "₹20,000/-",
-        tag: "POPULAR",
-        image: "pkg_inst_10hr.jpg",
-        description: "Full day conference, seminar and brand production coverage.",
-        features: [
-          "Up to 8 hours documentation",
-          "Keynote, audience and stage coverage",
-          "Social media highlights reel",
-          "Fast digital delivery"
-        ]
       }
     ],
     commercial: [
@@ -363,52 +302,22 @@
           "Optimized for Amazon/Flipkart/Web",
           "Color accurate retouching"
         ]
-      },
-      {
-        id: "pkg_comm_2",
-        serviceId: "commercial",
-        name: "Food, Culinary & Brand",
-        price: "₹15,000/-",
-        tag: "POPULAR",
-        image: "pkg_food_catalogue.jpg",
-        description: "Stylized gourmet food and high-conversion restaurant menus.",
-        features: [
-          "Up to 20 styled dishes or products",
-          "Macro textures & overhead flat-lays",
-          "Commercial licensing included",
-          "Print and web ready"
-        ]
       }
     ],
     portrait: [
       {
         id: "pkg_port_1",
         serviceId: "portrait",
-        name: "Personal & Couple Portrait",
+        name: "Personal Branding Portrait",
         price: "₹2,499/-",
         tag: "INDIVIDUAL",
-        image: "pkg_couples_portraits.jpg",
-        description: "1-hour session for portraits, couples or personal branding.",
+        image: "pkg_maternity_portrait.jpg",
+        description: "1-hour portrait session for LinkedIn, portfolios, or maternity.",
         features: [
           "1-hour doorstep session",
           "15 retouched portraits",
           "Lighting equipment included",
           "Digital cloud album"
-        ]
-      },
-      {
-        id: "pkg_port_2",
-        serviceId: "portrait",
-        name: "Signature Story & Maternity",
-        price: "₹4,999/-",
-        tag: "PREMIUM",
-        image: "pkg_maternity_portrait.jpg",
-        description: "Fine-art maternity and lifestyle portrait storytelling.",
-        features: [
-          "2 Hours dedicated session",
-          "35 Color-graded high-res photos",
-          "Outfit and styling guidance",
-          "Expedited delivery"
         ]
       }
     ]
@@ -511,11 +420,11 @@
         if (e && e.data && e.data.type === "SWEEPSAGE_CATALOG_SYNC") {
           try {
             window.dispatchEvent(new CustomEvent("sweepsage_catalog_updated", { detail: e.data.state }));
-          } catch (err) {}
+          } catch (err) { }
         }
       };
     }
-  } catch (e) {}
+  } catch (e) { }
 
   if (typeof window !== "undefined") {
     window.addEventListener("storage", function (e) {
@@ -523,7 +432,7 @@
         try {
           const state = JSON.parse(e.newValue);
           window.dispatchEvent(new CustomEvent("sweepsage_catalog_updated", { detail: state }));
-        } catch (err) {}
+        } catch (err) { }
       }
     });
   }
@@ -539,10 +448,8 @@
             if (photoPkgs[sKey]) {
               photoPkgs[sKey].forEach(p => {
                 const def = DEFAULT_PHOTOGRAPHY_PACKAGES[sKey]?.find(dp => dp.id === p.id || dp.name === p.name);
-                if (def && def.image && (!p.image || p.image.includes('images.unsplash.com') || p.id === def.id || p.name === def.name)) {
+                if (def && def.image && (!p.image || p.image.includes('images.unsplash.com') || p.id === def.id)) {
                   p.image = def.image;
-                  p.name = def.name;
-                  p.id = def.id;
                 }
               });
             }
@@ -574,7 +481,7 @@
       if (syncChannel) {
         try {
           syncChannel.postMessage({ type: "SWEEPSAGE_CATALOG_SYNC", state: state });
-        } catch (err) {}
+        } catch (err) { }
       }
     } catch (e) {
       console.error("SweepSage Catalog: Failed to save to localStorage", e);
@@ -586,7 +493,7 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(state)
-      }).catch(() => {});
+      }).catch(() => { });
     }
 
     // Sync to Supabase Cloud Database (Multi-Device Persistent Engine)
@@ -653,7 +560,7 @@
       if (!state.photographyPackages[sId]) {
         state.photographyPackages[sId] = [];
       }
-      
+
       const existingIdx = state.photographyPackages[sId].findIndex(p => p.id === pkg.id);
       if (existingIdx >= 0) {
         state.photographyPackages[sId][existingIdx] = { ...state.photographyPackages[sId][existingIdx], ...pkg };
@@ -747,7 +654,7 @@
     saveTravelDestination: function (dest) {
       const state = loadState();
       if (!state.travelDestinations) state.travelDestinations = [...DEFAULT_TRAVEL_DESTINATIONS];
-      
+
       const existingIdx = state.travelDestinations.findIndex(d => d.id === dest.id);
       if (existingIdx >= 0) {
         state.travelDestinations[existingIdx] = { ...state.travelDestinations[existingIdx], ...dest };
@@ -784,7 +691,7 @@
             return realEmails;
           }
         }
-      } catch (e) {}
+      } catch (e) { }
       return [...DEFAULT_CRM_EMAILS];
     },
 
@@ -837,10 +744,10 @@
           const list = JSON.parse(stored);
           if (Array.isArray(list)) {
             // Remove any mock demo invoices not created by user
-            const realList = list.filter(i => 
-              i.id !== "INV-SWP-8821" && 
-              i.id !== "INV-SWP-7412" && 
-              i.clientName !== "Dr. Vikramaditya Roy" && 
+            const realList = list.filter(i =>
+              i.id !== "INV-SWP-8821" &&
+              i.id !== "INV-SWP-7412" &&
+              i.clientName !== "Dr. Vikramaditya Roy" &&
               i.clientName !== "Priya & Siddharth Sharma"
             );
             if (realList.length !== list.length) {
@@ -849,7 +756,7 @@
             return realList;
           }
         }
-      } catch (e) {}
+      } catch (e) { }
       return [];
     },
 
@@ -869,7 +776,7 @@
         localStorage.setItem(CRM_INVOICES_KEY, JSON.stringify(list));
         window.dispatchEvent(new CustomEvent("sweepsage_catalog_updated", { detail: { invoices: list } }));
         if (syncChannel) {
-          try { syncChannel.postMessage({ type: "SWEEPSAGE_CATALOG_SYNC", detail: { invoices: list } }); } catch (err) {}
+          try { syncChannel.postMessage({ type: "SWEEPSAGE_CATALOG_SYNC", detail: { invoices: list } }); } catch (err) { }
         }
       } catch (e) {
         console.warn("Failed to save CRM invoice", e);
@@ -880,7 +787,7 @@
         try {
           const tx = indexedDBInstance.transaction(["crm_invoices"], "readwrite");
           tx.objectStore("crm_invoices").put(invoice);
-        } catch (e) {}
+        } catch (e) { }
       }
 
       // Background sync to SQLite Backend (if server active)
@@ -889,7 +796,7 @@
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(invoice)
-        }).catch(() => {});
+        }).catch(() => { });
       }
 
       // Sync to Supabase Cloud Database (Multi-Device Engine)
@@ -905,21 +812,21 @@
         localStorage.setItem(CRM_INVOICES_KEY, JSON.stringify(list));
         window.dispatchEvent(new CustomEvent("sweepsage_catalog_updated", { detail: { invoices: list } }));
         if (syncChannel) {
-          try { syncChannel.postMessage({ type: "SWEEPSAGE_CATALOG_SYNC", detail: { invoices: list } }); } catch (err) {}
+          try { syncChannel.postMessage({ type: "SWEEPSAGE_CATALOG_SYNC", detail: { invoices: list } }); } catch (err) { }
         }
-      } catch (e) {}
+      } catch (e) { }
 
       // Delete from IndexedDB
       if (indexedDBInstance) {
         try {
           const tx = indexedDBInstance.transaction(["crm_invoices"], "readwrite");
           tx.objectStore("crm_invoices").delete(invoiceId);
-        } catch (e) {}
+        } catch (e) { }
       }
 
       // Sync delete with SQLite Backend
       if (typeof window !== "undefined" && window.fetch) {
-        fetch(`/api/crm/invoices/${encodeURIComponent(invoiceId)}`, { method: 'DELETE' }).catch(() => {});
+        fetch(`/api/crm/invoices/${encodeURIComponent(invoiceId)}`, { method: 'DELETE' }).catch(() => { });
       }
 
       // Sync delete from Supabase Cloud Database
@@ -1025,7 +932,7 @@
       request.onerror = function (event) {
         console.warn("IndexedDB notice:", event.target.error);
       };
-    } catch (e) {}
+    } catch (e) { }
   }
 
   function syncLocalStorageToIndexedDB() {
@@ -1043,7 +950,7 @@
         const store = tx.objectStore("travel_destinations");
         dests.forEach(d => store.put(d));
       }
-    } catch (e) {}
+    } catch (e) { }
   }
 
   // Initialize DB immediately
@@ -1062,7 +969,7 @@
           }
         }
       })
-      .catch(() => {});
+      .catch(() => { });
   }
 
   // =========================================================
@@ -1136,7 +1043,7 @@
           const cloudState = JSON.parse(catRow.catalog_json);
           localStorage.setItem(STORAGE_KEY, JSON.stringify(cloudState));
           window.dispatchEvent(new CustomEvent("sweepsage_catalog_updated", { detail: cloudState }));
-        } catch (e) {}
+        } catch (e) { }
       } else {
         // If empty in cloud, seed current default state to Supabase
         const cur = loadState();
@@ -1159,7 +1066,7 @@
               const updated = JSON.parse(payload.new.catalog_json);
               localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
               window.dispatchEvent(new CustomEvent("sweepsage_catalog_updated", { detail: updated }));
-            } catch (err) {}
+            } catch (err) { }
           }
         })
         .on("postgres_changes", { event: "*", schema: "public", table: "crm_invoices" }, async () => {
@@ -1194,7 +1101,7 @@
           el.textContent = inst.price;
         });
       }
-    } catch(e) {}
+    } catch (e) { }
   }
 
   if (typeof window !== "undefined") {
